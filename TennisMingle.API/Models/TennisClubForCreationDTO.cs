@@ -1,0 +1,23 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace TennisMingle.API.Models
+{
+    public class TennisClubForCreationDTO
+    {
+        public string Name { get; set; }
+
+        public string Surface { get; set; }
+
+        public ICollection<string> Facilities { get; set; }
+
+        public string Address { get; set; }
+        public string PhoneNumber { get; set; }
+        public string Description { get; set; }
+        public string Prices { get; set; }
+        public string Schedule { get; set; }
+        public string Image { get; set; }
+    }
+}
