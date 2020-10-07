@@ -14,6 +14,8 @@ namespace TennisMingle.API.Models
 
         public ICollection<string> Facilities { get; set; }
 
+        public ICollection<CoachDTO> Coaches { get; set; } = new List<CoachDTO>();
+
         public string Address { get; set; }
         public string PhoneNumber { get; set; }
         public string Description { get; set; }
