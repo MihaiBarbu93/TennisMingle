@@ -15,7 +15,56 @@ namespace TennisMingle.API
         public List<CoachDTO> Coaches { get; set; } = new List<CoachDTO>();
 
         public CitiesDataStore()
+
+
         {
+
+            Coaches = new List<CoachDTO>()
+            {
+                new CoachDTO()
+                {
+                    Id = 1,
+                    Name = "Darren Cahill",
+                    Bio = "Simona Halep's coach",
+                    Photo = "the photo",
+                },
+                new CoachDTO()
+                {
+                    Id = 2,
+                    Name = "Patrick Mouratoglu",
+                    Bio = "A turkish coach",
+                    Photo = "the photo",
+                },
+                new CoachDTO()
+                {
+                    Id = 3,
+                    Name = "Wim Fissette",
+                    Bio = "A belgian poker-faced coach",
+                    Photo = "the photo",
+                },
+                new CoachDTO()
+                {
+                    Id = 4,
+                    Name = "Sergio Giorgi",
+                    Bio = "A mad italian coach",
+                    Photo = "the photo",
+                },
+                new CoachDTO()
+                {
+                    Id = 5,
+                    Name = "Judy Murray",
+                    Bio = "Andy Murray's mom",
+                    Photo = "the photo",
+                },
+                new CoachDTO()
+                {
+                    Id = 6,
+                    Name = "Kamau Murray",
+                    Bio = "An afro-american coach",
+                    Photo = "the photo",
+                }
+            };
+
             Cities = new List<CityDTO>()
             {
                 new CityDTO()
@@ -89,76 +138,6 @@ namespace TennisMingle.API
                              Image = "imagine",
                              Description = "Tenis Parc Herastrau ofera terenuri de tenis cu suprafata de zgura, acoperite pe perioada de iarna, cu structura presostatica si incalzite.Terenurile au suprafata cu zgura de calitate deosebita, sportivii au la dispozitie o terasa unde sa se relaxeze dupa joc, vestiare, wi-fi, si parcare." },
                      }
-                }
-            };
-
-            Coaches = new List<CoachDTO>()
-            {
-                new CoachDTO()
-                {
-                    Id = 1,
-                    Name = "Darren Cahill",
-                    Bio = "Simona Halep's coach",
-                    Photo = "the photo",
-                    TennisClubs = new List<TennisClubDTO>() {
-                        Cities.FirstOrDefault(c => c.Id == 1).TennisClubs.FirstOrDefault(tc => tc.Id == 2),
-                        Cities.FirstOrDefault(c => c.Id == 1).TennisClubs.FirstOrDefault(tc => tc.Id == 1)
-                    }
-                },
-                new CoachDTO()
-                {
-                    Id = 2,
-                    Name = "Patrick Mouratoglu",
-                    Bio = "A turkish coach",
-                    Photo = "the photo",
-                    TennisClubs = new List<TennisClubDTO>() {
-                        Cities.FirstOrDefault(c => c.Id == 1).TennisClubs.FirstOrDefault(tc => tc.Id == 4),
-                        Cities.FirstOrDefault(c => c.Id == 1).TennisClubs.FirstOrDefault(tc => tc.Id == 2)
-                    }
-                },
-                new CoachDTO()
-                {
-                    Id = 3,
-                    Name = "Wim Fissette",
-                    Bio = "A belgian poker-faced coach",
-                    Photo = "the photo",
-                    TennisClubs = new List<TennisClubDTO>() {
-                        Cities.FirstOrDefault(c => c.Id == 1).TennisClubs.FirstOrDefault(tc => tc.Id == 3),
-                        Cities.FirstOrDefault(c => c.Id == 1).TennisClubs.FirstOrDefault(tc => tc.Id == 1)
-                    }
-                },
-                new CoachDTO()
-                {
-                    Id = 4,
-                    Name = "Sergio Giorgi",
-                    Bio = "A mad italian coach",
-                    Photo = "the photo",
-                    TennisClubs = new List<TennisClubDTO>() {
-                        Cities.FirstOrDefault(c => c.Id == 1).TennisClubs.FirstOrDefault(tc => tc.Id == 4),
-                        Cities.FirstOrDefault(c => c.Id == 1).TennisClubs.FirstOrDefault(tc => tc.Id == 3)
-                    }
-                },
-                new CoachDTO()
-                {
-                    Id = 5,
-                    Name = "Judy Murray",
-                    Bio = "Andy Murray's mom",
-                    Photo = "the photo",
-                    TennisClubs = new List<TennisClubDTO>() {
-                        Cities.FirstOrDefault(c => c.Id == 1).TennisClubs.FirstOrDefault(tc => tc.Id == 1),
-                        Cities.FirstOrDefault(c => c.Id == 1).TennisClubs.FirstOrDefault(tc => tc.Id == 4)
-                    }
-                },
-                new CoachDTO()
-                {
-                    Id = 6,
-                    Name = "Kamau Murray",
-                    Bio = "An afro-american coach",
-                    Photo = "the photo",
-                    TennisClubs = new List<TennisClubDTO>() {
-                        Cities.FirstOrDefault(c => c.Id == 1).TennisClubs.FirstOrDefault(tc => tc.Id == 2),
-                        Cities.FirstOrDefault(c => c.Id == 1).TennisClubs.FirstOrDefault(tc => tc.Id == 3)
-                    }
                 }
             };
         }
