@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using TennisMingle.API.Models;
 
@@ -121,11 +119,11 @@ namespace TennisMingle.API.Controllers
             return NoContent();
         }
 
-        /*[HttpPatch]
+        [HttpPatch]
         [Route("{id}")]
 
         public IActionResult PartiallyUpdateCoach(int cityId, int tennisClubId, int id,
-            [FromBody] JsonPatchDocument patchDoc)
+            [FromBody] JsonPatchDocument<CoachDTOForUpdate> patchDoc)
         {
             var city = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
 
@@ -156,7 +154,7 @@ namespace TennisMingle.API.Controllers
             };
 
             patchDoc.ApplyTo(coachToPatch, ModelState);
-
+         
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -167,7 +165,7 @@ namespace TennisMingle.API.Controllers
             coachFromStore.Photo = coachToPatch.Photo;
 
             return NoContent();
-        }*/
+        }
 
         [HttpDelete]
         [Route("{id}")]

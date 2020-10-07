@@ -78,7 +78,7 @@ namespace TennisMingle.API
                              Name = "Academia de Tenis Herastrau",
                              Surfaces = new List<Surface>{ Surface.CLAY },
                              Facilities = new List<Facilities> {Facilities.PARKING, Facilities.DRESSROOM},
-                             Coaches = new List<CoachDTO>() { 
+                             Coaches = new List<CoachDTO>() {
                                 Coaches.FirstOrDefault(co => co.Id == 1),
                                 Coaches.FirstOrDefault(co => co.Id == 3),
                                 Coaches.FirstOrDefault(co => co.Id == 5),
@@ -94,11 +94,7 @@ namespace TennisMingle.API
                              Name = "Academia de Tenis Herastrau 2",
                              Surfaces = new List<Surface>{ Surface.CLAY, Surface.GRASS },
                              Facilities = new List<Facilities> {Facilities.PARKING, Facilities.DRESSROOM, Facilities.NOCTURNE},
-                             Coaches = new List<CoachDTO>() {
-                                Coaches.FirstOrDefault(co => co.Id == 1),
-                                Coaches.FirstOrDefault(co => co.Id == 2),
-                                Coaches.FirstOrDefault(co => co.Id == 6),
-                             },
+                             Coaches =  Coaches.Where(co => new int[]{1,2,6}.Contains(co.Id)).ToList(),
                              Address = "Str. Soseaua Nordului, nr. 7-9, Bucuresti - Sector 1, Bucuresti",
                              PhoneNumber = "0721255444",
                              Prices = new List<int>{ 30, 50, 80 },
