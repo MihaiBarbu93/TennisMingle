@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\.NET-C#\\TW4\\TennisMingle\\TennisMingle.API\\TennisMingle.API.csproj": {}
+    "C:\\Users\\Mihai\\Desktop\\.NET\\TW_Projects\\TennisMingle\\TennisMingle.API\\TennisMingle.API.csproj": {}
   },
   "projects": {
-    "D:\\.NET-C#\\TW4\\TennisMingle\\TennisMingle.API\\TennisMingle.API.csproj": {
+    "C:\\Users\\Mihai\\Desktop\\.NET\\TW_Projects\\TennisMingle\\TennisMingle.API\\TennisMingle.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\.NET-C#\\TW4\\TennisMingle\\TennisMingle.API\\TennisMingle.API.csproj",
+        "projectUniqueName": "C:\\Users\\Mihai\\Desktop\\.NET\\TW_Projects\\TennisMingle\\TennisMingle.API\\TennisMingle.API.csproj",
         "projectName": "TennisMingle.API",
-        "projectPath": "D:\\.NET-C#\\TW4\\TennisMingle\\TennisMingle.API\\TennisMingle.API.csproj",
-        "packagesPath": "C:\\Users\\Silviu\\.nuget\\packages\\",
-        "outputPath": "D:\\.NET-C#\\TW4\\TennisMingle\\TennisMingle.API\\obj\\",
+        "projectPath": "C:\\Users\\Mihai\\Desktop\\.NET\\TW_Projects\\TennisMingle\\TennisMingle.API\\TennisMingle.API.csproj",
+        "packagesPath": "C:\\Users\\Mihai\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Mihai\\Desktop\\.NET\\TW_Projects\\TennisMingle\\TennisMingle.API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Silviu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Mihai\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -55,7 +55,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.400\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
+using TennisMingle.API.Enums;
 using TennisMingle.API.Models;
 
 namespace TennisMingle.API
@@ -26,8 +27,8 @@ namespace TennisMingle.API
                          new TennisClubDTO() {
                              Id = 1,
                              Name = "Academia de Tenis Herastrau",
-                             Surface = "clay",
-                             Facilities = new List<string> {"parking", "dressroom"},
+                             Surfaces = new List<Surface>{ Surface.CLAY },
+                             Facilities = new List<Facilities> {Facilities.PARKING, Facilities.DRESSROOM},
                              Coaches = new List<CoachDTO>() { 
                                 Coaches.FirstOrDefault(co => co.Id == 1),
                                 Coaches.FirstOrDefault(co => co.Id == 3),
@@ -35,15 +36,15 @@ namespace TennisMingle.API
                              },
                              Address = "Str. Soseaua Nordului, nr. 7-9, Bucuresti - Sector 1, Bucuresti",
                              PhoneNumber = "0721255444",
-                             Prices = "50lei/h",
+                             Prices = new List<int>{ 30, 50 },
                              Schedule = "L-D 7:00 - 24:00",
                              Image = "imagine",
                              Description = "Tenis Parc Herastrau ofera terenuri de tenis cu suprafata de zgura, acoperite pe perioada de iarna, cu structura presostatica si incalzite.Terenurile au suprafata cu zgura de calitate deosebita, sportivii au la dispozitie o terasa unde sa se relaxeze dupa joc, vestiare, wi-fi, si parcare." },
                           new TennisClubDTO() {
                             Id = 2,
                              Name = "Academia de Tenis Herastrau 2",
-                             Surface = "clay",
-                             Facilities = new List<string> {"parking", "dressroom"},
+                             Surfaces = new List<Surface>{ Surface.CLAY, Surface.GRASS },
+                             Facilities = new List<Facilities> {Facilities.PARKING, Facilities.DRESSROOM, Facilities.NOCTURNE},
                              Coaches = new List<CoachDTO>() {
                                 Coaches.FirstOrDefault(co => co.Id == 1),
                                 Coaches.FirstOrDefault(co => co.Id == 2),
@@ -51,15 +52,15 @@ namespace TennisMingle.API
                              },
                              Address = "Str. Soseaua Nordului, nr. 7-9, Bucuresti - Sector 1, Bucuresti",
                              PhoneNumber = "0721255444",
-                             Prices = "50lei/h",
+                             Prices = new List<int>{ 30, 50, 80 },
                              Schedule = "L-D 7:00 - 24:00",
                              Image = "imagine",
                              Description = "Tenis Parc Herastrau ofera terenuri de tenis cu suprafata de zgura, acoperite pe perioada de iarna, cu structura presostatica si incalzite.Terenurile au suprafata cu zgura de calitate deosebita, sportivii au la dispozitie o terasa unde sa se relaxeze dupa joc, vestiare, wi-fi, si parcare." },
                           new TennisClubDTO() {
                             Id = 3,
                              Name = "Academia de Tenis Herastrau 3",
-                             Surface = "clay",
-                             Facilities = new List<string> {"parking", "dressroom"},
+                             Surfaces = new List<Surface>{ Surface.CLAY, Surface.GRASS, Surface.ACRYLIC },
+                             Facilities = new List<Facilities> {Facilities.PARKING, Facilities.DRESSROOM, Facilities.NOCTURNE},
                              Coaches = new List<CoachDTO>() {
                                 Coaches.FirstOrDefault(co => co.Id == 3),
                                 Coaches.FirstOrDefault(co => co.Id == 4),
@@ -67,15 +68,15 @@ namespace TennisMingle.API
                              },
                              Address = "Str. Soseaua Nordului, nr. 7-9, Bucuresti - Sector 1, Bucuresti",
                              PhoneNumber = "0721255444",
-                             Prices = "50lei/h",
+                             Prices = new List<int>{ 50, 80 },
                              Schedule = "L-D 7:00 - 24:00",
                              Image = "imagine",
                              Description = "Tenis Parc Herastrau ofera terenuri de tenis cu suprafata de zgura, acoperite pe perioada de iarna, cu structura presostatica si incalzite.Terenurile au suprafata cu zgura de calitate deosebita, sportivii au la dispozitie o terasa unde sa se relaxeze dupa joc, vestiare, wi-fi, si parcare." },
                           new TennisClubDTO() {
                             Id = 4,
                              Name = "Academia de Tenis Herastrau 4",
-                             Surface = "clay",
-                             Facilities = new List<string> {"parking", "dressroom"},
+                             Surfaces = new List<Surface>{ Surface.CLAY, Surface.ASPHALT },
+                             Facilities = new List<Facilities> {Facilities.PARKING, Facilities.DRESSROOM, Facilities.SHOWERS},
                              Coaches = new List<CoachDTO>() {
                                 Coaches.FirstOrDefault(co => co.Id == 2),
                                 Coaches.FirstOrDefault(co => co.Id == 4),
@@ -83,7 +84,7 @@ namespace TennisMingle.API
                              },
                              Address = "Str. Soseaua Nordului, nr. 7-9, Bucuresti - Sector 1, Bucuresti",
                              PhoneNumber = "0721255444",
-                             Prices = "50lei/h",
+                             Prices = new List<int>{ 50, 80 },
                              Schedule = "L-D 7:00 - 24:00",
                              Image = "imagine",
                              Description = "Tenis Parc Herastrau ofera terenuri de tenis cu suprafata de zgura, acoperite pe perioada de iarna, cu structura presostatica si incalzite.Terenurile au suprafata cu zgura de calitate deosebita, sportivii au la dispozitie o terasa unde sa se relaxeze dupa joc, vestiare, wi-fi, si parcare." },

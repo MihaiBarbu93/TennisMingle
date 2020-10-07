@@ -12,7 +12,7 @@ namespace TennisMingle.API.Models
 
         public ICollection<TennisCourtDTO> TennisCourts { get; set; }
 
-        public ICollection<CoachDTO> Coaches { get; set; };
+        public ICollection<CoachDTO> Coaches { get; set; }
 
         public ICollection<Surface> Surfaces { get; set; }
 
