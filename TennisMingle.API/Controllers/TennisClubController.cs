@@ -51,7 +51,7 @@ namespace TennisMingle.API.Controllers
             {
                 Id = ++maxTennisClubId,
                 Name = tennisClub.Name,
-                Surface = tennisClub.Surface,
+                Surfaces = tennisClub.Surfaces,
                 Facilities = tennisClub.Facilities,
                 Address = tennisClub.Address,
                 PhoneNumber = tennisClub.PhoneNumber,

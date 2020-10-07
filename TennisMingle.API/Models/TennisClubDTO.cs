@@ -13,13 +13,11 @@ namespace TennisMingle.API.Models
 
         public ICollection<TennisCourtDTO> TennisCourts { get; set; }
 
-        public ICollection<CoachDTO> Coaches { get; set; };
+        public ICollection<CoachDTO> Coaches { get; set; }
 
         public ICollection<Surface> Surfaces { get; set; }
 
         public ICollection<Facilities> Facilities { get; set; }
-
-        public ICollection<CoachDTO> Coaches { get; set; } = new List<CoachDTO>();
 
         public string Address { get; set; }
         public string PhoneNumber { get; set; }
