@@ -1,8 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "J/i2tGiKTON1P72C7902QGFkcblkWTi1h6Dzr2l1CcE5GkQnd3CWWQvV2cItELeiIf3rfmfRyMEa58rv0CWFfA==",
+  "dgSpecHash": "PO9XRNpPM3C7rstJgYQa5X4E6GfTOILGffDG8wGZ4Ca9/jCRX21Wu1PiIOhW99HXt0EEn9pAgH1JZtfr0z6Wyw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Mihai\\Desktop\\.NET\\TW_Projects\\TennisMingle\\TennisMingle.API\\TennisMingle.API.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "D:\\.NET-C#\\TW4\\TennisMingle\\TennisMingle.API\\TennisMingle.API.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Silviu\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\3.1.8\\microsoft.aspnetcore.jsonpatch.3.1.8.nupkg.sha512",
+    "C:\\Users\\Silviu\\.nuget\\packages\\microsoft.aspnetcore.mvc.newtonsoftjson\\3.0.0\\microsoft.aspnetcore.mvc.newtonsoftjson.3.0.0.nupkg.sha512",
+    "C:\\Users\\Silviu\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
+    "C:\\Users\\Silviu\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
+    "C:\\Users\\Silviu\\.nuget\\packages\\newtonsoft.json.bson\\1.0.2\\newtonsoft.json.bson.1.0.2.nupkg.sha512"
+  ],
   "logs": []
 }
