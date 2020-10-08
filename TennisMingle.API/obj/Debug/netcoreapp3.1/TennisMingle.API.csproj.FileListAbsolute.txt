@@ -1,7 +1,5 @@
 C:\Users\Mihai\Desktop\.NET\TW_Projects\TennisMingle\TennisMingle.API\obj\Debug\netcoreapp3.1\TennisMingle.API.AssemblyInfoInputs.cache
 C:\Users\Mihai\Desktop\.NET\TW_Projects\TennisMingle\TennisMingle.API\obj\Debug\netcoreapp3.1\TennisMingle.API.AssemblyInfo.cs
-C:\Users\Mihai\Desktop\.NET\TW_Projects\TennisMingle\TennisMingle.API\obj\Debug\netcoreapp3.1\TennisMingle.API.csproj.CoreCompileInputs.cache
-C:\Users\Mihai\Desktop\.NET\TW_Projects\TennisMingle\TennisMingle.API\obj\Debug\netcoreapp3.1\TennisMingle.API.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Mihai\Desktop\.NET\TW_Projects\TennisMingle\TennisMingle.API\bin\Debug\netcoreapp3.1\appsettings.Development.json
 C:\Users\Mihai\Desktop\.NET\TW_Projects\TennisMingle\TennisMingle.API\bin\Debug\netcoreapp3.1\appsettings.json
 C:\Users\Mihai\Desktop\.NET\TW_Projects\TennisMingle\TennisMingle.API\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
@@ -48,3 +46,12 @@ D:\.NET-C#\TW4\TennisMingle\TennisMingle.API\obj\Debug\netcoreapp3.1\staticwebas
 D:\.NET-C#\TW4\TennisMingle\TennisMingle.API\obj\Debug\netcoreapp3.1\TennisMingle.API.dll
 D:\.NET-C#\TW4\TennisMingle\TennisMingle.API\obj\Debug\netcoreapp3.1\TennisMingle.API.pdb
 D:\.NET-C#\TW4\TennisMingle\TennisMingle.API\obj\Debug\netcoreapp3.1\TennisMingle.API.genruntimeconfig.cache
+C:\Users\Mihai\Desktop\.NET\TW_Projects\TennisMingle\TennisMingle.API\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
+C:\Users\Mihai\Desktop\.NET\TW_Projects\TennisMingle\TennisMingle.API\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\Mihai\Desktop\.NET\TW_Projects\TennisMingle\TennisMingle.API\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\Mihai\Desktop\.NET\TW_Projects\TennisMingle\TennisMingle.API\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\Mihai\Desktop\.NET\TW_Projects\TennisMingle\TennisMingle.API\obj\Debug\netcoreapp3.1\TennisMingle.API.csproj.CoreCompileInputs.cache
+C:\Users\Mihai\Desktop\.NET\TW_Projects\TennisMingle\TennisMingle.API\obj\Debug\netcoreapp3.1\TennisMingle.API.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Mihai\Desktop\.NET\TW_Projects\TennisMingle\TennisMingle.API\obj\Debug\netcoreapp3.1\TennisMingle.API.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Mihai\Desktop\.NET\TW_Projects\TennisMingle\TennisMingle.API\bin\Debug\netcoreapp3.1\TennisMingle.API.xml
+C:\Users\Mihai\Desktop\.NET\TW_Projects\TennisMingle\TennisMingle.API\obj\Debug\netcoreapp3.1\TennisMingle.API.xml

@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -27,6 +29,22 @@ namespace TennisMingle.API
         {
             services.AddMvc();
             services.AddControllers().AddNewtonsoftJson();
+
+            services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("v1",
+                    new Microsoft.OpenApi.Models.OpenApiInfo
+                    {
+                        Title = "Tennis Mingle API",
+                        Description = "API for Tennis Clubs Management Application ",
+                        Version = "v1"
+                    });
+                var fileName = $"{ Assembly.GetExecutingAssembly().GetName().Name}.xml";
+
+                var filePath = Path.Combine(AppContext.BaseDirectory, fileName);
+                options.IncludeXmlComments(filePath);
+
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -36,7 +54,7 @@ namespace TennisMingle.API
             {
                 app.UseDeveloperExceptionPage();
             }
-            else 
+            else
             {
                 app.UseExceptionHandler();
             }
@@ -53,6 +71,17 @@ namespace TennisMingle.API
             {
                 endpoints.MapControllers();
             });
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(options =>
+            {
+                options.SwaggerEndpoint("/swagger/v1/swagger.json", "Tennis Mingle API");
+                options.RoutePrefix = "";
+
+
+            });
+            
         }
     }
 }
