@@ -6,12 +6,10 @@ using TennisMingle.API.Enums;
 
 namespace TennisMingle.API.Models
 {
-    public class TennisCourtDTO
+    public class TennisCourtDTOForCreation
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public Surface Surface { get; set; }
         public int Price { get; set; }
-        public bool IsAvailable { get; set; } = true;
     }
 }

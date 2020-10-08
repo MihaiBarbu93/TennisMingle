@@ -13,6 +13,7 @@ namespace TennisMingle.API
         public static CitiesDataStore Current {get;} = new CitiesDataStore();
         public List<CityDTO> Cities { get; set; } = new List<CityDTO>();
         public List<CoachDTO> Coaches { get; set; } = new List<CoachDTO>();
+        public List<TennisCourtDTO> TennisCourts { get; set; } = new List<TennisCourtDTO>();
 
         public CitiesDataStore()
 
@@ -65,6 +66,55 @@ namespace TennisMingle.API
                 }
             };
 
+
+            TennisCourts = new List<TennisCourtDTO>()
+            {
+                new TennisCourtDTO()
+                {
+                    Id = 1,
+                    Name = "Court 1",
+                    Surface = Surface.CLAY,
+                    Price = 30,
+                    IsAvailable = true
+                },
+
+                new TennisCourtDTO()
+                {
+                    Id = 2,
+                    Name = "Court 1",
+                    Surface = Surface.GRASS,
+                    Price = 40,
+                    IsAvailable = true
+                },
+
+                new TennisCourtDTO()
+                {
+                    Id = 3,
+                    Name = "Court 2",
+                    Surface = Surface.ACRYLIC,
+                    Price = 50,
+                    IsAvailable = true
+                },
+
+                new TennisCourtDTO()
+                {
+                    Id = 4,
+                    Name = "Court 7",
+                    Surface = Surface.CARPET,
+                    Price = 20,
+                    IsAvailable = true
+                },
+
+                new TennisCourtDTO()
+                {
+                    Id = 5,
+                    Name = "Court 1",
+                    Surface = Surface.ASPHALT,
+                    Price = 25,
+                    IsAvailable = true
+                }
+            };
+
             Cities = new List<CityDTO>()
             {
                 new CityDTO()
@@ -83,6 +133,7 @@ namespace TennisMingle.API
                                 Coaches.FirstOrDefault(co => co.Id == 3),
                                 Coaches.FirstOrDefault(co => co.Id == 5),
                              },
+                             TennisCourts = TennisCourts.Where(tco => new int[]{1, 2}.Contains(tco.Id)).ToList(),
                              Address = "Str. Soseaua Nordului, nr. 7-9, Bucuresti - Sector 1, Bucuresti",
                              PhoneNumber = "0721255444",
                              Prices = new List<int>{ 30, 50 },
@@ -95,6 +146,7 @@ namespace TennisMingle.API
                              Surfaces = new List<Surface>{ Surface.CLAY, Surface.GRASS },
                              Facilities = new List<Facilities> {Facilities.PARKING, Facilities.DRESSROOM, Facilities.NOCTURNE},
                              Coaches =  Coaches.Where(co => new int[]{1,2,6}.Contains(co.Id)).ToList(),
+                             TennisCourts = TennisCourts.Where(tco => tco.Id == 5).ToList(),
                              Address = "Str. Soseaua Nordului, nr. 7-9, Bucuresti - Sector 1, Bucuresti",
                              PhoneNumber = "0721255444",
                              Prices = new List<int>{ 30, 50, 80 },
@@ -111,6 +163,7 @@ namespace TennisMingle.API
                                 Coaches.FirstOrDefault(co => co.Id == 4),
                                 Coaches.FirstOrDefault(co => co.Id == 6),
                              },
+                             TennisCourts = TennisCourts.Where(tco => tco.Id == 3).ToList(),
                              Address = "Str. Soseaua Nordului, nr. 7-9, Bucuresti - Sector 1, Bucuresti",
                              PhoneNumber = "0721255444",
                              Prices = new List<int>{ 50, 80 },
@@ -127,6 +180,7 @@ namespace TennisMingle.API
                                 Coaches.FirstOrDefault(co => co.Id == 4),
                                 Coaches.FirstOrDefault(co => co.Id == 5),
                              },
+                             TennisCourts = TennisCourts.Where(tco => tco.Id == 4).ToList(),
                              Address = "Str. Soseaua Nordului, nr. 7-9, Bucuresti - Sector 1, Bucuresti",
                              PhoneNumber = "0721255444",
                              Prices = new List<int>{ 50, 80 },
