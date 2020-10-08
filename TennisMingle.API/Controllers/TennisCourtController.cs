@@ -6,7 +6,7 @@ using TennisMingle.API.Models;
 namespace TennisMingle.API.Controllers
 {
     [ApiController]
-    [Route("api/cities/{cityid}/tennisclubs/{tennisclubid}/tenniscourts")]
+    [Route("api/cities/{cityId}/tennisclubs/{tennisClubId}/tenniscourts")]
     public class TennisCourtController : ControllerBase
     {
         [HttpGet]
