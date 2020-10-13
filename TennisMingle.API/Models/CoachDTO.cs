@@ -8,15 +8,30 @@ namespace TennisMingle.API.Models
 {
     public class CoachDTO
     {
+
 # nullable enable
+        /// <summary>
+        /// Id of the coach
+        /// </summary>
         public int Id { get; set; }
 
+        /// <summary>
+        /// Coach's name
+        /// </summary>
         [Required(ErrorMessage = "You should provide a name value")]
         [MaxLength(50)]
         public string Name { get; set; }
+
+        /// <summary>
+        /// Coach's informations
+        /// </summary>
         [Required]
         [MaxLength(200)]
         public string Bio { get; set; }
+
+        /// <summary>
+        /// The name of the uploaded photo 
+        /// </summary>
         public string? Photo { get; set; }
 
     }

@@ -10,12 +10,18 @@ namespace TennisMingle.API.Controllers
     [Route("api/cities")]
     public class CitiesController : ControllerBase
     {
+        /// <summary>
+        /// This GET method returns all the Cities from the DataBase 
+        /// </summary>
         [HttpGet]
         public IActionResult GetCities()
         {
             return Ok(CitiesDataStore.Current.Cities);
         }
 
+        /// <summary>
+        /// This GET method returns a City with a specific id from the DataBase 
+        /// </summary>
         [HttpGet("{id}")]
         public IActionResult GetCity(int id) 
         {
