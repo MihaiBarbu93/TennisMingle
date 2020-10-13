@@ -9,6 +9,9 @@ namespace TennisMingle.API.Controllers
     [Route("api/cities/{cityId}/tennisclubs/{tennisClubId}/tenniscourts")]
     public class TennisCourtController : ControllerBase
     {
+        /// <summary>
+        /// This GET method returns all the tennis courts from a club 
+        /// </summary>
         [HttpGet]
         public IActionResult GetTennisCourts(int cityId, int tennisClubId)
         {
@@ -29,6 +32,9 @@ namespace TennisMingle.API.Controllers
             return Ok(tennisClub.TennisCourts);
         }
 
+        /// <summary>
+        /// This GET method returns a tennis court with a specific id 
+        /// </summary>
         [HttpGet]
         [Route("{id}", Name = "GetTennisCourt")]
         public IActionResult GetTennisCourt(int cityId, int tennisClubId, int id)
@@ -57,6 +63,9 @@ namespace TennisMingle.API.Controllers
             return Ok(tennisCourtToReturn);
         }
 
+        /// <summary>
+        /// This POST method creates a tennis court which is added to a club
+        /// </summary>
         [HttpPost]
         public IActionResult CreateTennisCourt(int cityId, int tennisClubId,
             [FromBody] TennisCourtDTOForCreation tennisCourt)
@@ -91,6 +100,9 @@ namespace TennisMingle.API.Controllers
                 "GetTennisCourt", new { cityId, tennisClubId, id = tennisCourtToCreate.Id }, tennisCourtToCreate);
         }
 
+        /// <summary>
+        /// This PUT method is replacing all the properties of a tennis court
+        /// </summary>
         [HttpPut]
         [Route("{id}")]
         public IActionResult UpdateTennisCourt(int cityId, int tennisClubId, int id,
@@ -119,6 +131,9 @@ namespace TennisMingle.API.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// This PATCH method is replacing only one property of a tennis court
+        /// </summary>
         [HttpPatch]
         [Route("{id}")]
 
@@ -167,6 +182,9 @@ namespace TennisMingle.API.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// This DELETE method removes a tennis court from a club with a specific id 
+        /// </summary>
         [HttpDelete]
         [Route("{id}")]
 

@@ -9,6 +9,9 @@ namespace TennisMingle.API.Controllers
     [Route("api/cities/{cityId}/tennisclubs")]
     public class TennisClubController : ControllerBase
     {
+        /// <summary>
+        /// This GET method returns all the tennis clubs from a city
+        /// </summary>
         [HttpGet]
         public IActionResult GetTennisClubs(int cityId)
         {
@@ -20,7 +23,9 @@ namespace TennisMingle.API.Controllers
             return Ok(city.TennisClubs);
         }
 
-       // [HttpGet("{tennisclubid}", Name = "GetTennisClub")]
+        /// <summary>
+        /// This GET method returns a tennis club with a specific id 
+        /// </summary>
         [HttpGet("{tennisClubId}")]
         public IActionResult GetTennisClub(int cityId, int tennisClubId)
         {
@@ -37,6 +42,9 @@ namespace TennisMingle.API.Controllers
             return Ok(tennisClub);
         }
 
+        /// <summary>
+        /// This POST method creates a tennis club which is added to a city
+        /// </summary>
         [HttpPost]
         public IActionResult CreateTennisClub(int cityId, [FromBody] TennisClubForCreationDTO tennisClub)
         {
@@ -50,8 +58,6 @@ namespace TennisMingle.API.Controllers
             {
                 Id = ++maxTennisClubId,
                 Name = tennisClub.Name,
-                TennisCourts = tennisClub.TennisCourts,
-                Coaches = tennisClub.Coaches,
                 Surfaces = tennisClub.Surfaces,
                 Facilities = tennisClub.Facilities,
                 Address = tennisClub.Address,
@@ -65,6 +71,9 @@ namespace TennisMingle.API.Controllers
             return CreatedAtRoute("GetTennisClub", new { cityId, tennisclubid = createdTennisClub.Id }, createdTennisClub);
         }
 
+        /// <summary>
+        /// This PUT method is replacing all the properties of a tennis club
+        /// </summary>
         [HttpPut("{tennisClubId}")]
         public IActionResult UpdateTennisClub(int cityId, int tennisClubId,
             [FromBody] TennisClubForUpdateDTO tennisClub)
@@ -99,6 +108,9 @@ namespace TennisMingle.API.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// This PATCH method is replacing only one property of a tennis club
+        /// </summary>
         [HttpPatch("{tennisClubId}")]
         public IActionResult PartiallyUpdateTennisClub(int cityId, int tennisClubId,
             [FromBody] JsonPatchDocument<TennisClubForUpdateDTO> patchDoc)
@@ -152,6 +164,9 @@ namespace TennisMingle.API.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// This DELETE method removes a tennis club from a city with a specific id 
+        /// </summary>
         [HttpDelete("{tennisClubId}")]
         public IActionResult DeleteTennisClub(int cityId, int tennisClubId)
         {
