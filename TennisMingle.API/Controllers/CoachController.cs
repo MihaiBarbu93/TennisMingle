@@ -9,6 +9,9 @@ namespace TennisMingle.API.Controllers
     [Route("api/cities/{cityId}/tennisclubs/{tennisClubId}/tenniscoaches")]
     public class CoachController: ControllerBase
     {
+        /// <summary>
+        /// This GET method returns all the coaches from a club
+        /// </summary>
         [HttpGet]
         public IActionResult GetTennisCoaches(int cityId, int tennisClubId)
         {
@@ -29,6 +32,9 @@ namespace TennisMingle.API.Controllers
             return Ok(tennisClub.Coaches);
         }
 
+        /// <summary>
+        /// This GET method returns a coach from a club with a specific id 
+        /// </summary>
         [HttpGet]
         [Route("{id}", Name= "GetTennisCoach")]
         public IActionResult GetTennisCoach(int cityId, int tennisClubId, int id)
@@ -57,6 +63,9 @@ namespace TennisMingle.API.Controllers
             return Ok(tennisCoachToReturn);
         }
 
+        /// <summary>
+        /// This POST method creates a coach which is added to a club
+        /// </summary>
         [HttpPost]
         public IActionResult CreateCoach(int cityId, int tennisClubId,
             [FromBody] CoachDTOForCreation coach)
@@ -91,6 +100,9 @@ namespace TennisMingle.API.Controllers
                 "GetTennisCoach", new { cityId, tennisClubId, id = coachToCreate.Id }, coachToCreate);
         }
 
+        /// <summary>
+        /// This PUT method is replacing all the properties of a coach
+        /// </summary>
         [HttpPut]
         [Route("{id}")]
         public IActionResult UpdateCoach(int cityId, int tennisClubId, int id,
@@ -119,6 +131,9 @@ namespace TennisMingle.API.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// This PATCH method is replacing only one property of a coach
+        /// </summary>
         [HttpPatch]
         [Route("{id}")]
 
@@ -167,6 +182,9 @@ namespace TennisMingle.API.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// This DELETE method removes a coach from a club with a specific id 
+        /// </summary>
         [HttpDelete]
         [Route("{id}")]
 

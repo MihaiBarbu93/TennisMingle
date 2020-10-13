@@ -8,8 +8,19 @@ namespace TennisMingle.API.Models
 {
     public class TennisCourtDTOForCreation
     {
+        /// <summary>
+        /// Name of the tennis court
+        /// </summary>
         public string Name { get; set; }
+
+        /// <summary>
+        /// The surface type of the tennis court
+        /// </summary>
         public Surface Surface { get; set; }
+
+        /// <summary>
+        /// The price of the tennis court
+        /// </summary>
         public int Price { get; set; }
     }
 }
