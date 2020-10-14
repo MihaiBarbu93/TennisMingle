@@ -13,13 +13,14 @@ namespace TennisMingle.API.Models
         /// <summary>
         /// Id of the tennis club
         /// </summary>
-        [Required(ErrorMessage = "You should provide a name value")]
-        [MaxLength(50)]
+        
         public int Id { get; set; }
 
         /// <summary>
         /// Name of the tennis club 
         /// </summary>
+        [Required(ErrorMessage = "You should provide a name value")]
+        [MaxLength(50)]
         public string Name { get; set; }
 
         /// <summary>
