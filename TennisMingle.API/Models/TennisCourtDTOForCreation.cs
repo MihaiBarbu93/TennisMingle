@@ -28,7 +28,6 @@ namespace TennisMingle.API.Models
         /// The price of the tennis court
         /// </summary>
         [Required]
-        [MaxLength(50)]
         public int Price { get; set; }
     }
 }
