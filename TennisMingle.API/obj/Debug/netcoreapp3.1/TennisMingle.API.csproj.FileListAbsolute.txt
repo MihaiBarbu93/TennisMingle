@@ -82,9 +82,6 @@ C:\Users\Mihai\Desktop\TennisMingle\TennisMingle\TennisMingle.API\bin\Debug\netc
 C:\Users\Mihai\Desktop\TennisMingle\TennisMingle\TennisMingle.API\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Users\Mihai\Desktop\TennisMingle\TennisMingle\TennisMingle.API\obj\Debug\netcoreapp3.1\TennisMingle.API.AssemblyInfoInputs.cache
 C:\Users\Mihai\Desktop\TennisMingle\TennisMingle\TennisMingle.API\obj\Debug\netcoreapp3.1\TennisMingle.API.AssemblyInfo.cs
-C:\Users\Mihai\Desktop\TennisMingle\TennisMingle\TennisMingle.API\obj\Debug\netcoreapp3.1\TennisMingle.API.csproj.CoreCompileInputs.cache
-C:\Users\Mihai\Desktop\TennisMingle\TennisMingle\TennisMingle.API\obj\Debug\netcoreapp3.1\TennisMingle.API.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\Mihai\Desktop\TennisMingle\TennisMingle\TennisMingle.API\obj\Debug\netcoreapp3.1\TennisMingle.API.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Mihai\Desktop\TennisMingle\TennisMingle\TennisMingle.API\obj\Debug\netcoreapp3.1\TennisMingle.API.RazorTargetAssemblyInfo.cache
 C:\Users\Mihai\Desktop\TennisMingle\TennisMingle\TennisMingle.API\obj\Debug\netcoreapp3.1\TennisMingle.API.csproj.CopyComplete
 C:\Users\Mihai\Desktop\TennisMingle\TennisMingle\TennisMingle.API\obj\Debug\netcoreapp3.1\staticwebassets\TennisMingle.API.StaticWebAssets.Manifest.cache
@@ -93,3 +90,4 @@ C:\Users\Mihai\Desktop\TennisMingle\TennisMingle\TennisMingle.API\obj\Debug\netc
 C:\Users\Mihai\Desktop\TennisMingle\TennisMingle\TennisMingle.API\obj\Debug\netcoreapp3.1\TennisMingle.API.xml
 C:\Users\Mihai\Desktop\TennisMingle\TennisMingle\TennisMingle.API\obj\Debug\netcoreapp3.1\TennisMingle.API.pdb
 C:\Users\Mihai\Desktop\TennisMingle\TennisMingle\TennisMingle.API\obj\Debug\netcoreapp3.1\TennisMingle.API.genruntimeconfig.cache
+C:\Users\Mihai\Desktop\TennisMingle\TennisMingle\TennisMingle.API\obj\Debug\netcoreapp3.1\TennisMingle.API.csprojAssemblyReference.cache

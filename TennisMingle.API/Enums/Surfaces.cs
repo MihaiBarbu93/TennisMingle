@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace TennisMingle.API.Enums
 {
-    public enum Surface
+    public enum Surfaces
     {
         ACRYLIC,
         ARTIFICIAL_CLAY,
