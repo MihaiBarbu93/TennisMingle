@@ -25,8 +25,10 @@ namespace TennisMingle.API.Models
         /// <summary>
         /// The surface type of the tennis court
         /// </summary>
-        [Required]
-        public Surface Surface { get; set; }
+        public int Id { get; set; }
+
+        [ForeignKey("TennisClubId")]
+        public CityDTO CityDTO { get; set; }
 
         /// <summary>
         /// The price of the tennis court
