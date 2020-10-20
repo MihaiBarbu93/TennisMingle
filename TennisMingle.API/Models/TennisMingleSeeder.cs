@@ -19,8 +19,7 @@ namespace TennisMingle.API.Models
         {
             _ctx.Database.EnsureCreated();
 
-            if (_ctx.Cities.Any() && _ctx.TennisClubs.Any() && _ctx.Addresses.Any() && _ctx.Persons.Any() && 
-                _ctx.Bookings.Any() && _ctx.Facilities.Any() && _ctx.Surfaces.Any() && _ctx.TennisCourts.Any())
+            if (_ctx.Cities.Any() && _ctx.TennisClubs.Any() && _ctx.Addresses.Any() && _ctx.Persons.Any() && _ctx.Facilities.Any() && _ctx.Surfaces.Any() && _ctx.TennisCourts.Any())
             {
                 return;
             }
@@ -28,7 +27,7 @@ namespace TennisMingle.API.Models
 
             var cities = new List<CityDTO>() {
 
-                new CityDTO {Id = 1,
+                new CityDTO {
                     Name = "Bucharest",}
             };
 
@@ -39,19 +38,16 @@ namespace TennisMingle.API.Models
 
                 new AddressDTO 
                 {   
-                    Id = 1,
                     Address = "Str. Soseaua Nordului, nr. 7-9, Bucuresti - Sector 1, Bucuresti",
                     CityId =1
                 },
                 new AddressDTO
                 {
-                    Id = 2,
                     Address = "Str. Soseaua Sudului, nr. 4-6, Bucuresti - Sector 1, Bucuresti",
                     CityId = 1
                 },
                 new AddressDTO
                 {
-                    Id = 3,
                     Address = "Str. Soseaua Sudului, nr. 25, Bucuresti - Sector 2, Bucuresti",
                     CityId = 1
                 }
@@ -64,7 +60,6 @@ namespace TennisMingle.API.Models
             var tennisClubs = new List<TennisClubDTO>() {
                 new TennisClubDTO
                 {
-                    Id = 1,
                     Name = "Academia de Tenis Herastrau",
                     AddressId = 1 ,
                     PhoneNumber = "0721255444",
@@ -74,7 +69,6 @@ namespace TennisMingle.API.Models
                 },
                 new TennisClubDTO
                 {
-                    Id = 2,
                     Name = "Academia de Tenis Herastrau 2",
                     AddressId = 2,
                     PhoneNumber = "0721255444",
@@ -84,7 +78,6 @@ namespace TennisMingle.API.Models
                 },
                 new TennisClubDTO
                 {
-                    Id = 3,
                     Name = "Academia de Tenis Herastrau 3",
                     AddressId = 3,
                     PhoneNumber = "0721255444",
@@ -101,22 +94,18 @@ namespace TennisMingle.API.Models
 
                 new Surface 
                 {
-                    Id = 1,
                     SurfaceType = Surfaces.GRASS
                 },
                 new Surface
                 {
-                    Id = 2,
                     SurfaceType = Surfaces.CLAY
                 },
                 new Surface
                 {
-                    Id = 3,
                     SurfaceType = Surfaces.ACRYLIC
                 },
                 new Surface
                 {
-                    Id = 3,
                     SurfaceType = Surfaces.CARPET
                 }
             };
@@ -128,24 +117,23 @@ namespace TennisMingle.API.Models
 
                 new Facility
                 {
-                    Id = 1,
-                    FacilityType = Facilities.BAR
+                    FacilityType = Facilities.BAR,
+                    TennisClubId = 2
                 },
                 new Facility
                 {
-                    Id = 2,
-                    FacilityType = Facilities.DRESSROOM
+                    FacilityType = Facilities.DRESSROOM,
+                    TennisClubId = 2
                 },
                 new Facility
                 {
-                    Id = 3,
-                    FacilityType = Facilities.NOCTURNE
+                    FacilityType = Facilities.NOCTURNE,
+                    TennisClubId = 1
                 },
                 new Facility
                 {
-                    Id = 4,
                     FacilityType = Facilities.PARKING,
-                    
+                    TennisClubId = 1
                 }
             };
 
@@ -157,7 +145,6 @@ namespace TennisMingle.API.Models
             var tennisCourts = new List<TennisCourtDTO>() {
                 new TennisCourtDTO
                 {
-                    Id = 1,
                     Name = "Court 1",
                     SurfaceId = 2,
                     Price = 30,
@@ -166,7 +153,6 @@ namespace TennisMingle.API.Models
                 },
                 new TennisCourtDTO
                 {
-                    Id = 2,
                     Name = "Court 2",
                     SurfaceId = 1,
                     Price = 40,
@@ -175,7 +161,6 @@ namespace TennisMingle.API.Models
                 },
                 new TennisCourtDTO
                 {
-                    Id = 3,
                     Name = "Court 1",
                     SurfaceId = 2,
                     Price = 30,
@@ -184,7 +169,6 @@ namespace TennisMingle.API.Models
                 },
                 new TennisCourtDTO
                 {
-                    Id = 4,
                     Name = "Court 1",
                     SurfaceId = 2,
                     Price = 30,
@@ -199,7 +183,6 @@ namespace TennisMingle.API.Models
             var persons = new List<PersonDTO>() {
                 new PersonDTO
                 {
-                    Id = 1,
                     FirstName = "Vasilica",
                     LastName = "Dancilica",
                     Bio = "yyyy",
@@ -209,7 +192,6 @@ namespace TennisMingle.API.Models
                 },
                 new PersonDTO
                 {
-                    Id = 2,
                     FirstName = "Ion",
                     LastName = "Ion",
                     Bio = "fsfd",
@@ -220,7 +202,6 @@ namespace TennisMingle.API.Models
                 },
                 new PersonDTO
                 {
-                    Id = 3,
                     FirstName = "Marius",
                     LastName = "SiMaiCum",
                     Bio = "gfhfh",
@@ -231,7 +212,6 @@ namespace TennisMingle.API.Models
                 },
                 new PersonDTO
                 {
-                    Id = 4,
                     FirstName = "Vasilica",
                     LastName = "Dancilica",
                     Bio = "yyyy",

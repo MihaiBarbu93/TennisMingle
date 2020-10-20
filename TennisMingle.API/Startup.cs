@@ -33,6 +33,8 @@ namespace TennisMingle.API
         {
 
             services.AddDbContextPool<AppDbContext>(options => options.UseSqlServer(_config.GetConnectionString("TennisMingleConnectionString")));
+
+            services.AddTransient<TennisMingleSeeder>();
             services.AddMvc();
             services.AddControllers().AddNewtonsoftJson();
 
