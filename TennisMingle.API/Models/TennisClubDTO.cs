@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 using TennisMingle.API.Enums;
@@ -23,13 +24,7 @@ namespace TennisMingle.API.Models
         [MaxLength(50)]
         public string Name { get; set; }
 
-        /// <summary>
-        /// The tennis club adress
-        /// </summary>
-        [Required]
-        [MaxLength(100)]
-        public string Address { get; set; }
-
+    
         /// <summary>
         /// The tennis club phone number
         /// </summary>
@@ -38,11 +33,28 @@ namespace TennisMingle.API.Models
         public string PhoneNumber { get; set; }
 
         /// <summary>
+        /// The tennis club adress
+        /// </summary>
+
+        public int CityId { get; set; }
+
+        [ForeignKey("CityId")]
+        public CityDTO City { get; set; }
+
+        public int AddressId { get; set; }
+
+        [ForeignKey("AddressId")]
+        public AddressDTO Address { get; set; }
+
+
+
+
+        /// <summary>
         /// The tennis club description
         /// </summary>
-        [Required]
-        [MaxLength(200)]
         public string Description { get; set; }
+
+        public List<Facilities> Facilities { get; set; }
 
         /// <summary>
         /// The tennis club prices
@@ -61,27 +73,7 @@ namespace TennisMingle.API.Models
         /// </summary>
         public string? Image { get; set; }
 
-#nullable disable
 
-        /// <summary>
-        /// The collection of the tennis club courts 
-        /// </summary>
-        public ICollection<TennisCourtDTO> TennisCourts { get; set; }
-
-        /// <summary>
-        /// The collection of the tennis club coaches
-        /// </summary>
-        public ICollection<CoachDTO> Coaches { get; set; }
-
-        /// <summary>
-        /// The collection of the tennis club courts surfaces 
-        /// </summary>
-        public ICollection<Surface> Surfaces { get; set; }
-
-        /// <summary>
-        /// The collection of the tennis club facilities 
-        /// </summary>
-        public ICollection<Facilities> Facilities { get; set; }
 
     }
 }

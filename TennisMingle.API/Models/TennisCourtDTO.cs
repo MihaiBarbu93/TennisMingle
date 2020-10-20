@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 using TennisMingle.API.Enums;
@@ -22,13 +23,11 @@ namespace TennisMingle.API.Models
         [MaxLength(50)]
         public string Name { get; set; }
 
-        /// <summary>
-        /// The surface type of the tennis court
-        /// </summary>
-        public int Id { get; set; }
+        public int SurfaceId { get; set; }
 
-        [ForeignKey("TennisClubId")]
-        public CityDTO CityDTO { get; set; }
+        [ForeignKey("SurfaceId")]
+        public Surface Surface { get; set; }
+
 
         /// <summary>
         /// The price of the tennis court
@@ -40,5 +39,14 @@ namespace TennisMingle.API.Models
         /// The availability of the tennis court
         /// </summary>
         public bool IsAvailable { get; set; } = true;
+
+
+        /// <summary>
+        /// The surface type of the tennis court
+        /// </summary>
+        public int TennisClubId { get; set; }
+
+        [ForeignKey("TennisClubId")]
+        public TennisClubDTO TennisClub { get; set; }
     }
 }

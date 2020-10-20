@@ -26,7 +26,5 @@ namespace TennisMingle.API.Models
         /// Collection of tennis clubs from a city 
         /// </summary>
 
-        public ICollection<TennisClubDTO> TennisClubs { get; set; } = new List<TennisClubDTO>();
-
     }
 }
