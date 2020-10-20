@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace TennisMingle.API.Models
 {
-    public class AppDbContext: DbContext
+    public class AppDbContext : DbContext
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
@@ -16,7 +16,7 @@ namespace TennisMingle.API.Models
         public DbSet<CityDTO> Cities { get; set; }
         public DbSet<TennisClubDTO> TennisClubs { get; set; }
         public DbSet<TennisCourtDTO> TennisCourts { get; set; }
-        public DbSet<PersonDTO> Person { get; set; }
+        public DbSet<PersonDTO> Persons { get; set; }
         public DbSet<AddressDTO> Addresses { get; set; }
         public DbSet<Booking> Bookings { get; set; }
         public DbSet<Surface> Surfaces { get; set; }
@@ -26,6 +26,14 @@ namespace TennisMingle.API.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            foreach (var foreignKey in modelBuilder.Model.GetEntityTypes()
+                                                    .SelectMany(e => e.GetForeignKeys()))
+            {
+                foreignKey.DeleteBehavior = DeleteBehavior.Restrict;           
+            }
+
         }
 
     }
+}

@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DirectedGraph GraphDirection="LeftToRight" ZoomLevel="0.75" xmlns="http://schemas.microsoft.com/vs/2009/dgml">
+  <Nodes>
+    <Node Id="AddressDTO" Category="EntityType" Annotations="ConstructorBinding: Microsoft.EntityFrameworkCore.Metadata.ConstructorBinding Relational:TableName: Addresses" BaseClass="" Bounds="376.691674499512,827.84094470277,189.716666666667,141.9203" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot" Group="Expanded" IsAbstract="False" Label="AddressDTO" Name="AddressDTO" />
+    <Node Id="AddressDTO.Address" Category="Property Optional" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="TypeMapping: Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerStringTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="483.898341166178,923.801092023999,62.51,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="False" IsShadow="False" IsUnicode="True" Label="Address" MaxLength="None" Name="Address" PropertyAccessMode="PropertyAccessMode.Default" Type="string" ValueGenerated="None" />
+    <Node Id="AddressDTO.City" Category="Navigation Property" Bounds="396.691674499512,923.80114470277,57.2066666666666,25.96" Dependent="" Field="" Inverse="" Label="City (1)" Name="City" Principal="CityDTO" PropertyAccessMode="PropertyAccessMode.Default" Type="CityDTO" />
+    <Node Id="AddressDTO.CityId" Category="Property Foreign" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="TypeMapping: Microsoft.EntityFrameworkCore.Storage.IntTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="476.691681518555,867.84104470277,50.47,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="True" IsIndexed="True" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="CityId" MaxLength="None" Name="CityId" PropertyAccessMode="PropertyAccessMode.Default" Type="int" ValueGenerated="None" />
+    <Node Id="AddressDTO.Id" Category="Property Primary" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="SqlServer:ValueGenerationStrategy: IdentityColumn TypeMapping: Microsoft.EntityFrameworkCore.Storage.IntTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="396.691680908203,867.840992023999,50,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="True" IsRequired="True" IsShadow="False" IsUnicode="True" Label="Id" MaxLength="None" Name="Id" PropertyAccessMode="PropertyAccessMode.Default" Type="int" ValueGenerated="ValueGenerated.OnAdd" />
+    <Node Id="Booking" Category="EntityType" Annotations="ConstructorBinding: Microsoft.EntityFrameworkCore.Metadata.ConstructorBinding Relational:TableName: Bookings" BaseClass="" Bounds="609.285,40,284.53,197.88" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot" Group="Expanded" IsAbstract="False" Label="Booking" Name="Booking" />
+    <Node Id="Booking.Id" Category="Property Primary" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="SqlServer:ValueGenerationStrategy: IdentityColumn TypeMapping: Microsoft.EntityFrameworkCore.Storage.IntTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="629.285,80,50,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="True" IsRequired="True" IsShadow="False" IsUnicode="True" Label="Id" MaxLength="None" Name="Id" PropertyAccessMode="PropertyAccessMode.Default" Type="int" ValueGenerated="ValueGenerated.OnAdd" />
+    <Node Id="Booking.Person" Category="Navigation Property" Bounds="731.288333333333,135.96,72.6366666666667,25.96" Dependent="" Field="" Inverse="" Label="Person (1)" Name="Person" Principal="PersonDTO" PropertyAccessMode="PropertyAccessMode.Default" Type="PersonDTO" />
+    <Node Id="Booking.PersonId" Category="Property Foreign" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="TypeMapping: Microsoft.EntityFrameworkCore.Storage.IntTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="709.285,80,65.9,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="True" IsIndexed="True" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="PersonId" MaxLength="None" Name="PersonId" PropertyAccessMode="PropertyAccessMode.Default" Type="int" ValueGenerated="None" />
+    <Node Id="Booking.TennisCourt" Category="Navigation Property" Bounds="752.008333333333,191.92,99.46,25.96" Dependent="" Field="" Inverse="" Label="TennisCourt (1)" Name="TennisCourt" Principal="TennisCourtDTO" PropertyAccessMode="PropertyAccessMode.Default" Type="TennisCourtDTO" />
+    <Node Id="Booking.TennisCourtId" Category="Property Foreign" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="TypeMapping: Microsoft.EntityFrameworkCore.Storage.IntTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="629.285,191.92,92.7233333333334,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="True" IsIndexed="True" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="TennisCourtId" MaxLength="None" Name="TennisCourtId" PropertyAccessMode="PropertyAccessMode.Default" Type="int" ValueGenerated="None" />
+    <Node Id="Booking.date_end" Category="Property Required" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="TypeMapping: Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerDateTimeTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="805.185,80,68.63,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="date_end" MaxLength="None" Name="date_end" PropertyAccessMode="PropertyAccessMode.Default" Type="DateTime" ValueGenerated="None" />
+    <Node Id="Booking.date_start" Category="Property Required" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="TypeMapping: Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerDateTimeTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="629.285,135.96,72.0033333333333,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="date_start" MaxLength="None" Name="date_start" PropertyAccessMode="PropertyAccessMode.Default" Type="DateTime" ValueGenerated="None" />
+    <Node Id="CityDTO" Category="EntityType" Annotations="ConstructorBinding: Microsoft.EntityFrameworkCore.Metadata.ConstructorBinding Relational:TableName: Cities" BaseClass="" Bounds="425.701654459635,999.76134470277,91.6966666666667,141.9203" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot" Group="Expanded" IsAbstract="False" Label="CityDTO" Name="CityDTO" />
+    <Node Id="CityDTO.Id" Category="Property Primary" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="SqlServer:ValueGenerationStrategy: IdentityColumn TypeMapping: Microsoft.EntityFrameworkCore.Storage.IntTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="445.70166015625,1039.76144470277,50,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="True" IsRequired="True" IsShadow="False" IsUnicode="True" Label="Id" MaxLength="None" Name="Id" PropertyAccessMode="PropertyAccessMode.Default" Type="int" ValueGenerated="ValueGenerated.OnAdd" />
+    <Node Id="CityDTO.Name" Category="Property Required" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="MaxLength: 50 TypeMapping: Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerStringTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="445.701654459635,1095.721492024,51.6966666666667,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="Name" MaxLength="50" Name="Name" PropertyAccessMode="PropertyAccessMode.Default" Type="string" ValueGenerated="None" />
+    <Node Id="Facility" Category="EntityType" Annotations="ConstructorBinding: Microsoft.EntityFrameworkCore.Metadata.ConstructorBinding Relational:TableName: Facilities" BaseClass="" Bounds="371.321666666667,283.84,200.456666666667,197.88" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot" Group="Expanded" IsAbstract="False" Label="Facility" Name="Facility" />
+    <Node Id="Facility.FacilityType" Category="Property Required" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="TypeMapping: Microsoft.EntityFrameworkCore.Storage.IntTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="471.321666666667,323.84,80.4566666666667,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="FacilityType" MaxLength="None" Name="FacilityType" PropertyAccessMode="PropertyAccessMode.Default" Type="Facilities" ValueGenerated="None" />
+    <Node Id="Facility.Id" Category="Property Primary" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="SqlServer:ValueGenerationStrategy: IdentityColumn TypeMapping: Microsoft.EntityFrameworkCore.Storage.IntTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="391.321666666667,323.84,50,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="True" IsRequired="True" IsShadow="False" IsUnicode="True" Label="Id" MaxLength="None" Name="Id" PropertyAccessMode="PropertyAccessMode.Default" Type="int" ValueGenerated="ValueGenerated.OnAdd" />
+    <Node Id="Facility.TennisClub" Category="Navigation Property" Bounds="391.321666666667,435.76,94.15,25.96" Dependent="" Field="" Inverse="" Label="TennisClub (1)" Name="TennisClub" Principal="TennisClubDTO" PropertyAccessMode="PropertyAccessMode.Default" Type="TennisClubDTO" />
+    <Node Id="Facility.TennisClubId" Category="Property Foreign" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="TypeMapping: Microsoft.EntityFrameworkCore.Storage.IntTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="391.321666666667,379.8,87.4133333333334,25.96" Field="nofield" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="True" IsIndexed="True" IsPrimaryKey="False" IsRequired="False" IsShadow="True" IsUnicode="True" Label="TennisClubId" MaxLength="None" Name="TennisClubId" PropertyAccessMode="PropertyAccessMode.Default" Type="Nullable&lt;int&gt;" ValueGenerated="None" />
+    <Node Id="IModel" Category="Model" Annotations="Relational:MaxIdentifierLength: 128 SqlServer:ValueGenerationStrategy: IdentityColumn" Bounds="0.000226184788743922,3.92601905332413E-05,920.572896565867,1161.68170544258" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot" Group="Expanded" Label="AppDbContext" ProductVersion="3.1.9" PropertyAccessMode="PropertyAccessMode.Default" />
+    <Node Id="PersonDTO" Category="EntityType" Annotations="ConstructorBinding: Microsoft.EntityFrameworkCore.Metadata.ConstructorBinding Relational:TableName: Persons" BaseClass="" Bounds="602.526666666667,283.84,298.046666666667,197.88" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot" Group="Expanded" IsAbstract="False" Label="PersonDTO" Name="PersonDTO" />
+    <Node Id="PersonDTO.Bio" Category="Property Optional" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="TypeMapping: Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerStringTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="702.526666666667,323.84,50,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="False" IsShadow="False" IsUnicode="True" Label="Bio" MaxLength="None" Name="Bio" PropertyAccessMode="PropertyAccessMode.Default" Type="string" ValueGenerated="None" />
+    <Node Id="PersonDTO.FirstName" Category="Property Required" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="TypeMapping: Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerStringTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="806.776666666667,379.8,73.7966666666666,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="FirstName" MaxLength="None" Name="FirstName" PropertyAccessMode="PropertyAccessMode.Default" Type="string" ValueGenerated="None" />
+    <Node Id="PersonDTO.Id" Category="Property Primary" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="SqlServer:ValueGenerationStrategy: IdentityColumn TypeMapping: Microsoft.EntityFrameworkCore.Storage.IntTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="622.526666666667,323.84,50,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="True" IsRequired="True" IsShadow="False" IsUnicode="True" Label="Id" MaxLength="None" Name="Id" PropertyAccessMode="PropertyAccessMode.Default" Type="int" ValueGenerated="ValueGenerated.OnAdd" />
+    <Node Id="PersonDTO.LastName" Category="Property Required" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="TypeMapping: Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerStringTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="704.163333333333,379.8,72.6133333333333,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="LastName" MaxLength="None" Name="LastName" PropertyAccessMode="PropertyAccessMode.Default" Type="string" ValueGenerated="None" />
+    <Node Id="PersonDTO.Photo" Category="Property Optional" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="TypeMapping: Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerStringTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="622.526666666667,379.8,51.6366666666667,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="False" IsShadow="False" IsUnicode="True" Label="Photo" MaxLength="None" Name="Photo" PropertyAccessMode="PropertyAccessMode.Default" Type="string" ValueGenerated="None" />
+    <Node Id="PersonDTO.TennisClub" Category="Navigation Property" Bounds="739.94,435.76,94.15,25.96" Dependent="" Field="" Inverse="" Label="TennisClub (1)" Name="TennisClub" Principal="TennisClubDTO" PropertyAccessMode="PropertyAccessMode.Default" Type="TennisClubDTO" />
+    <Node Id="PersonDTO.TennisClubId" Category="Property Foreign" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="TypeMapping: Microsoft.EntityFrameworkCore.Storage.IntTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="622.526666666667,435.76,87.4133333333333,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="True" IsIndexed="True" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="TennisClubId" MaxLength="None" Name="TennisClubId" PropertyAccessMode="PropertyAccessMode.Default" Type="int" ValueGenerated="None" />
+    <Node Id="PersonDTO.Type" Category="Property Required" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="TypeMapping: Microsoft.EntityFrameworkCore.Storage.IntTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="782.526666666667,323.84,50,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="Type" MaxLength="None" Name="Type" PropertyAccessMode="PropertyAccessMode.Default" Type="PersonType" ValueGenerated="None" />
+    <Node Id="Surface" Category="EntityType" Annotations="ConstructorBinding: Microsoft.EntityFrameworkCore.Metadata.ConstructorBinding Relational:TableName: Surfaces" BaseClass="" Bounds="118.658333333333,555.66,123.783333333333,141.92" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot" Group="Expanded" IsAbstract="False" Label="Surface" Name="Surface" />
+    <Node Id="Surface.Id" Category="Property Primary" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="SqlServer:ValueGenerationStrategy: IdentityColumn TypeMapping: Microsoft.EntityFrameworkCore.Storage.IntTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="138.658333333333,595.66,50,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="True" IsRequired="True" IsShadow="False" IsUnicode="True" Label="Id" MaxLength="None" Name="Id" PropertyAccessMode="PropertyAccessMode.Default" Type="int" ValueGenerated="ValueGenerated.OnAdd" />
+    <Node Id="Surface.SurfaceType" Category="Property Required" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="TypeMapping: Microsoft.EntityFrameworkCore.Storage.IntTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="138.658333333333,651.62,83.7833333333333,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="SurfaceType" MaxLength="None" Name="SurfaceType" PropertyAccessMode="PropertyAccessMode.Default" Type="Surfaces" ValueGenerated="None" />
+    <Node Id="TennisClubDTO" Category="EntityType" Annotations="ConstructorBinding: Microsoft.EntityFrameworkCore.Metadata.ConstructorBinding Relational:TableName: TennisClubs" BaseClass="" Bounds="393.712835158105,599.96031696857,320.3,197.880527734199" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot" Group="Expanded" IsAbstract="False" Label="TennisClubDTO" Name="TennisClubDTO" UseManualLocation="True" />
+    <Node Id="TennisClubDTO.Address" Category="Navigation Property" Bounds="614.506189493962,695.920557669018,79.5066666666667,25.96" Dependent="" Field="" Inverse="" Label="Address (1)" Name="Address" Principal="AddressDTO" PropertyAccessMode="PropertyAccessMode.Default" Type="AddressDTO" />
+    <Node Id="TennisClubDTO.AddressId" Category="Property Foreign" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="TypeMapping: Microsoft.EntityFrameworkCore.Storage.IntTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="511.736186645655,695.920563332904,72.77,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="True" IsIndexed="True" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="AddressId" MaxLength="None" Name="AddressId" PropertyAccessMode="PropertyAccessMode.Default" Type="int" ValueGenerated="None" />
+    <Node Id="TennisClubDTO.Description" Category="Property Optional" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="TypeMapping: Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerStringTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="413.712827474105,751.880744702769,80.2533333333333,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="False" IsShadow="False" IsUnicode="True" Label="Description" MaxLength="None" Name="Description" PropertyAccessMode="PropertyAccessMode.Default" Type="string" ValueGenerated="None" />
+    <Node Id="TennisClubDTO.Id" Category="Property Primary" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="SqlServer:ValueGenerationStrategy: IdentityColumn TypeMapping: Microsoft.EntityFrameworkCore.Storage.IntTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="413.712830932764,639.960539038883,50,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="True" IsRequired="True" IsShadow="False" IsUnicode="True" Label="Id" MaxLength="None" Name="Id" PropertyAccessMode="PropertyAccessMode.Default" Type="int" ValueGenerated="ValueGenerated.OnAdd" />
+    <Node Id="TennisClubDTO.Image" Category="Property Optional" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="TypeMapping: Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerStringTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="575.409506958155,639.960474661205,52.98,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="False" IsShadow="False" IsUnicode="True" Label="Image" MaxLength="None" Name="Image" PropertyAccessMode="PropertyAccessMode.Default" Type="string" ValueGenerated="None" />
+    <Node Id="TennisClubDTO.Name" Category="Property Required" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="MaxLength: 50 TypeMapping: Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerStringTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="493.712840494939,639.960463332904,51.6966666666667,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="Name" MaxLength="50" Name="Name" PropertyAccessMode="PropertyAccessMode.Default" Type="string" ValueGenerated="None" />
+    <Node Id="TennisClubDTO.PhoneNumber" Category="Property Required" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="MaxLength: 50 TypeMapping: Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerStringTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="523.96614961766,751.880701711986,97.2133333333334,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="PhoneNumber" MaxLength="50" Name="PhoneNumber" PropertyAccessMode="PropertyAccessMode.Default" Type="string" ValueGenerated="None" />
+    <Node Id="TennisClubDTO.Schedule" Category="Property Required" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="MaxLength: 50 TypeMapping: Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerStringTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="413.71283723973,695.920639038883,68.0233333333334,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="Schedule" MaxLength="50" Name="Schedule" PropertyAccessMode="PropertyAccessMode.Default" Type="string" ValueGenerated="None" />
+    <Node Id="TennisCourtDTO" Category="EntityType" Annotations="" BaseClass="" Bounds="20,283.84,321.1,197.88" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot" Group="Expanded" IsAbstract="False" Label="TennisCourtDTO" Name="TennisCourtDTO" />
+    <Node Id="TennisCourtDTO.Id" Category="Property Primary" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="SqlServer:ValueGenerationStrategy: IdentityColumn TypeMapping: Microsoft.EntityFrameworkCore.Storage.IntTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="40,323.84,50,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="True" IsRequired="True" IsShadow="False" IsUnicode="True" Label="Id" MaxLength="None" Name="Id" PropertyAccessMode="PropertyAccessMode.Default" Type="int" ValueGenerated="ValueGenerated.OnAdd" />
+    <Node Id="TennisCourtDTO.IsAvailable" Category="Property Required" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="TypeMapping: Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerBoolTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="139.28,379.8,75.8033333333333,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="IsAvailable" MaxLength="None" Name="IsAvailable" PropertyAccessMode="PropertyAccessMode.Default" Type="bool" ValueGenerated="None" />
+    <Node Id="TennisCourtDTO.Name" Category="Property Required" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="MaxLength: 50 TypeMapping: Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerStringTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="200,323.84,51.6966666666667,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="Name" MaxLength="50" Name="Name" PropertyAccessMode="PropertyAccessMode.Default" Type="string" ValueGenerated="None" />
+    <Node Id="TennisCourtDTO.Price" Category="Property Required" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="TypeMapping: Microsoft.EntityFrameworkCore.Storage.IntTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="120,323.84,50,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="Price" MaxLength="None" Name="Price" PropertyAccessMode="PropertyAccessMode.Default" Type="int" ValueGenerated="None" />
+    <Node Id="TennisCourtDTO.Surface" Category="Navigation Property" Bounds="245.083333333333,379.8,76.0166666666667,25.96" Dependent="" Field="" Inverse="" Label="Surface (1)" Name="Surface" Principal="Surface" PropertyAccessMode="PropertyAccessMode.Default" Type="Surface" />
+    <Node Id="TennisCourtDTO.SurfaceId" Category="Property Foreign" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="TypeMapping: Microsoft.EntityFrameworkCore.Storage.IntTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="40,379.8,69.28,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="True" IsIndexed="True" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="SurfaceId" MaxLength="None" Name="SurfaceId" PropertyAccessMode="PropertyAccessMode.Default" Type="int" ValueGenerated="None" />
+    <Node Id="TennisCourtDTO.TennisClub" Category="Navigation Property" Bounds="157.413333333333,435.76,94.15,25.96" Dependent="" Field="" Inverse="" Label="TennisClub (1)" Name="TennisClub" Principal="TennisClubDTO" PropertyAccessMode="PropertyAccessMode.Default" Type="TennisClubDTO" />
+    <Node Id="TennisCourtDTO.TennisClubId" Category="Property Foreign" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="TypeMapping: Microsoft.EntityFrameworkCore.Storage.IntTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="40,435.76,87.4133333333334,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="True" IsIndexed="True" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="TennisClubId" MaxLength="None" Name="TennisClubId" PropertyAccessMode="PropertyAccessMode.Default" Type="int" ValueGenerated="None" />
+  </Nodes>
+  <Links>
+    <Link Source="AddressDTO" Target="AddressDTO.Address" Category="Contains" />
+    <Link Source="AddressDTO" Target="AddressDTO.City" Category="Contains" />
+    <Link Source="AddressDTO" Target="AddressDTO.CityId" Category="Contains" />
+    <Link Source="AddressDTO" Target="AddressDTO.Id" Category="Contains" />
+    <Link Source="AddressDTO" Target="CityDTO" Category="Foreign Key" Annotations="" Bounds="471.549997113512,969.76124470277,2.44787349856779E-06,21.0001000000002" From="AddressDTO.CityId" IsUnique="False" Label="1:*" LabelBounds="475.549998337449,972.281294935899,14.0733333333334,15.96" Name="AddressDTO -&gt; CityDTO" To="CityDTO.Id" />
+    <Link Source="Booking" Target="Booking.Id" Category="Contains" />
+    <Link Source="Booking" Target="Booking.Person" Category="Contains" />
+    <Link Source="Booking" Target="Booking.PersonId" Category="Contains" />
+    <Link Source="Booking" Target="Booking.TennisCourt" Category="Contains" />
+    <Link Source="Booking" Target="Booking.TennisCourtId" Category="Contains" />
+    <Link Source="Booking" Target="Booking.date_end" Category="Contains" />
+    <Link Source="Booking" Target="Booking.date_start" Category="Contains" />
+    <Link Source="Booking" Target="PersonDTO" Category="Foreign Key" Annotations="" Bounds="751.55,237.88,0,36.96" From="Booking.PersonId" IsUnique="False" Label="1:*" LabelBounds="755.55,248.38,14.0733333333334,15.96" Name="Booking -&gt; PersonDTO" To="PersonDTO.Id" />
+    <Link Source="Booking" Target="TennisCourtDTO" Category="Foreign Key" Annotations="" Bounds="342.846771240234,186.698196411133,266.438201904297,92.5877532958984" From="Booking.TennisCourtId" IsUnique="False" Label="1:*" LabelBounds="504.803569407738,223.882178451456,14.0733333333333,15.96" Name="Booking -&gt; TennisCourtDTO" To="TennisCourtDTO.Id" />
+    <Link Source="CityDTO" Target="CityDTO.Id" Category="Contains" />
+    <Link Source="CityDTO" Target="CityDTO.Name" Category="Contains" />
+    <Link Source="Facility" Target="Facility.FacilityType" Category="Contains" />
+    <Link Source="Facility" Target="Facility.Id" Category="Contains" />
+    <Link Source="Facility" Target="Facility.TennisClub" Category="Contains" />
+    <Link Source="Facility" Target="Facility.TennisClubId" Category="Contains" />
+    <Link Source="Facility" Target="TennisClubDTO" Category="Foreign Key" Annotations="" Bounds="497.312422329524,481.72,28.5200821412053,109.53073010596" From="Facility.TennisClubId" IsUnique="False" Label="1:*" LabelBounds="515.574615301925,527.958469778273,14.0733333333334,15.96" Name="Facility -&gt; TennisClubDTO" To="TennisClubDTO.Id" />
+    <Link Source="IModel" Target="AddressDTO" Category="Contains" />
+    <Link Source="IModel" Target="Booking" Category="Contains" />
+    <Link Source="IModel" Target="CityDTO" Category="Contains" />
+    <Link Source="IModel" Target="Facility" Category="Contains" />
+    <Link Source="IModel" Target="PersonDTO" Category="Contains" />
+    <Link Source="IModel" Target="Surface" Category="Contains" />
+    <Link Source="IModel" Target="TennisClubDTO" Category="Contains" />
+    <Link Source="IModel" Target="TennisCourtDTO" Category="Contains" />
+    <Link Source="PersonDTO" Target="PersonDTO.Bio" Category="Contains" />
+    <Link Source="PersonDTO" Target="PersonDTO.FirstName" Category="Contains" />
+    <Link Source="PersonDTO" Target="PersonDTO.Id" Category="Contains" />
+    <Link Source="PersonDTO" Target="PersonDTO.LastName" Category="Contains" />
+    <Link Source="PersonDTO" Target="PersonDTO.Photo" Category="Contains" />
+    <Link Source="PersonDTO" Target="PersonDTO.TennisClub" Category="Contains" />
+    <Link Source="PersonDTO" Target="PersonDTO.TennisClubId" Category="Contains" />
+    <Link Source="PersonDTO" Target="PersonDTO.Type" Category="Contains" />
+    <Link Source="PersonDTO" Target="TennisClubDTO" Category="Foreign Key" Annotations="" Bounds="620.507423095659,481.72,69.1700849654984,110.609545405914" From="PersonDTO.TennisClubId" IsUnique="False" Label="1:*" LabelBounds="656.788192592332,538.085201811503,14.0733333333334,15.96" Name="PersonDTO -&gt; TennisClubDTO" To="TennisClubDTO.Id" />
+    <Link Source="Surface" Target="Surface.Id" Category="Contains" />
+    <Link Source="Surface" Target="Surface.SurfaceType" Category="Contains" />
+    <Link Source="TennisClubDTO" Target="AddressDTO" Category="Foreign Key" Annotations="" Bounds="504.195973762584,797.84084470277,8.9263315306365,21.6780095873921" From="TennisClubDTO.AddressId" IsUnique="False" Label="1:*" LabelBounds="510.508492952927,809.441355838758,14.0733333333333,15.96" Name="TennisClubDTO -&gt; AddressDTO" To="AddressDTO.Id" />
+    <Link Source="TennisClubDTO" Target="TennisClubDTO.Address" Category="Contains" />
+    <Link Source="TennisClubDTO" Target="TennisClubDTO.AddressId" Category="Contains" />
+    <Link Source="TennisClubDTO" Target="TennisClubDTO.Description" Category="Contains" />
+    <Link Source="TennisClubDTO" Target="TennisClubDTO.Id" Category="Contains" />
+    <Link Source="TennisClubDTO" Target="TennisClubDTO.Image" Category="Contains" />
+    <Link Source="TennisClubDTO" Target="TennisClubDTO.Name" Category="Contains" />
+    <Link Source="TennisClubDTO" Target="TennisClubDTO.PhoneNumber" Category="Contains" />
+    <Link Source="TennisClubDTO" Target="TennisClubDTO.Schedule" Category="Contains" />
+    <Link Source="TennisCourtDTO" Target="Surface" Category="Foreign Key" Annotations="" Bounds="180.55,481.72,0,64.9400000000001" From="TennisCourtDTO.SurfaceId" IsUnique="False" Label="1:*" LabelBounds="184.55,506.21,14.0733333333333,15.96" Name="TennisCourtDTO -&gt; Surface" To="Surface.Id" />
+    <Link Source="TennisCourtDTO" Target="TennisClubDTO" Category="Foreign Key" Annotations="" Bounds="297.39013680129,481.72,132.763955641648,112.424258741878" From="TennisCourtDTO.TennisClubId" IsUnique="False" Label="1:*" LabelBounds="365.064572005823,520.4458417469,14.0733333333334,15.96" Name="TennisCourtDTO -&gt; TennisClubDTO" To="TennisClubDTO.Id" />
+    <Link Source="TennisCourtDTO" Target="TennisCourtDTO.Id" Category="Contains" />
+    <Link Source="TennisCourtDTO" Target="TennisCourtDTO.IsAvailable" Category="Contains" />
+    <Link Source="TennisCourtDTO" Target="TennisCourtDTO.Name" Category="Contains" />
+    <Link Source="TennisCourtDTO" Target="TennisCourtDTO.Price" Category="Contains" />
+    <Link Source="TennisCourtDTO" Target="TennisCourtDTO.Surface" Category="Contains" />
+    <Link Source="TennisCourtDTO" Target="TennisCourtDTO.SurfaceId" Category="Contains" />
+    <Link Source="TennisCourtDTO" Target="TennisCourtDTO.TennisClub" Category="Contains" />
+    <Link Source="TennisCourtDTO" Target="TennisCourtDTO.TennisClubId" Category="Contains" />
+  </Links>
+  <Categories>
+    <Category Id="Contains" Label="Contains" Description="Whether the source of the link contains the target object" CanBeDataDriven="False" CanLinkedNodesBeDataDriven="True" IncomingActionLabel="Contained By" IsContainment="True" OutgoingActionLabel="Contains" />
+    <Category Id="EntityType" />
+    <Category Id="Foreign Key" />
+    <Category Id="Model" />
+    <Category Id="Navigation Property" />
+    <Category Id="Property Foreign" />
+    <Category Id="Property Optional" />
+    <Category Id="Property Primary" />
+    <Category Id="Property Required" />
+  </Categories>
+  <Properties>
+    <Property Id="AfterSaveBehavior" Group="Property Flags" DataType="System.String" />
+    <Property Id="Annotations" Description="Annotations" Group="Model Properties" DataType="System.String" />
+    <Property Id="BaseClass" Description="Base class" Group="Model Properties" DataType="System.String" />
+    <Property Id="BeforeSaveBehavior" Group="Property Flags" DataType="System.String" />
+    <Property Id="Bounds" DataType="System.Windows.Rect" />
+    <Property Id="CanBeDataDriven" Label="CanBeDataDriven" Description="CanBeDataDriven" DataType="System.Boolean" />
+    <Property Id="CanLinkedNodesBeDataDriven" Label="CanLinkedNodesBeDataDriven" Description="CanLinkedNodesBeDataDriven" DataType="System.Boolean" />
+    <Property Id="ChangeTrackingStrategy" Description="Change tracking strategy" Group="Model Properties" DataType="System.String" />
+    <Property Id="Dependent" Description="Dependent entity" Group="Model Properties" DataType="System.String" />
+    <Property Id="Expression" DataType="System.String" />
+    <Property Id="Field" Description="Backing field" Group="Model Properties" DataType="System.String" />
+    <Property Id="From" Description="Target property" Group="Model Properties" DataType="System.String" />
+    <Property Id="GraphDirection" DataType="Microsoft.VisualStudio.Diagrams.Layout.LayoutOrientation" />
+    <Property Id="Group" Label="Group" Description="Display the node as a group" DataType="Microsoft.VisualStudio.GraphModel.GraphGroupStyle" />
+    <Property Id="GroupLabel" DataType="System.String" />
+    <Property Id="IncomingActionLabel" Label="IncomingActionLabel" Description="IncomingActionLabel" DataType="System.String" />
+    <Property Id="Inverse" Description="Inverse entity" Group="Model Properties" DataType="System.String" />
+    <Property Id="IsAbstract" Label="IsAbstract" Description="IsAbstract" Group="Model Properties" DataType="System.Boolean" />
+    <Property Id="IsAlternateKey" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsConcurrencyToken" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsContainment" DataType="System.Boolean" />
+    <Property Id="IsEnabled" DataType="System.Boolean" />
+    <Property Id="IsForeignKey" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsIndexed" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsPrimaryKey" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsRequired" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsShadow" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsUnicode" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsUnique" Group="Model Properties" DataType="System.Boolean" />
+    <Property Id="Label" Label="Label" Description="Displayable label of an Annotatable object" DataType="System.String" />
+    <Property Id="LabelBounds" DataType="System.Windows.Rect" />
+    <Property Id="MaxLength" DataType="System.String" />
+    <Property Id="Name" Group="Model Properties" DataType="System.String" />
+    <Property Id="OutgoingActionLabel" Label="OutgoingActionLabel" Description="OutgoingActionLabel" DataType="System.String" />
+    <Property Id="Principal" Description="Principal entity" Group="Model Properties" DataType="System.String" />
+    <Property Id="ProductVersion" Label="Product Version" Description="EF Core product version" Group="Model Properties" DataType="System.String" />
+    <Property Id="PropertyAccessMode" Group="Property Flags" DataType="System.String" />
+    <Property Id="TargetType" DataType="System.Type" />
+    <Property Id="To" Description="Source property" Group="Model Properties" DataType="System.String" />
+    <Property Id="Type" Description="CLR data type" Group="Model Properties" DataType="System.String" />
+    <Property Id="UseManualLocation" DataType="System.Boolean" />
+    <Property Id="Value" DataType="System.String" />
+    <Property Id="ValueGenerated" Group="Property Flags" DataType="System.String" />
+    <Property Id="ValueLabel" DataType="System.String" />
+    <Property Id="ZoomLevel" DataType="System.String" />
+  </Properties>
+  <Styles>
+    <Style TargetType="Node" GroupLabel="EntityType" ValueLabel="True">
+      <Condition Expression="HasCategory('EntityType')" />
+      <Setter Property="Background" Value="#FFC0C0C0" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Property Primary" ValueLabel="True">
+      <Condition Expression="HasCategory('Property Primary')" />
+      <Setter Property="Background" Value="#FF008000" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Property Optional" ValueLabel="True">
+      <Condition Expression="HasCategory('Property Optional')" />
+      <Setter Property="Background" Value="#FF808040" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Property Foreign" ValueLabel="True">
+      <Condition Expression="HasCategory('Property Foreign')" />
+      <Setter Property="Background" Value="#FF8080FF" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Property Required" ValueLabel="True">
+      <Condition Expression="HasCategory('Property Required')" />
+      <Setter Property="Background" Value="#FFC0A000" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Navigation Property" ValueLabel="True">
+      <Condition Expression="HasCategory('Navigation Property')" />
+      <Setter Property="Background" Value="#FF990000" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Navigation Collection" ValueLabel="True">
+      <Condition Expression="HasCategory('Navigation Collection')" />
+      <Setter Property="Background" Value="#FFFF3232" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Model" ValueLabel="True">
+      <Condition Expression="HasCategory('Model')" />
+      <Setter Property="Background" Value="#FFFFFFFF" />
+    </Style>
+  </Styles>
+</DirectedGraph>
