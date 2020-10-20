@@ -17,9 +17,10 @@ namespace TennisMingle.API.Models
         [ForeignKey("TennisCourtId")]
         public TennisCourtDTO TennisCourt { get; set; }
 
-        public int PersonId { get; set; }
+        public int UserId { get; set; }
 
         [ForeignKey("PersonId")]
-        public PersonDTO Person { get; set; }
+        public PersonDTO User { get; set; }
+
     }
 }

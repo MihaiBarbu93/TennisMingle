@@ -17,7 +17,7 @@ namespace TennisMingle.API.Models
         public string LastName { get; set; }
         public string Bio { get; set; }
         public string Photo { get; set; }
-        public int TennisClubId { get; set; }
+        public int? TennisClubId { get; set; }
         [ForeignKey("TennisClubId")]
         public TennisClubDTO TennisClub { get; set; }
 
