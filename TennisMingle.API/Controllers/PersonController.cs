@@ -6,14 +6,14 @@ using TennisMingle.API.Models;
 namespace TennisMingle.API.Controllers
 {
     [ApiController]
-    [Route("api/cities/{cityId}/tennisclubs/{tennisClubId}/tenniscoaches")]
+    [Route("api/cities/{cityId}/tennisclubs/{tennisClubId}/persons")]
     public class CoachController: ControllerBase
     {
         /// <summary>
         /// This GET method returns all the coaches from a club
         /// </summary>
         [HttpGet]
-        public IActionResult GetTennisCoaches(int cityId, int tennisClubId)
+        public IActionResult GetPersons(int cityId, int tennisClubId)
         {
             var city = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
 
@@ -33,11 +33,11 @@ namespace TennisMingle.API.Controllers
         }
 
         /// <summary>
-        /// This GET method returns a coach from a club with a specific id 
+        /// This GET method returns a person from a club with a specific id 
         /// </summary>
         [HttpGet]
-        [Route("{id}", Name= "GetTennisCoach")]
-        public IActionResult GetTennisCoach(int cityId, int tennisClubId, int id)
+        [Route("{id}", Name= "GetPerson")]
+        public IActionResult GetPerson(int cityId, int tennisClubId, int id)
         {
             var city = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
 
@@ -64,11 +64,11 @@ namespace TennisMingle.API.Controllers
         }
 
         /// <summary>
-        /// This POST method creates a coach which is added to a club
+        /// This POST method creates a person which is added to a club
         /// </summary>
         [HttpPost]
         public IActionResult CreateCoach(int cityId, int tennisClubId,
-            [FromBody] CoachDTOForCreation coach)
+            [FromBody] PersonDTO person)
         {
             var city = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
 
@@ -86,22 +86,22 @@ namespace TennisMingle.API.Controllers
 
             var maxCoachId = city.TennisClubs.SelectMany(tc => tc.Coaches).Max(c => c.Id);
 
-            var coachToCreate = new CoachDTO()
+            var coachToCreate = new PersonDTO()
             {
                 Id = ++maxCoachId,
-                Name = coach.Name,
-                Bio = coach.Bio,
-                Photo = coach.Photo
+                Name = person.Name,
+                Bio = person.Bio,
+                Photo = person.Photo
             };
 
             tennisClub.Coaches.Add(coachToCreate);
 
             return CreatedAtRoute(
-                "GetTennisCoach", new { cityId, tennisClubId, id = coachToCreate.Id }, coachToCreate);
+                "GetPerson", new { cityId, tennisClubId, id = coachToCreate.Id }, coachToCreate);
         }
 
         /// <summary>
-        /// This PUT method is replacing all the properties of a coach
+        /// This PUT method is replacing all the properties of a person
         /// </summary>
         [HttpPut]
         [Route("{id}")]
@@ -132,7 +132,7 @@ namespace TennisMingle.API.Controllers
         }
 
         /// <summary>
-        /// This PATCH method is replacing only one property of a coach
+        /// This PATCH method is replacing only one property of a person
         /// </summary>
         [HttpPatch]
         [Route("{id}")]
@@ -183,7 +183,7 @@ namespace TennisMingle.API.Controllers
         }
 
         /// <summary>
-        /// This DELETE method removes a coach from a club with a specific id 
+        /// This DELETE method removes a person from a club with a specific id 
         /// </summary>
         [HttpDelete]
         [Route("{id}")]
