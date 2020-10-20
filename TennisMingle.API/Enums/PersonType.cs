@@ -5,7 +5,10 @@ using System.Threading.Tasks;
 
 namespace TennisMingle.API.Enums
 {
-    public class PersonType
+    public enum PersonType
     {
+        ADMINISTRATOR,
+        USER,
+        COACH
     }
 }

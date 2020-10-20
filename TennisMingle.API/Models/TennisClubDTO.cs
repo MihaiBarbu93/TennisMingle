@@ -36,30 +36,16 @@ namespace TennisMingle.API.Models
         /// The tennis club adress
         /// </summary>
 
-        public int CityId { get; set; }
-
-        [ForeignKey("CityId")]
-        public CityDTO City { get; set; }
-
         public int AddressId { get; set; }
 
         [ForeignKey("AddressId")]
         public AddressDTO Address { get; set; }
 
 
-
-
         /// <summary>
         /// The tennis club description
         /// </summary>
         public string Description { get; set; }
-
-        public List<Facilities> Facilities { get; set; }
-
-        /// <summary>
-        /// The tennis club prices
-        /// </summary>
-        public List<int> Prices { get; set; }
 
         // <summary>
         /// The tennis club schedule
@@ -72,8 +58,6 @@ namespace TennisMingle.API.Models
         /// The uploaded tennis club image
         /// </summary>
         public string? Image { get; set; }
-
-
 
     }
 }
