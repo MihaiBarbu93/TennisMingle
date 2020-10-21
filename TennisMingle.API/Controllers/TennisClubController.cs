@@ -1,4 +1,4 @@
-﻿/*using Microsoft.AspNetCore.JsonPatch;
+﻿using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using TennisMingle.API.Models;
@@ -9,32 +9,42 @@ namespace TennisMingle.API.Controllers
     [Route("api/cities/{cityId}/tennisclubs")]
     public class TennisClubController : ControllerBase
     {
+        private AppDbContext _context;
+
+        public TennisClubController(AppDbContext context)
+        {
+            _context = context;
+        }
         /// <summary>
         /// This GET method returns all the tennis clubs from a city
         /// </summary>
         [HttpGet]
         public IActionResult GetTennisClubs(int cityId)
         {
-            var city = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
+            var city = _context.Cities.Where(c => c.Id == cityId);
             if (city == null)
             {
                 return NotFound();
             }
-            return Ok(city.TennisClubs);
+
+            var tennisClubs = _context.TennisClubs.Where(tc => tc.Address.CityId == cityId);
+
+            return Ok(tennisClubs);
         }
 
         /// <summary>
         /// This GET method returns a tennis club with a specific id 
         /// </summary>
-        [HttpGet("{tennisClubId}")]
+        [HttpGet]
+        [Route("{tennisClubId}", Name = "GetTennisClub")]
         public IActionResult GetTennisClub(int cityId, int tennisClubId)
         {
-            var city = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
+            var city = _context.Cities.FirstOrDefault(c => c.Id == cityId);
             if (city == null)
             {
                 return NotFound();
             }
-            var tennisClub = city.TennisClubs.FirstOrDefault(tc => tc.Id == tennisClubId);
+            var tennisClub = _context.TennisClubs.FirstOrDefault(tc => tc.Id == tennisClubId);
             if (tennisClub == null)
             {
                 return NotFound();
@@ -46,29 +56,30 @@ namespace TennisMingle.API.Controllers
         /// This POST method creates a tennis club which is added to a city
         /// </summary>
         [HttpPost]
-        public IActionResult CreateTennisClub(int cityId, [FromBody] TennisClubForCreationDTO tennisClub)
+        public IActionResult CreateTennisClub(int cityId, [FromBody] TennisClubDTO tennisClub)
         {
-            var city = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
+            var city = _context.Cities.FirstOrDefault(c => c.Id == cityId);
             if (city == null)
             {
                 return NotFound();
             }
-            var maxTennisClubId = CitiesDataStore.Current.Cities.SelectMany(c => c.TennisClubs).Max(tc => tc.Id);
-            var createdTennisClub = new TennisClubDTO()
+
+            _context.Addresses.Add(tennisClub.Address);
+            _context.SaveChanges();
+
+            var tennisClubToAdd = new TennisClubDTO
             {
-                Id = ++maxTennisClubId,
                 Name = tennisClub.Name,
-                Surfaces = tennisClub.Surfaces,
-                Facilities = tennisClub.Facilities,
-                Address = tennisClub.Address,
                 PhoneNumber = tennisClub.PhoneNumber,
+                AddressId = _context.Addresses.ToList().Last().Id,
                 Description = tennisClub.Description,
-                Prices = tennisClub.Prices,
                 Schedule = tennisClub.Schedule,
                 Image = tennisClub.Image
             };
-            city.TennisClubs.Add(createdTennisClub);
-            return CreatedAtRoute("GetTennisClub", new { cityId, tennisclubid = createdTennisClub.Id }, createdTennisClub);
+
+            _context.TennisClubs.Add(tennisClubToAdd);
+            _context.SaveChanges();
+            return CreatedAtRoute("GetTennisClub", new { cityId, tennisClubId = _context.TennisClubs.ToList().Last().Id }, tennisClubToAdd);
         }
 
         /// <summary>
@@ -76,34 +87,34 @@ namespace TennisMingle.API.Controllers
         /// </summary>
         [HttpPut("{tennisClubId}")]
         public IActionResult UpdateTennisClub(int cityId, int tennisClubId,
-            [FromBody] TennisClubForUpdateDTO tennisClub)
+            [FromBody] TennisClubDTO tennisClub)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var city = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
+            var city = _context.Cities.FirstOrDefault(c => c.Id == cityId);
             if (city == null)
             {
                 return NotFound();
             }
-            var tennisClubFromStore = city.TennisClubs.FirstOrDefault(tc => tc.Id == tennisClubId);
-            if (tennisClubFromStore == null)
+            var tennisClubFromDB = _context.TennisClubs.FirstOrDefault(tc => tc.Id == tennisClubId);
+            if (tennisClubFromDB == null)
             {
                 return NotFound();
             }
-            tennisClubFromStore.Name = tennisClub.Name;
-            tennisClubFromStore.TennisCourts = tennisClub.TennisCourts;
-            tennisClubFromStore.Coaches = tennisClub.Coaches;
-            tennisClubFromStore.Surfaces = tennisClub.Surfaces;
-            tennisClubFromStore.Facilities = tennisClub.Facilities;
-            tennisClubFromStore.Address = tennisClub.Address;
-            tennisClubFromStore.PhoneNumber = tennisClub.PhoneNumber;
-            tennisClubFromStore.Description = tennisClub.Description;
-            tennisClubFromStore.Prices = tennisClub.Prices;
-            tennisClubFromStore.Schedule = tennisClub.Schedule;
-            tennisClubFromStore.Image = tennisClub.Image;
+
+            var addressToReplace = _context.Addresses.FirstOrDefault(a => a.Id == tennisClubFromDB.AddressId);
+
+            tennisClubFromDB.Name = tennisClub.Name;
+            addressToReplace = tennisClub.Address;
+            tennisClubFromDB.PhoneNumber = tennisClub.PhoneNumber;
+            tennisClubFromDB.Description = tennisClub.Description;
+            tennisClubFromDB.Schedule = tennisClub.Schedule;
+            tennisClubFromDB.Image = tennisClub.Image;
+
+            _context.SaveChanges();
 
             return NoContent();
         }
@@ -113,35 +124,21 @@ namespace TennisMingle.API.Controllers
         /// </summary>
         [HttpPatch("{tennisClubId}")]
         public IActionResult PartiallyUpdateTennisClub(int cityId, int tennisClubId,
-            [FromBody] JsonPatchDocument<TennisClubForUpdateDTO> patchDoc)
+            [FromBody] JsonPatchDocument<TennisClubDTO> patchDoc)
         {
 
-            var city = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
+            var city = _context.Cities.FirstOrDefault(c => c.Id == cityId);
             if (city == null)
             {
                 return NotFound();
             }
-            var tennisClubFromStore = city.TennisClubs.FirstOrDefault(tc => tc.Id == tennisClubId);
-            if (tennisClubFromStore == null)
+            var tennisClubFromDB = _context.TennisClubs.FirstOrDefault(tc => tc.Id == tennisClubId);
+            if (tennisClubFromDB == null)
             {
                 return NotFound();
             }
-            var tennisClubToPatch =
-                new TennisClubForUpdateDTO()
-                {
+            var tennisClubToPatch = tennisClubFromDB;
 
-                    Name = tennisClubFromStore.Name,
-                    TennisCourts = tennisClubFromStore.TennisCourts,
-                    Coaches = tennisClubFromStore.Coaches,
-                    Surfaces = tennisClubFromStore.Surfaces,
-                    Facilities = tennisClubFromStore.Facilities,
-                    Address = tennisClubFromStore.Address,
-                    PhoneNumber = tennisClubFromStore.PhoneNumber,
-                    Description = tennisClubFromStore.Description,
-                    Prices = tennisClubFromStore.Prices,
-                    Schedule = tennisClubFromStore.Schedule,
-                    Image = tennisClubFromStore.Image
-                };
             patchDoc.ApplyTo(tennisClubToPatch, ModelState);
 
             if (!ModelState.IsValid)
@@ -149,17 +146,14 @@ namespace TennisMingle.API.Controllers
                 return BadRequest(ModelState);
             }
 
-            tennisClubFromStore.Name = tennisClubToPatch.Name;
-            tennisClubFromStore.TennisCourts = tennisClubToPatch.TennisCourts;
-            tennisClubFromStore.Coaches = tennisClubToPatch.Coaches;
-            tennisClubFromStore.Surfaces = tennisClubToPatch.Surfaces;
-            tennisClubFromStore.Facilities = tennisClubToPatch.Facilities;
-            tennisClubFromStore.Address = tennisClubToPatch.Address;
-            tennisClubFromStore.PhoneNumber = tennisClubToPatch.PhoneNumber;
-            tennisClubFromStore.Description = tennisClubToPatch.Description;
-            tennisClubFromStore.Prices = tennisClubToPatch.Prices;
-            tennisClubFromStore.Schedule = tennisClubToPatch.Schedule;
-            tennisClubFromStore.Image = tennisClubToPatch.Image;
+            tennisClubFromDB.Name = tennisClubToPatch.Name;
+            tennisClubFromDB.Address = tennisClubToPatch.Address;
+            tennisClubFromDB.PhoneNumber = tennisClubToPatch.PhoneNumber;
+            tennisClubFromDB.Description = tennisClubToPatch.Description;
+            tennisClubFromDB.Schedule = tennisClubToPatch.Schedule;
+            tennisClubFromDB.Image = tennisClubToPatch.Image;
+
+            _context.SaveChanges();
 
             return NoContent();
         }
@@ -170,21 +164,22 @@ namespace TennisMingle.API.Controllers
         [HttpDelete("{tennisClubId}")]
         public IActionResult DeleteTennisClub(int cityId, int tennisClubId)
         {
-            var city = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
+            var city = _context.Cities.FirstOrDefault(c => c.Id == cityId);
             if (city == null)
             {
                 return NotFound();
             }
-            var tennisClubFromStore = city.TennisClubs.FirstOrDefault(tc => tc.Id == tennisClubId);
+            var tennisClubFromStore = _context.TennisClubs.FirstOrDefault(tc => tc.Id == tennisClubId);
             if (tennisClubFromStore == null)
             {
                 return NotFound();
             }
 
-            city.TennisClubs.Remove(tennisClubFromStore);
+            _context.TennisClubs.Remove(tennisClubFromStore);
+
+            _context.SaveChanges();
 
             return NoContent();
         }
     }
 }
-*/
