@@ -1,4 +1,4 @@
-﻿/*using Microsoft.AspNetCore.JsonPatch;
+﻿using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using TennisMingle.API.Models;
@@ -7,97 +7,112 @@ namespace TennisMingle.API.Controllers
 {
     [ApiController]
     [Route("api/cities/{cityId}/tennisclubs/{tennisClubId}/persons")]
-    public class CoachController: ControllerBase
+    public class CoachController : ControllerBase
     {
+        private readonly AppDbContext _context;
+        public CoachController(AppDbContext context)
+        {
+            _context = context;        
+        }
         /// <summary>
         /// This GET method returns all the coaches from a club
         /// </summary>
         [HttpGet]
         public IActionResult GetPersons(int cityId, int tennisClubId)
         {
-            var city = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
+            var city = _context.Cities.FirstOrDefault(c => c.Id == cityId);
 
             if (city == null)
             {
                 return NotFound();
             }
 
-            var tennisClub = city.TennisClubs.FirstOrDefault(tc => tc.Id == tennisClubId);
+            var tennisClub = _context.TennisClubs.FirstOrDefault(tc => tc.Id == tennisClubId);
 
             if (tennisClub == null)
             {
                 return NotFound();
             }
 
-            return Ok(tennisClub.Coaches);
+            var persons = _context.Persons.Where(p => p.TennisClubId == tennisClubId);
+
+            if (persons == null)
+            {
+                return NotFound();
+            }
+
+
+            return Ok(persons.ToList());
         }
 
         /// <summary>
         /// This GET method returns a person from a club with a specific id 
         /// </summary>
         [HttpGet]
-        [Route("{id}", Name= "GetPerson")]
+        [Route("{id}", Name = "GetPerson")]
         public IActionResult GetPerson(int cityId, int tennisClubId, int id)
         {
-            var city = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
+            var city = _context.Cities.FirstOrDefault(c => c.Id == cityId);
 
             if (city == null)
             {
                 return NotFound();
             }
 
-            var tennisClub = city.TennisClubs.FirstOrDefault(tc => tc.Id == tennisClubId);
+            var tennisClub = _context.TennisClubs.FirstOrDefault(tc => tc.Id == tennisClubId);
 
             if (tennisClub == null)
             {
                 return NotFound();
             }
 
-            var tennisCoachToReturn = tennisClub.Coaches.FirstOrDefault(co => co.Id == id);
+            var persons = _context.Persons.Where(p => p.TennisClubId == tennisClubId);
 
-            if (tennisCoachToReturn == null)
+            if (persons == null)
             {
                 return NotFound();
             }
 
-            return Ok(tennisCoachToReturn);
+            return Ok(persons.FirstOrDefault(p=> p.Id == id));
         }
 
         /// <summary>
         /// This POST method creates a person which is added to a club
         /// </summary>
         [HttpPost]
-        public IActionResult CreateCoach(int cityId, int tennisClubId,
+        public IActionResult CreatePerson(int cityId, int tennisClubId,
             [FromBody] PersonDTO person)
         {
-            var city = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
+            var city = _context.Cities.FirstOrDefault(c => c.Id == cityId);
 
             if (city == null)
             {
                 return NotFound();
             }
 
-            var tennisClub = city.TennisClubs.FirstOrDefault(tc => tc.Id == tennisClubId);
+            var tennisClub = _context.TennisClubs.FirstOrDefault(tc => tc.Id == tennisClubId);
 
             if (tennisClub == null)
             {
                 return NotFound();
             }
 
-            var maxCoachId = city.TennisClubs.SelectMany(tc => tc.Coaches).Max(c => c.Id);
-
-            var coachToCreate = new PersonDTO()
+            var personToCreate = new PersonDTO()
             {
-                Id = ++maxCoachId,
-                Name = person.Name,
+                FirstName = person.FirstName,
+                LastName = person.LastName,
                 Bio = person.Bio,
-                Photo = person.Photo
+                TennisClubId = tennisClubId,
+                TennisClub = tennisClub,
+                Photo = person.Photo,
+                Type = person.Type
             };
 
-            tennisClub.Coaches.Add(coachToCreate);
+            _context.Persons.Add(personToCreate);
+            _context.SaveChanges();
 
             return CreatedAtRoute(
-                "GetPerson", new { cityId, tennisClubId, id = coachToCreate.Id }, coachToCreate);
+                "GetPerson", new { cityId, tennisClubId, id = _context.Persons.ToList().Last().Id }, personToCreate);
         }
 
         /// <summary>
@@ -106,27 +121,34 @@ namespace TennisMingle.API.Controllers
         [HttpPut]
         [Route("{id}")]
         public IActionResult UpdateCoach(int cityId, int tennisClubId, int id,
-            [FromBody] CoachDTOForUpdate coach)
+            [FromBody] PersonDTO person)
         {
-            var city = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
+            var city = _context.Cities.FirstOrDefault(c => c.Id == cityId);
 
             if (city == null)
             {
                 return NotFound();
             }
 
-            var tennisClub = city.TennisClubs.FirstOrDefault(tc => tc.Id == tennisClubId);
+            var tennisClub = _context.TennisClubs.FirstOrDefault(tc => tc.Id == tennisClubId);
 
             if (tennisClub == null)
             {
                 return NotFound();
             }
 
-            var coachToUpdate = tennisClub.Coaches.FirstOrDefault(co => co.Id == id);
+            var personToUpdate = (from p in _context.Persons
+                             where p.Id == id
+                             select p).SingleOrDefault();
 
-            coachToUpdate.Name = coach.Name;
-            coachToUpdate.Bio = coach.Bio;
-            coachToUpdate.Photo = coach.Photo;
+            personToUpdate.FirstName = person.FirstName;
+            personToUpdate.LastName = person.LastName;
+            personToUpdate.Bio = person.Bio;
+            personToUpdate.TennisClubId = tennisClubId;
+            personToUpdate.Photo = person.Photo;
+            personToUpdate.Type = person.Type;
+
+            _context.SaveChanges();
 
             return NoContent();
         }
@@ -138,48 +160,48 @@ namespace TennisMingle.API.Controllers
         [Route("{id}")]
 
         public IActionResult PartiallyUpdateCoach(int cityId, int tennisClubId, int id,
-            [FromBody] JsonPatchDocument<CoachDTOForUpdate> patchDoc)
+            [FromBody] JsonPatchDocument<PersonDTO> patchDoc)
         {
-            var city = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
+            var city = _context.Cities.FirstOrDefault(c => c.Id == cityId);
 
             if (city == null)
             {
                 return NotFound();
             }
 
-            var tennisClub = city.TennisClubs.FirstOrDefault(tc => tc.Id == tennisClubId);
+            var tennisClub = _context.TennisClubs.FirstOrDefault(tc => tc.Id == tennisClubId);
 
             if (tennisClub == null)
             {
                 return NotFound();
             }
-
-            var coachFromStore = tennisClub.Coaches.FirstOrDefault(co => co.Id == id);
-
-            if (coachFromStore == null)
+            
+            var personFromDb = (from p in _context.Persons
+                                where p.Id == id
+                                select p).SingleOrDefault();
+            if (personFromDb == null) 
             {
                 return NotFound();
             }
+            var personToPatch = personFromDb;
 
-            var coachToPatch = new CoachDTOForUpdate()
-            {
-                Name = coachFromStore.Name,
-                Bio = coachFromStore.Bio,
-                Photo = coachFromStore.Photo
-            };
+            patchDoc.ApplyTo(personToPatch, ModelState);
 
-            patchDoc.ApplyTo(coachToPatch, ModelState);
-         
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
+            personFromDb.FirstName = personToPatch.FirstName ;
+            personFromDb.LastName = personToPatch.LastName;
+            personFromDb.Bio = personToPatch.Bio;
+            personFromDb.TennisClubId = personToPatch.TennisClubId;
+            personFromDb.Photo = personToPatch.Photo;
+            personFromDb.Type = personToPatch.Type;
 
-            coachFromStore.Name = coachToPatch.Name;
-            coachFromStore.Bio = coachToPatch.Bio;
-            coachFromStore.Photo = coachToPatch.Photo;
+            _context.SaveChanges();
 
             return NoContent();
+
         }
 
         /// <summary>
@@ -190,32 +212,33 @@ namespace TennisMingle.API.Controllers
 
         public IActionResult DeleteCoach(int cityId, int tennisClubId, int id)
         {
-            var city = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
+            var city = _context.Cities.FirstOrDefault(c => c.Id == cityId);
 
             if (city == null)
             {
                 return NotFound();
             }
 
-            var tennisClub = city.TennisClubs.FirstOrDefault(tc => tc.Id == tennisClubId);
+            var tennisClub = _context.TennisClubs.FirstOrDefault(tc => tc.Id == tennisClubId);
 
             if (tennisClub == null)
             {
                 return NotFound();
             }
 
-            var coachToDelete = tennisClub.Coaches.FirstOrDefault(co => co.Id == id);
-
-            if (coachToDelete == null)
+            var personToDelete = (from p in _context.Persons
+                                where p.Id == id
+                                select p).SingleOrDefault();
+            if (personToDelete == null)
             {
                 return NotFound();
             }
 
-            tennisClub.Coaches.Remove(coachToDelete);
+            _context.Persons.Remove(personToDelete);
+            _context.SaveChanges();
 
             return NoContent();
         }
 
     }
 }
-*/
