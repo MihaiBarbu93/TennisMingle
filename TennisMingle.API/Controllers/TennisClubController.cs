@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using TennisMingle.API.Models;
 
@@ -27,7 +28,7 @@ namespace TennisMingle.API.Controllers
                 return NotFound();
             }
 
-            var tennisClubs = _context.TennisClubs.Where(tc => tc.Address.CityId == cityId);
+            var tennisClubs = _context.TennisClubs.Include(tc => tc.Address.City).Where(tc => tc.Address.CityId == cityId);
 
             return Ok(tennisClubs);
         }
@@ -44,11 +45,12 @@ namespace TennisMingle.API.Controllers
             {
                 return NotFound();
             }
-            var tennisClub = _context.TennisClubs.FirstOrDefault(tc => tc.Id == tennisClubId);
+            var tennisClub = _context.TennisClubs.Include(tc => tc.Address.City).FirstOrDefault(tc => tc.Id == tennisClubId);
             if (tennisClub == null)
             {
                 return NotFound();
             }
+
             return Ok(tennisClub);
         }
 
