@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using TennisMingle.API.Models;
 
@@ -34,7 +35,7 @@ namespace TennisMingle.API.Controllers
                 return NotFound();
             }
 
-            var tennisCourts = _context.TennisCourts.ToList();
+            var tennisCourts = _context.TennisCourts.Include(tc => tc.TennisClub).Include(tc => tc.Surface) ;
 
             if (tennisCourts == null) 
             {
