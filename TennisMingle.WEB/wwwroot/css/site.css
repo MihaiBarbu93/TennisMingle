@@ -76,3 +76,12 @@ body {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     color: whitesmoke !important;
 }
+
+.masthead {
+  height: 100vh;
+  min-height: 500px;
+  background-image: url("../Images/index-header.jpg/);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
