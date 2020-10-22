@@ -2,28 +2,34 @@
 <div class="col-md-9">
     @foreach (var club in Model)
     {
-    <div class="col-sm-4 col-lg-4 col-md-4">
-        <div class="thumbnail">
-            <img src="@club.Image" alt="">
-            <div class="caption">
-                <h3 class="pull-right">@club.Schedule</h3>
-                <h3>
-                    <a asp-controller=""
-                       asp-action=""
-                       >@club.Name</a>
-                </h3>
-                <p>@club.Description</p>
-            </div>
-            <div class="addToCart">
-                <p class="button">
-                    <a class="btn btn-primary"
-                       asp-controller="ShoppingCart"
-                       asp-action="AddToShoppingCart"
-                       >Book</a>
-                </p>
+        <div class="col-sm-4 col-lg-4 col-md-4">
+            <div class="thumbnail">
+                <img src="@club.Image" alt="">
+                <div class="caption">
+                    <h3 class="pull-right">@club.Name</h3>
+                    <h3>
+                        <a>@club.Schedule</a>
+                    </h3>
+                    <p>@club.Address.Address</p>
+                    <p>@club.PhoneNumber</p>
+                </div>
+                <div class="addToCart">
+                    <p class="button">
+                        @{
+                            var parms = new Dictionary<string, string>
+                            {
+                                { "cityId", club.Address.CityId.ToString() },
+                                { "clubId", club.Id.ToString() }
+                            };
+                        }
+                        <a class="btn btn-primary"
+                           asp-controller="TennisClub"
+                           asp-action="TennisClub"
+                           asp-all-route-data="parms">Explore Venue</a>
+                    </p>
+                </div>
             </div>
         </div>
-    </div>
     }
-    
+
 </div>

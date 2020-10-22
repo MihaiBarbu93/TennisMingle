@@ -1,0 +1,14 @@
+﻿@model TennisClubDTO
+
+<div class="thumbnail">
+    <img src="@Model.Image" alt="">
+    <div class="caption">
+        <h3 class="pull-right">@Model.Name</h3>
+        <h3>
+            <a>@Model.Schedule</a>
+        </h3>
+        <p>@Model.Address.Address</p>
+        <p>@Model.PhoneNumber</p>
+        <p>@Model.Description</p>
+    </div>
+</div>
