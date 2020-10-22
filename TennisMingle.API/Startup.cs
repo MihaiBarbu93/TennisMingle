@@ -85,7 +85,7 @@ namespace TennisMingle.API
             app.UseSwaggerUI(options =>
             {
                 options.SwaggerEndpoint("/swagger/v1/swagger.json", "Tennis Mingle API");
-                options.RoutePrefix = "";
+                options.RoutePrefix = "/swagger";
 
 
             });
