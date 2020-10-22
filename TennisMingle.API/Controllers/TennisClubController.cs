@@ -30,7 +30,7 @@ namespace TennisMingle.API.Controllers
 
             var tennisClubs = _context.TennisClubs.Include(tc => tc.Address.City).Where(tc => tc.Address.CityId == cityId);
 
-            return Ok(tennisClubs);
+            return Ok(tennisClubs.ToList());
         }
 
         /// <summary>
