@@ -19,8 +19,4 @@
     <ProjectReference Include="..\TennisMingle.API\TennisMingle.API.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Views\Shared\TennisClub\" />
-  </ItemGroup>
-
 </Project>

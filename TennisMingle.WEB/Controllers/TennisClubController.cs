@@ -21,13 +21,13 @@ namespace TennisMingle.WEB.Controllers
             _logger = logger;
         }
 
-        public async Task<IActionResult> TennisClubs(int id)
+        public async Task<IActionResult> TennisClubs(int cityId)
         {
             List<TennisClubDTO> tennisClubs = new List<TennisClubDTO>();
 
             using (var httpClient = new HttpClient())
             {
-                using (var response = await httpClient.GetAsync($"https://localhost:44313/api/cities/{id}/tennisclubs"))
+                using (var response = await httpClient.GetAsync($"https://localhost:44313/api/cities/{cityId}/tennisclubs"))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     tennisClubs = JsonConvert.DeserializeObject<List<TennisClubDTO>>(apiResponse);
@@ -35,6 +35,21 @@ namespace TennisMingle.WEB.Controllers
             }
 
             return View(tennisClubs);
+        }
+        public async Task<IActionResult> TennisClub(int cityId, int clubId)
+        {
+            var tennisClub = new TennisClubDTO();
+
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.GetAsync($"https://localhost:44313/api/cities/{cityId}/tennisclubs/{clubId}"))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    tennisClub = JsonConvert.DeserializeObject<TennisClubDTO>(apiResponse);
+                }
+            }
+
+            return View(tennisClub);
         }
 
         public IActionResult Privacy()
