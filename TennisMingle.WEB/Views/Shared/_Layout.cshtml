@@ -1,4 +1,4 @@
-﻿@model IEnumerable<CityDTO>
+﻿
 
 <!DOCTYPE html>
 <html lang="en">
@@ -23,23 +23,8 @@
                 </button>
                 <div class="collapse navbar-collapse text-white" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <li class="dropdown">
-                            <a asp-controller="Cities"
-                               asp-action="GetCities"
-                               class="dropdown-toggle text-white" data-toggle="dropdown">@Model.FirstOrDefault().Name<b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                @foreach (var city in Model)
-                                {
-                                    <li>
-                                        <a asp-controller="Cities" asp-action="GetCities"
-                                           asp-route-category="@city.Name">@city.Name</a>
-                                    </li>
-                                }
-                                <li class="divider"></li>
-
-                            </ul>
-                        </li>
-                        @*                        <li><a asp-controller="Contact" asp-action="Index">Contact</a></li>*@
+                        @await Component.InvokeAsync("CitiesList")
+    
                     </ul>
                 </div>
             </div>

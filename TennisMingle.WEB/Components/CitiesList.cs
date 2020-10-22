@@ -17,7 +17,7 @@ namespace TennisMingle.WEB.Components
 
         public IViewComponentResult Invoke()
         {
-            var cities = _context.Cities.OrderBy(c => c.Name);
+            var cities = _context.Cities;
             return View(cities);
         }
     }
