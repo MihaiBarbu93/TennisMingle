@@ -8,9 +8,6 @@ a.navbar-brand {
 }
 
 /* Provide sufficient contrast against white background */
-a {
-  color: #0366d6;
-}
 
 .btn-primary {
   color: #fff;
@@ -80,8 +77,11 @@ body {
 .masthead {
   height: 100vh;
   min-height: 500px;
-  background-image: url("../Images/index-header.jpg/);
+  background-image: url("../Images/index-header.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  color:white;
 }
+
+
