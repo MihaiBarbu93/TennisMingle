@@ -1,0 +1,64 @@
+﻿@model IEnumerable<CityDTO>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Tennis Mingle</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-success border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand site-title" asp-area="" asp-controller="Home" asp-action="Index">TennisMingle</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                        <li class="dropdown">
+                            <a asp-controller="Cities"
+                               asp-action="GetCities"
+                               class="dropdown-toggle" data-toggle="dropdown">@Model.FirstOrDefault().Name<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                @foreach (var city in Model)
+                                {
+                                    <li>
+                                        <a asp-controller="Cities" asp-action="GetCities"
+                                           asp-route-category="@city.Name">@city.Name</a>
+                                    </li>
+                                }
+                                <li class="divider"></li>
+                                <li>
+                                    <a asp-controller="Cities" asp-action="GetCities" asp-route-Cities="">View all cities</a>
+                                </li>
+                            </ul>
+                        </li>
+                        @*                        <li><a asp-controller="Contact" asp-action="Index">Contact</a></li>*@
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2020 - TennisMingle.WEB - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

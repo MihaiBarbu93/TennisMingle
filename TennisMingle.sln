@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30330.147
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TennisMingle.API", "TennisMingle.API\TennisMingle.API.csproj", "{26D4F3EE-7E93-44E8-A0F0-6DEE7943A5B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TennisMingle.API", "TennisMingle.API\TennisMingle.API.csproj", "{26D4F3EE-7E93-44E8-A0F0-6DEE7943A5B2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TennisMingle.WEB", "TennisMingle.WEB\TennisMingle.WEB.csproj", "{AB0DB8AF-59A6-40DA-A585-FD6CC8C776D5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{26D4F3EE-7E93-44E8-A0F0-6DEE7943A5B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{26D4F3EE-7E93-44E8-A0F0-6DEE7943A5B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{26D4F3EE-7E93-44E8-A0F0-6DEE7943A5B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB0DB8AF-59A6-40DA-A585-FD6CC8C776D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB0DB8AF-59A6-40DA-A585-FD6CC8C776D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB0DB8AF-59A6-40DA-A585-FD6CC8C776D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB0DB8AF-59A6-40DA-A585-FD6CC8C776D5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

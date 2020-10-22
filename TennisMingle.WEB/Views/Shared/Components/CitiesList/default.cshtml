@@ -1,0 +1,20 @@
+﻿@model IEnumerable<CityDTO>
+
+<li class="dropdown">
+    <a asp-controller="Cities"
+       asp-action="Index"
+       class="dropdown-toggle" data-toggle="dropdown">Cities<b class="caret"></b></a>
+    <ul class="dropdown-menu">
+        @foreach (var city in Model)
+        {
+            <li>
+                <a asp-controller="Cities" asp-action="GetCities"
+                   asp-route-category="@city.Name">@city.Name</a>
+            </li>
+        }
+        <li class="divider"></li>
+        <li>
+            <a asp-controller="Cities" asp-action="GetCities" asp-route-Cities="">View all cities</a>
+        </li>
+    </ul>
+</li>
