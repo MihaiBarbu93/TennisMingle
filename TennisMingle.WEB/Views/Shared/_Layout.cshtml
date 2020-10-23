@@ -14,14 +14,14 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-success border-bottom box-shadow mb-3">
-            <div class="container">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light cities-collapse border-bottom box-shadow mb-3">
+            <div class="container" style="margin: 0px">
                 <a class="navbar-brand site-title" asp-area="" asp-controller="Home" asp-action="Index">TennisMingle</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse text-white" id="bs-example-navbar-collapse-1">
+                <div class="collapse navbar-collapse text-uppercase" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                         @await Component.InvokeAsync("CitiesList")
     

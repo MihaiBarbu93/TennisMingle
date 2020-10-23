@@ -2,34 +2,59 @@
 <div class="col-md-9">
     @foreach (var club in Model)
     {
-        <div class="col-sm-4 col-lg-4 col-md-4">
+
+    <div class="row mt-1 mb-3 bg-white club-summary rounded">
+        <div class="col-6 col-lg-4 pr-0 align-items-stretch mb-3">
+            <img src="~/Images/@club.Image" class="img-fluid rounded-image" w-100 h-100 alt="">
+        </div>
+        <div class="col-6 col-lg-8 pr-0 mb-2">
+
             <div class="thumbnail">
-                <img src="@club.Image" alt="">
-                <div class="caption">
-                    <h3 class="pull-right">@club.Name</h3>
-                    <h3>
-                        <a>@club.Schedule</a>
-                    </h3>
-                    <p>@club.Address.Address</p>
-                    <p>@club.PhoneNumber</p>
-                </div>
-                <div class="addToCart">
-                    <p class="button">
-                        @{
-                            var parms = new Dictionary<string, string>
-                            {
+                <div class="row mb-3">
+                    <div class="col-12 col-lg-5 col-xl-6">
+                        <div class="caption">
+                            <h3 class="pull-right club-info-name">@club.Name</h3>
+                            <p class="mb-1 club-info-address">@club.Address.Address</p>
+                            <p class="mb-1 club-info-address"><span class="club-info-schedule">Schedule: </span>@club.Schedule</p>
+                            @*                  <p>@club.PhoneNumber</p>*@
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-7 col-xl-6 mt-lg-0 cursor pointer mlp-block-link">
+                        <div class="addToCart">
+                            <p class="button">
+                                @{
+                                    var parms = new Dictionary<string, string>
+                                                                                                                                                                                {
                                 { "cityId", club.Address.CityId.ToString() },
                                 { "clubId", club.Id.ToString() }
                             };
-                        }
-                        <a class="btn btn-primary"
-                           asp-controller="TennisClub"
-                           asp-action="TennisClub"
-                           asp-all-route-data="parms">Explore Venue</a>
-                    </p>
+                                }
+                                <a class="btn club-info-button"
+                                   asp-controller="TennisClub"
+                                   asp-action="TennisClub"
+                                   asp-all-route-data="parms">Explore Venue</a>
+                            </p>
+                        </div>
+                    </div>
                 </div>
+                <div class="club-info-divider mb-2"></div>
+                <div class="row">
+                    <div class="col-12 body3 d-none d-md-block mb-2">
+                        <div class="list-inline mb-2">
+                            <div class="list-inline-item">
+                                <span class="badge badge-success">open</span>
+                            </div>
+                            <div class="list-inline-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>5 km away</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="club-info-divider mb-2"></div>
             </div>
-        </div>
+         </div>
+    </div>
     }
 
 </div>
