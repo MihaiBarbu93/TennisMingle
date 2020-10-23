@@ -3,12 +3,12 @@
 <li class="dropdown">
     <a asp-controller="Cities"
        asp-action="GetCities"
-       class="dropdown-toggle text-white" data-toggle="dropdown">@Model.FirstOrDefault().Name<b class="caret"></b></a>
+       class="dropdown-toggle cities-collapse-nav" data-toggle="dropdown">@Model.FirstOrDefault().Name<b class="caret"></b></a>
     <ul class="dropdown-menu">
         @foreach (var city in Model)
         {
             <li>
-                <a asp-controller="TennisClub"
+                <a class="dropdown-item" asp-controller="TennisClub"
                    asp-route-cityId="@city.Id" asp-action="TennisClubs">@city.Name</a>
             </li>
         }
