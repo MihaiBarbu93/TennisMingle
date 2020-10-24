@@ -34,7 +34,7 @@ namespace TennisMingle.API.Controllers
         [HttpGet("{id}")]
         public IActionResult GetCity(int id)
         {
-            var cityToReturn =_context.Cities.FirstOrDefault(c => c.Id == id);
+            var cityToReturn =_context.Cities.Where(c => c.Id == id);
             if (cityToReturn == null)
             {
                 return NotFound();

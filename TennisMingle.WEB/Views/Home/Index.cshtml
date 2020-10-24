@@ -1,4 +1,4 @@
-﻿@model IEnumerable<CityDTO>
+﻿@model EntityViewModel
 
 
 @{
@@ -18,11 +18,11 @@
         <!--Blue select-->
         <div class="dropdown show">
             <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                @Model.FirstOrDefault().Name
+                @Model.Cities.FirstOrDefault().Name
             </a>
 
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                @foreach (var city in Model)
+                @foreach (var city in Model.Cities)
                 {
                     <a class="dropdown-item" href="#">@city.Name</a>
                 }

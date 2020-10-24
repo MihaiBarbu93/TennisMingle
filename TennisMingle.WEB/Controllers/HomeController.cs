@@ -23,18 +23,18 @@ namespace TennisMingle.WEB.Controllers
 
         public async Task<IActionResult> Index()
         {
-            List<CityDTO> cities = new List<CityDTO>();
+            EntityViewModel entity = new EntityViewModel();
 
             using (var httpClient = new HttpClient())
             {
                 using (var response = await httpClient.GetAsync("https://localhost:44313/api/cities"))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    cities = JsonConvert.DeserializeObject<List<CityDTO>>(apiResponse);
+                    entity.Cities = JsonConvert.DeserializeObject<List<CityDTO>>(apiResponse);
                 }
             }
 
-            return View(cities);
+            return View(entity);
         }
 
         public IActionResult Privacy()

@@ -73,7 +73,7 @@ namespace TennisMingle.API.Controllers
                 return NotFound();
             }
 
-            return Ok(persons.FirstOrDefault(p=> p.Id == id));
+            return Ok(persons.Where(p=> p.Id == id));
         }
 
         /// <summary>

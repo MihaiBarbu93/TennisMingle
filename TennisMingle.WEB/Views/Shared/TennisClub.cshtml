@@ -1,16 +1,16 @@
-﻿@model TennisClubDTO
+﻿@model EntityViewModel
 
 <div class="col-md-9">
     <div class="thumbnail">
-        <img src="@Model.Image" alt="">
+        <img src="@Model.TennisClubs.FirstOrDefault().Image" alt="">
         <div class="caption">
-            <h3 class="pull-right">@Model.Name</h3>
+            <h3 class="pull-right">@Model.TennisClubs.FirstOrDefault().Name</h3>
             <h3>
-                <a>@Model.Schedule</a>
+                <a>@Model.TennisClubs.FirstOrDefault().Schedule</a>
             </h3>
-            <p>@Model.Address.Address</p>
-            <p>@Model.PhoneNumber</p>
-            <p>@Model.Description</p>
+            <p>@Model.TennisClubs.FirstOrDefault().Address.Address</p>
+            <p>@Model.TennisClubs.FirstOrDefault().PhoneNumber</p>
+            <p>@Model.TennisClubs.FirstOrDefault().Description</p>
         </div>
     </div>
 </div>

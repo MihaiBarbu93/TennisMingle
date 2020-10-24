@@ -66,7 +66,7 @@ namespace TennisMingle.API.Controllers
                 return NotFound();
             }
 
-            var tennisCourtToReturn = _context.TennisCourts.FirstOrDefault(tc => tc.Id == id) ;
+            var tennisCourtToReturn = _context.TennisCourts.Where(tc => tc.Id == id) ;
 
             if (tennisCourtToReturn == null)
             {

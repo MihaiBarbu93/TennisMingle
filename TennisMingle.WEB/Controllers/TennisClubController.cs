@@ -23,33 +23,44 @@ namespace TennisMingle.WEB.Controllers
 
         public async Task<IActionResult> TennisClubs(int cityId)
         {
-            List<TennisClubDTO> tennisClubs = new List<TennisClubDTO>();
+            EntityViewModel entity = new EntityViewModel();
 
             using (var httpClient = new HttpClient())
             {
                 using (var response = await httpClient.GetAsync($"https://localhost:44313/api/cities/{cityId}/tennisclubs"))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    tennisClubs = JsonConvert.DeserializeObject<List<TennisClubDTO>>(apiResponse);
+                    entity.TennisClubs = JsonConvert.DeserializeObject<List<TennisClubDTO>>(apiResponse);
+                }
+                using (var response = await httpClient.GetAsync("https://localhost:44313/api/cities"))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    entity.Cities = JsonConvert.DeserializeObject<List<CityDTO>>(apiResponse);
                 }
             }
 
-            return View(tennisClubs);
+            return View(entity);
         }
         public async Task<IActionResult> TennisClub(int cityId, int clubId)
         {
-            var tennisClub = new TennisClubDTO();
+            EntityViewModel entity = new EntityViewModel();
+
 
             using (var httpClient = new HttpClient())
             {
                 using (var response = await httpClient.GetAsync($"https://localhost:44313/api/cities/{cityId}/tennisclubs/{clubId}"))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    tennisClub = JsonConvert.DeserializeObject<TennisClubDTO>(apiResponse);
+                    entity.TennisClubs = JsonConvert.DeserializeObject<List<TennisClubDTO>>(apiResponse);
+                }
+                using (var response = await httpClient.GetAsync("https://localhost:44313/api/cities"))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    entity.Cities = JsonConvert.DeserializeObject<List<CityDTO>>(apiResponse);
                 }
             }
 
-            return View(tennisClub);
+            return View(entity);
         }
 
         public IActionResult Privacy()
