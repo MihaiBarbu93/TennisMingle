@@ -9,16 +9,9 @@ namespace TennisMingle.WEB.Components
 {
     public class CitiesList: ViewComponent
     {
-        private readonly AppDbContext _context;
-        public CitiesList(AppDbContext context)
-        {
-            _context = context;
-        }
-
         public IViewComponentResult Invoke()
         {
-            var cities = _context.Cities;
-            return View(cities);
+            return View();
         }
     }
 }

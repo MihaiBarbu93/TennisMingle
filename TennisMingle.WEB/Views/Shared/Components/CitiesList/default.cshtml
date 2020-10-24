@@ -1,11 +1,11 @@
-﻿@model IEnumerable<CityDTO>
+﻿@model EntityViewModel
 
 <li class="dropdown">
     <a asp-controller="Cities"
        asp-action="GetCities"
-       class="dropdown-toggle cities-collapse-nav" data-toggle="dropdown">@Model.FirstOrDefault().Name<b class="caret"></b></a>
+       class="dropdown-toggle cities-collapse-nav" data-toggle="dropdown">Choose a city<b class="caret"></b></a>
     <ul class="dropdown-menu">
-        @foreach (var city in Model)
+        @foreach (var city in Model.Cities)
         {
             <li>
                 <a class="dropdown-item" asp-controller="TennisClub"

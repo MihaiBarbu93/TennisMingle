@@ -45,7 +45,7 @@ namespace TennisMingle.API.Controllers
             {
                 return NotFound();
             }
-            var tennisClub = _context.TennisClubs.Include(tc => tc.Address.City).FirstOrDefault(tc => tc.Id == tennisClubId);
+            var tennisClub = _context.TennisClubs.Include(tc => tc.Address.City).Where(tc => tc.Id == tennisClubId);
             if (tennisClub == null)
             {
                 return NotFound();
