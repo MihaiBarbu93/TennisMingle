@@ -2,3 +2,23 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 
+function adjust(v) {
+    if (v > 9) {
+        return v.toString();
+    } else {
+        return '0' + v.toString();
+    }
+}
+
+
+$(document).ready(function () {
+    var today = new Date();
+    var date = today.getFullYear() + '-' + adjust(today.getMonth() + 1) + '-' + adjust(today.getDate());
+    var time = adjust(today.getHours()) + ":" + adjust(today.getMinutes());
+    var dateTime = `${date}T${time}`;
+    console.log(dateTime);
+    //its working
+
+    document.getElementById("followup_next_followup_date").value = dateTime;
+    document.getElementById("followup_next_followup_date").setAttribute("min", dateTime);
+});
