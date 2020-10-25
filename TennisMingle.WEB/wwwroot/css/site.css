@@ -74,24 +74,12 @@ body {
   line-height: 60px; /* Vertically center the text there */
 }
 
-.site-title {
-    text-transform: uppercase;
-    color: whitesmoke;
-    font-family: Verdana;
-    font-weight: bold;
-    font-size: 1.4em;
-    margin:12px 0 0 0;
-}
-
-.site-title:hover {
-    color: whitesmoke;
-    text-decoration: none;
-}
-
 .site-logo {
     background-color: black;
     display: inline-block;
-    width: 200px;
+    padding-top: 11px;
+    padding-left: 20px;
+    padding-right: 30px;
 }
 
 .top-nav {
@@ -196,7 +184,7 @@ textarea:focus {
 
 .cities-collapse-nav {
     color: #2f285a;
-    font-weight:bolder;
+    font-weight: 600;
 }
 
 .cities-collapse-nav:hover {
