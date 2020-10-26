@@ -32,6 +32,11 @@ a.navbar-brand {
 html {
   font-size: 14px;
 }
+
+body {
+    font-family: Verdana, Geneva, sans-serif;
+}
+
 @media (min-width: 768px) {
   html {
     font-size: 16px;
@@ -83,20 +88,70 @@ body {
 
 .top-nav {
     height: 56px;
+    font-family: Verdana, Geneva, sans-serif;
 }
 
 .cities-collapse {
     background-color: #56e07b;
 }
 
+.navbar-venue-partner {
+    background-color: white;
+}
+
+.navbar-venue-partner-link {
+    color: black;
+    text-transform: uppercase;
+    line-height: 56px;
+    font-weight: bolder;
+}
+
+.navbar-venue-partner-link:hover {
+    color: black;
+    text-decoration: none;
+}
+
+.container-fluid {
+    margin-right: 0px;
+    margin-left: 0px;
+    padding-right: 0px;
+    padding-left: 0px;
+    margin-top: 0px;
+}
+
 .masthead {
   height: 100vh;
-  min-height: 500px;
-  background-image: url("../Images/index-header.jpg");
+  background-image: url("../Images/tennis-2042725_1280.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   color:white;
+  position: relative;
+}
+
+.find-court-container {
+    background-color: #fff;
+    position: absolute;
+    width: 418px;
+    top: 12em;
+    left: 10em;
+    padding: 10px;
+    box-shadow: 0 15px 35px 0 rgba(0,0,0,.25);
+}
+
+.find-court-header {
+    font-size: 2.0em;
+    text-transform: uppercase;
+    color: #56e07b;
+    text-align: center;
+}
+
+.find-court-button {
+    background-color: #2f285a;
+    padding: 0.5em 2rem;
+    text-transform: uppercase;
+    color: #56e07b;
+    font-size: 1.125rem;
 }
 
 .club-summary {
@@ -183,7 +238,6 @@ textarea:focus {
 
 .cities-collapse-nav {
     color: #2f285a;
-    font-weight: 600;
 }
 
 .cities-collapse-nav:hover {
@@ -225,4 +279,9 @@ textarea:focus {
     text-transform:capitalize;
 }
 
+
+.user-area {
+    text-transform: uppercase;
+    font-weight: bolder;
+}
 

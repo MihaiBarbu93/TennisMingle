@@ -14,28 +14,40 @@
 </head>
 <body>
     <header>
-        <div class="row mb-3 top-nav">
+        <div class="row top-nav">
             <div class="site-logo col-2 text-center">
                 <a class="navbar-brand site-title p-0" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/Images/logo.png" /></a>
             </div>
-            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light h-100 col-10 cities-collapse border-bottom box-shadow">
+            <nav class="navbar col-7 navbar-expand-sm navbar-toggleable-sm navbar-light h-100 cities-collapse font-weight-bolder">
                 <div class="container" style="margin: 0px">
 
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                            aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse text-uppercase" id="bs-example-navbar-collapse-1">
-                        <ul class="nav navbar-nav">
-                            @await Component.InvokeAsync("CitiesList")
+                    <div class="justify-content-start">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                                aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse text-uppercase" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav">
+                                @await Component.InvokeAsync("CitiesList")
+                            </ul>
+                        </div>
+                    </div>
 
-                        </ul>
+                    <div class="user-area justify-content-end">
+                        <span>sign up</span>
+                        <span>|</span>
+                        <span>login</span>
                     </div>
                 </div>
             </nav>
+            <div class="navbar-venue-partner col-3 text-center">
+                <ul class="p-0 m-0">
+                    <a class="navbar-venue-partner-link" asp-area="" asp-controller="Home" asp-action="Index">become a venue partner</a>
+                </ul>
+            </div>
         </div>
     </header>
-    <div class="container">
+    <div class="container-fluid">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
