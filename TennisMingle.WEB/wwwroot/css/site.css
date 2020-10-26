@@ -120,8 +120,8 @@ body {
 }
 
 .masthead {
-  height: 100vh;
-  background-image: url("../Images/tennis-2042725_1280.jpg");
+  height: 42em;
+  background-image: url("../Images/couple-tennis-court.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -134,7 +134,7 @@ body {
     position: absolute;
     width: 418px;
     top: 12em;
-    left: 10em;
+    left: 6em;
     padding: 10px;
     box-shadow: 0 15px 35px 0 rgba(0,0,0,.25);
 }
