@@ -8,7 +8,7 @@ using TennisMingle.API.Enums;
 
 namespace TennisMingle.API.Models
 {
-    public class PersonDTO
+    public class Person
     {
         public int Id { get; set; }
         [Required]
@@ -18,11 +18,12 @@ namespace TennisMingle.API.Models
         public string Bio { get; set; }
         public string Photo { get; set; }
         public int? TennisClubId { get; set; }
-        [ForeignKey("TennisClubId")]
-        public TennisClubDTO TennisClub { get; set; }
+        public TennisClub TennisClub { get; set; }
 
         [Required]
         public PersonType Type { get; set; }
+
+        public ICollection<Booking> Bookings { get; set; }
 
     }
 }

@@ -13,16 +13,6 @@ namespace TennisMingle.API.Models
         {
         }
 
-        public DbSet<CityDTO> Cities { get; set; }
-        public DbSet<TennisClubDTO> TennisClubs { get; set; }
-        public DbSet<TennisCourtDTO> TennisCourts { get; set; }
-        public DbSet<PersonDTO> Persons { get; set; }
-        public DbSet<AddressDTO> Addresses { get; set; }
-        public DbSet<Booking> Bookings { get; set; }
-        public DbSet<Surface> Surfaces { get; set; }
-        public DbSet<Facility> Facilities { get; set; }
-
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -30,10 +20,28 @@ namespace TennisMingle.API.Models
             foreach (var foreignKey in modelBuilder.Model.GetEntityTypes()
                                                     .SelectMany(e => e.GetForeignKeys()))
             {
-                foreignKey.DeleteBehavior = DeleteBehavior.Restrict;           
+                foreignKey.DeleteBehavior = DeleteBehavior.Restrict;
             }
+            modelBuilder.Entity<Booking>().HasKey(b => new { b.PersonId, b.TennisCourtId });
+            modelBuilder.Entity<TennisClub>()
+                .HasOne<TennisClubAddress>(a => a.Address)
+                .WithOne(ad => ad.TennisClub)
+                .HasForeignKey<TennisClub>(ad => ad.AddressId);
 
         }
+
+
+        public DbSet<City> Cities { get; set; }
+        public DbSet<TennisClub> TennisClubs { get; set; }
+        public DbSet<TennisCourt> TennisCourts { get; set; }
+        public DbSet<Person> Persons { get; set; }
+        public DbSet<TennisClubAddress> Addresses { get; set; }
+        public DbSet<Booking> Bookings { get; set; }
+        public DbSet<Surface> Surfaces { get; set; }
+        public DbSet<Facility> Facilities { get; set; }
+
+
+        
 
     }
 }

@@ -81,7 +81,7 @@ namespace TennisMingle.API.Controllers
         /// </summary>
         [HttpPost]
         public IActionResult CreateTennisCourt(int cityId, int tennisClubId,
-            [FromBody] TennisCourtDTO tennisCourt)
+            [FromBody] TennisCourt tennisCourt)
         {
             var city = _context.Cities.FirstOrDefault(c => c.Id == cityId);
 
@@ -98,7 +98,7 @@ namespace TennisMingle.API.Controllers
             }
 
 
-            var tennisCourtToCreate = new TennisCourtDTO()
+            var tennisCourtToCreate = new TennisCourt()
             {
                 Name = tennisCourt.Name,
                 SurfaceId = tennisCourt.SurfaceId,
@@ -119,7 +119,7 @@ namespace TennisMingle.API.Controllers
         [HttpPut]
         [Route("{id}")]
         public IActionResult UpdateTennisCourt(int cityId, int tennisClubId, int id,
-            [FromBody] TennisCourtDTO tennisCourt)
+            [FromBody] TennisCourt tennisCourt)
         {
             var city = _context.Cities.FirstOrDefault(c => c.Id == cityId);
 
@@ -156,7 +156,7 @@ namespace TennisMingle.API.Controllers
         [Route("{id}")]
 
         public IActionResult PartiallyUpdateTennisCourt(int cityId, int tennisClubId, int id,
-            [FromBody] JsonPatchDocument<TennisCourtDTO> patchDoc)
+            [FromBody] JsonPatchDocument<TennisCourt> patchDoc)
         {
             var city = _context.Cities.FirstOrDefault(c => c.Id == cityId);
 

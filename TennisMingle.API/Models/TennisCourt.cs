@@ -8,7 +8,7 @@ using TennisMingle.API.Enums;
 
 namespace TennisMingle.API.Models
 {
-    public class TennisCourtDTO
+    public class TennisCourt
     {
 #nullable enable
         /// <summary>
@@ -24,8 +24,6 @@ namespace TennisMingle.API.Models
         public string Name { get; set; }
 
         public int SurfaceId { get; set; }
-
-        [ForeignKey("SurfaceId")]
         public Surface Surface { get; set; }
 
 
@@ -46,7 +44,8 @@ namespace TennisMingle.API.Models
         /// </summary>
         public int TennisClubId { get; set; }
 
-        [ForeignKey("TennisClubId")]
-        public TennisClubDTO TennisClub { get; set; }
+        public TennisClub TennisClub { get; set; }
+
+        public ICollection<Booking> Bookings { get; set; }
     }
 }

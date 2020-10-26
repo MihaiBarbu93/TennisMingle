@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace TennisMingle.API.Models
 {
-    public class CityDTO
+    public class City
     {
         /// <summary>
         /// Id of the city 
@@ -26,6 +26,6 @@ namespace TennisMingle.API.Models
         /// <summary>
         /// Collection of tennis clubs from a city 
         /// </summary>
-
+        public ICollection<TennisClubAddress> TennisClubAddresses { get; set; }
     }
 }

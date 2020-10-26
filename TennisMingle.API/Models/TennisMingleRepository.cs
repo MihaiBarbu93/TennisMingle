@@ -14,14 +14,14 @@ namespace TennisMingle.API.Models
             _ctx = ctx;
         }
 
-        public IEnumerable<CityDTO> GetAllCities()
+        public IEnumerable<City> GetAllCities()
         {
             return _ctx.Cities
                        .OrderBy(c => c.Name)
                        .ToList();
         }
 
-        public IEnumerable<CityDTO> GetCityById(int id)
+        public IEnumerable<City> GetCityById(int id)
         {
             return _ctx.Cities
                        .Where(c => c.Id == id)

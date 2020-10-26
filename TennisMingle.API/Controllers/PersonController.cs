@@ -81,7 +81,7 @@ namespace TennisMingle.API.Controllers
         /// </summary>
         [HttpPost]
         public IActionResult CreatePerson(int cityId, int tennisClubId,
-            [FromBody] PersonDTO person)
+            [FromBody] Person person)
         {
             var city = _context.Cities.FirstOrDefault(c => c.Id == cityId);
 
@@ -97,7 +97,7 @@ namespace TennisMingle.API.Controllers
                 return NotFound();
             }
 
-            var personToCreate = new PersonDTO()
+            var personToCreate = new Person()
             {
                 FirstName = person.FirstName,
                 LastName = person.LastName,
@@ -121,7 +121,7 @@ namespace TennisMingle.API.Controllers
         [HttpPut]
         [Route("{id}")]
         public IActionResult UpdateCoach(int cityId, int tennisClubId, int id,
-            [FromBody] PersonDTO person)
+            [FromBody] Person person)
         {
             var city = _context.Cities.FirstOrDefault(c => c.Id == cityId);
 
@@ -160,7 +160,7 @@ namespace TennisMingle.API.Controllers
         [Route("{id}")]
 
         public IActionResult PartiallyUpdateCoach(int cityId, int tennisClubId, int id,
-            [FromBody] JsonPatchDocument<PersonDTO> patchDoc)
+            [FromBody] JsonPatchDocument<Person> patchDoc)
         {
             var city = _context.Cities.FirstOrDefault(c => c.Id == cityId);
 
