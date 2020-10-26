@@ -25,28 +25,28 @@ namespace TennisMingle.API.Models
             }
             // Need to create sample data
 
-            var cities = new List<CityDTO>() {
+            var cities = new List<City>() {
 
-                new CityDTO {
+                new City {
                     Name = "Bucharest",}
             };
 
             _ctx.Cities.AddRange(cities);
             _ctx.SaveChanges();
 
-            var addresses = new List<AddressDTO>() {
+            var addresses = new List<TennisClubAddress>() {
 
-                new AddressDTO 
+                new TennisClubAddress 
                 {   
                     Address = "Str. Soseaua Nordului, nr. 7-9, Bucuresti - Sector 1, Bucuresti",
                     CityId =1
                 },
-                new AddressDTO
+                new TennisClubAddress
                 {
                     Address = "Str. Soseaua Sudului, nr. 4-6, Bucuresti - Sector 1, Bucuresti",
                     CityId = 1
                 },
-                new AddressDTO
+                new TennisClubAddress
                 {
                     Address = "Str. Soseaua Sudului, nr. 25, Bucuresti - Sector 2, Bucuresti",
                     CityId = 1
@@ -57,8 +57,8 @@ namespace TennisMingle.API.Models
             _ctx.Addresses.AddRange(addresses);
             _ctx.SaveChanges();
 
-            var tennisClubs = new List<TennisClubDTO>() {
-                new TennisClubDTO
+            var tennisClubs = new List<TennisClub>() {
+                new TennisClub
                 {
                     Name = "Academia de Tenis Herastrau",
                     AddressId = 1 ,
@@ -67,7 +67,7 @@ namespace TennisMingle.API.Models
                     Image = "imagine",
                     Description = "Tenis Parc Herastrau ofera terenuri de tenis cu suprafata de zgura, acoperite pe perioada de iarna, cu structura presostatica si incalzite.Terenurile au suprafata cu zgura de calitate deosebita, sportivii au la dispozitie o terasa unde sa se relaxeze dupa joc, vestiare, wi-fi, si parcare."
                 },
-                new TennisClubDTO
+                new TennisClub
                 {
                     Name = "Academia de Tenis Herastrau 2",
                     AddressId = 2,
@@ -76,7 +76,7 @@ namespace TennisMingle.API.Models
                     Image = "imagine",
                     Description = "Tenis Parc Herastrau ofera terenuri de tenis cu suprafata de zgura, acoperite pe perioada de iarna, cu structura presostatica si incalzite.Terenurile au suprafata cu zgura de calitate deosebita, sportivii au la dispozitie o terasa unde sa se relaxeze dupa joc, vestiare, wi-fi, si parcare."
                 },
-                new TennisClubDTO
+                new TennisClub
                 {
                     Name = "Academia de Tenis Herastrau 3",
                     AddressId = 3,
@@ -142,8 +142,8 @@ namespace TennisMingle.API.Models
 
 
 
-            var tennisCourts = new List<TennisCourtDTO>() {
-                new TennisCourtDTO
+            var tennisCourts = new List<TennisCourt>() {
+                new TennisCourt
                 {
                     Name = "Court 1",
                     SurfaceId = 2,
@@ -151,7 +151,7 @@ namespace TennisMingle.API.Models
                     IsAvailable = true,
                     TennisClubId = 1
                 },
-                new TennisCourtDTO
+                new TennisCourt
                 {
                     Name = "Court 2",
                     SurfaceId = 1,
@@ -159,7 +159,7 @@ namespace TennisMingle.API.Models
                     IsAvailable = true,
                     TennisClubId = 1
                 },
-                new TennisCourtDTO
+                new TennisCourt
                 {
                     Name = "Court 1",
                     SurfaceId = 2,
@@ -167,7 +167,7 @@ namespace TennisMingle.API.Models
                     IsAvailable = true,
                     TennisClubId = 2
                 },
-                new TennisCourtDTO
+                new TennisCourt
                 {
                     Name = "Court 1",
                     SurfaceId = 2,
@@ -180,8 +180,8 @@ namespace TennisMingle.API.Models
             _ctx.TennisCourts.AddRange(tennisCourts);
             _ctx.SaveChanges();
 
-            var persons = new List<PersonDTO>() {
-                new PersonDTO
+            var persons = new List<Person>() {
+                new Person
                 {
                     FirstName = "Vasilica",
                     LastName = "Dancilica",
@@ -190,7 +190,7 @@ namespace TennisMingle.API.Models
                     Type = PersonType.ADMINISTRATOR,
                     TennisClubId = 1
                 },
-                new PersonDTO
+                new Person
                 {
                     FirstName = "Ion",
                     LastName = "Ion",
@@ -200,7 +200,7 @@ namespace TennisMingle.API.Models
                     Type = PersonType.COACH
 
                 },
-                new PersonDTO
+                new Person
                 {
                     FirstName = "Marius",
                     LastName = "SiMaiCum",
@@ -210,7 +210,7 @@ namespace TennisMingle.API.Models
                     Type = PersonType.COACH
 
                 },
-                new PersonDTO
+                new Person
                 {
                     FirstName = "Vasilica",
                     LastName = "Dancilica",

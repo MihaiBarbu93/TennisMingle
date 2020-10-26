@@ -13,14 +13,11 @@ namespace TennisMingle.API.Models
         public DateTime date_end { get; set; }
 
         public int TennisCourtId { get; set; }
+        public TennisCourt TennisCourt { get; set; }
 
-        [ForeignKey("TennisCourtId")]
-        public TennisCourtDTO TennisCourt { get; set; }
+        public int PersonId { get; set; }
 
-        public int UserId { get; set; }
-
-        [ForeignKey("PersonId")]
-        public PersonDTO User { get; set; }
+        public Person Person { get; set; }
 
     }
 }

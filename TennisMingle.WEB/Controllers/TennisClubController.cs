@@ -30,12 +30,12 @@ namespace TennisMingle.WEB.Controllers
                 using (var response = await httpClient.GetAsync($"https://localhost:44313/api/cities/{cityId}/tennisclubs"))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    entity.TennisClubs = JsonConvert.DeserializeObject<List<TennisClubDTO>>(apiResponse);
+                    entity.TennisClubs = JsonConvert.DeserializeObject<List<TennisClub>>(apiResponse);
                 }
                 using (var response = await httpClient.GetAsync("https://localhost:44313/api/cities"))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    entity.Cities = JsonConvert.DeserializeObject<List<CityDTO>>(apiResponse);
+                    entity.Cities = JsonConvert.DeserializeObject<List<City>>(apiResponse);
                 }
             }
 
@@ -51,12 +51,12 @@ namespace TennisMingle.WEB.Controllers
                 using (var response = await httpClient.GetAsync($"https://localhost:44313/api/cities/{cityId}/tennisclubs/{clubId}"))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    entity.TennisClubs = JsonConvert.DeserializeObject<List<TennisClubDTO>>(apiResponse);
+                    entity.TennisClubs = JsonConvert.DeserializeObject<List<TennisClub>>(apiResponse);
                 }
                 using (var response = await httpClient.GetAsync("https://localhost:44313/api/cities"))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    entity.Cities = JsonConvert.DeserializeObject<List<CityDTO>>(apiResponse);
+                    entity.Cities = JsonConvert.DeserializeObject<List<City>>(apiResponse);
                 }
             }
 

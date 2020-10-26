@@ -12,5 +12,7 @@ namespace TennisMingle.API.Models
         public int Id { get; set; }
         [Required]
         public Surfaces SurfaceType { get; set; }
+
+        public TennisCourt TennisCourt { get; set; }
     }
 }

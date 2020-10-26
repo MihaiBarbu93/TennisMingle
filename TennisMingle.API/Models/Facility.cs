@@ -14,7 +14,6 @@ namespace TennisMingle.API.Models
         [Required]
         public Facilities FacilityType { get; set; }
         public int TennisClubId { get; set; }
-        [ForeignKey("TennisClubId")]
-        public TennisClubDTO TennisClub { get; set; }
+        public TennisClub TennisClub { get; set; }
     }
 }

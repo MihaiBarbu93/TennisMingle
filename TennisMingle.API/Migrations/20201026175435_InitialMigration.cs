@@ -84,7 +84,7 @@ namespace TennisMingle.API.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FacilityType = table.Column<int>(nullable: false),
-                    TennisClubId = table.Column<int>(nullable: true)
+                    TennisClubId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -107,7 +107,7 @@ namespace TennisMingle.API.Migrations
                     LastName = table.Column<string>(nullable: false),
                     Bio = table.Column<string>(nullable: true),
                     Photo = table.Column<string>(nullable: true),
-                    TennisClubId = table.Column<int>(nullable: false),
+                    TennisClubId = table.Column<int>(nullable: true),
                     Type = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -154,16 +154,15 @@ namespace TennisMingle.API.Migrations
                 name: "Bookings",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    date_start = table.Column<DateTime>(nullable: false),
-                    date_end = table.Column<DateTime>(nullable: false),
                     TennisCourtId = table.Column<int>(nullable: false),
-                    PersonId = table.Column<int>(nullable: false)
+                    PersonId = table.Column<int>(nullable: false),
+                    Id = table.Column<int>(nullable: false),
+                    date_start = table.Column<DateTime>(nullable: false),
+                    date_end = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Bookings", x => x.Id);
+                    table.PrimaryKey("PK_Bookings", x => new { x.PersonId, x.TennisCourtId });
                     table.ForeignKey(
                         name: "FK_Bookings_Persons_PersonId",
                         column: x => x.PersonId,
@@ -184,11 +183,6 @@ namespace TennisMingle.API.Migrations
                 column: "CityId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Bookings_PersonId",
-                table: "Bookings",
-                column: "PersonId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Bookings_TennisCourtId",
                 table: "Bookings",
                 column: "TennisCourtId");
@@ -206,12 +200,14 @@ namespace TennisMingle.API.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_TennisClubs_AddressId",
                 table: "TennisClubs",
-                column: "AddressId");
+                column: "AddressId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_TennisCourts_SurfaceId",
                 table: "TennisCourts",
-                column: "SurfaceId");
+                column: "SurfaceId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_TennisCourts_TennisClubId",

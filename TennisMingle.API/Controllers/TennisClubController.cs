@@ -58,7 +58,7 @@ namespace TennisMingle.API.Controllers
         /// This POST method creates a tennis club which is added to a city
         /// </summary>
         [HttpPost]
-        public IActionResult CreateTennisClub(int cityId, [FromBody] TennisClubDTO tennisClub)
+        public IActionResult CreateTennisClub(int cityId, [FromBody] TennisClub tennisClub)
         {
             var city = _context.Cities.FirstOrDefault(c => c.Id == cityId);
             if (city == null)
@@ -69,7 +69,7 @@ namespace TennisMingle.API.Controllers
             _context.Addresses.Add(tennisClub.Address);
             _context.SaveChanges();
 
-            var tennisClubToAdd = new TennisClubDTO
+            var tennisClubToAdd = new TennisClub
             {
                 Name = tennisClub.Name,
                 PhoneNumber = tennisClub.PhoneNumber,
@@ -89,7 +89,7 @@ namespace TennisMingle.API.Controllers
         /// </summary>
         [HttpPut("{tennisClubId}")]
         public IActionResult UpdateTennisClub(int cityId, int tennisClubId,
-            [FromBody] TennisClubDTO tennisClub)
+            [FromBody] TennisClub tennisClub)
         {
             if (!ModelState.IsValid)
             {
@@ -126,7 +126,7 @@ namespace TennisMingle.API.Controllers
         /// </summary>
         [HttpPatch("{tennisClubId}")]
         public IActionResult PartiallyUpdateTennisClub(int cityId, int tennisClubId,
-            [FromBody] JsonPatchDocument<TennisClubDTO> patchDoc)
+            [FromBody] JsonPatchDocument<TennisClub> patchDoc)
         {
 
             var city = _context.Cities.FirstOrDefault(c => c.Id == cityId);
