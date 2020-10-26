@@ -23,10 +23,7 @@ namespace TennisMingle.API.Models
                 foreignKey.DeleteBehavior = DeleteBehavior.Restrict;
             }
             modelBuilder.Entity<Booking>().HasKey(b => new { b.PersonId, b.TennisCourtId });
-            modelBuilder.Entity<TennisClub>()
-                .HasOne<TennisClubAddress>(a => a.Address)
-                .WithOne(ad => ad.TennisClub)
-                .HasForeignKey<TennisClub>(ad => ad.AddressId);
+           
 
         }
 
