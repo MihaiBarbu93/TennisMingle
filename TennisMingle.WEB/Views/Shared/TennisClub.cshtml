@@ -1,16 +1,340 @@
 ﻿@model EntityViewModel
 
-<div class="col-md-9">
-    <div class="thumbnail">
-        <img src="@Model.TennisClubs.FirstOrDefault().Image" alt="">
-        <div class="caption">
-            <h3 class="pull-right">@Model.TennisClubs.FirstOrDefault().Name</h3>
-            <h3>
-                <a>@Model.TennisClubs.FirstOrDefault().Schedule</a>
-            </h3>
-            <p>@Model.TennisClubs.FirstOrDefault().Address.Address</p>
-            <p>@Model.TennisClubs.FirstOrDefault().PhoneNumber</p>
-            <p>@Model.TennisClubs.FirstOrDefault().Description</p>
+<div class="container mb-2">
+    <div class="row">
+        <div class="col-md-8 mt-3">
+            <mlp-venue-content>
+                <div class="row">
+                    <div class="col-sm-12 mb-0">
+                        <a class="sg-link d-inline-block mb-1" href="">
+                            <mlp-ng-icon name="arrow-left-1">
+                                <i class="icon-arrow-left-1"></i>
+                            </mlp-ng-icon> Explore nearby venues
+                        </a>
+                        <h1 class="sg-heading__h2 tooltip--desktop">
+                            @Model.TennisClub.Name
+                            <mlp-ng-icon class="ng-star-inserted sg-link">
+                                <i class="icon-check-circle-1"></i>
+                            </mlp-ng-icon>
+                        </h1>
+                        <div class="mb-4 ng-star-inserted">
+                            <mlp-ng-badge><span class="badge badge--warning">Possibly closed due to COVID-19, please enquire to find out more</span></mlp-ng-badge>
+                        </div>
+                    </div>
+                </div>
+                <div class="row d-md-none">
+                    <div class="col-sm-12 mb-3">
+                        <div class="dropdown">
+                            <button aria-haspopup="true" class="btn btn-block btn-mlp-darker font-white cursor pointer dropdown-toggle" id="dropdownSelectSportFormat" ngbdropdowntoggle="" type="button" aria-expanded="false">
+                                Indoor
+                            </button>
+                            <div aria-labelledby="dropdownSelectSportFormat" class="dropdown-menu py-0 w-100" ngbdropdownmenu="" x-placement="bottom-left">
+                                
+                                <a class="dropdown-item py-2 ng-star-inserted" href="/london/venue/islington-tennis-centre/tennis-indoor-32679">
+                                    Indoor
+                                    <mlp-ng-icon name="alert-circle" class="ng-star-inserted">
+                                        <i class="icon-alert-circle"></i>
+                                    </mlp-ng-icon>
+                                </a>
+                                <div class="dropdown-divider my-0 ng-star-inserted"></div>
+                                
+                                <a class="dropdown-item py-2 ng-star-inserted" href="/london/venue/islington-tennis-centre/tennis-outdoor-32680">
+                                    Outdoor | Hard (macadam)
+                                    <mlp-ng-icon name="alert-circle" class="ng-star-inserted">
+                                        <i class="icon-alert-circle"></i>
+                                    </mlp-ng-icon>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 mb-3">
+                        <div class="row">
+                            <div class="col-12 d-flex flex-row">
+                                <div class="mlp-carousel-main cursor pointer">
+                                    <img class="img-fluid lazyloaded" imgservice="w=578" loading="lazy" src="~/Images/@Model.TennisClub.Image">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row d-md-none ng-star-inserted">
+                    <div class="col-sm-12 mb-2">
+                        <div class="card pf-card mb-2">
+                            <div class="card-header">
+                                <h4 class="h6 mb-0">
+                                    <span class="icon icon-mlp_tennis"></span>
+                                    Facilities
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 mb-sm-0 mb-md-3">
+                        <mlp-tabs>
+                            <div class="card pf-card mb-3" id="mlp-map-scroll-to">
+                                <div class="card-header" role="tab">
+                                    <h2 class="sg-heading__h4 mb-0">
+                                        Location, Opening Hours and Prices
+                                    </h2>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="ng-star-inserted">
+                                                <div class="staticMap ng-star-inserted">
+                                                    <mlp-google-maps-static>
+                                                        <div class="w-100 text-center cursor">
+                                                            <img class="w-100" src="https://maps.playfinder.com/maps/api/staticmap?zoom=15&amp;size=690x300&amp;markers=color:red|51.546237,-0.121111&amp;key=AIzaSyBRniXfWGt3Tl2RaYlfVbdYJSPQfNY29CI" style="height: 300px;">
+                                                        </div>
+                                                    </mlp-google-maps-static>
+                                                    <div class="staticMap--info w-100">
+                                                        <small>
+                                                            <em>
+                                                                <strong class="d-none d-md-inline ml-2">
+                                                                    <mlp-ng-icon name="cursor" class="ng-star-inserted">
+                                                                        <i class="icon-cursor"></i>
+                                                                    </mlp-ng-icon>Click to interact with the map
+                                                                </strong>
+                                                                <strong class="d-md-none ml-1">
+                                                                    <mlp-ng-icon name="cursor" class="ng-star-inserted">
+                                                                        <i class="icon-cursor"></i>
+                                                                    </mlp-ng-icon>Tap to interact with the map
+                                                                </strong>
+                                                            </em>
+                                                        </small>
+                                                    </div>
+                                                </div>                                              
+                                            </div>
+                                            <p>
+                                                <mlp-ng-icon name="style-two-pin-marker">
+                                                    <i class="icon-style-two-pin-marker"></i>
+                                                </mlp-ng-icon>
+                                                @Model.TennisClub.Address.Address
+                                            </p>
+                                        </div>
+                                        <hr>
+                                        <div class="col-sm-6 ng-star-inserted">
+                                            <div>
+                                                <h3 class="sg-heading__h4">Prices</h3>
+                                                <ul class="list-unstyled ng-star-inserted">
+                                                    <li class="ng-star-inserted">
+                                                        <p class="small">
+                                                            <strong>
+                                                                <span class="">From</span> @Model.TennisClub.Prices.Min() - @Model.TennisClub.Prices.Max() Ron/hour
+                                                            </strong>
+                                                        </p>
+                                                        <p class="small text-muted">
+                                                        </p>
+                                                        <p class="small text-muted">
+                                                        </p>
+                                                        <hr>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                           <div class="ng-star-inserted">
+                                                <h3 class="sg-heading__h4">Public Transport</h3>
+                                                <p class="small">
+                                                    <mlp-ng-icon name="check-1">
+                                                        <i class="icon-check-1"></i>
+                                                    </mlp-ng-icon> Bus, Train
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="ng-star-inserted">
+                                                <h3 class="sg-heading__h4">Opening Hours</h3>
+                                              <table class="table table-borderless ng-star-inserted">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>@Model.TennisClub.Schedule</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card pf-card ng-star-inserted">
+                                <div class="card-header" role="tab">
+                                    <h2 class="sg-heading__h4 mb-0">
+                                        Description
+                                    </h2>
+                                </div>
+                                <div class="card-body">
+                                    <p class="d-none d-md-block">@Model.TennisClub.Description </p>
+                                </div>
+                            </div>
+                        </mlp-tabs>
+                    </div>
+                </div>
+            </mlp-venue-content>
+        </div>
+        <div class="col-md-4 mt-3">
+            <mlp-venue-sidebar>
+                <div class="card mb-3 pf-card mlp-sport-format d-none d-md-block">
+                    <div class="card-header">
+                        <h2 class="sg-heading__h5 mb-0">
+                            <mlp-ng-icon>
+                                <i class="icon-custom-tennis"></i>
+                            </mlp-ng-icon>
+                            Tennis Courts
+                        </h2>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-inline">
+                            
+                            <li class="list-inline-item mb-1 ng-star-inserted">
+                                <a class="sg-link__btn -warning -active" placement="top" tooltipclass="sg-tooltip--warn" href="">
+                                    Indoor <mlp-ng-icon name="alert-circle" class="ng-star-inserted">
+                                        <i class="icon-alert-circle"></i>
+                                    </mlp-ng-icon>
+                                </a>
+                            </li>
+                            <li class="list-inline-item mb-1 ng-star-inserted">
+                                <a class="sg-link__btn -warning" placement="top" tooltipclass="sg-tooltip--warn" href="">
+                                    Outdoor | Hard (macadam) <mlp-ng-icon name="alert-circle" class="ng-star-inserted">
+                                        <i class="icon-alert-circle"></i>
+                                    </mlp-ng-icon>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="mt-4 ng-star-inserted">
+                            <h5 class="sg-heading__h6">Facilities</h5>
+                            <ul class="list-inline font body3 mb-0">
+                                @foreach (var fac in Model.TennisClub.Facilities)
+                                {
+                                    <li class="list-inline-item ng-star-inserted">
+                                        <mlp-ng-icon name="check-1">
+                                            <i class="icon-check-1"></i>
+                                        </mlp-ng-icon>
+                                        @fac.FacilityType
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="card pf-card mb-3">
+                    <div class="card-header">
+                        <h2 class="sg-heading__h5 mb-0">
+                            <mlp-ng-icon name="style-one-pin">
+                                <i class="icon-style-one-pin"></i>
+                            </mlp-ng-icon>
+                            Address
+                        </h2>
+                    </div>
+                    <div class="card-body">
+                        <p>
+                            @Model.TennisClub.Address.Address <br>              
+                        </p>
+                    </div>
+                </div>
+                <div id="mlp-enquiry"></div>
+                <div class="card mb-3 pf-card pf-card-green-highlight">
+                    <div class="card-header">
+                        <h2 class="sg-heading__h5 mb-0">
+                            <mlp-ng-icon name="email-action-unread">
+                                <i class="icon-email-action-unread"></i>
+                            </mlp-ng-icon>
+                            Request to book
+                            <mlp-ng-icon class="sg-link ng-star-inserted" name="information-circle" ngbtooltip="We need your details to give you updates on your enquiry">
+                                <i class="icon-information-circle"></i>
+                            </mlp-ng-icon>
+                        </h2>
+                    </div>
+                    <div class="card-body rounded-bottom">
+                        <form class="needs-validation" novalidate>
+                            <div class="form-row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="validationCustom01">First Name</label>
+                                    <input type="text" class="form-control" id="validationCustom01" value="Mark" required>
+                                    <div class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="validationCustom02">Last name</label>
+                                    <input type="text" class="form-control" id="validationCustom02" value="Otto" required>
+                                    <div class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-12 mb-3">
+                                    <label for="validationCustom03">Phone Number</label>
+                                    <input type="text" class="form-control" id="validationCustom03" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="validationCustom04">Select Date</label>
+                                    <select class="custom-select" id="validationCustom04" required>
+                                        <option selected disabled value="">Choose...</option>
+                                        <option>...</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="validationCustom05">Select Time</label>
+                                    <select class="custom-select" id="validationCustom05" required>
+                                        <option selected disabled value="">Choose...</option>
+                                        <option>...</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-12 mb-3">
+                                    <label for="validationCustom06">Select Duration</label>
+                                    <select class="custom-select" id="validationCustom06" required>
+                                        <option selected disabled value="">Choose...</option>
+                                        <option>...</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary" type="submit">Submit form</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="card mb-3 pf-card card-similar ng-star-inserted">
+                    <div class="card-header">
+                        <h2 class="sg-heading__h5 mb-0">
+                            <mlp-ng-icon name="maps">
+                                <i class="icon-maps"></i>
+                            </mlp-ng-icon>
+                            Nearby Tennis Courts
+                        </h2>
+                    </div>
+                @foreach (var tennisClub in Model.TennisClubs)
+                {
+                    <a class="card-body cursor pointer pb-0 ng-star-inserted" href="/london/venue/notting-hill-harbour-club/tennis-indoor-32749">
+                        <div class="row">
+                            <div class="col-4 col-md-12 col-lg-6 col-xl-4 pb-2">
+                                <img class="media-object rounded pf-card__img" height="66" imgservice="w=170" width="100" alt="Notting Hill Harbour Club" src="https://web-assets.playfinder.com/medium/pitch_image_1485795390_635070.jpeg?w=170&amp;auto=format,compress" srcset="https://web-assets.playfinder.com/medium/pitch_image_1485795390_635070.jpeg?w=170&amp;auto=format,compress&amp;dpr=1 1x, https://web-assets.playfinder.com/medium/pitch_image_1485795390_635070.jpeg?w=170&amp;auto=format,compress&amp;dpr=2 2x, https://web-assets.playfinder.com/medium/pitch_image_1485795390_635070.jpeg?w=170&amp;auto=format,compress&amp;dpr=3 3x">
+                            </div>
+                            <div class="col-8 col-md-12  col-lg-6 col-xl-8">
+                                <h6 class="body4">
+                                    @tennisClub.Name
+                                </h6>
+                                <p class="body4 -light mb-0">
+                                    @tennisClub.Name,
+                                    @tennisClub.Address.Address
+                                </p>
+                                <p class="body4 -light ng-star-inserted">
+                                    <mlp-ng-icon class="-dark" name="railroad-train">
+                                        <i class="icon-railroad-train"></i>
+                                    </mlp-ng-icon> Royal Oak
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                 }
+                </div>
+            </mlp-venue-sidebar>
         </div>
     </div>
 </div>
+
