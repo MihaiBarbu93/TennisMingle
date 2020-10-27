@@ -30,7 +30,10 @@ namespace TennisMingle.WEB.Controllers
                 using (var response = await httpClient.GetAsync($"https://localhost:44313/api/cities/{cityId}/tennisclubs"))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    entity.TennisClubs = JsonConvert.DeserializeObject<List<TennisClub>>(apiResponse);
+                    entity.TennisClubs = JsonConvert.DeserializeObject<List<TennisClub>>(apiResponse , new JsonSerializerSettings
+                    {
+                        ReferenceLoopHandling = ReferenceLoopHandling.Serialize
+                    });
                 }
                 using (var response = await httpClient.GetAsync("https://localhost:44313/api/cities"))
                 {
