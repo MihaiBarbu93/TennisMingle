@@ -328,9 +328,19 @@ textarea:focus {
     margin: 0 auto;
 }
 
+.tm-divider {
+    background-color: #d6d5d5;
+    height: 1px;
+    margin-bottom: 1em;
+}
+
 .stats {
     background-color: white;
     border: 4px solid #56e07b;
+}
+
+.distance-info {
+    font-size: 1em;
 }
 
 .social {
@@ -367,4 +377,12 @@ textarea:focus {
 
 .newsletter-submit-button {
     height: calc(1.5em + .75rem + 2px + 8px);
+}
+
+.filters {
+    min-width: 137px;
+}
+
+.filter-type {
+    font-size: 1.1em;
 }

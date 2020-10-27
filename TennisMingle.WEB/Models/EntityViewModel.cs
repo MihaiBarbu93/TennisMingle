@@ -8,15 +8,15 @@ namespace TennisMingle.WEB.Models
 {
     public class EntityViewModel
     {
-        public List<TennisClubAddress> Addresses { get; set; }
-        public List<City> Cities  { get; set; }
+        public HashSet<TennisClubAddress> Addresses { get; set; }
+        public HashSet<City> Cities { get; set; } = new HashSet<City>();
 
-        public List<Facility> Facilities { get; set; }
+        public HashSet<Facility> Facilities { get; set; }
 
-        public List <Person> Persons { get; set; }
-        public List<Surface> Surfaces { get; set; }
-        public List<TennisClub> TennisClubs { get; set; }
-        public List<TennisCourt> TennisCourts { get; set; }
+        public HashSet<Person> Persons { get; set; }
+        public HashSet<Surface> Surfaces { get; set; } = new HashSet<Surface>();
+        public HashSet<TennisClub> TennisClubs { get; set; }
+        public HashSet<TennisCourt> TennisCourts { get; set; }
 
     }
 }
