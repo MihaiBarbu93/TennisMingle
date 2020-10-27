@@ -30,36 +30,46 @@ namespace TennisMingle.WEB.Controllers
                 using (var response = await httpClient.GetAsync($"https://localhost:44313/api/cities/{cityId}/tennisclubs"))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    entity.TennisClubs = JsonConvert.DeserializeObject<List<TennisClub>>(apiResponse , new JsonSerializerSettings
+                    entity.TennisClubs = JsonConvert.DeserializeObject<HashSet<TennisClub>>(apiResponse, new JsonSerializerSettings
                     {
                         ReferenceLoopHandling = ReferenceLoopHandling.Serialize
-                    });
+                    }); 
+                    foreach (var tennisClub in entity.TennisClubs)
+                    {
+                         entity.Cities.Add(tennisClub.Address.City);
+                    }
                 }
-                using (var response = await httpClient.GetAsync("https://localhost:44313/api/cities"))
-                {
+
+                using (var response = await httpClient.GetAsync($"https://localhost:44313/api/cities/{cityId}/tennisclubs/{entity.TennisClubs.FirstOrDefault().Id}/tenniscourts")) {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    entity.Cities = JsonConvert.DeserializeObject<List<City>>(apiResponse);
+                    entity.TennisCourts = JsonConvert.DeserializeObject<HashSet<TennisCourt>>(apiResponse);
+                    foreach (var tennisCourt in entity.TennisCourts)
+                    {
+                        entity.Surfaces.Add(tennisCourt.Surface);
+                    }
+
+/*                    entity.Surfaces = entity.Surfaces.GroupBy(s => s.Id).SelectMany(su => su).ToList();*/
                 }
             }
 
             return View(entity);
         }
-        public async Task<IActionResult> TennisClub(int cityId, int clubId)
+        public async Task<IActionResult> TennisClub(int cityId, int tennisClubId)
         {
             EntityViewModel entity = new EntityViewModel();
 
 
             using (var httpClient = new HttpClient())
             {
-                using (var response = await httpClient.GetAsync($"https://localhost:44313/api/cities/{cityId}/tennisclubs/{clubId}"))
+                using (var response = await httpClient.GetAsync($"https://localhost:44313/api/cities/{cityId}/tennisclubs/{tennisClubId}"))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    entity.TennisClubs = JsonConvert.DeserializeObject<List<TennisClub>>(apiResponse);
+                    entity.TennisClubs = JsonConvert.DeserializeObject<HashSet<TennisClub>>(apiResponse);
                 }
                 using (var response = await httpClient.GetAsync("https://localhost:44313/api/cities"))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    entity.Cities = JsonConvert.DeserializeObject<List<City>>(apiResponse);
+                    entity.Cities = JsonConvert.DeserializeObject<HashSet<City>>(apiResponse);
                 }
             }
 

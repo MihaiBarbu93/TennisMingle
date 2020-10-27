@@ -28,7 +28,11 @@ namespace TennisMingle.API.Controllers
                 return NotFound();
             }
 
-            var tennisClubs = _context.TennisClubs.Include(tc => tc.Address.City).Where(tc => tc.Address.CityId == cityId);
+            var tennisClubs = _context.TennisClubs
+                                      .Include(tc => tc.Address.City)
+                                      .Include(tc => tc.Facilities)
+                                      .Include(tc => tc.TennisCourts)
+                                      .Where(tc => tc.Address.CityId == cityId);
 
             return Ok(tennisClubs.ToList());
         }
@@ -45,7 +49,10 @@ namespace TennisMingle.API.Controllers
             {
                 return NotFound();
             }
-            var tennisClub = _context.TennisClubs.Include(tc => tc.Address.City).Where(tc => tc.Id == tennisClubId);
+            var tennisClub = _context.TennisClubs.Include(tc => tc.Address.City)
+                                                 .Include(tc => tc.Facilities)
+                                                 .Include(tc => tc.TennisCourts)
+                                                 .Where(tc => tc.Id == tennisClubId);
             if (tennisClub == null)
             {
                 return NotFound();
