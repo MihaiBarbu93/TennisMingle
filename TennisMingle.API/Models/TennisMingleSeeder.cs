@@ -25,19 +25,25 @@ namespace TennisMingle.API.Models
             }
             // Need to create sample data
 
-            var cities = new List<City>() {
+
+            if (!_ctx.Cities.Any()) {
+                var cities = new List<City>() {
 
                 new City {
                     Name = "Bucharest",}
             };
 
-            _ctx.Cities.AddRange(cities);
-            _ctx.SaveChanges();
+                _ctx.Cities.AddRange(cities);
+                _ctx.SaveChanges();
+            }
 
-            var addresses = new List<TennisClubAddress>() {
 
-                new TennisClubAddress 
-                {   
+            if (!_ctx.Addresses.Any())
+            {
+                var addresses = new List<TennisClubAddress>() {
+
+                new TennisClubAddress
+                {
                     Address = "Str. Soseaua Nordului, nr. 7-9, Bucuresti - Sector 1, Bucuresti",
                     CityId =1
                 },
@@ -54,10 +60,13 @@ namespace TennisMingle.API.Models
 
             };
 
-            _ctx.Addresses.AddRange(addresses);
-            _ctx.SaveChanges();
+                _ctx.Addresses.AddRange(addresses);
+                _ctx.SaveChanges();
+            }
 
-            var tennisClubs = new List<TennisClub>() {
+            if (!_ctx.TennisClubs.Any())
+            {
+                var tennisClubs = new List<TennisClub>() {
                 new TennisClub
                 {
                     Name = "Academia de Tenis Herastrau",
@@ -87,12 +96,15 @@ namespace TennisMingle.API.Models
                 }
             };
 
-            _ctx.TennisClubs.AddRange(tennisClubs);
-            _ctx.SaveChanges();
+                _ctx.TennisClubs.AddRange(tennisClubs);
+                _ctx.SaveChanges();
+            }
 
-            var surfaces = new List<Surface>() {
+            if (!_ctx.Surfaces.Any())
+            {
+                var surfaces = new List<Surface>() {
 
-                new Surface 
+                new Surface
                 {
                     SurfaceType = Surfaces.GRASS
                 },
@@ -110,10 +122,13 @@ namespace TennisMingle.API.Models
                 }
             };
 
-            _ctx.Surfaces.AddRange(surfaces);
-            _ctx.SaveChanges();
+                _ctx.Surfaces.AddRange(surfaces);
+                _ctx.SaveChanges();
+            }
 
-            var facilities = new List<Facility>() {
+            if (!_ctx.Surfaces.Any())
+            {
+                var facilities = new List<Facility>() {
 
                 new Facility
                 {
@@ -137,12 +152,14 @@ namespace TennisMingle.API.Models
                 }
             };
 
-            _ctx.Facilities.AddRange(facilities);
-            _ctx.SaveChanges();
+                _ctx.Facilities.AddRange(facilities);
+                _ctx.SaveChanges();
+            }
 
 
-
-            var tennisCourts = new List<TennisCourt>() {
+            if (!_ctx.TennisCourts.Any())
+            {
+                var tennisCourts = new List<TennisCourt>() {
                 new TennisCourt
                 {
                     Name = "Court 1",
@@ -162,7 +179,7 @@ namespace TennisMingle.API.Models
                 new TennisCourt
                 {
                     Name = "Court 1",
-                    SurfaceId = 2,
+                    SurfaceId = 3,
                     Price = 30,
                     IsAvailable = true,
                     TennisClubId = 2
@@ -170,17 +187,20 @@ namespace TennisMingle.API.Models
                 new TennisCourt
                 {
                     Name = "Court 1",
-                    SurfaceId = 2,
+                    SurfaceId = 4,
                     Price = 30,
                     IsAvailable = true,
                     TennisClubId = 3
                 }
 
             };
-            _ctx.TennisCourts.AddRange(tennisCourts);
-            _ctx.SaveChanges();
+                _ctx.TennisCourts.AddRange(tennisCourts);
+                _ctx.SaveChanges();
+            }
 
-            var persons = new List<Person>() {
+            if (!_ctx.Persons.Any())
+            {
+                var persons = new List<Person>() {
                 new Person
                 {
                     FirstName = "Vasilica",
@@ -219,8 +239,9 @@ namespace TennisMingle.API.Models
                     Type = PersonType.USER
                 },
             };
-            _ctx.Persons.AddRange(persons);
-            _ctx.SaveChanges();
-        }
+                _ctx.Persons.AddRange(persons);
+                _ctx.SaveChanges();
+            }
+        }           
     }
 }
