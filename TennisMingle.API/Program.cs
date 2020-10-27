@@ -19,7 +19,7 @@ namespace TennisMingle.API
         {
             var host = BuildWebHost(args);
 
-            RunSeeding(host);
+/*            RunSeeding(host);*/
 
             host.Run();
         }
