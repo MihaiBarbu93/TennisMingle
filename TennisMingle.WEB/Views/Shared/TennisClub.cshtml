@@ -6,20 +6,13 @@
             <mlp-venue-content>
                 <div class="row">
                     <div class="col-sm-12 mb-0">
-                        <a class="sg-link d-inline-block mb-1" href="">
-                            <mlp-ng-icon name="arrow-left-1">
-                                <i class="icon-arrow-left-1"></i>
-                            </mlp-ng-icon> Explore nearby venues
-                        </a>
-                        <h1 class="sg-heading__h2 tooltip--desktop">
+                        <a href="">
+                            <i class="fas fa-chevron-left"></i> Explore nearby venues
+                        </a><br/><br />
+                        <h2>
                             @Model.TennisClub.Name
-                            <mlp-ng-icon class="ng-star-inserted sg-link">
-                                <i class="icon-check-circle-1"></i>
-                            </mlp-ng-icon>
-                        </h1>
-                        <div class="mb-4 ng-star-inserted">
-                            <mlp-ng-badge><span class="badge badge--warning">Possibly closed due to COVID-19, please enquire to find out more</span></mlp-ng-badge>
-                        </div>
+                            <i class="far fa-check-circle"></i>
+                        </h2><br/>
                     </div>
                 </div>
                 <div class="row d-md-none">
@@ -32,17 +25,9 @@
                                 
                                 <a class="dropdown-item py-2 ng-star-inserted" href="/london/venue/islington-tennis-centre/tennis-indoor-32679">
                                     Indoor
-                                    <mlp-ng-icon name="alert-circle" class="ng-star-inserted">
-                                        <i class="icon-alert-circle"></i>
-                                    </mlp-ng-icon>
                                 </a>
-                                <div class="dropdown-divider my-0 ng-star-inserted"></div>
-                                
                                 <a class="dropdown-item py-2 ng-star-inserted" href="/london/venue/islington-tennis-centre/tennis-outdoor-32680">
                                     Outdoor | Hard (macadam)
-                                    <mlp-ng-icon name="alert-circle" class="ng-star-inserted">
-                                        <i class="icon-alert-circle"></i>
-                                    </mlp-ng-icon>
                                 </a>
                             </div>
                         </div>
@@ -52,9 +37,7 @@
                     <div class="col-sm-12 mb-3">
                         <div class="row">
                             <div class="col-12 d-flex flex-row">
-                                <div class="mlp-carousel-main cursor pointer">
-                                    <img class="img-fluid lazyloaded" imgservice="w=578" loading="lazy" src="~/Images/@Model.TennisClub.Image">
-                                </div>
+                                <img class="img-fluid lazyloaded" imgservice="w=578" loading="lazy" src="~/Images/@Model.TennisClub.Image">
                             </div>
                         </div>
                     </div>
@@ -63,10 +46,10 @@
                     <div class="col-sm-12 mb-2">
                         <div class="card pf-card mb-2">
                             <div class="card-header">
-                                <h4 class="h6 mb-0">
+                                <h7>
                                     <span class="icon icon-mlp_tennis"></span>
                                     Facilities
-                                </h4>
+                                </h7>
                             </div>
                         </div>
                     </div>
@@ -76,9 +59,9 @@
                         <mlp-tabs>
                             <div class="card pf-card mb-3" id="mlp-map-scroll-to">
                                 <div class="card-header" role="tab">
-                                    <h2 class="sg-heading__h4 mb-0">
+                                    <h7>
                                         Location, Opening Hours and Prices
-                                    </h2>
+                                    </h7>
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
@@ -94,14 +77,10 @@
                                                         <small>
                                                             <em>
                                                                 <strong class="d-none d-md-inline ml-2">
-                                                                    <mlp-ng-icon name="cursor" class="ng-star-inserted">
-                                                                        <i class="icon-cursor"></i>
-                                                                    </mlp-ng-icon>Click to interact with the map
+                                                                    Click to interact with the map
                                                                 </strong>
                                                                 <strong class="d-md-none ml-1">
-                                                                    <mlp-ng-icon name="cursor" class="ng-star-inserted">
-                                                                        <i class="icon-cursor"></i>
-                                                                    </mlp-ng-icon>Tap to interact with the map
+                                                                   Tap to interact with the map
                                                                 </strong>
                                                             </em>
                                                         </small>
@@ -109,16 +88,14 @@
                                                 </div>                                              
                                             </div>
                                             <p>
-                                                <mlp-ng-icon name="style-two-pin-marker">
-                                                    <i class="icon-style-two-pin-marker"></i>
-                                                </mlp-ng-icon>
+                                                <i class="fas fa-map-marker-alt"></i>
                                                 @Model.TennisClub.Address.Address
                                             </p>
                                         </div>
                                         <hr>
                                         <div class="col-sm-6 ng-star-inserted">
                                             <div>
-                                                <h3 class="sg-heading__h4">Prices</h3>
+                                                <h4 >Prices</h4>
                                                 <ul class="list-unstyled ng-star-inserted">
                                                     <li class="ng-star-inserted">
                                                         <p class="small">
@@ -135,17 +112,16 @@
                                                 </ul>
                                             </div>
                                            <div class="ng-star-inserted">
-                                                <h3 class="sg-heading__h4">Public Transport</h3>
+                                                <h4>Public Transport</h4>
                                                 <p class="small">
-                                                    <mlp-ng-icon name="check-1">
-                                                        <i class="icon-check-1"></i>
-                                                    </mlp-ng-icon> Bus, Train
+                                                    <i class="fas fa-bus"></i>
+                                                    <i class="fas fa-tram"></i>
                                                 </p>
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="ng-star-inserted">
-                                                <h3 class="sg-heading__h4">Opening Hours</h3>
+                                                <h4>Opening Hours</h4>
                                               <table class="table table-borderless ng-star-inserted">
                                                     <tbody>
                                                         <tr>
@@ -160,12 +136,12 @@
                             </div>
                             <div class="card pf-card ng-star-inserted">
                                 <div class="card-header" role="tab">
-                                    <h2 class="sg-heading__h4 mb-0">
+                                    <h7>
                                         Description
-                                    </h2>
+                                    </h7>
                                 </div>
                                 <div class="card-body">
-                                    <p class="d-none d-md-block">@Model.TennisClub.Description </p>
+                                    <p >@Model.TennisClub.Description </p>
                                 </div>
                             </div>
                         </mlp-tabs>
@@ -177,42 +153,34 @@
             <mlp-venue-sidebar>
                 <div class="card mb-3 pf-card mlp-sport-format d-none d-md-block">
                     <div class="card-header">
-                        <h2 class="sg-heading__h5 mb-0">
-                            <mlp-ng-icon>
-                                <i class="icon-custom-tennis"></i>
-                            </mlp-ng-icon>
+                        <h7>
+                            <i class="fas fa-baseball-ball"></i>
                             Tennis Courts
-                        </h2>
+                        </h7>
                     </div>
                     <div class="card-body">
                         <ul class="list-inline">
                             
                             <li class="list-inline-item mb-1 ng-star-inserted">
-                                <a class="sg-link__btn -warning -active" placement="top" tooltipclass="sg-tooltip--warn" href="">
-                                    Indoor <mlp-ng-icon name="alert-circle" class="ng-star-inserted">
-                                        <i class="icon-alert-circle"></i>
-                                    </mlp-ng-icon>
+                                <a class="-warning -active" placement="top" tooltipclass="sg-tooltip--warn" href="">
+                                    Indoor 
                                 </a>
                             </li>
                             <li class="list-inline-item mb-1 ng-star-inserted">
-                                <a class="sg-link__btn -warning" placement="top" tooltipclass="sg-tooltip--warn" href="">
-                                    Outdoor | Hard (macadam) <mlp-ng-icon name="alert-circle" class="ng-star-inserted">
-                                        <i class="icon-alert-circle"></i>
-                                    </mlp-ng-icon>
+                                <a class="-warning" placement="top" tooltipclass="sg-tooltip--warn" href="">
+                                    Outdoor | Hard (macadam) 
                                 </a>
                             </li>
                         </ul>
                         <div class="mt-4 ng-star-inserted">
-                            <h5 class="sg-heading__h6">Facilities</h5>
+                            <h6 >Facilities</h6>
                             <ul class="list-inline font body3 mb-0">
                                 @foreach (var fac in Model.TennisClub.Facilities)
                                 {
-                                    <li class="list-inline-item ng-star-inserted">
-                                        <mlp-ng-icon name="check-1">
-                                            <i class="icon-check-1"></i>
-                                        </mlp-ng-icon>
-                                        @fac.FacilityType
-                                    </li>
+                                <li class="list-inline-item ng-star-inserted">
+                                    <i class="far fa-check-square"></i>
+                                    @fac.FacilityType
+                                </li>
                                 }
                             </ul>
                         </div>
@@ -220,12 +188,10 @@
                 </div>
                 <div class="card pf-card mb-3">
                     <div class="card-header">
-                        <h2 class="sg-heading__h5 mb-0">
-                            <mlp-ng-icon name="style-one-pin">
-                                <i class="icon-style-one-pin"></i>
-                            </mlp-ng-icon>
+                        <h7>
+                            <i class="fas fa-map-marker-alt"></i>
                             Address
-                        </h2>
+                        </h7>
                     </div>
                     <div class="card-body">
                         <p>
@@ -236,15 +202,10 @@
                 <div id="mlp-enquiry"></div>
                 <div class="card mb-3 pf-card pf-card-green-highlight">
                     <div class="card-header">
-                        <h2 class="sg-heading__h5 mb-0">
-                            <mlp-ng-icon name="email-action-unread">
-                                <i class="icon-email-action-unread"></i>
-                            </mlp-ng-icon>
+                        <h7>
+                            <i class="far fa-envelope"></i>
                             Request to book
-                            <mlp-ng-icon class="sg-link ng-star-inserted" name="information-circle" ngbtooltip="We need your details to give you updates on your enquiry">
-                                <i class="icon-information-circle"></i>
-                            </mlp-ng-icon>
-                        </h2>
+                        </h7>
                     </div>
                     <div class="card-body rounded-bottom">
                         <form class="needs-validation" novalidate>
@@ -301,12 +262,10 @@
                 </div>
                 <div class="card mb-3 pf-card card-similar ng-star-inserted">
                     <div class="card-header">
-                        <h2 class="sg-heading__h5 mb-0">
-                            <mlp-ng-icon name="maps">
-                                <i class="icon-maps"></i>
-                            </mlp-ng-icon>
+                        <h7>
+                            <i class="far fa-map"></i>
                             Nearby Tennis Courts
-                        </h2>
+                        </h7>
                     </div>
                 @foreach (var tennisClub in Model.TennisClubs)
                 {
@@ -316,17 +275,15 @@
                                 <img class="media-object rounded pf-card__img" height="66" imgservice="w=170" width="100" alt="Notting Hill Harbour Club" src="https://web-assets.playfinder.com/medium/pitch_image_1485795390_635070.jpeg?w=170&amp;auto=format,compress" srcset="https://web-assets.playfinder.com/medium/pitch_image_1485795390_635070.jpeg?w=170&amp;auto=format,compress&amp;dpr=1 1x, https://web-assets.playfinder.com/medium/pitch_image_1485795390_635070.jpeg?w=170&amp;auto=format,compress&amp;dpr=2 2x, https://web-assets.playfinder.com/medium/pitch_image_1485795390_635070.jpeg?w=170&amp;auto=format,compress&amp;dpr=3 3x">
                             </div>
                             <div class="col-8 col-md-12  col-lg-6 col-xl-8">
-                                <h6 class="body4">
+                                <h7>
                                     @tennisClub.Name
-                                </h6>
-                                <p class="body4 -light mb-0">
-                                    @tennisClub.Name,
+                                </h7>
+                                <p >
                                     @tennisClub.Address.Address
                                 </p>
-                                <p class="body4 -light ng-star-inserted">
-                                    <mlp-ng-icon class="-dark" name="railroad-train">
-                                        <i class="icon-railroad-train"></i>
-                                    </mlp-ng-icon> Royal Oak
+                                <p>
+                                    <i class="fas fa-bus"></i>
+                                    <i class="fas fa-tram"></i>
                                 </p>
                             </div>
                         </div>
