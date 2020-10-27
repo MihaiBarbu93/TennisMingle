@@ -63,5 +63,8 @@ namespace TennisMingle.API.Models
 
         public ICollection<Facility> Facilities { get; set; }
 
+        [NotMapped]
+        public ICollection<int> Prices { get; set; } = new List<int>();
+
     }
 }

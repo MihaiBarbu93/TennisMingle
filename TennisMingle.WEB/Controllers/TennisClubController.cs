@@ -39,7 +39,6 @@ namespace TennisMingle.WEB.Controllers
                          entity.Cities.Add(tennisClub.Address.City);
                     }
                 }
-
                 using (var response = await httpClient.GetAsync($"https://localhost:44313/api/cities/{cityId}/tennisclubs/{entity.TennisClubs.FirstOrDefault().Id}/tenniscourts")) {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     entity.TennisCourts = JsonConvert.DeserializeObject<HashSet<TennisCourt>>(apiResponse);
@@ -64,13 +63,33 @@ namespace TennisMingle.WEB.Controllers
                 using (var response = await httpClient.GetAsync($"https://localhost:44313/api/cities/{cityId}/tennisclubs/{tennisClubId}"))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    entity.TennisClubs = JsonConvert.DeserializeObject<HashSet<TennisClub>>(apiResponse);
+                    var TC = JsonConvert.DeserializeObject<HashSet<TennisClub>>(apiResponse);
+                    entity.TennisClub = TC.FirstOrDefault();
+
+
                 }
-                using (var response = await httpClient.GetAsync("https://localhost:44313/api/cities"))
+                foreach (var tennisCourt in entity.TennisClub.TennisCourts)
+                {
+                    entity.TennisClub.Prices.Add(tennisCourt.Price);
+                }
+                entity.Cities.Add(entity.TennisClub.Address.City);
+
+                using (var response = await httpClient.GetAsync($"https://localhost:44313/api/cities/{cityId}/tennisclubs"))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    entity.Cities = JsonConvert.DeserializeObject<HashSet<City>>(apiResponse);
+                    var tennisClubs = JsonConvert.DeserializeObject<List<TennisClub>>(apiResponse, new JsonSerializerSettings
+                    {
+                        ReferenceLoopHandling = ReferenceLoopHandling.Serialize
+                    }).ToList();
+                    entity.TennisClubs = new HashSet<TennisClub>(tennisClubs.Where(tc => tc.Id != tennisClubId));
+                    foreach (var tennisClub in entity.TennisClubs)
+                    {
+                        entity.Cities.Add(tennisClub.Address.City);
+                    }
                 }
+                
+                
+                
             }
 
             return View(entity);

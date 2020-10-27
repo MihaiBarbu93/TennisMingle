@@ -8,6 +8,7 @@ namespace TennisMingle.WEB.Models
 {
     public class EntityViewModel
     {
+        public TennisClub TennisClub { get; set; }
         public HashSet<TennisClubAddress> Addresses { get; set; }
         public HashSet<City> Cities { get; set; } = new HashSet<City>();
 
