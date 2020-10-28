@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <PackageReference Include="GoogleMapControl" Version="8.0.1" />
+    <PackageReference Include="morelinq" Version="3.3.2" />
   </ItemGroup>
 
   <ItemGroup>
