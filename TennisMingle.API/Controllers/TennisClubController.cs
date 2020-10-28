@@ -37,6 +37,24 @@ namespace TennisMingle.API.Controllers
             return Ok(tennisClubs.ToList());
         }
 
+        [HttpGet("withcourtsavailable")]
+        public IActionResult GetTennisClubsWithCourts(int cityId)
+        {
+            var city = _context.Cities.Where(c => c.Id == cityId);
+            if (city == null)
+            {
+                return NotFound();
+            }
+
+            var tennisClubs = _context.TennisClubs
+                                      .Include(tc => tc.Address.City)
+                                      .Include(tc => tc.Facilities)
+                                      .Include(tc => tc.TennisCourts)
+                                      .Where(tc => (tc.Address.CityId == cityId) && (tc.TennisCourts.FirstOrDefault().IsAvailable));
+
+            return Ok(tennisClubs.ToList());
+        }
+
         /// <summary>
         /// This GET method returns a tennis club with a specific id 
         /// </summary>
