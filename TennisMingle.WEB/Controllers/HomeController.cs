@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using MoreLinq;
 using Newtonsoft.Json;
 using TennisMingle.API.Models;
 using TennisMingle.WEB.Models;
@@ -33,6 +34,41 @@ namespace TennisMingle.WEB.Controllers
                     entity.Cities = JsonConvert.DeserializeObject<HashSet<City>>(apiResponse);
                 }
             }
+
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.GetAsync("https://localhost:44313/api/persons")) {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    entity.Persons = JsonConvert.DeserializeObject<HashSet<Person>>(apiResponse);
+                }
+            }
+
+
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.GetAsync($"https://localhost:44313/api/cities/{entity.Cities.FirstOrDefault().Id}/tennisclubs"))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    entity.TennisClubs = JsonConvert.DeserializeObject<HashSet<TennisClub>>(apiResponse, new JsonSerializerSettings
+                    {
+                        ReferenceLoopHandling = ReferenceLoopHandling.Serialize
+                    });
+
+                }
+                using (var response = await httpClient.GetAsync($"https://localhost:44313/api/cities/{entity.Cities.FirstOrDefault().Id}/tennisclubs/{entity.TennisClubs.FirstOrDefault().Id}/tenniscourts"))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    entity.TennisCourts = JsonConvert.DeserializeObject<HashSet<TennisCourt>>(apiResponse);
+                    foreach (var tennisCourt in entity.TennisCourts)
+                    {
+                        entity.Surfaces.Add(tennisCourt.Surface);
+                    }
+
+                    /* entity.Surfaces = entity.Surfaces.GroupBy(s => s.Id).SelectMany(su => su).ToList();*/
+                }
+            }
+
+            return View(entity);
 
             return View(entity);
         }
