@@ -21,6 +21,7 @@ namespace TennisMingle.WEB.Controllers
             _logger = logger;
         }
 
+        [HttpGet]
         public async Task<IActionResult> TennisClubs(int cityId)
         {
             EntityViewModel entity = new EntityViewModel();
@@ -35,7 +36,7 @@ namespace TennisMingle.WEB.Controllers
                         ReferenceLoopHandling = ReferenceLoopHandling.Serialize
                     });
 
-                    var tennisClubsWithDistinctCities = entity.TennisClubs.DistinctBy(tc => tc.Address.City.Name);
+                    var tennisClubsWithDistinctCities = entity.TennisClubs.DistinctBy(tc => tc.Address.City.Id);
 
                     foreach (var tennisClub in tennisClubsWithDistinctCities)
                     {
@@ -52,7 +53,48 @@ namespace TennisMingle.WEB.Controllers
                         entity.Surfaces.Add(tennisCourt.Surface);
                     }
 
-                    /*                    entity.Surfaces = entity.Surfaces.GroupBy(s => s.Id).SelectMany(su => su).ToList();*/
+                    /* entity.Surfaces = entity.Surfaces.GroupBy(s => s.Id).SelectMany(su => su).ToList();*/
+                }
+            }
+
+            return View(entity);
+        }
+
+
+        [HttpPost]
+        [ActionName("TennisClubs")]
+        public async Task<IActionResult> TennisClubsList(int cityId)
+        {
+            EntityViewModel entity = new EntityViewModel();
+
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.GetAsync($"https://localhost:44313/api/cities/{cityId}/tennisclubs/withcourtsavailable"))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    entity.TennisClubs = JsonConvert.DeserializeObject<HashSet<TennisClub>>(apiResponse, new JsonSerializerSettings
+                    {
+                        ReferenceLoopHandling = ReferenceLoopHandling.Serialize
+                    });
+
+                    var tennisClubsWithDistinctCities = entity.TennisClubs.DistinctBy(tc => tc.Address.City.Id);
+
+                    foreach (var tennisClub in tennisClubsWithDistinctCities)
+                    {
+                        entity.Cities.Add(tennisClub.Address.City);
+                    }
+
+                }
+                using (var response = await httpClient.GetAsync($"https://localhost:44313/api/cities/{cityId}/tennisclubs/{entity.TennisClubs.FirstOrDefault().Id}/tenniscourts"))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    entity.TennisCourts = JsonConvert.DeserializeObject<HashSet<TennisCourt>>(apiResponse);
+                    foreach (var tennisCourt in entity.TennisCourts)
+                    {
+                        entity.Surfaces.Add(tennisCourt.Surface);
+                    }
+
+                   /* entity.Surfaces = entity.Surfaces.GroupBy(s => s.Id).SelectMany(su => su).ToList();*/
                 }
             }
 

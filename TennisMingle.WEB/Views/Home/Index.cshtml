@@ -10,22 +10,38 @@
         <p class="h3 find-court-header font-weight-bolder"> Find <span class="font-weight-bolder text-dark">your</span>  court </p>
         <p class="text-dark text-center">Book tennis courts in Romania</p>
         <!--Blue select-->
-        <div class="dropdown show">
-            <a class="btn btn-dark dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                @Model.Cities.FirstOrDefault().Name
-            </a>
-
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                @foreach (var city in Model.Cities)
-                {
-                    <a class="dropdown-item" href="#">@city.Name</a>
-                }
-
+        <form asp-controller="Cities" asp-action="TennisClubs" asp-route-cityId="@Model.Cities.FirstOrDefault().Id" method="post" class="form-horizontal" role="form">
+            <div class="form-group">
+                <div class="row">
+                    <div class="alert-danger" asp-validation-summary="ModelOnly"></div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <label asp-for="Cities" class="control-label"></label>
+                        <select asp-for="@Model.Cities.FirstOrDefault().Id"
+                                class="form-control bg-dark text-white mb-2"
+                                asp-items="@(new SelectList(Model.Cities,"Id", "Name"))">
+                        </select>
+                        <input type="datetime-local" id="followup_next_followup_date" class="mt-2 w-100" name="followup_next_followup_date" placeholder="Choose a reservation date" class="form-control py-4 px-4">
+                    </div>
+                </div>
             </div>
-        </div>
-
-        <input type="datetime-local" id="followup_next_followup_date" class="mt-2 w-100" name="followup_next_followup_date" placeholder="Choose a reservation date" class="form-control py-4 px-4">
-        <button type="submit" class="find-court-button w-100 mt-3">find <span class="text-white">court</span></button>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <input id="Submit1" class="find-court-button w-100 bg-dark" type="submit" value="submit" />
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                        @if (ViewBag.SelectedValue != null)
+                        {
+                            <text>Selected Country ID: </text> @ViewBag.SelectedValue;
+                        }
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
 </header>
 <div class="container mt-2 tm-mb-4">
