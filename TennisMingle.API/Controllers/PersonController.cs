@@ -14,6 +14,26 @@ namespace TennisMingle.API.Controllers
         {
             _context = context;        
         }
+
+
+        /// <summary>
+        /// This GET method returns all the persons from our tennis community
+        /// </summary>
+        /// 
+
+        [Route("/api/persons")]
+        public IActionResult GetAllPersons()
+        {
+            var persons = _context.Persons.Select(p => p);
+
+            if (persons == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(persons);
+        }
+
         /// <summary>
         /// This GET method returns all the coaches from a club
         /// </summary>
