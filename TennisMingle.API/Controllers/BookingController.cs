@@ -67,9 +67,7 @@ namespace TennisMingle.API.Controllers
                 "GetBooking", new {tennisClubId, id = _context.Bookings.ToList().Last().Id }, bookingToCreate);
         }
 
-        /// <summary>
-        /// This PUT method is replacing all the properties of a tennis court
-        /// </summary>
+
        /* [HttpPut]
         [Route("{id}")]
         public IActionResult UpdateTennisCourt(int cityId, int tennisClubId, int id,

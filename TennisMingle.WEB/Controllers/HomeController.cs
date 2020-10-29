@@ -69,8 +69,6 @@ namespace TennisMingle.WEB.Controllers
             }
 
             return View(entity);
-
-            return View(entity);
         }
 
         public IActionResult Privacy()
