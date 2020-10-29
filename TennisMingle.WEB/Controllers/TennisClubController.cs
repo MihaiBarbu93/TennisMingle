@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -53,6 +54,7 @@ namespace TennisMingle.WEB.Controllers
 
             return View(entity);
         }
+
         public async Task<IActionResult> TennisClub(int cityId, int tennisClubId)
         {
             EntityViewModel entity = new EntityViewModel();
@@ -94,6 +96,39 @@ namespace TennisMingle.WEB.Controllers
 
             return View(entity);
         }
+
+        [HttpPost]
+
+        public async Task<IActionResult> BookCourt(int cityId, int tennisClubId, Booking booking)
+        {
+            Booking receivedBooking = new Booking();
+            using (var httpClient = new HttpClient())
+            {
+                var content = new MultipartFormDataContent();
+                content.Add(new StringContent(booking.FirstName), "FirstName");
+                content.Add(new StringContent(booking.LastName), "LastName");
+                content.Add(new StringContent(booking.PhoneNumber), "PhoneNumber");
+                content.Add(new StringContent(booking.DateStart.ToString()), "DateStart");
+                content.Add(new StringContent(booking.DateStart.AddHours(booking.Duration).ToString()), "DateEnd");
+                using (var response = await httpClient.GetAsync($"https://localhost:44313/api/cities/{cityId}/tennisclubs/{tennisClubId}/tenniscourts"))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    var tennisCourts = JsonConvert.DeserializeObject<List<TennisCourt>>(apiResponse);
+                    TennisCourt tennisCourt = tennisCourts.Where(tc => tc.IsAvailable == true).FirstOrDefault();
+                    content.Add(new StringContent(tennisCourt.Id.ToString()), "TennisCourtId");
+
+                }
+                using (var response = await httpClient.PostAsync($"https://localhost:44313/api/tennisclubs/{tennisClubId}/booking", content))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    receivedBooking = JsonConvert.DeserializeObject<Booking>(apiResponse);
+                }
+            }
+            /*      return CreatedAtAction("TennisClub", new { cityId, tennisClubId}, receivedBooking);*/
+            return NoContent();
+        }
+    
+
 
         public IActionResult Privacy()
         {

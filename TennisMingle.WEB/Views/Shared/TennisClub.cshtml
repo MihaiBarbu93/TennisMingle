@@ -118,7 +118,7 @@
                                                     <i class="fas fa-tram"></i>
                                                 </p>
                                             </div>
-                                        </div>
+                                        </div> 
                                         <div class="col-sm-6">
                                             <div class="ng-star-inserted">
                                                 <h4>Opening Hours</h4>
@@ -208,57 +208,60 @@
                         </h7>
                     </div>
                     <div class="card-body rounded-bottom">
-                        <form class="needs-validation" novalidate>
-                            <div class="form-row">
-                                <div class="col-md-6 mb-3">
-                                    <label for="validationCustom01">First Name</label>
-                                    <input type="text" class="form-control" id="validationCustom01" value="Mark" required>
-                                    <div class="valid-feedback">
-                                        Looks good!
+                        @{
+                            var parms = new Dictionary<string, string>
+                                                                                                                                                                                                                                                                    {
+                                { "cityId", Model.TennisClub.Address.CityId.ToString() },
+                                { "tennisClubId", Model.TennisClub.Id.ToString() }
+                            }; }
+                            <form asp-controller="TennisClub"
+                                  asp-action="BookCourt"
+                                  asp-all-route-data="parms"
+                                  class="needs-validation" method="post" novalidate>
+                                <div class="form-row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="validationCustom01">First Name</label>
+                                        <input type="text" class="form-control" id="validationCustom01" name="FirstName" required>
+                                        <div class="valid-feedback">
+                                            Looks good!
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="validationCustom02">Last name</label>
+                                        <input type="text" class="form-control" id="validationCustom02" name="LastName" required>
+                                        <div class="valid-feedback">
+                                            Looks good!
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="validationCustom02">Last name</label>
-                                    <input type="text" class="form-control" id="validationCustom02" value="Otto" required>
-                                    <div class="valid-feedback">
-                                        Looks good!
+                                <div class="form-row">
+                                    <div class="col-md-12 mb-3">
+                                        <label for="validationCustom03">Phone Number</label>
+                                        <input type="text" class="form-control" id="validationCustom03" name="PhoneNumber" required>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="col-md-12 mb-3">
-                                    <label for="validationCustom03">Phone Number</label>
-                                    <input type="text" class="form-control" id="validationCustom03" required>
+                                <div class="form-row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="validationCustom04">Select Date & Time</label>
+                                        <input type="datetime-local" id="followup_next_followup_date" class="mt-2 w-100" name="StartDate" placeholder="Choose a reservation date" class="form-control py-4 px-4">
+                                    </div>
+
                                 </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="col-md-6 mb-3">
-                                    <label for="validationCustom04">Select Date</label>
-                                    <select class="custom-select" id="validationCustom04" required>
-                                        <option selected disabled value="">Choose...</option>
-                                        <option>...</option>
-                                    </select>
+                                <div class="form-row">
+                                    <div class="col-md-12 mb-3">
+                                        <label for="validationCustom06">Select Duration</label>
+                                        <select class="custom-select" id="validationCustom06" name="Duration" required>
+                                            <option selected disabled>Choose...</option>
+                                            @for (int i = 1; i < 11; i++)
+                                            {
+                                                <option value="@i">@i</option>
+                                            }
+                                        </select>
+                                    </div>
                                 </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="validationCustom05">Select Time</label>
-                                    <select class="custom-select" id="validationCustom05" required>
-                                        <option selected disabled value="">Choose...</option>
-                                        <option>...</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="col-md-12 mb-3">
-                                    <label for="validationCustom06">Select Duration</label>
-                                    <select class="custom-select" id="validationCustom06" required>
-                                        <option selected disabled value="">Choose...</option>
-                                        <option>...</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <button class="btn btn-primary" type="submit">Submit form</button>
-                        </form>
-                    </div>
+                                <button class="btn btn-primary" type="submit">Submit Enquiry</button>
+                            </form>
+                        </div>
                 </div>
                 <div class="card mb-3 pf-card card-similar ng-star-inserted">
                     <div class="card-header">
