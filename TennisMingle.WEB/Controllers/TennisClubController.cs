@@ -28,6 +28,7 @@ namespace TennisMingle.WEB.Controllers
 
             using (var httpClient = new HttpClient())
             {
+
                 using (var response = await httpClient.GetAsync($"https://localhost:44313/api/cities/{cityId}/tennisclubs"))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();

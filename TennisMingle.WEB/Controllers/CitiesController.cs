@@ -28,6 +28,14 @@ namespace TennisMingle.WEB.Controllers
 
             using (var httpClient = new HttpClient())
             {
+
+
+                using (var response = await httpClient.GetAsync("https://localhost:44313/api/cities"))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    entity.Cities = JsonConvert.DeserializeObject<HashSet<City>>(apiResponse);
+                }
+
                 using (var response = await httpClient.GetAsync($"https://localhost:44313/api/cities/{cityId}/tennisclubs"))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
@@ -44,18 +52,22 @@ namespace TennisMingle.WEB.Controllers
                     }
 
                 }
-                using (var response = await httpClient.GetAsync($"https://localhost:44313/api/cities/{cityId}/tennisclubs/{entity.TennisClubs.FirstOrDefault().Id}/tenniscourts"))
-                {
-                    string apiResponse = await response.Content.ReadAsStringAsync();
-                    entity.TennisCourts = JsonConvert.DeserializeObject<HashSet<TennisCourt>>(apiResponse);
-                    foreach (var tennisCourt in entity.TennisCourts)
-                    {
-                        entity.Surfaces.Add(tennisCourt.Surface);
-                    }
 
-                    /* entity.Surfaces = entity.Surfaces.GroupBy(s => s.Id).SelectMany(su => su).ToList();*/
+                if (entity.TennisClubs.Count > 0)
+                {
+                    using (var response = await httpClient.GetAsync($"https://localhost:44313/api/cities/{cityId}/tennisclubs/{entity.TennisClubs.FirstOrDefault().Id}/tenniscourts"))
+                    {
+                        string apiResponse = await response.Content.ReadAsStringAsync();
+                        entity.TennisCourts = JsonConvert.DeserializeObject<HashSet<TennisCourt>>(apiResponse);
+                        foreach (var tennisCourt in entity.TennisCourts)
+                        {
+                            entity.Surfaces.Add(tennisCourt.Surface);
+                        }
+
+                        /* entity.Surfaces = entity.Surfaces.GroupBy(s => s.Id).SelectMany(su => su).ToList();*/
+                    }
                 }
-            }
+             }
 
             return View(entity);
         }
@@ -68,7 +80,9 @@ namespace TennisMingle.WEB.Controllers
             EntityViewModel entity = new EntityViewModel();
 
             using (var httpClient = new HttpClient())
+
             {
+
                 using (var response = await httpClient.GetAsync($"https://localhost:44313/api/cities/{cityId}/tennisclubs/withcourtsavailable"))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
