@@ -100,7 +100,6 @@ C:\Users\Mihai\Desktop\TennisMingle\TennisMingle\TennisMingle.API\obj\Debug\netc
 C:\Users\Mihai\Desktop\TennisMingle\TennisMingle\TennisMingle.API\obj\Debug\netcoreapp3.1\TennisMingle.API.xml
 C:\Users\Mihai\Desktop\TennisMingle\TennisMingle\TennisMingle.API\obj\Debug\netcoreapp3.1\TennisMingle.API.pdb
 C:\Users\Mihai\Desktop\TennisMingle\TennisMingle\TennisMingle.API\obj\Debug\netcoreapp3.1\TennisMingle.API.genruntimeconfig.cache
-C:\Users\Mihai\Desktop\TennisMingle\TennisMingle\TennisMingle.API\obj\Debug\netcoreapp3.1\TennisMingle.API.csprojAssemblyReference.cache
 D:\.NET-C#\TW4\TennisMingle\TennisMingle.API\bin\Debug\netcoreapp3.1\appsettings.Development.json
 D:\.NET-C#\TW4\TennisMingle\TennisMingle.API\bin\Debug\netcoreapp3.1\appsettings.json
 D:\.NET-C#\TW4\TennisMingle\TennisMingle.API\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
@@ -160,6 +159,9 @@ D:\.NET-C#\TW4\TennisMingle\TennisMingle.API\bin\Debug\netcoreapp3.1\runtimes\wi
 D:\.NET-C#\TW4\TennisMingle\TennisMingle.API\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 D:\.NET-C#\TW4\TennisMingle\TennisMingle.API\obj\Debug\netcoreapp3.1\TennisMingle.API.AssemblyInfoInputs.cache
 D:\.NET-C#\TW4\TennisMingle\TennisMingle.API\obj\Debug\netcoreapp3.1\TennisMingle.API.AssemblyInfo.cs
+D:\.NET-C#\TW4\TennisMingle\TennisMingle.API\obj\Debug\netcoreapp3.1\TennisMingle.API.csproj.CoreCompileInputs.cache
+D:\.NET-C#\TW4\TennisMingle\TennisMingle.API\obj\Debug\netcoreapp3.1\TennisMingle.API.MvcApplicationPartsAssemblyInfo.cs
+D:\.NET-C#\TW4\TennisMingle\TennisMingle.API\obj\Debug\netcoreapp3.1\TennisMingle.API.MvcApplicationPartsAssemblyInfo.cache
 D:\.NET-C#\TW4\TennisMingle\TennisMingle.API\obj\Debug\netcoreapp3.1\TennisMingle.API.RazorTargetAssemblyInfo.cache
 D:\.NET-C#\TW4\TennisMingle\TennisMingle.API\obj\Debug\netcoreapp3.1\TennisMingle.API.csproj.CopyComplete
 D:\.NET-C#\TW4\TennisMingle\TennisMingle.API\obj\Debug\netcoreapp3.1\staticwebassets\TennisMingle.API.StaticWebAssets.Manifest.cache
@@ -168,8 +170,6 @@ D:\.NET-C#\TW4\TennisMingle\TennisMingle.API\obj\Debug\netcoreapp3.1\TennisMingl
 D:\.NET-C#\TW4\TennisMingle\TennisMingle.API\obj\Debug\netcoreapp3.1\TennisMingle.API.xml
 D:\.NET-C#\TW4\TennisMingle\TennisMingle.API\obj\Debug\netcoreapp3.1\TennisMingle.API.pdb
 D:\.NET-C#\TW4\TennisMingle\TennisMingle.API\obj\Debug\netcoreapp3.1\TennisMingle.API.genruntimeconfig.cache
-D:\.NET-C#\TW4\TennisMingle\TennisMingle.API\bin\Debug\netcoreapp3.1\MoreLinq.dll
 D:\.NET-C#\TW4\TennisMingle\TennisMingle.API\obj\Debug\netcoreapp3.1\TennisMingle.API.csprojAssemblyReference.cache
-D:\.NET-C#\TW4\TennisMingle\TennisMingle.API\obj\Debug\netcoreapp3.1\TennisMingle.API.csproj.CoreCompileInputs.cache
-D:\.NET-C#\TW4\TennisMingle\TennisMingle.API\obj\Debug\netcoreapp3.1\TennisMingle.API.MvcApplicationPartsAssemblyInfo.cs
-D:\.NET-C#\TW4\TennisMingle\TennisMingle.API\obj\Debug\netcoreapp3.1\TennisMingle.API.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Mihai\Desktop\TennisMingle\TennisMingle\TennisMingle.API\obj\Debug\netcoreapp3.1\TennisMingle.API.csprojAssemblyReference.cache
+C:\Users\Mihai\Desktop\TennisMingle\TennisMingle\TennisMingle.API\bin\Debug\netcoreapp3.1\MoreLinq.dll
