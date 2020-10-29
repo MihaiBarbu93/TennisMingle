@@ -10,7 +10,7 @@ using TennisMingle.API.Models;
 namespace TennisMingle.API.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20201026175435_InitialMigration")]
+    [Migration("20201029195409_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,20 +23,29 @@ namespace TennisMingle.API.Migrations
 
             modelBuilder.Entity("TennisMingle.API.Models.Booking", b =>
                 {
-                    b.Property<int>("PersonId")
+                    b.Property<int?>("PersonId")
                         .HasColumnType("int");
 
                     b.Property<int>("TennisCourtId")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("DateEnd")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateStart")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("Id")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("date_end")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("date_start")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("PersonId", "TennisCourtId");
 
@@ -268,7 +277,7 @@ namespace TennisMingle.API.Migrations
             modelBuilder.Entity("TennisMingle.API.Models.TennisClubAddress", b =>
                 {
                     b.HasOne("TennisMingle.API.Models.City", "City")
-                        .WithMany()
+                        .WithMany("TennisClubAddresses")
                         .HasForeignKey("CityId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();

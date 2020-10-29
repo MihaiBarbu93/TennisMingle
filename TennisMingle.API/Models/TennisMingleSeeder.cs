@@ -138,7 +138,7 @@ namespace TennisMingle.API.Models
                 _ctx.SaveChanges();
             }
 
-            if (!_ctx.Surfaces.Any())
+            if (!_ctx.Facilities.Any())
             {
                 var facilities = new List<Facility>() {
 

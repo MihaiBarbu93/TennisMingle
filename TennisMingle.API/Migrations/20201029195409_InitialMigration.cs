@@ -157,8 +157,11 @@ namespace TennisMingle.API.Migrations
                     TennisCourtId = table.Column<int>(nullable: false),
                     PersonId = table.Column<int>(nullable: false),
                     Id = table.Column<int>(nullable: false),
-                    date_start = table.Column<DateTime>(nullable: false),
-                    date_end = table.Column<DateTime>(nullable: false)
+                    DateStart = table.Column<DateTime>(nullable: false),
+                    DateEnd = table.Column<DateTime>(nullable: false),
+                    FirstName = table.Column<string>(nullable: true),
+                    LastName = table.Column<string>(nullable: true),
+                    PhoneNumber = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
