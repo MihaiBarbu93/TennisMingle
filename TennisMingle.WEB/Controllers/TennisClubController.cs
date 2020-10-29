@@ -68,7 +68,6 @@ namespace TennisMingle.WEB.Controllers
                     var TC = JsonConvert.DeserializeObject<HashSet<TennisClub>>(apiResponse);
                     entity.TennisClub = TC.FirstOrDefault();
 
-
                 }
                 foreach (var tennisCourt in entity.TennisClub.TennisCourts)
                 {
@@ -88,12 +87,8 @@ namespace TennisMingle.WEB.Controllers
                     {
                         entity.Cities.Add(tennisClub.Address.City);
                     }
-                }
-                
-                
-                
+                }              
             }
-
             return View(entity);
         }
 
