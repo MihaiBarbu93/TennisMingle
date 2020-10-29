@@ -85,7 +85,7 @@ namespace TennisMingle.API.Models
                     AddressId = 1 ,
                     PhoneNumber = "0721255444",
                     Schedule = "L-D 7:00 - 24:00",
-                    Image = "imagine",
+                    Image = "tc4.jpeg",
                     Description = "Tenis Parc Herastrau ofera terenuri de tenis cu suprafata de zgura, acoperite pe perioada de iarna, cu structura presostatica si incalzite.Terenurile au suprafata cu zgura de calitate deosebita, sportivii au la dispozitie o terasa unde sa se relaxeze dupa joc, vestiare, wi-fi, si parcare."
                 },
                 new TennisClub
@@ -94,7 +94,7 @@ namespace TennisMingle.API.Models
                     AddressId = 2,
                     PhoneNumber = "0733991722",
                     Schedule = "L-D 7:00 - 24:00",
-                    Image = "imagine",
+                    Image = "tc2.jpeg",
                     Description = "La Clubul Voinicelu se poate juca atat tenis, pe cele 7 terenuri de zgura, accesibile tot anul, cat si fotbal, pe cele 2 terenuri de minifotbal.Clubul se afla in Piata Muncii, pe Strada Gheorghe Petrascu, la numarul 43-45, suficient de aproape de statia de metrou, dar si destul de departe de traficul zgomotos al bulevardului,inconjurat de copaci umbrosi, intr-un cartier linistit de blocuri, iar atmosfera creata este potrivita atat pentru antrenamentele si meciurile dinamice, cat si pentru relaxare.Printre alte facilitati ale clubului se numara parcarea in limita disponibilitati cu supraveghere video, optiuni de inchiriere si/sau racordari de rachete de tenis, vestiare femei si barbati."
                 },
                 new TennisClub
@@ -103,7 +103,7 @@ namespace TennisMingle.API.Models
                     AddressId = 3,
                     PhoneNumber = "0747425299",
                     Schedule = "L-D 7:00 - 24:00",
-                    Image = "imagine",
+                    Image = "tc5.jpeg",
                     Description = "Formarea tinerilor sportivi pentru toate aspectele vietii, folosind ca intrumente tenisul si educatia sportiva este o preocupare permanenta. Toti jucatorii vor beneficia de o atentie deosebita din partea noastra pentru ca performantele lor sa fie maxime in atingerea obiectivelor propuse. Copiii cu varste cuprinse intre 5-10 ani, pot beneficia de programe de initiere si minitenis, cei mai mari de programe pentru avansati si performanta.Adultii pot inchiria terenuri sau beneficia de lectii private de initiere si/sau perfectionare sub indrumarea  antrenorilor nostri.Practicarea tenisului in sezonul rece se face in conditii foarte bune, deoarece 6 terenuri sunt acoperite cu baloane protectoare, mentinand in interior presiunea si temperatura optima jocului de tenis. Pe perioada sezonului in aer liber terenurile noastre, dotate cu nocturna, permit practicarea tenisului pana la ora 24. Pregatirea fizica si recuperarea, pot fi efectuate in sala de fitness, aerobic si sauna din cadrul clubului."
                 }
             };
@@ -201,7 +201,7 @@ namespace TennisMingle.API.Models
                     Name = "Court 1",
                     SurfaceId = 4,
                     Price = 30,
-                    IsAvailable = false,
+                    IsAvailable = true,
                     TennisClubId = 3
                 }
 

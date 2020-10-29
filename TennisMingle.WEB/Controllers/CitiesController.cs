@@ -75,9 +75,11 @@ namespace TennisMingle.WEB.Controllers
 
         [HttpPost]
         [ActionName("TennisClubs")]
-        public async Task<IActionResult> TennisClubsList(int cityId)
+        public async Task<IActionResult> TennisClubsList(City city)
         {
             EntityViewModel entity = new EntityViewModel();
+
+            int cityId = city.Id;
 
             using (var httpClient = new HttpClient())
 
@@ -99,16 +101,20 @@ namespace TennisMingle.WEB.Controllers
                     }
 
                 }
-                using (var response = await httpClient.GetAsync($"https://localhost:44313/api/cities/{cityId}/tennisclubs/{entity.TennisClubs.FirstOrDefault().Id}/tenniscourts"))
-                {
-                    string apiResponse = await response.Content.ReadAsStringAsync();
-                    entity.TennisCourts = JsonConvert.DeserializeObject<HashSet<TennisCourt>>(apiResponse);
-                    foreach (var tennisCourt in entity.TennisCourts)
-                    {
-                        entity.Surfaces.Add(tennisCourt.Surface);
-                    }
 
-                   /* entity.Surfaces = entity.Surfaces.GroupBy(s => s.Id).SelectMany(su => su).ToList();*/
+                if (entity.TennisClubs.Count > 0)
+                {
+                    using (var response = await httpClient.GetAsync($"https://localhost:44313/api/cities/{cityId}/tennisclubs/{entity.TennisClubs.FirstOrDefault().Id}/tenniscourts"))
+                    {
+                        string apiResponse = await response.Content.ReadAsStringAsync();
+                        entity.TennisCourts = JsonConvert.DeserializeObject<HashSet<TennisCourt>>(apiResponse);
+                        foreach (var tennisCourt in entity.TennisCourts)
+                        {
+                            entity.Surfaces.Add(tennisCourt.Surface);
+                        }
+
+                        /* entity.Surfaces = entity.Surfaces.GroupBy(s => s.Id).SelectMany(su => su).ToList();*/
+                    }
                 }
             }
 
