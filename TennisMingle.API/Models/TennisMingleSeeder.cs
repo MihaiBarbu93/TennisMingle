@@ -30,7 +30,19 @@ namespace TennisMingle.API.Models
                 var cities = new List<City>() {
 
                 new City {
-                    Name = "Bucharest",}
+                    Name = "Bucharest"},
+                new City
+                {
+                    Name = "Brasov"},
+                new City
+                {
+                    Name = "Cluj"},
+                new City
+                {
+                    Name = "Timisoara"},
+                new City
+                {
+                    Name = "Iasi"}
             };
 
                 _ctx.Cities.AddRange(cities);
@@ -49,12 +61,12 @@ namespace TennisMingle.API.Models
                 },
                 new TennisClubAddress
                 {
-                    Address = "Str. Soseaua Sudului, nr. 4-6, Bucuresti - Sector 1, Bucuresti",
+                    Address = "Strada Gheorghe Petrașcu 51, București",
                     CityId = 1
                 },
                 new TennisClubAddress
                 {
-                    Address = "Str. Soseaua Sudului, nr. 25, Bucuresti - Sector 2, Bucuresti",
+                    Address = "Strada Oltețului 30, București",
                     CityId = 1
                 }
 
@@ -78,21 +90,21 @@ namespace TennisMingle.API.Models
                 },
                 new TennisClub
                 {
-                    Name = "Academia de Tenis Herastrau 2",
+                    Name = "Club Sportiv Voinicelu",
                     AddressId = 2,
-                    PhoneNumber = "0721255444",
+                    PhoneNumber = "0733991722",
                     Schedule = "L-D 7:00 - 24:00",
                     Image = "imagine",
-                    Description = "Tenis Parc Herastrau ofera terenuri de tenis cu suprafata de zgura, acoperite pe perioada de iarna, cu structura presostatica si incalzite.Terenurile au suprafata cu zgura de calitate deosebita, sportivii au la dispozitie o terasa unde sa se relaxeze dupa joc, vestiare, wi-fi, si parcare."
+                    Description = "La Clubul Voinicelu se poate juca atat tenis, pe cele 7 terenuri de zgura, accesibile tot anul, cat si fotbal, pe cele 2 terenuri de minifotbal.Clubul se afla in Piata Muncii, pe Strada Gheorghe Petrascu, la numarul 43-45, suficient de aproape de statia de metrou, dar si destul de departe de traficul zgomotos al bulevardului,inconjurat de copaci umbrosi, intr-un cartier linistit de blocuri, iar atmosfera creata este potrivita atat pentru antrenamentele si meciurile dinamice, cat si pentru relaxare.Printre alte facilitati ale clubului se numara parcarea in limita disponibilitati cu supraveghere video, optiuni de inchiriere si/sau racordari de rachete de tenis, vestiare femei si barbati."
                 },
                 new TennisClub
                 {
-                    Name = "Academia de Tenis Herastrau 3",
+                    Name = "Tenis Club Galaxy",
                     AddressId = 3,
-                    PhoneNumber = "0721255444",
+                    PhoneNumber = "0747425299",
                     Schedule = "L-D 7:00 - 24:00",
                     Image = "imagine",
-                    Description = "Tenis Parc Herastrau ofera terenuri de tenis cu suprafata de zgura, acoperite pe perioada de iarna, cu structura presostatica si incalzite.Terenurile au suprafata cu zgura de calitate deosebita, sportivii au la dispozitie o terasa unde sa se relaxeze dupa joc, vestiare, wi-fi, si parcare."
+                    Description = "Formarea tinerilor sportivi pentru toate aspectele vietii, folosind ca intrumente tenisul si educatia sportiva este o preocupare permanenta. Toti jucatorii vor beneficia de o atentie deosebita din partea noastra pentru ca performantele lor sa fie maxime in atingerea obiectivelor propuse. Copiii cu varste cuprinse intre 5-10 ani, pot beneficia de programe de initiere si minitenis, cei mai mari de programe pentru avansati si performanta.Adultii pot inchiria terenuri sau beneficia de lectii private de initiere si/sau perfectionare sub indrumarea  antrenorilor nostri.Practicarea tenisului in sezonul rece se face in conditii foarte bune, deoarece 6 terenuri sunt acoperite cu baloane protectoare, mentinand in interior presiunea si temperatura optima jocului de tenis. Pe perioada sezonului in aer liber terenurile noastre, dotate cu nocturna, permit practicarea tenisului pana la ora 24. Pregatirea fizica si recuperarea, pot fi efectuate in sala de fitness, aerobic si sauna din cadrul clubului."
                 }
             };
 
@@ -189,7 +201,7 @@ namespace TennisMingle.API.Models
                     Name = "Court 1",
                     SurfaceId = 4,
                     Price = 30,
-                    IsAvailable = true,
+                    IsAvailable = false,
                     TennisClubId = 3
                 }
 
@@ -203,18 +215,18 @@ namespace TennisMingle.API.Models
                 var persons = new List<Person>() {
                 new Person
                 {
-                    FirstName = "Vasilica",
-                    LastName = "Dancilica",
-                    Bio = "yyyy",
+                    FirstName = "Nick",
+                    LastName = "Bollettieri",
+                    Bio = "Nicholas James Bollettieri (born July 31, 1931) is an American tennis coach. He pioneered the concept of a tennis boarding school, and helped develop many leading tennis players during the past decades, including Andre Agassi, Jim Courier, Monica Seles, and Mary Pierce.",
                     Photo = "sdsdss",
                     Type = PersonType.ADMINISTRATOR,
                     TennisClubId = 1
                 },
                 new Person
                 {
-                    FirstName = "Ion",
-                    LastName = "Ion",
-                    Bio = "fsfd",
+                    FirstName = "Patrick",
+                    LastName = "Mouratoglou",
+                    Bio = "He founded the Mouratoglou Tennis Academy in 1996 near Paris (later relocated to the outskirts of Nice), and has coached many up-and-coming players, including Marcos Baghdatis (whom he coached to the final of the 2006 Australian Open), Julia Vakulenko, Anastasia Pavlyuchenkova, Aravane Rezaï, Jérémy Chardy, Laura Robson, Yanina Wickmayer and Grigor Dimitrov.",
                     TennisClubId = 1,
                     Photo = "fdf",
                     Type = PersonType.COACH
@@ -222,9 +234,9 @@ namespace TennisMingle.API.Models
                 },
                 new Person
                 {
-                    FirstName = "Marius",
-                    LastName = "SiMaiCum",
-                    Bio = "gfhfh",
+                    FirstName = "Darren",
+                    LastName = "Cahill",
+                    Bio = "Darren Cahill (born 2 October 1965) is a tennis coach and former professional tennis player from Australia. In addition, Cahill is a tennis analyst for the Grand Slam events on the US sports network ESPN and a coach with the Adidas Player Development Program and at ProTennisCoach.com",
                     TennisClubId = 2,
                     Photo = "kkkkk",
                     Type = PersonType.COACH
@@ -232,9 +244,9 @@ namespace TennisMingle.API.Models
                 },
                 new Person
                 {
-                    FirstName = "Vasilica",
-                    LastName = "Dancilica",
-                    Bio = "yyyy",
+                    FirstName = "Horia",
+                    LastName = "Tecau",
+                    Bio = "Horia Tecău, born January 19, is a Romanian tennis player currently ranked World No. 11 in doubles.",
                     Photo = "sdsdss",
                     Type = PersonType.USER
                 },
