@@ -331,6 +331,12 @@ textarea:focus {
     margin-bottom: 1em;
 }
 
+.tm-divider-long {
+    background-color: #56e07b;
+    height: 4px;
+    margin-bottom: 1em;
+}
+
 .stats {
     background-color: white;
     border: 4px solid #56e07b;
@@ -380,6 +386,19 @@ textarea:focus {
     min-width: 137px;
 }
 
+.thumbnail {
+    padding-left: 20px;
+}
+
 .filter-type {
     font-size: 1.1em;
+}
+
+.footer-link {
+   color:  #188155;
+}
+
+.footer-link:hover {
+   color: #5da788;
+   text-decoration: none;
 }

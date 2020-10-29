@@ -172,4 +172,3 @@ D:\.NET-C#\TW4\TennisMingle\TennisMingle.API\obj\Debug\netcoreapp3.1\TennisMingl
 D:\.NET-C#\TW4\TennisMingle\TennisMingle.API\obj\Debug\netcoreapp3.1\TennisMingle.API.xml
 D:\.NET-C#\TW4\TennisMingle\TennisMingle.API\obj\Debug\netcoreapp3.1\TennisMingle.API.pdb
 D:\.NET-C#\TW4\TennisMingle\TennisMingle.API\obj\Debug\netcoreapp3.1\TennisMingle.API.genruntimeconfig.cache
-D:\.NET-C#\TW4\TennisMingle\TennisMingle.API\obj\Debug\netcoreapp3.1\TennisMingle.API.csprojAssemblyReference.cache

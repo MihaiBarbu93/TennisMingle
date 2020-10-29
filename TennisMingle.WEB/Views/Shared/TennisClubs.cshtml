@@ -3,11 +3,11 @@
     <div class="container text-center mt-5">
 
         <i>There are <b>@Model.TennisClubs.Count</b> places to play tennis within a 5 mile radius of your desired location </i>
-        <div class="row mt-5">
+        <div class="row mt-5 mb-4">
             <div class="col-md-3 col-lg-3 col-xl-2 small">
                 <div class="filter text-left">
                     <div class="mb-4">
-                        <div class="filter-type mt-4">
+                        <div class="mt-4">
                             <p class="filter-type font-weight-bold mb-1">Facilites</p>
                             <div class="tm-divider"></div>
                             @foreach (var tennisClub in Model.TennisClubs)
@@ -20,7 +20,7 @@
                                     </div>
                                 }
                             }
-                        <div class="filter-type mt-4">
+                        <div class="mt-4">
                             <p class="filter-type font-weight-bold mb-1">Surface</p>
                             <div class="tm-divider"></div>
 
@@ -33,26 +33,6 @@
                             }
                         </div>
                             
-                        </div>
-                        <div class="filter-type mt-4">
-                            <p class="filter-type font-weight-bold mb-1">Radius</p>
-                            <div class="tm-divider"></div>
-                            <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="materialUnchecked">
-                                <label class="form-check-label" for="materialUnchecked">Far away</label>
-                            </div>
-                            <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="materialUnchecked">
-                                <label class="form-check-label" for="materialUnchecked">Close</label>
-                            </div>
-                            <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="materialUnchecked">
-                                <label class="form-check-label" for="materialUnchecked">Out of area</label>
-                            </div>
-                            <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="materialUnchecked">
-                                <label class="form-check-label" for="materialUnchecked">Right here</label>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -68,7 +48,7 @@
                         </div>
                         <div class="col-6 col-lg-8 pr-0 mb-2">
 
-                            <div class="thumbnail">
+                            <div class="thumbnail text-left">
                                 <div class="row mb-3">
                                     <div class="col-12 col-lg-5 col-xl-6">
                                         <div class="caption">
