@@ -9,14 +9,16 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/lib/font-awesome/css/all.css" />
     <link rel="stylesheet" href="~/css/site.css" />
-    
+
     <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKJPmmyuqowjE4jpjiCymXeQEO-UXQEL4&callback=initMap&libraries=&v=weekly"
+            defer></script>
 </head>
 <body>
     <header>
         <div class="row top-nav">
             <div class="site-logo col-2 text-center">
-                <a class="navbar-brand site-title p-0" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/Images/logo.png" /></a>
+                <a class="navbar-brand site-title p-0" asp-area="" asp-controller="Home" asp-action="Index"><img style="width: 190px" src="~/Images/logo.png" /></a>
             </div>
             <nav class="navbar col-7 navbar-expand-sm navbar-toggleable-sm navbar-light h-100 cities-collapse font-weight-bolder">
                 <div class="container" style="margin: 0px">
@@ -41,9 +43,8 @@
                 </div>
             </nav>
             <div class="navbar-venue-partner col-3 text-center">
-                <ul class="p-0 m-0">
                     <a class="navbar-venue-partner-link" asp-area="" asp-controller="Home" asp-action="Index">become a venue partner</a>
-                </ul>
+              
             </div>
         </div>
     </header>
