@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Web;
+using System.Web.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -92,12 +95,54 @@ namespace TennisMingle.WEB.Controllers
             }
             return View(entity);
         }
+        /*        [HttpGet]
+                public async Task<IActionResult> GetBooking(int cityId, int tennisClubId) 
+                {
 
-        [HttpPost]
+                }*/
 
+
+
+        /* [HttpPost]
+         public static async Task<IActionResult> BookCourt(int cityId, int tennisClubId, Booking requestBooking)
+         {
+             // Initialization.  
+             Booking responseBooking = new Booking();
+
+             // Posting.  
+             using (var client = new HttpClient())
+             {
+                 // Setting Base address.  
+                 client.BaseAddress = new Uri($"https://localhost:44313/");
+
+                 // Setting content type.                   
+                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                 // Initialization.  
+                 HttpResponseMessage response = new HttpResponseMessage();
+
+                 // HTTP POST  
+                 response = await client.PostAsJsonAsync($"api/tennisclubs/{tennisClubId}/booking", requestBooking).ConfigureAwait(false);
+
+                 // Verification  
+                 if (response.IsSuccessStatusCode)
+                 {
+                     // Reading Response.  
+                     string result = response.Content.ReadAsStringAsync().Result;
+                     responseBooking = JsonConvert.DeserializeObject<Booking>(result);
+                 }
+
+                 response.Headers.Location =
+                         new Uri(Url.Link("DefaultApi", new { action = "status", id = id }));
+                 return NoContent();
+             }
+
+         }
+ */
         public async Task<IActionResult> BookCourt(int cityId, int tennisClubId, Booking booking)
         {
             Booking receivedBooking = new Booking();
+            TennisCourt tennisCourt = new TennisCourt();
             using (var httpClient = new HttpClient())
             {
                 var content = new MultipartFormDataContent();
@@ -110,20 +155,32 @@ namespace TennisMingle.WEB.Controllers
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     var tennisCourts = JsonConvert.DeserializeObject<List<TennisCourt>>(apiResponse);
-                    TennisCourt tennisCourt = tennisCourts.Where(tc => tc.IsAvailable == true).FirstOrDefault();
+                    tennisCourt = tennisCourts.Where(tc => tc.IsAvailable == true).FirstOrDefault();
                     content.Add(new StringContent(tennisCourt.Id.ToString()), "TennisCourtId");
 
+
                 }
+               /* Booking newBooking = new Booking
+                {
+                    FirstName = booking.FirstName,
+                    LastName = booking.LastName,
+                    PhoneNumber = booking.PhoneNumber,
+                    DateStart = booking.DateStart,
+                    DateEnd = booking.DateStart.AddHours(booking.Duration),
+                    TennisCourtId = tennisCourt.Id
+
+
+                };*/
                 using (var response = await httpClient.PostAsync($"https://localhost:44313/api/tennisclubs/{tennisClubId}/booking", content))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     receivedBooking = JsonConvert.DeserializeObject<Booking>(apiResponse);
                 }
             }
-            /*      return CreatedAtAction("TennisClub", new { cityId, tennisClubId}, receivedBooking);*/
-            return NoContent();
+            return CreatedAtAction("TennisClub", new { cityId, tennisClubId }, receivedBooking);
+           
         }
-    
+
 
 
         public IActionResult Privacy()
