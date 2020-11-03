@@ -156,7 +156,8 @@ namespace TennisMingle.API.Migrations
                 {
                     TennisCourtId = table.Column<int>(nullable: false),
                     PersonId = table.Column<int>(nullable: false),
-                    Id = table.Column<int>(nullable: false),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     DateStart = table.Column<DateTime>(nullable: false),
                     DateEnd = table.Column<DateTime>(nullable: false),
                     FirstName = table.Column<string>(nullable: true),

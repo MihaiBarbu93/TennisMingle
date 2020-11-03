@@ -10,7 +10,7 @@ using TennisMingle.API.Models;
 namespace TennisMingle.API.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20201103112507_InitialMigration")]
+    [Migration("20201103123730_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -39,7 +39,9 @@ namespace TennisMingle.API.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Id")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
@@ -236,13 +238,13 @@ namespace TennisMingle.API.Migrations
             modelBuilder.Entity("TennisMingle.API.Models.Booking", b =>
                 {
                     b.HasOne("TennisMingle.API.Models.Person", "Person")
-                        .WithMany()
+                        .WithMany("Bookings")
                         .HasForeignKey("PersonId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("TennisMingle.API.Models.TennisCourt", "TennisCourt")
-                        .WithMany()
+                        .WithMany("Bookings")
                         .HasForeignKey("TennisCourtId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
