@@ -10,27 +10,21 @@ namespace TennisMingle.API.Models
 {
     public class Booking
     {
-        [Key]
+/*        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]*/
         public int Id { get; set; }
         public DateTime DateStart { get; set; }
         public DateTime DateEnd { get; set; }
-        [ForeignKey("TennisCourt")]
+        
         public int TennisCourtId { get; set; }
-        public TennisCourt TennisCourt { get; set; }
+        [ForeignKey("TennisCourtId")]
+        public virtual TennisCourt TennisCourt { get; set; }
         [NotMapped]
         public int Duration { get; set; }
-
-
-#nullable enable
-        [AllowNull]
-        [ForeignKey("Person")]
         public int? PersonId { get; set; }
-        [AllowNull]
-        public Person? Person { get; set; }
+        [ForeignKey("PersonId")]
+        public virtual Person? Person { get; set; }
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
         public string? PhoneNumber { get; set; }
-
-
     }
 }
