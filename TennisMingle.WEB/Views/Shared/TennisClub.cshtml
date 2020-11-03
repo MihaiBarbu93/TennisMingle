@@ -37,7 +37,7 @@
                 <div class="col-sm-12 mb-3">
                     <div class="row">
                         <div class="col-12 d-flex flex-row">
-                            <img class="img-fluid lazyloaded" imgservice="w=578" loading="lazy" src="~/Images/@Model.TennisClub.Image">
+                            <img class="img-fluid lazyloaded" imgservice="w=578" loading="lazy" src="~/Images/@Model.TennisClub.Image" style="width: 90%">
                         </div>
                     </div>
                 </div>
@@ -185,7 +185,7 @@
                 </div>
                 <div class="card-body rounded-bottom">
                 @{
-                    var parms = new Dictionary<string, string>
+                    var parms = new Dictionary<string, string>()
                                                                                                                                                                                                                                                             {
                         { "cityId", Model.TennisClub.Address.CityId.ToString() },
                         { "tennisClubId", Model.TennisClub.Id.ToString() }
@@ -238,36 +238,48 @@
                         <button class="btn btn-primary" type="submit">Submit Enquiry</button>
                     </form>
             </div>
-            <div class="card mb-3 pf-card card-similar ng-star-inserted">
-                <div class="card-header">
-                    <h7>
-                        <i class="far fa-map"></i>
-                        Nearby Tennis Courts
-                    </h7>
-                </div>
-            @foreach (var tennisClub in Model.TennisClubs)
-            {
-                <a class="card-body cursor pointer pb-0 ng-star-inserted" href="/london/venue/notting-hill-harbour-club/tennis-indoor-32749">
-                    <div class="row">
-                        <div class="col-4 col-md-12 col-lg-6 col-xl-4 pb-2">
-                            <img class="media-object rounded pf-card__img" height="66" imgservice="w=170" width="100" alt="Notting Hill Harbour Club" src="https://web-assets.playfinder.com/medium/pitch_image_1485795390_635070.jpeg?w=170&amp;auto=format,compress" srcset="https://web-assets.playfinder.com/medium/pitch_image_1485795390_635070.jpeg?w=170&amp;auto=format,compress&amp;dpr=1 1x, https://web-assets.playfinder.com/medium/pitch_image_1485795390_635070.jpeg?w=170&amp;auto=format,compress&amp;dpr=2 2x, https://web-assets.playfinder.com/medium/pitch_image_1485795390_635070.jpeg?w=170&amp;auto=format,compress&amp;dpr=3 3x">
-                        </div>
-                        <div class="col-8 col-md-12  col-lg-6 col-xl-8">
-                            <h7>
-                                @tennisClub.Name
-                            </h7>
-                            <p >
-                                @tennisClub.Address.Address
-                            </p>
-                            <p>
-                                <i class="fas fa-bus"></i>
-                                <i class="fas fa-tram"></i>
-                            </p>
-                        </div>
+                <div class="card mb-3 pf-card card-similar ng-star-inserted">
+                    <div class="card-header">
+                        <h7>
+                            <i class="far fa-map"></i>
+                            Nearby Tennis Courts
+                        </h7>
                     </div>
-                </a>
-            }
-            </div>
+
+                    @{ foreach (var tennisClub in Model.TennisClubs)
+                        {
+                            var prm = new Dictionary<string, string>()
+                                                                                                                                                                                                                                                                                                {
+                        { "cityId",tennisClub.Address.CityId.ToString() },
+                        { "tennisClubId", tennisClub.Id.ToString() }
+                    };
+
+
+                        <a class="card-body cursor pointer pb-0 ng-star-inserted"
+                           asp-controller="TennisClub"
+                           asp-action="TennisClub"
+                           asp-all-route-data="prm">
+                            <div class="row">
+                                <div class="col-4 col-md-12 col-lg-6 col-xl-4 pb-2">
+                                    <img class="media-object rounded pf-card__img" height="66" imgservice="w=170" width="100" src="~/Images/@tennisClub.Image">
+                                </div>
+                                <div class="col-8 col-md-12  col-lg-6 col-xl-8">
+                                    <h7>
+                                        @tennisClub.Name
+                                    </h7>
+                                    <p>
+                                        @tennisClub.Address.Address
+                                    </p>
+                                    <p>
+                                        <i class="fas fa-bus"></i>
+                                        <i class="fas fa-tram"></i>
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+                            }
+                        }
+                </div>
         </div>
     </div>
 </div>

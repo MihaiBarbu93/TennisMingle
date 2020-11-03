@@ -36,7 +36,7 @@ namespace TennisMingle.API.Controllers
             [FromBody] Booking booking)
         {
 
-            var tennisClub = _context.TennisClubs.FirstOrDefault(tc => tc.Id == tennisClubId);
+            var tennisClub = _context.TennisClubs.Include(tennisClub => tennisClub.TennisCourts).FirstOrDefault(tc => tc.Id == tennisClubId);
 
             if (tennisClub == null)
             {

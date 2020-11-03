@@ -46,6 +46,7 @@ namespace TennisMingle.API.Models
 
         public TennisClub TennisClub { get; set; }
 
+        [NotMapped]
         public ICollection<Booking> Bookings { get; set; }
     }
 }

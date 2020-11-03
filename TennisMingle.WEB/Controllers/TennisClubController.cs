@@ -160,24 +160,26 @@ namespace TennisMingle.WEB.Controllers
 
 
                 }
-               /* Booking newBooking = new Booking
+                Booking newBooking = new Booking
                 {
                     FirstName = booking.FirstName,
                     LastName = booking.LastName,
                     PhoneNumber = booking.PhoneNumber,
                     DateStart = booking.DateStart,
                     DateEnd = booking.DateStart.AddHours(booking.Duration),
-                    TennisCourtId = tennisCourt.Id
+                    TennisCourtId = tennisCourt.Id,
+                    Duration = booking.Duration
 
 
-                };*/
-                using (var response = await httpClient.PostAsync($"https://localhost:44313/api/tennisclubs/{tennisClubId}/booking", content))
+                };
+                using (var response = await httpClient.PostAsJsonAsync($"https://localhost:44313/api/tennisclubs/{tennisClubId}/booking", newBooking))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    receivedBooking = JsonConvert.DeserializeObject<Booking>(apiResponse);
+                   /* receivedBooking = JsonConvert.DeserializeObject<Booking>(apiResponse);*/
                 }
             }
-            return CreatedAtAction("TennisClub", new { cityId, tennisClubId }, receivedBooking);
+            return RedirectToAction("TennisClub", new { cityId, tennisClubId });
+            /*return CreatedAtAction("TennisClub", new { cityId, tennisClubId }, receivedBooking);*/
            
         }
 

@@ -10,10 +10,11 @@ namespace TennisMingle.API.Models
 {
     public class Booking
     {
+        [Key]
         public int Id { get; set; }
         public DateTime DateStart { get; set; }
         public DateTime DateEnd { get; set; }
-
+        [ForeignKey("TennisCourt")]
         public int TennisCourtId { get; set; }
         public TennisCourt TennisCourt { get; set; }
         [NotMapped]
@@ -22,6 +23,7 @@ namespace TennisMingle.API.Models
 
 #nullable enable
         [AllowNull]
+        [ForeignKey("Person")]
         public int? PersonId { get; set; }
         [AllowNull]
         public Person? Person { get; set; }
