@@ -10,7 +10,7 @@ using TennisMingle.API.Models;
 namespace TennisMingle.API.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20201029195409_InitialMigration")]
+    [Migration("20201103112507_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -236,13 +236,13 @@ namespace TennisMingle.API.Migrations
             modelBuilder.Entity("TennisMingle.API.Models.Booking", b =>
                 {
                     b.HasOne("TennisMingle.API.Models.Person", "Person")
-                        .WithMany("Bookings")
+                        .WithMany()
                         .HasForeignKey("PersonId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("TennisMingle.API.Models.TennisCourt", "TennisCourt")
-                        .WithMany("Bookings")
+                        .WithMany()
                         .HasForeignKey("TennisCourtId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();

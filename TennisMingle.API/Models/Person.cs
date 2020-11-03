@@ -23,6 +23,7 @@ namespace TennisMingle.API.Models
         [Required]
         public PersonType Type { get; set; }
 
+        [NotMapped]
         public ICollection<Booking> Bookings { get; set; }
 
     }

@@ -159,7 +159,6 @@ C:\Users\Mihai\Desktop\TennisMingle\TennisMingle\TennisMingle.API\bin\Debug\netc
 C:\Users\Mihai\Desktop\TennisMingle\TennisMingle\TennisMingle.API\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\Mihai\Desktop\TennisMingle\TennisMingle\TennisMingle.API\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\Mihai\Desktop\TennisMingle\TennisMingle\TennisMingle.API\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-C:\Users\Mihai\Desktop\TennisMingle\TennisMingle\TennisMingle.API\obj\Debug\netcoreapp3.1\TennisMingle.API.csprojAssemblyReference.cache
 C:\Users\Mihai\Desktop\TennisMingle\TennisMingle\TennisMingle.API\obj\Debug\netcoreapp3.1\TennisMingle.API.AssemblyInfoInputs.cache
 C:\Users\Mihai\Desktop\TennisMingle\TennisMingle\TennisMingle.API\obj\Debug\netcoreapp3.1\TennisMingle.API.AssemblyInfo.cs
 C:\Users\Mihai\Desktop\TennisMingle\TennisMingle\TennisMingle.API\obj\Debug\netcoreapp3.1\TennisMingle.API.csproj.CoreCompileInputs.cache

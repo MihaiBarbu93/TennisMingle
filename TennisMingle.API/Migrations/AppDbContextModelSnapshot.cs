@@ -234,13 +234,13 @@ namespace TennisMingle.API.Migrations
             modelBuilder.Entity("TennisMingle.API.Models.Booking", b =>
                 {
                     b.HasOne("TennisMingle.API.Models.Person", "Person")
-                        .WithMany("Bookings")
+                        .WithMany()
                         .HasForeignKey("PersonId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("TennisMingle.API.Models.TennisCourt", "TennisCourt")
-                        .WithMany("Bookings")
+                        .WithMany()
                         .HasForeignKey("TennisCourtId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
