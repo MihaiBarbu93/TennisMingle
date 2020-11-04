@@ -22,7 +22,9 @@ namespace TennisMingle.API.Models
             {
                 foreignKey.DeleteBehavior = DeleteBehavior.Restrict;
             }
-            modelBuilder.Entity<Booking>().HasKey(b => new { b.PersonId, b.TennisCourtId });
+
+            // Higher Priority than the models! Enforces Primary keys for PersonId and TennisCourtId
+/*            modelBuilder.Entity<Booking>().HasKey(b => new { b.PersonId, b.TennisCourtId });*/
            
 
         }

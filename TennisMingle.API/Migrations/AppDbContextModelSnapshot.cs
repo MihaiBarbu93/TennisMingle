@@ -21,11 +21,10 @@ namespace TennisMingle.API.Migrations
 
             modelBuilder.Entity("TennisMingle.API.Models.Booking", b =>
                 {
-                    b.Property<int?>("PersonId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TennisCourtId")
-                        .HasColumnType("int");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("DateEnd")
                         .HasColumnType("datetime2");
@@ -36,18 +35,21 @@ namespace TennisMingle.API.Migrations
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("PersonId")
+                        .HasColumnType("int");
 
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("PersonId", "TennisCourtId");
+                    b.Property<int>("TennisCourtId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PersonId");
 
                     b.HasIndex("TennisCourtId");
 
@@ -238,8 +240,7 @@ namespace TennisMingle.API.Migrations
                     b.HasOne("TennisMingle.API.Models.Person", "Person")
                         .WithMany("Bookings")
                         .HasForeignKey("PersonId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("TennisMingle.API.Models.TennisCourt", "TennisCourt")
                         .WithMany("Bookings")
