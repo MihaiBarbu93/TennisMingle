@@ -22,9 +22,9 @@ namespace TennisMingle.API.Models
         public int Duration { get; set; }
         public int? PersonId { get; set; }
         [ForeignKey("PersonId")]
-        public virtual Person? Person { get; set; }
-        public string? FirstName { get; set; }
-        public string? LastName { get; set; }
-        public string? PhoneNumber { get; set; }
+        public virtual Person Person { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string PhoneNumber { get; set; }
     }
 }
