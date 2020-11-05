@@ -20,7 +20,7 @@
                                 class="form-control bg-dark text-white mb-2"
                                 asp-items="@(new SelectList(Model.Cities,"Id", "Name"))">
                         </select>
-                        <input type="datetime-local" id="followup_next_followup_date" class="mt-2 w-100" name="followup_next_followup_date" placeholder="Choose a reservation date">
+                        <input type="datetime-local" id="followup_next_followup_date" class="mt-2 w-100" name="followup_next_followup_date" placeholder="Choose a reservation date" value="@DateTime.Now.ToString("s")">
                     </div>
                 </div>
             </div>

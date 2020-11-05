@@ -15,14 +15,15 @@ namespace TennisMingle.API.Models
         public string FirstName { get; set; }
         [Required]
         public string LastName { get; set; }
+        [Required]
+        [MinLength (8)]
+        public string Password { get; set; }
         public string Bio { get; set; }
         public string Photo { get; set; }
         public int? TennisClubId { get; set; }
         public TennisClub TennisClub { get; set; }
-
-        [Required]
-        public PersonType Type { get; set; }
-
+        public int PersonTypeId { get; set; }
+        public PersonType PersonType { get; set; }
         public ICollection<Booking> Bookings { get; set; }
 
     }

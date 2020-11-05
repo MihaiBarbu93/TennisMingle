@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TennisMingle.API.Models;
 
 namespace TennisMingle.API.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201105073506_UserPassword")]
+    partial class UserPassword
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -118,38 +120,20 @@ namespace TennisMingle.API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PersonTypeId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Photo")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("TennisClubId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("PersonTypeId")
-                        .IsUnique();
-
-                    b.HasIndex("TennisClubId");
-
-                    b.ToTable("Persons");
-                });
-
-            modelBuilder.Entity("TennisMingle.API.Models.PersonType", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("PersType")
+                    b.Property<int>("Type")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.ToTable("PersonTypes");
+                    b.HasIndex("TennisClubId");
+
+                    b.ToTable("Persons");
                 });
 
             modelBuilder.Entity("TennisMingle.API.Models.Surface", b =>
@@ -285,12 +269,6 @@ namespace TennisMingle.API.Migrations
 
             modelBuilder.Entity("TennisMingle.API.Models.Person", b =>
                 {
-                    b.HasOne("TennisMingle.API.Models.PersonType", "PersonType")
-                        .WithOne("Person")
-                        .HasForeignKey("TennisMingle.API.Models.Person", "PersonTypeId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.HasOne("TennisMingle.API.Models.TennisClub", "TennisClub")
                         .WithMany("Persons")
                         .HasForeignKey("TennisClubId")

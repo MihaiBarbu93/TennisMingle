@@ -125,7 +125,7 @@ namespace TennisMingle.API.Controllers
                 TennisClubId = tennisClubId,
                 TennisClub = tennisClub,
                 Photo = person.Photo,
-                Type = person.Type
+                PersonType = person.PersonType
             };
 
             _context.Persons.Add(personToCreate);
@@ -166,7 +166,7 @@ namespace TennisMingle.API.Controllers
             personToUpdate.Bio = person.Bio;
             personToUpdate.TennisClubId = tennisClubId;
             personToUpdate.Photo = person.Photo;
-            personToUpdate.Type = person.Type;
+            personToUpdate.PersonType = person.PersonType;
 
             _context.SaveChanges();
 
@@ -216,7 +216,7 @@ namespace TennisMingle.API.Controllers
             personFromDb.Bio = personToPatch.Bio;
             personFromDb.TennisClubId = personToPatch.TennisClubId;
             personFromDb.Photo = personToPatch.Photo;
-            personFromDb.Type = personToPatch.Type;
+            personFromDb.PersonType = personToPatch.PersonType;
 
             _context.SaveChanges();
 

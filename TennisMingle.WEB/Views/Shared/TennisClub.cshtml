@@ -3,7 +3,6 @@
 <div class="container mb-2">
     <div class="row">
         <div class="col-md-8 mt-3">
-         
             <div class="row">
                 <div class="col-sm-12 mb-0">
                     <a href="">
@@ -56,7 +55,6 @@
             </div>
             <div class="row">
                 <div class="col-sm-12 mb-sm-0 mb-md-3">
-                        
                     <div class="card pf-card mb-3" id="mlp-map-scroll-to">
                         <div class="card-header" role="tab">
                             <h7>
@@ -124,7 +122,6 @@
                     <p >@Model.TennisClub.Description </p>
                 </div>
             </div>
-                       
         </div>
         <div class="col-md-4 mt-3">
             <div class="card mb-3 pf-card mlp-sport-format d-none d-md-block">
@@ -136,7 +133,6 @@
                 </div>
                 <div class="card-body">
                     <ul class="list-inline">
-                            
                         <li class="list-inline-item mb-1 ng-star-inserted">
                             <a class="-warning -active" placement="top" tooltipclass="sg-tooltip--warn" href="">
                                 Indoor 
@@ -219,9 +215,8 @@
                         <div class="form-row">
                             <div class="col-md-12 mb-3">
                                 <label for="validationCustom04">Select Date & Time</label>
-                                <input type="datetime-local" id="followup_next_followup_date" class="mt-2 w-100" name="StartDate" placeholder="Choose a reservation date">
+                                <input type="datetime-local" name="DateStart" placeholder="Choose a reservation date" value="@DateTime.Now.ToString("s")">
                             </div>
-
                         </div>
                         <div class="form-row">
                             <div class="col-md-12 mb-3">
@@ -254,7 +249,6 @@
                         { "tennisClubId", tennisClub.Id.ToString() }
                     };
 
-
                         <a class="card-body cursor pointer pb-0 ng-star-inserted"
                            asp-controller="TennisClub"
                            asp-action="TennisClub"
@@ -280,6 +274,7 @@
                             }
                         }
                 </div>
+            </div>
         </div>
     </div>
 </div>
