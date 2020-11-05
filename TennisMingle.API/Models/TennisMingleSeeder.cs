@@ -239,7 +239,7 @@ namespace TennisMingle.API.Models
                     Password = "12345678",
                     Bio = "Nicholas James Bollettieri (born July 31, 1931) is an American tennis coach. He pioneered the concept of a tennis boarding school, and helped develop many leading tennis players during the past decades, including Andre Agassi, Jim Courier, Monica Seles, and Mary Pierce.",
                     Photo = "sdsdss",
-                    PersonTypeId = 0,
+                    PersonTypeId = 3,
                     TennisClubId = 1
                 },
                 new Person

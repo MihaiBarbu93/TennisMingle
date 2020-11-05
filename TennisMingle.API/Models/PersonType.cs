@@ -13,6 +13,6 @@ namespace TennisMingle.API.Models
         [Required]
         public PType PersType { get; set; }
 
-        public Person Person { get; set; }
+        public List<Person> Persons { get; set; }
     }
 }
