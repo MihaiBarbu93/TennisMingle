@@ -13,6 +13,6 @@ namespace TennisMingle.API.Models
         [Required]
         public Surfaces SurfaceType { get; set; }
 
-        public TennisCourt TennisCourt { get; set; }
+        public List<TennisCourt> TennisCourts { get; set; }
     }
 }

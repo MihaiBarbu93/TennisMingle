@@ -39,11 +39,11 @@
 
                     <div class="user-area justify-content-end">
                         <span>
-                            
+                            <a href="#RegisterModal" class="trigger-btn" data-toggle="modal">Sign Up</a>
                         </span>
                         <span>|</span>
                         <span>
-                            <a href="#myModal" class="trigger-btn" data-toggle="modal">Login</a>
+                            <a href="#LoginModal" class="trigger-btn" data-toggle="modal">Login</a>
                         </span>
                     </div>
                 </div>
@@ -159,6 +159,7 @@
     </footer>
     <!-- Footer -->
     @await Component.InvokeAsync("Register")
+    @await Component.InvokeAsync("Login")
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

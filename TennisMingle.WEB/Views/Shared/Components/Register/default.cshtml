@@ -1,45 +1,47 @@
 ﻿@model EntityViewModel
 
-<div id="myModal" class="modal fade">
+<div id="RegisterModal" class="modal fade">
     <div class="modal-dialog modal-login">
         <div class="modal-content">
             <form action="" method="post">
                 <div class="modal-header">
-                    <h4 class="modal-title">Login</h4>
+                    <h4 class="modal-title">Register</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label>Username</label>
+                        <label>First Name</label>
+                        <input type="text" class="form-control" required="required">
+                    </div>
+                    <div class="form-group">
+                        <label>Last Name</label>
                         <input type="text" class="form-control" required="required">
                     </div>
                     <div class="form-group">
                         <div class="clearfix">
                             <label>Password</label>
-                            <a href="#" class="float-right text-muted"><small>Forgot?</small></a>
                         </div>
-
                         <input type="password" class="form-control" required="required">
                     </div>
                     <div class="form-group">
                         <div class="clearfix">
-                            <label>
-                                <label asp-for="Cities" class="control-label"></label>
-                                <select asp-for="@Model.Cities.FirstOrDefault().Id"
-                                        class="form-control bg-dark text-white mb-2"
-                                        asp-items="@(new SelectList(Model.Cities,"Id", "Name"))">
-                                </select>
-                            </label>
-                            
+                            <label>Confirm Password</label>
                         </div>
-
                         <input type="password" class="form-control" required="required">
                     </div>
-
+                    <div class="form-group">
+                        <div class="clearfix">
+                            <label for="" class="control-label">Choose account type</label>
+                            @*<select asp-for="PersonTypes"
+                                    class="form-control"
+                                    asp-items="Html.GetEnumSelectList<TennisMingle.WEB.Enums.PType>()">
+                            </select>*@
+                            @Html.DropDownListFor(o => o.PersonTypes, Enum.GetValues(typeof(TennisMingle.WEB.Enums.PType)).Cast<TennisMingle.WEB.Enums.PType>().Select(x => new SelectListItem { Text = x.ToString(), Value = ((int)x).ToString() }))
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer justify-content-between">
-                    <label class="form-check-label"><input type="checkbox"> Remember me</label>
-                    <input type="submit" class="btn btn-primary" value="Login">
+                    <input type="submit" class="btn btn-primary" value="Register">
                 </div>
             </form>
         </div>

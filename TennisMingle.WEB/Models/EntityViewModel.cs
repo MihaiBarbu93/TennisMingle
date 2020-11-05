@@ -20,6 +20,7 @@ namespace TennisMingle.WEB.Models
         public HashSet<TennisClub> TennisClubs { get; set; } = new HashSet<TennisClub>();
         public HashSet<TennisCourt> TennisCourts { get; set; } = new HashSet<TennisCourt>();
         public HashSet<Booking> Bookings { get; set; } = new HashSet<Booking>();
+        public HashSet<PersonType> PersonTypes { get; set; } = new HashSet<PersonType>();
 
        
     }

@@ -1,12 +1,13 @@
 ﻿using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using TennisMingle.API.Models;
 
 namespace TennisMingle.API.Controllers
 {
     [ApiController]
-    [Route("api/cities/{cityId}/tennisclubs/{tennisClubId}/persons")]
+    
     public class CoachController : ControllerBase
     {
         private readonly AppDbContext _context;
@@ -24,7 +25,7 @@ namespace TennisMingle.API.Controllers
         [Route("/api/persons")]
         public IActionResult GetAllPersons()
         {
-            var persons = _context.Persons.Select(p => p);
+            var persons = _context.Persons.Include(p => p.PersonType).ToList();
 
             if (persons == null)
             {
@@ -38,6 +39,7 @@ namespace TennisMingle.API.Controllers
         /// This GET method returns all the coaches from a club
         /// </summary>
         [HttpGet]
+        [Route("api/cities/{cityId}/tennisclubs/{tennisClubId}/persons")]
         public IActionResult GetPersons(int cityId, int tennisClubId)
         {
             var city = _context.Cities.FirstOrDefault(c => c.Id == cityId);
@@ -54,7 +56,7 @@ namespace TennisMingle.API.Controllers
                 return NotFound();
             }
 
-            var persons = _context.Persons.Where(p => p.TennisClubId == tennisClubId);
+            var persons = _context.Persons.Where(p => p.TennisClubId == tennisClubId).Include(p => p.PersonType);
 
             if (persons == null)
             {
@@ -69,7 +71,7 @@ namespace TennisMingle.API.Controllers
         /// This GET method returns a person from a club with a specific id 
         /// </summary>
         [HttpGet]
-        [Route("{id}", Name = "GetPerson")]
+        [Route("api/cities/{cityId}/tennisclubs/{tennisClubId}/persons/{id}", Name = "GetPerson")]
         public IActionResult GetPerson(int cityId, int tennisClubId, int id)
         {
             var city = _context.Cities.FirstOrDefault(c => c.Id == cityId);
@@ -86,7 +88,7 @@ namespace TennisMingle.API.Controllers
                 return NotFound();
             }
 
-            var persons = _context.Persons.Where(p => p.TennisClubId == tennisClubId);
+            var persons = _context.Persons.Where(p => p.TennisClubId == tennisClubId).Include(p => p.PersonType);
 
             if (persons == null)
             {
@@ -100,6 +102,7 @@ namespace TennisMingle.API.Controllers
         /// This POST method creates a person which is added to a club
         /// </summary>
         [HttpPost]
+        [Route("api/cities/{cityId}/tennisclubs/{tennisClubId}/persons")]
         public IActionResult CreatePerson(int cityId, int tennisClubId,
             [FromBody] Person person)
         {
@@ -139,7 +142,7 @@ namespace TennisMingle.API.Controllers
         /// This PUT method is replacing all the properties of a person
         /// </summary>
         [HttpPut]
-        [Route("{id}")]
+        [Route("api/cities/{cityId}/tennisclubs/{tennisClubId}/persons/{id}")]
         public IActionResult UpdateCoach(int cityId, int tennisClubId, int id,
             [FromBody] Person person)
         {
@@ -177,7 +180,7 @@ namespace TennisMingle.API.Controllers
         /// This PATCH method is replacing only one property of a person
         /// </summary>
         [HttpPatch]
-        [Route("{id}")]
+        [Route("api/cities/{cityId}/tennisclubs/{tennisClubId}/persons/{id}")]
 
         public IActionResult PartiallyUpdateCoach(int cityId, int tennisClubId, int id,
             [FromBody] JsonPatchDocument<Person> patchDoc)
@@ -228,7 +231,7 @@ namespace TennisMingle.API.Controllers
         /// This DELETE method removes a person from a club with a specific id 
         /// </summary>
         [HttpDelete]
-        [Route("{id}")]
+        [Route("api/cities/{cityId}/tennisclubs/{tennisClubId}/persons/{id}")]
 
         public IActionResult DeleteCoach(int cityId, int tennisClubId, int id)
         {
