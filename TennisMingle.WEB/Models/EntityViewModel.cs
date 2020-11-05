@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TennisMingle.API.Enums;
 using TennisMingle.API.Models;
 
 namespace TennisMingle.WEB.Models
@@ -20,5 +21,6 @@ namespace TennisMingle.WEB.Models
         public HashSet<TennisCourt> TennisCourts { get; set; } = new HashSet<TennisCourt>();
         public HashSet<Booking> Bookings { get; set; } = new HashSet<Booking>();
 
+       
     }
 }

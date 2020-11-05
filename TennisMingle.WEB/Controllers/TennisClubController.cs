@@ -156,6 +156,10 @@ namespace TennisMingle.WEB.Controllers
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     var tennisCourts = JsonConvert.DeserializeObject<List<TennisCourt>>(apiResponse);
                     tennisCourt = tennisCourts.Where(tc => tc.IsAvailable == true).FirstOrDefault();
+/*                    if (tennisCourt==null)
+                    {
+                        return NotFound();
+                    }*/
                     content.Add(new StringContent(tennisCourt.Id.ToString()), "TennisCourtId");
 
 

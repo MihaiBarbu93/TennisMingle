@@ -209,6 +209,25 @@ namespace TennisMingle.API.Models
                 _ctx.TennisCourts.AddRange(tennisCourts);
                 _ctx.SaveChanges();
             }
+            if (!_ctx.PersonTypes.Any()) 
+            {
+                var personTypes = new List<PersonType> {
+                    new PersonType
+                    {
+                        PersType = PType.ADMINISTRATOR
+                    },
+                    new PersonType
+                    {
+                        PersType = PType.COACH
+                    },
+                    new PersonType
+                    {
+                        PersType = PType.USER
+                    }
+                };
+                _ctx.PersonTypes.AddRange(personTypes);
+                _ctx.SaveChanges();
+            }
 
             if (!_ctx.Persons.Any())
             {
@@ -217,38 +236,42 @@ namespace TennisMingle.API.Models
                 {
                     FirstName = "Nick",
                     LastName = "Bollettieri",
+                    Password = "12345678",
                     Bio = "Nicholas James Bollettieri (born July 31, 1931) is an American tennis coach. He pioneered the concept of a tennis boarding school, and helped develop many leading tennis players during the past decades, including Andre Agassi, Jim Courier, Monica Seles, and Mary Pierce.",
                     Photo = "sdsdss",
-                    Type = PersonType.ADMINISTRATOR,
+                    PersonTypeId = 0,
                     TennisClubId = 1
                 },
                 new Person
                 {
                     FirstName = "Patrick",
                     LastName = "Mouratoglou",
+                    Password = "12345678",
                     Bio = "He founded the Mouratoglou Tennis Academy in 1996 near Paris (later relocated to the outskirts of Nice), and has coached many up-and-coming players, including Marcos Baghdatis (whom he coached to the final of the 2006 Australian Open), Julia Vakulenko, Anastasia Pavlyuchenkova, Aravane Rezaï, Jérémy Chardy, Laura Robson, Yanina Wickmayer and Grigor Dimitrov.",
                     TennisClubId = 1,
                     Photo = "fdf",
-                    Type = PersonType.COACH
+                    PersonTypeId = 1
 
                 },
                 new Person
                 {
                     FirstName = "Darren",
                     LastName = "Cahill",
+                    Password = "12345678",
                     Bio = "Darren Cahill (born 2 October 1965) is a tennis coach and former professional tennis player from Australia. In addition, Cahill is a tennis analyst for the Grand Slam events on the US sports network ESPN and a coach with the Adidas Player Development Program and at ProTennisCoach.com",
                     TennisClubId = 2,
                     Photo = "kkkkk",
-                    Type = PersonType.COACH
+                    PersonTypeId = 1
 
                 },
                 new Person
                 {
                     FirstName = "Horia",
                     LastName = "Tecau",
+                    Password = "12345678",
                     Bio = "Horia Tecău, born January 19, is a Romanian tennis player currently ranked World No. 11 in doubles.",
                     Photo = "sdsdss",
-                    Type = PersonType.USER
+                    PersonTypeId = 2
                 },
             };
                 _ctx.Persons.AddRange(persons);
