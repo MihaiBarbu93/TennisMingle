@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using TennisMingle.API.Models;
+using TennisMingle.API.Entities;
 using TennisMingle.WEB.Models;
 
 namespace TennisMingle.WEB.Controllers
@@ -41,7 +41,7 @@ namespace TennisMingle.WEB.Controllers
                     }); 
                     foreach (var tennisClub in entity.TennisClubs)
                     {
-                         entity.Cities.Add(tennisClub.Address.City);
+                         entity.Cities.Add(tennisClub.City);
                     }
                 }
                 using (var response = await httpClient.GetAsync($"https://localhost:44313/api/cities/{cityId}/tennisclubs/{entity.TennisClubs.FirstOrDefault().Id}/tenniscourts")) {
@@ -77,7 +77,7 @@ namespace TennisMingle.WEB.Controllers
                 {
                     entity.TennisClub.Prices.Add(tennisCourt.Price);
                 }
-                entity.Cities.Add(entity.TennisClub.Address.City);
+                entity.Cities.Add(entity.TennisClub.City);
 
                 using (var response = await httpClient.GetAsync($"https://localhost:44313/api/cities/{cityId}/tennisclubs"))
                 {
@@ -89,7 +89,7 @@ namespace TennisMingle.WEB.Controllers
                     entity.TennisClubs = new HashSet<TennisClub>(tennisClubs.Where(tc => tc.Id != tennisClubId));
                     foreach (var tennisClub in entity.TennisClubs)
                     {
-                        entity.Cities.Add(tennisClub.Address.City);
+                        entity.Cities.Add(tennisClub.City);
                     }
                 }              
             }

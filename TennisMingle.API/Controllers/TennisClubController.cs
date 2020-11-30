@@ -2,13 +2,14 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
-using TennisMingle.API.Models;
+using TennisMingle.API.Data;
+using TennisMingle.API.Entities;
 
 namespace TennisMingle.API.Controllers
 {
     [ApiController]
     [Route("api/cities/{cityId}/tennisclubs")]
-    public class TennisClubController : ControllerBase
+    public class TennisClubController : BaseApiController
     {
         private AppDbContext _context;
 
@@ -29,10 +30,10 @@ namespace TennisMingle.API.Controllers
             }
 
             var tennisClubs = _context.TennisClubs
-                                      .Include(tc => tc.Address.City)
+                                      .Include(tc => tc.City)
                                       .Include(tc => tc.Facilities)
                                       .Include(tc => tc.TennisCourts)
-                                      .Where(tc => tc.Address.CityId == cityId);
+                                      .Where(tc => tc.CityId == cityId);
 
             return Ok(tennisClubs.ToList());
         }
@@ -47,10 +48,10 @@ namespace TennisMingle.API.Controllers
             }
 
             var tennisClubs = _context.TennisClubs
-                                      .Include(tc => tc.Address.City)
+                                      .Include(tc => tc.City)
                                       .Include(tc => tc.Facilities)
                                       .Include(tc => tc.TennisCourts)
-                                      .Where(tc => (tc.Address.CityId == cityId) && (tc.TennisCourts.FirstOrDefault().IsAvailable));
+                                      .Where(tc => (tc.CityId == cityId) && (tc.TennisCourts.FirstOrDefault().IsAvailable));
 
             return Ok(tennisClubs.ToList());
         }
@@ -67,8 +68,7 @@ namespace TennisMingle.API.Controllers
             {
                 return NotFound();
             }
-            var tennisClub = _context.TennisClubs.Include(tc => tc.Address.City)
-                                                 .Include(tc => tc.Facilities)
+            var tennisClub = _context.TennisClubs.Include(tc => tc.City)
                                                  .Include(tc => tc.TennisCourts)
                                                  .Where(tc => tc.Id == tennisClubId);
             if (tennisClub == null)
@@ -90,18 +90,15 @@ namespace TennisMingle.API.Controllers
             {
                 return NotFound();
             }
-
-            _context.Addresses.Add(tennisClub.Address);
             _context.SaveChanges();
 
             var tennisClubToAdd = new TennisClub
             {
                 Name = tennisClub.Name,
                 PhoneNumber = tennisClub.PhoneNumber,
-                AddressId = _context.Addresses.ToList().Last().Id,
                 Description = tennisClub.Description,
                 Schedule = tennisClub.Schedule,
-                Image = tennisClub.Image
+                /*Image = tennisClub.Image*/
             };
 
             _context.TennisClubs.Add(tennisClubToAdd);
@@ -132,15 +129,14 @@ namespace TennisMingle.API.Controllers
                 return NotFound();
             }
 
-            var addressToReplace = _context.Addresses.FirstOrDefault(a => a.Id == tennisClubFromDB.AddressId);
 
             tennisClubFromDB.Name = tennisClub.Name;
-            addressToReplace = tennisClub.Address;
+            tennisClubFromDB.Address = tennisClub.Address;
             tennisClubFromDB.PhoneNumber = tennisClub.PhoneNumber;
             tennisClubFromDB.Description = tennisClub.Description;
             tennisClubFromDB.Schedule = tennisClub.Schedule;
-            tennisClubFromDB.Image = tennisClub.Image;
-
+/*            tennisClubFromDB.Image = tennisClub.Image;
+*/
             _context.SaveChanges();
 
             return NoContent();
@@ -178,8 +174,8 @@ namespace TennisMingle.API.Controllers
             tennisClubFromDB.PhoneNumber = tennisClubToPatch.PhoneNumber;
             tennisClubFromDB.Description = tennisClubToPatch.Description;
             tennisClubFromDB.Schedule = tennisClubToPatch.Schedule;
-            tennisClubFromDB.Image = tennisClubToPatch.Image;
-
+/*            tennisClubFromDB.Image = tennisClubToPatch.Image;
+*/
             _context.SaveChanges();
 
             return NoContent();

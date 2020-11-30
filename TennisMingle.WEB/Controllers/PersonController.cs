@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using TennisMingle.API.Models;
+using TennisMingle.API.Entities;
 using TennisMingle.WEB.Models;
 
 namespace TennisMingle.WEB.Controllers
@@ -27,7 +27,6 @@ namespace TennisMingle.WEB.Controllers
         // GET: PersonController
         public async Task<IActionResult> GetPersons()
         {
-            
             return View();
         }
 
@@ -41,7 +40,7 @@ namespace TennisMingle.WEB.Controllers
     
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreatePerson(Person person)
+        public async Task<IActionResult> CreatePerson(AppUser person)
         {
             try
             {
@@ -56,7 +55,7 @@ namespace TennisMingle.WEB.Controllers
         // POST: PersonController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditPerson(int personId, Person person)
+        public async Task<IActionResult> EditPerson(int personId, AppUser person)
         {
             try
             {
@@ -72,7 +71,7 @@ namespace TennisMingle.WEB.Controllers
 
         [HttpDelete]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeletePerson(int personId, Person person)
+        public async Task<IActionResult> DeletePerson(int personId, AppUser person)
         {
             try
             {

@@ -2,13 +2,14 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
-using TennisMingle.API.Models;
+using TennisMingle.API.Data;
+using TennisMingle.API.Entities;
 
 namespace TennisMingle.API.Controllers
 {
     [ApiController]
     [Route("api/cities/{cityId}/tennisclubs/{tennisClubId}/tenniscourts")]
-    public class TennisCourtController : ControllerBase
+    public class TennisCourtController : BaseApiController
     {
         private readonly AppDbContext _context;
         public TennisCourtController(AppDbContext context)
@@ -101,7 +102,7 @@ namespace TennisMingle.API.Controllers
             var tennisCourtToCreate = new TennisCourt()
             {
                 Name = tennisCourt.Name,
-                SurfaceId = tennisCourt.SurfaceId,
+                Surface = tennisCourt.Surface,
                 Price = tennisCourt.Price,
                 TennisClubId = tennisClubId
             };
@@ -140,7 +141,7 @@ namespace TennisMingle.API.Controllers
                                   select p).SingleOrDefault();
 
             tennisCourtToUpdate.Name = tennisCourt.Name;
-            tennisCourtToUpdate.SurfaceId = tennisCourt.SurfaceId;
+            tennisCourtToUpdate.Surface = tennisCourt.Surface;
             tennisCourtToUpdate.Price = tennisCourt.Price;
             tennisCourtToUpdate.TennisClubId = tennisClubId;
 
@@ -189,7 +190,7 @@ namespace TennisMingle.API.Controllers
             }
 
             tennisCourtFromDb.Name = tennisCourtToPatch.Name;
-            tennisCourtFromDb.SurfaceId = tennisCourtToPatch.SurfaceId;
+            tennisCourtFromDb.Surface = tennisCourtToPatch.Surface;
             tennisCourtFromDb.Price = tennisCourtToPatch.Price;
 
             _context.SaveChanges();

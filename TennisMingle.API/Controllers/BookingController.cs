@@ -2,14 +2,15 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
-using TennisMingle.API.Models;
+using TennisMingle.API.Data;
+using TennisMingle.API.Entities;
 
 namespace TennisMingle.API.Controllers
 {
     [ApiController]
     [Route("api/tennisclubs/{tennisClubId}/booking")]
    
-    public class BookingController : ControllerBase
+    public class BookingController : BaseApiController
     {
         private readonly AppDbContext _context;
         public BookingController(AppDbContext context)

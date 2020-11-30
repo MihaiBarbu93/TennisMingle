@@ -9,7 +9,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using TennisMingle.API.Models;
+using TennisMingle.API.Data;
+using TennisMingle.API.Entities;
+using TennisMingle.API.Extensions;
+using TennisMingle.API.Middleware;
 
 namespace TennisMingle.WEB
 {
@@ -26,42 +29,33 @@ namespace TennisMingle.WEB
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddConnections();
-            services.AddDbContextPool<AppDbContext>(options => options.UseSqlServer(_config.GetConnectionString("TennisMingleConnectionString")));
- 
-            services.AddControllersWithViews()
-                .AddRazorOptions(options =>
-            {
-                options.ViewLocationFormats.Add("/{0}.cshtml");
-            });
-            
+            services.AddApplicationServices(_config);
+            services.AddControllers();
+            services.AddCors();
+            services.AddIdentityServices(_config);
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
-            }
+            app.UseMiddleware<ExceptionMiddleware>();
+
             app.UseHttpsRedirection();
+
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200"));
+
+            app.UseAuthentication();
+
 
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllers();
             });
         }
     }
