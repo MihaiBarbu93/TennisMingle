@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using TennisMingle.API.Models;
+using TennisMingle.API.Entities;
 
 namespace TennisMingle.WEB.Components
 {

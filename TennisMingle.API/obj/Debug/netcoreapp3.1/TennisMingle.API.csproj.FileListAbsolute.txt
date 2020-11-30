@@ -173,3 +173,4 @@ C:\Users\Mihai\Desktop\TennisMingle\TennisMingle\TennisMingle.API\obj\Debug\netc
 C:\Users\Mihai\Desktop\TennisMingle\TennisMingle\TennisMingle.API\obj\Debug\netcoreapp3.1\TennisMingle.API.xml
 C:\Users\Mihai\Desktop\TennisMingle\TennisMingle\TennisMingle.API\obj\Debug\netcoreapp3.1\TennisMingle.API.pdb
 C:\Users\Mihai\Desktop\TennisMingle\TennisMingle\TennisMingle.API\obj\Debug\netcoreapp3.1\TennisMingle.API.genruntimeconfig.cache
+C:\Users\Mihai\Desktop\TennisMingle\TennisMingle\TennisMingle.API\obj\Debug\netcoreapp3.1\TennisMingle.API.csprojAssemblyReference.cache

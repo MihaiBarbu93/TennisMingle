@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MoreLinq;
 using Newtonsoft.Json;
-using TennisMingle.API.Models;
+using TennisMingle.API.Entities;
 using TennisMingle.WEB.Models;
 
 namespace TennisMingle.WEB.Controllers
@@ -39,7 +39,7 @@ namespace TennisMingle.WEB.Controllers
             {
                 using (var response = await httpClient.GetAsync("https://localhost:44313/api/persons")) {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    entity.Persons = JsonConvert.DeserializeObject<HashSet<Person>>(apiResponse);
+                    entity.Persons = JsonConvert.DeserializeObject<HashSet<AppUser>>(apiResponse);
                 }
             }
 

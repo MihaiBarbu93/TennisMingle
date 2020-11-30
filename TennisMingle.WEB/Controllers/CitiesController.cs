@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MoreLinq;
 using Newtonsoft.Json;
-using TennisMingle.API.Models;
+using TennisMingle.API.Entities;
 using TennisMingle.WEB.Models;
 
 namespace TennisMingle.WEB.Controllers
@@ -44,11 +44,11 @@ namespace TennisMingle.WEB.Controllers
                         ReferenceLoopHandling = ReferenceLoopHandling.Serialize
                     });
 
-                    var tennisClubsWithDistinctCities = entity.TennisClubs.DistinctBy(tc => tc.Address.City.Id);
+                    var tennisClubsWithDistinctCities = entity.TennisClubs.DistinctBy(tc => tc.City.Id);
 
                     foreach (var tennisClub in tennisClubsWithDistinctCities)
                     {
-                        entity.Cities.Add(tennisClub.Address.City);
+                        entity.Cities.Add(tennisClub.City);
                     }
 
                 }
@@ -93,11 +93,11 @@ namespace TennisMingle.WEB.Controllers
                         ReferenceLoopHandling = ReferenceLoopHandling.Serialize
                     });
 
-                    var tennisClubsWithDistinctCities = entity.TennisClubs.DistinctBy(tc => tc.Address.City.Id);
+                    var tennisClubsWithDistinctCities = entity.TennisClubs.DistinctBy(tc => tc.City.Id);
 
                     foreach (var tennisClub in tennisClubsWithDistinctCities)
                     {
-                        entity.Cities.Add(tennisClub.Address.City);
+                        entity.Cities.Add(tennisClub.City);
                     }
 
                 }

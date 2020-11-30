@@ -4,13 +4,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using TennisMingle.API.Models;
+using TennisMingle.API.Data;
+using TennisMingle.API.Entities;
 
 namespace TennisMingle.API.Controllers
 {
     [ApiController]
     [Route("api/cities")]
-    public class CitiesController : ControllerBase
+    public class CitiesController : BaseApiController
     {
         private readonly AppDbContext _context;
 

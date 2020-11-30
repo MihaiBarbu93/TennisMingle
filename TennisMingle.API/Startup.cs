@@ -13,13 +13,15 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using TennisMingle.API.Models;
+using TennisMingle.API.Data;
+using TennisMingle.API.Entities;
+using TennisMingle.API.Extensions;
 
 namespace TennisMingle.API
 {
     public class Startup
     {
-        private IConfiguration _config;
+        private readonly IConfiguration _config;
 
         public Startup(IConfiguration configuration)
         {
@@ -32,12 +34,7 @@ namespace TennisMingle.API
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddDbContextPool<AppDbContext>(options => options.UseSqlServer(_config.GetConnectionString("TennisMingleConnectionString")));
-
-            services.AddTransient<TennisMingleSeeder>();
-            services.AddMvc().AddNewtonsoftJson(options =>
-            options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
-            );
+            services.AddApplicationServices(_config);
             services.AddControllers().AddNewtonsoftJson();
 
             services.AddSwaggerGen(options =>
