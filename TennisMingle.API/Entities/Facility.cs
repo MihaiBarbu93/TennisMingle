@@ -10,7 +10,6 @@ namespace TennisMingle.API.Entities
     public class Facility
     {
         public int Id { get; set; }
-        [Required]
         public FacilityType FacilityType { get; set; }
         public int TennisClubId { get; set; }
         public TennisClub TennisClub { get; set; }
