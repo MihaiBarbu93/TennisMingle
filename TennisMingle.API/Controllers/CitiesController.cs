@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -6,41 +8,51 @@ using System.Linq;
 using System.Threading.Tasks;
 using TennisMingle.API.Data;
 using TennisMingle.API.Entities;
+using TennisMingle.API.Interfaces;
 
 namespace TennisMingle.API.Controllers
 {
-    [ApiController]
-    [Route("api/cities")]
+    [Authorize]
     public class CitiesController : BaseApiController
     {
-        private readonly AppDbContext _context;
+        private readonly ICityRepository _cityRepository;
+        private readonly IMapper _mapper;
 
-        public CitiesController(AppDbContext context)
+        public CitiesController(ICityRepository cityRepository,
+                                 IMapper mapper)
         {
-            _context = context;
-
+            _mapper = mapper;
+            _cityRepository = cityRepository;
         }
-        /// <summary>
-        /// This GET method returns all the Cities from the DataBase 
-        /// </summary>
+
         [HttpGet]
-        public IActionResult GetCities()
+        public async Task<IActionResult> GetCitiesAsync()
         {
-            return Ok(_context.Cities.ToList());
+            var cities = await _cityRepository.GetCitiesAsync();
+
+            return Ok(cities);
         }
 
-        /// <summary>
-        /// This GET method returns a City with a specific id from the DataBase 
-        /// </summary>
         [HttpGet("{id}")]
-        public IActionResult GetCity(int id)
+        public async Task<IActionResult> GetCityByIdAsync(int id)
         {
-            var cityToReturn =_context.Cities.Where(c => c.Id == id);
-            if (cityToReturn == null)
+            var cities = await _cityRepository.GetCityByIdAsync(id);
+
+            return Ok(cities);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<City>> AddCity(City city) 
+        {
+            if (await _cityRepository.CityExists(city.Name)) return BadRequest("City already added");
+
+            _cityRepository.AddCity(city);
+            await _cityRepository.SaveAllAsync();
+            return new City
             {
-                return NotFound();
-            }
-            return Ok(cityToReturn);
+                Name = city.Name,
+            };
+
         }
     }
 }
