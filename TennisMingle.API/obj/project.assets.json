@@ -5714,19 +5714,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Mihai\\.nuget\\packages\\": {}
+    "C:\\Users\\Silviu\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Mihai\\Desktop\\TennisMingle\\TennisMingle\\TennisMingle.API\\TennisMingle.API.csproj",
+      "projectUniqueName": "D:\\.NET-C#\\TW4\\TennisMingle\\TennisMingle.API\\TennisMingle.API.csproj",
       "projectName": "TennisMingle.API",
-      "projectPath": "C:\\Users\\Mihai\\Desktop\\TennisMingle\\TennisMingle\\TennisMingle.API\\TennisMingle.API.csproj",
-      "packagesPath": "C:\\Users\\Mihai\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Mihai\\Desktop\\TennisMingle\\TennisMingle\\TennisMingle.API\\obj\\",
+      "projectPath": "D:\\.NET-C#\\TW4\\TennisMingle\\TennisMingle.API\\TennisMingle.API.csproj",
+      "packagesPath": "C:\\Users\\Silviu\\.nuget\\packages\\",
+      "outputPath": "D:\\.NET-C#\\TW4\\TennisMingle\\TennisMingle.API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Mihai\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Silviu\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
