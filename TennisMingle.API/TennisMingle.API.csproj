@@ -30,6 +30,14 @@
 	<NoWarn>$(NoWarn);1591</NoWarn>
 	<NoWin32Manifest>true</NoWin32Manifest>
 	</PropertyGroup>
+	
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+	  <DefineConstants>DEBUG;TRACE</DefineConstants>
+	  <PlatformTarget>AnyCPU</PlatformTarget>
+	  <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+	  <DebugType>full</DebugType>
+	  <DebugSymbols>true</DebugSymbols>
+	</PropertyGroup>
 
 
 </Project>
