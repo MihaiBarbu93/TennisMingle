@@ -7,8 +7,6 @@ using TennisMingle.API.Entities;
 
 namespace TennisMingle.API.Controllers
 {
-    [ApiController]
-    [Route("api/tennisclubs/{tennisClubId}/booking")]
    
     public class BookingController : BaseApiController
     {

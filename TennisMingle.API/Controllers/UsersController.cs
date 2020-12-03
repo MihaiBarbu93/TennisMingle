@@ -14,7 +14,6 @@ using System.Security.Claims;
 namespace TennisMingle.API.Controllers
 {
 
-    [Authorize]
     public class UsersController : BaseApiController
     {
         private readonly IUserRepository _userRepository;
