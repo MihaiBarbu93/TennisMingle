@@ -8,9 +8,9 @@ namespace TennisMingle.API.Interfaces
 {
     public interface ICityRepository
     {
-        Task<IEnumerable<City>> GetCities();
-        Task<City> GetCity(int id);
-        Task<City> GetCity(string name);
+        Task<IEnumerable<City>> GetCitiesAsync();
+        Task<City> GetCityByIdAsync(int id);
+        Task<City> GetCityByNameAsync(string name);
 
         void AddCity(City city);
 
