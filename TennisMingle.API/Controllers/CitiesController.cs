@@ -27,7 +27,7 @@ namespace TennisMingle.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetCities()
         {
-            var cities = await _cityRepository.GetCities();
+            var cities = await _cityRepository.GetCitiesAsync();
 
             return Ok(cities);
         }
@@ -35,7 +35,7 @@ namespace TennisMingle.API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetCity(int id)
         {
-            var cities = await _cityRepository.GetCity(id);
+            var cities = await _cityRepository.GetCityByIdAsync(id);
 
             return Ok(cities);
         }
