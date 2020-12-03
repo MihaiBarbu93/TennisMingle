@@ -37,6 +37,8 @@ namespace TennisMingle.API
 
             services.AddApplicationServices(_config);
             services.AddControllers().AddNewtonsoftJson();
+            services.AddCors();
+            services.AddIdentityServices(_config);
 
         }
 
