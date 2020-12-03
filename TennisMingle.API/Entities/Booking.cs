@@ -14,16 +14,15 @@ namespace TennisMingle.API.Entities
         public DateTime DateStart { get; set; }
         public DateTime DateEnd { get; set; }
         public int TennisCourtId { get; set; }
-        [ForeignKey("TennisCourtId")]
         public virtual TennisCourt TennisCourt { get; set; }
-        [NotMapped]
-        public int Duration { get; set; }
-        public int? PersonId { get; set; }
-        [ForeignKey("PersonId")]
-        public virtual AppUser Person { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string PhoneNumber { get; set; }
         public bool Confirmed { get; set; } = false;
+
+#nullable enable
+        public int? UserId { get; set; }
+        public AppUser? User { get; set; }
+        public string? FirstName { get; set; }
+        public string? LastName { get; set; }
+        public string? PhoneNumber { get; set; }
+        
     }
 }
