@@ -13,7 +13,7 @@ using TennisMingle.API.Interfaces;
 
 namespace TennisMingle.API.Controllers
 {
-    public class AccountController : Controller
+    public class AccountController : BaseApiController
     {
         private readonly AppDbContext _context;
         private readonly ITokenService _tokenService;

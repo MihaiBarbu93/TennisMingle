@@ -20,6 +20,7 @@ namespace TennisMingle.API.Extensions
         {
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<ICityRepository, CityRepository>();
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
             services.AddDbContextPool<AppDbContext>(options => options.UseSqlServer(config.GetConnectionString("TennisMingleConnectionString")));
 

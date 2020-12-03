@@ -16,6 +16,7 @@ using Microsoft.Extensions.Logging;
 using TennisMingle.API.Data;
 using TennisMingle.API.Entities;
 using TennisMingle.API.Extensions;
+using TennisMingle.API.Middleware;
 
 namespace TennisMingle.API
 {
@@ -37,58 +38,32 @@ namespace TennisMingle.API
             services.AddApplicationServices(_config);
             services.AddControllers().AddNewtonsoftJson();
 
-            services.AddSwaggerGen(options =>
-            {
-                options.SwaggerDoc("v1",
-                    new Microsoft.OpenApi.Models.OpenApiInfo
-                    {
-                        Title = "Tennis Mingle API",
-                        Description = "API for Tennis Clubs Management Application ",
-                        Version = "v1"
-                    });
-                var fileName = $"{ Assembly.GetExecutingAssembly().GetName().Name}.xml";
-
-                var filePath = Path.Combine(AppContext.BaseDirectory, fileName);
-                options.IncludeXmlComments(filePath);
-
-            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseExceptionHandler();
-            }
-
-            app.UseStatusCodePages();
+            app.UseMiddleware<ExceptionMiddleware>();
 
             app.UseHttpsRedirection();
 
             app.UseRouting();
 
+            app.UseCors(x => x.AllowAnyHeader()
+                .AllowAnyMethod()
+                .AllowCredentials()
+                .WithOrigins("https://localhost:4200"));
+
+            app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
-
-            app.UseSwagger();
-
-            app.UseSwaggerUI(options =>
-            {
-                options.SwaggerEndpoint("/swagger/v1/swagger.json", "Tennis Mingle API");
-                options.RoutePrefix = "/swagger";
-
-
-            });
-            
         }
     }
 }
