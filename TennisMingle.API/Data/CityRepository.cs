@@ -47,7 +47,7 @@ namespace TennisMingle.API.Data
 
         public async Task<bool> CityExists(string name)
         {
-            return await _context.Cities.AnyAsync(x => x.Name == name.ToLower());
+            return await _context.Cities.AnyAsync();
         }
 
         public async Task<bool> SaveAllAsync()

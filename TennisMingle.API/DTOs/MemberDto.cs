@@ -13,10 +13,9 @@ namespace TennisMingle.API.DTOs
         public string Username { get; set; }
         public string PhotoUrl { get; set; }
         public int Age { get; set; }
-        public City City { get; set; }
+        public CityDto City { get; set; }
         public string Bio { get; set; }
         public PhotoDto Photo { get; set; }
-        public int TennisClubId { get; set; }
         public TennisClub TennisClub { get; set; }
         public int PersonTypeId { get; set; }
         public UserType UserType { get; set; }

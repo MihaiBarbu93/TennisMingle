@@ -20,6 +20,7 @@ namespace TennisMingle.API.Helpers
             CreateMap<Photo, PhotoDto>();
             CreateMap<MemberUpdateDto, AppUser>();
             CreateMap<CityDto, City>();
+            CreateMap<BookingDto, Booking>();
         }
     }
 }
