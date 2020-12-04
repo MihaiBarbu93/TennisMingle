@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,29 +12,67 @@ namespace TennisMingle.API.Data
     public class TennisCourtRepository : ITennisCourtRepository
     {
 
-        public Task<TennisCourt> CreateTennisClubAsync(int tennisClubId, TennisCourt tennisCourt)
+        private readonly AppDbContext _context;
+        private readonly IMapper _mapper;
+
+        public TennisCourtRepository(AppDbContext context, IMapper mapper)
         {
-            throw new NotImplementedException();
+            _context = context;
+            _mapper = mapper;
         }
 
-        public Task<TennisCourt> DeleteTennisCourtAsync(int tennisCourtId)
+        public async Task<TennisCourt> GetTennisCourtByIdAsync(int tennisCourtId)
         {
-            throw new NotImplementedException();
+            return await _context.TennisCourts.SingleOrDefaultAsync(tc => tc.Id == tennisCourtId);
         }
 
-        public Task<TennisCourt> GetTennisCourtByIdAsync(int tennisCourtId)
+        public async Task<IEnumerable<TennisCourt>> GetTennisCourtsAsync(int tennisClubId)
         {
-            throw new NotImplementedException();
+            /*            return await _context.TennisCourts.Where(tc => tc.TennisClubId == tennisClubId).ToListAsync();*/
+
+            return await Task.FromResult(_context.TennisClubs
+                .Include(tc => tc.TennisCourts)
+                .SingleOrDefault(tc => tc.Id == tennisClubId)
+                .TennisCourts
+                .ToList());
+
         }
 
-        public Task<IEnumerable<TennisCourt>> GetTennisCourtsAsync(int tennisClubId)
+        public TennisCourt CreateTennisCourt(int tennisClubId, TennisCourt tennisCourt)
         {
-            throw new NotImplementedException();
+            var tennisClub = _context.TennisClubs.SingleOrDefault(tc => tc.Id == tennisClubId);
+
+            var newTennisCourt = new TennisCourt()
+            {
+                Name = tennisCourt.Name,
+                SurfaceId = tennisCourt.SurfaceId,
+                TennisClubId = tennisClubId
+            };
+
+            tennisClub.TennisCourts.Add(newTennisCourt);
+
+            return newTennisCourt;
+
         }
 
-        public Task<TennisCourt> UpdateTennisCourtAsync(int tennisCourtId, TennisCourt tennisCourt)
+        public void UpdateTennisCourt(TennisCourt tennisCourt)
         {
-            throw new NotImplementedException();
+
+            _context.Entry(tennisCourt).State = EntityState.Modified;
+
         }
+
+        public void DeleteTennisCourt(int tennisCourtId)
+        {
+            var tennisCourtToDelete =_context.TennisCourts.SingleOrDefault(tc => tc.Id == tennisCourtId);
+
+            _context.TennisCourts.Remove(tennisCourtToDelete);
+        }
+
+        public async Task<bool> SaveAllAsync()
+        {
+            return await _context.SaveChangesAsync() > 0;
+        }
+
     }
 }

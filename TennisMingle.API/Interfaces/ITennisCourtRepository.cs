@@ -11,9 +11,9 @@ namespace TennisMingle.API.Interfaces
         
         Task<IEnumerable<TennisCourt>> GetTennisCourtsAsync(int tennisClubId);
         Task<TennisCourt> GetTennisCourtByIdAsync(int tennisCourtId);
-        Task<TennisCourt> CreateTennisClubAsync(int tennisClubId, TennisCourt tennisCourt);
-        Task<TennisCourt> UpdateTennisCourtAsync(int tennisCourtId, TennisCourt tennisCourt);
-        Task<TennisCourt> DeleteTennisCourtAsync(int tennisCourtId);
+        TennisCourt CreateTennisCourt(int tennisClubId, TennisCourt tennisCourt);
+        void UpdateTennisCourt(TennisCourt tennisCourt);
+        void DeleteTennisCourt(int tennisCourtId);
 
 
     }
