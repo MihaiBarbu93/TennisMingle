@@ -21,6 +21,8 @@ namespace TennisMingle.API.Services
             _mapper = mapper;
             _context = context;
         }
+
+        //to implement
         public async Task<bool> AlreadyBooked(DateTime dateStart, DateTime dateEnd)
         {
             return await _context.Bookings.AnyAsync();
