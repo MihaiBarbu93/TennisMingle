@@ -64,7 +64,7 @@ namespace TennisMingle.API.Data
             try
             {
                 return await _context.TennisClubs
-                .Where(tc => (tc.CityId == cityId) && (tc.TennisCourts.FirstOrDefault().IsAvailable))
+                .Where(tc => (tc.CityId == cityId))
                 .Include(tc => tc.City)
                 .Include(tc => tc.Facilities)
                 .Include(tc => tc.TennisCourts)
