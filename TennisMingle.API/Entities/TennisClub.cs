@@ -57,7 +57,7 @@ namespace TennisMingle.API.Entities
 
         public ICollection<Photo> Photos { get; set; }
 
-        public ICollection<AppUser> Persons { get; set; }
+        public ICollection<AppUser> Users { get; set; }
 
         public ICollection<TennisCourt> TennisCourts { get; set; }
 

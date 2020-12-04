@@ -28,11 +28,12 @@ namespace TennisMingle.API.Data
             try
             {
                 return await _context.TennisClubs
-                .Where(tc => tc.Id == tennisClubId)
                 .Include(tc => tc.City)
                 .Include(tc => tc.Facilities)
                 .Include(tc => tc.TennisCourts)
-                .SingleOrDefaultAsync();
+                .Include(tc => tc.Photos)
+                .Include(tc => tc.Users)
+                .SingleOrDefaultAsync(tc => tc.Id == tennisClubId);
             }
             catch (Exception ex)
             {
@@ -49,6 +50,8 @@ namespace TennisMingle.API.Data
                .Include(tc => tc.City)
                .Include(tc => tc.Facilities)
                .Include(tc => tc.TennisCourts)
+               .Include(tc => tc.Photos)
+               .Include(tc => tc.Users)
                .ToListAsync();
             }
             catch (Exception ex)
@@ -68,6 +71,8 @@ namespace TennisMingle.API.Data
                 .Include(tc => tc.City)
                 .Include(tc => tc.Facilities)
                 .Include(tc => tc.TennisCourts)
+                .Include(tc => tc.Photos)
+                .Include(tc => tc.Users)
                 .ToListAsync();
             } 
             catch (Exception ex)

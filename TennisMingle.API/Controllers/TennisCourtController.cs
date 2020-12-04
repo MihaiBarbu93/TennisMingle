@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using TennisMingle.API.Data;
 using TennisMingle.API.Entities;
+using TennisMingle.API.Services;
 
 namespace TennisMingle.API.Controllers
 {
@@ -12,9 +13,12 @@ namespace TennisMingle.API.Controllers
     public class TennisCourtController : BaseApiController
     {
         private readonly AppDbContext _context;
-        public TennisCourtController(AppDbContext context)
+        private readonly SurfaceService _surfaceService;
+
+        public TennisCourtController(AppDbContext context, SurfaceService surfaceService)
         {
             _context = context;
+            _surfaceService = surfaceService;
         }
         /// <summary>
         /// This GET method returns all the tennis courts from a club 
@@ -234,6 +238,10 @@ namespace TennisMingle.API.Controllers
             return NoContent();
         }
 
+        public void UpdateSurface(int tennisCourtId, Surface surface)
+        {
+            _surfaceService.UpdateSurface(tennisCourtId, surface);
+        }
     }
 }
 

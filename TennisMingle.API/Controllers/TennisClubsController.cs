@@ -12,7 +12,7 @@ namespace TennisMingle.API.Controllers
 {
     [ApiController]
     [Route("api/cities/{cityId}/tennisclubs")]
-    public class TennisClubController : BaseApiController
+    public class TennisClubController : ControllerBase
     {
         private AppDbContext _context;
         private readonly ITennisClubRepository _tennisClubRepository;
