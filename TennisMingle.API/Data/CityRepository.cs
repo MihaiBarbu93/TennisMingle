@@ -29,16 +29,19 @@ namespace TennisMingle.API.Data
         public async Task<IEnumerable<City>> GetCitiesAsync()
         {
 
-            return await _context.Cities
+            return await _context.Cities.Include(c => c.TennisClubs)
                 .ToListAsync();
         }
         public async Task<City> GetCityByIdAsync(int id)
         {
-            return await _context.Cities.FindAsync(id);
+            return await _context.Cities
+                .Include(c => c.TennisClubs)    
+                .SingleOrDefaultAsync(c => c.Id == id);
         }
         public async Task<City> GetCityByNameAsync(string name)
         {
             return await _context.Cities
+                .Include(c => c.TennisClubs)
                 .SingleOrDefaultAsync(x => x.Name == name);
         }
 
