@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "T4amsGTLbYWKs4aFVZeu0mxsSbx3eDCivseztb0h3anOVxYAAsD8moOz17l7cE1qyhEvV3tSDFWHxlRU91UW1w==",
+  "dgSpecHash": "c9hDW4ktOzqjocqUWW7qFZLm+gjZ2eXwmEEQffHppoWtECmElHu5VnYSV1cC3q22D+Xx+WarJDlZe920vthxbw==",
   "success": true,
   "projectFilePath": "D:\\.NET-C#\\TW4\\TennisMingle\\TennisMingle.API\\TennisMingle.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Silviu\\.nuget\\packages\\automapper\\10.1.0\\automapper.10.1.0.nupkg.sha512",
     "C:\\Users\\Silviu\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.0\\automapper.extensions.microsoft.dependencyinjection.8.1.0.nupkg.sha512",
+    "C:\\Users\\Silviu\\.nuget\\packages\\cloudinarydotnet\\1.14.0\\cloudinarydotnet.1.14.0.nupkg.sha512",
     "C:\\Users\\Silviu\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\5.0.0\\microsoft.aspnetcore.authentication.jwtbearer.5.0.0.nupkg.sha512",
     "C:\\Users\\Silviu\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\3.1.8\\microsoft.aspnetcore.jsonpatch.3.1.8.nupkg.sha512",
     "C:\\Users\\Silviu\\.nuget\\packages\\microsoft.aspnetcore.mvc.newtonsoftjson\\3.1.8\\microsoft.aspnetcore.mvc.newtonsoftjson.3.1.8.nupkg.sha512",
