@@ -12,7 +12,6 @@ using TennisMingle.API.Interfaces;
 
 namespace TennisMingle.API.Controllers
 {
-    [Authorize]
     public class CitiesController : BaseApiController
     {
         private readonly ICityRepository _cityRepository;
@@ -26,7 +25,7 @@ namespace TennisMingle.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetCitiesAsync()
+        public async Task<IActionResult> GetCities()
         {
             var cities = await _cityRepository.GetCitiesAsync();
 
@@ -34,7 +33,7 @@ namespace TennisMingle.API.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetCityByIdAsync(int id)
+        public async Task<IActionResult> GetCity(int id)
         {
             var cities = await _cityRepository.GetCityByIdAsync(id);
 
