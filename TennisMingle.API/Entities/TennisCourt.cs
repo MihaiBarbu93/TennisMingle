@@ -23,7 +23,7 @@ namespace TennisMingle.API.Entities
         [MaxLength(50)]
         public string Name { get; set; }
 
-        public Surface Surface { get; set; }
+        public Surface? Surface { get; set; }
 
         public int SurfaceId { get; set; }
 
@@ -39,7 +39,7 @@ namespace TennisMingle.API.Entities
         /// </summary>
         public int TennisClubId { get; set; }
 
-        public TennisClub TennisClub { get; set; }
+        public TennisClub? TennisClub { get; set; }
 
     }
 }

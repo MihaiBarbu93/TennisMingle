@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using TennisMingle.API.Data;
 using TennisMingle.API.Entities;
+using TennisMingle.API.Interfaces;
 using TennisMingle.API.Services;
 
 namespace TennisMingle.API.Controllers
@@ -14,12 +15,12 @@ namespace TennisMingle.API.Controllers
     [Route("api/tennisclubs/{tennisClubId}/tenniscourts")]
     public class TennisCourtController : BaseApiController
     {
-        private readonly SurfaceService _surfaceService;
-        private readonly TennisCourtRepository _tennisCourtRepository;
+        private readonly ISurfaceService _surfaceService;
+        private readonly ITennisCourtRepository _tennisCourtRepository;
         private readonly IMapper _mapper;
 
-        public TennisCourtController(SurfaceService surfaceService,
-            TennisCourtRepository tennisCourtRepository, IMapper mapper)
+        public TennisCourtController(ISurfaceService surfaceService,
+            ITennisCourtRepository tennisCourtRepository, IMapper mapper)
         {
             _surfaceService = surfaceService;
             _tennisCourtRepository = tennisCourtRepository;
@@ -51,12 +52,12 @@ namespace TennisMingle.API.Controllers
         public async Task<ActionResult> CreateTennisCourt(int tennisClubId, TennisCourt tennisCourt)
         {
 
-            var newTennisCourt = _tennisCourtRepository.CreateTennisCourt(tennisClubId, tennisCourt);
+            _tennisCourtRepository.CreateTennisCourt(tennisClubId, tennisCourt);
 
             if (await _tennisCourtRepository.SaveAllAsync())
             {
-                return CreatedAtRoute(
-                "GetTennisCourt", new { tennisCourtId = newTennisCourt.Id}, newTennisCourt);
+                var lastTennisCourt = await _tennisCourtRepository.GetLastTennisCourt();
+                return CreatedAtRoute("GetTennisCourt", new {tennisClubid = tennisClubId, tennisCourtId = lastTennisCourt.Id}, lastTennisCourt);
             }
 
             return BadRequest("Unable to add tennis court");

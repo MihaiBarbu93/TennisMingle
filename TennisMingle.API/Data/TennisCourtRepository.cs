@@ -23,24 +23,34 @@ namespace TennisMingle.API.Data
 
         public async Task<TennisCourt> GetTennisCourtByIdAsync(int tennisCourtId)
         {
-            return await _context.TennisCourts.SingleOrDefaultAsync(tc => tc.Id == tennisCourtId);
+            return await _context.TennisCourts
+                .Include(tc => tc.Surface)
+                .Include(tc => tc.TennisClub)
+                .SingleOrDefaultAsync(tc => tc.Id == tennisCourtId);
         }
 
         public async Task<IEnumerable<TennisCourt>> GetTennisCourtsAsync(int tennisClubId)
         {
-            /*            return await _context.TennisCourts.Where(tc => tc.TennisClubId == tennisClubId).ToListAsync();*/
+              return await _context.TennisCourts
+                .Where(tc => tc.TennisClubId == tennisClubId)
+                .Include(tc => tc.Surface)
+                .Include(tc => tc.TennisClub)
+                .ToListAsync();
 
-            return await Task.FromResult(_context.TennisClubs
+/*            return await Task.FromResult(_context.TennisClubs
                 .Include(tc => tc.TennisCourts)
                 .SingleOrDefault(tc => tc.Id == tennisClubId)
                 .TennisCourts
-                .ToList());
+                .ToList());*/
 
         }
 
-        public TennisCourt CreateTennisCourt(int tennisClubId, TennisCourt tennisCourt)
+        public void CreateTennisCourt(int tennisClubId, TennisCourt tennisCourt)
         {
-            var tennisClub = _context.TennisClubs.SingleOrDefault(tc => tc.Id == tennisClubId);
+            var tennisClub = _context
+                .TennisClubs
+                .Include(tc => tc.TennisCourts)
+                .SingleOrDefault(tc => tc.Id == tennisClubId);
 
             var newTennisCourt = new TennisCourt()
             {
@@ -49,9 +59,7 @@ namespace TennisMingle.API.Data
                 TennisClubId = tennisClubId
             };
 
-            tennisClub.TennisCourts.Add(newTennisCourt);
-
-            return newTennisCourt;
+            _context.TennisCourts.Add(newTennisCourt);
 
         }
 
@@ -72,6 +80,11 @@ namespace TennisMingle.API.Data
         public async Task<bool> SaveAllAsync()
         {
             return await _context.SaveChangesAsync() > 0;
+        }
+
+        public async Task<TennisCourt> GetLastTennisCourt()
+        {
+            return await _context.TennisCourts.OrderByDescending(t => t.Id).FirstAsync(); ;
         }
 
     }
