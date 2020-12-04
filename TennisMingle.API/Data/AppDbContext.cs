@@ -33,6 +33,7 @@ namespace TennisMingle.API.Data
         public DbSet<TennisCourt> TennisCourts { get; set; }
         public DbSet<AppUser> Users { get; set; }
         public DbSet<Booking> Bookings { get; set; }
+        public DbSet<Facility> Facilities { get; set; }
 
 
 

@@ -26,7 +26,7 @@ namespace TennisMingle.API.Services
             return await _context.Bookings.AnyAsync();
         }
 
-        public void Book(Booking booking)
+        public void Book(Booking booking, int userId, int clubId)
         {
             throw new NotImplementedException();
         }
