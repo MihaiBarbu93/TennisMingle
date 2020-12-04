@@ -23,15 +23,10 @@ namespace TennisMingle.API.Entities
         [MaxLength(50)]
         public string Name { get; set; }
 
-        public Surface Surface { get; set; }
+        public Surface? Surface { get; set; }
 
         public int SurfaceId { get; set; }
 
-        /// <summary>
-        /// The price of the tennis court
-        /// </summary>
-        [Required]
-        public int Price { get; set; }
 
         /// <summary>
         /// The availability of the tennis court
@@ -44,8 +39,7 @@ namespace TennisMingle.API.Entities
         /// </summary>
         public int TennisClubId { get; set; }
 
-        public TennisClub TennisClub { get; set; }
+        public TennisClub? TennisClub { get; set; }
 
-        public ICollection<Booking> Bookings { get; set; }
     }
 }
