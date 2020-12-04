@@ -21,6 +21,8 @@ namespace TennisMingle.API.Extensions
             services.Configure<CloudinarySettings>(config.GetSection("CloudinarySettings"));
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IPhotoService, PhotoService>();
+            services.AddScoped<IBookingService, BookingService>();
+
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<ITennisClubRepository, TennisClubRepository>();
             services.AddScoped<ITennisCourtRepository, TennisCourtRepository>();
