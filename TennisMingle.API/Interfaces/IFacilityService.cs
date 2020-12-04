@@ -9,7 +9,7 @@ namespace TennisMingle.API.Interfaces
     public interface IFacilityService
     {
         void AddFacility(Facility facility, int clubId);
-        void DeleteFacility(int facilityId);
+        void DeleteFacility(int clubId, int facilityId);
 
     }
 }
