@@ -24,8 +24,9 @@ namespace TennisMingle.API.Services
 
         }
 
-        public void DeleteFacility(int facilityId)
+        public void DeleteFacility(int clubId, int facilityId)
         {
+            
             var facilityToDelete = _context.Facilities.Find(facilityId);
                                        
             _context.Facilities.Remove(facilityToDelete);
