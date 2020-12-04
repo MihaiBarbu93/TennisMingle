@@ -27,11 +27,6 @@ namespace TennisMingle.API.Entities
 
         public int SurfaceId { get; set; }
 
-        /// <summary>
-        /// The price of the tennis court
-        /// </summary>
-        [Required]
-        public int Price { get; set; }
 
         /// <summary>
         /// The availability of the tennis court
@@ -46,6 +41,5 @@ namespace TennisMingle.API.Entities
 
         public TennisClub TennisClub { get; set; }
 
-        public ICollection<Booking> Bookings { get; set; }
     }
 }

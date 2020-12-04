@@ -52,8 +52,15 @@ namespace TennisMingle.API.Entities
         public string Schedule { get; set; }
 
         /// <summary>
+        /// The price of the tennis court
+        /// </summary>
+        [Required]
+        public int Price { get; set; }
+
+        /// <summary>
         /// The uploaded tennis club image
         /// </summary>
+        /// 
 
         public ICollection<Photo> Photos { get; set; }
 
@@ -62,9 +69,6 @@ namespace TennisMingle.API.Entities
         public ICollection<TennisCourt> TennisCourts { get; set; }
 
         public ICollection<Facility> Facilities { get; set; }
-
-        [NotMapped]
-        public ICollection<int> Prices { get; set; } = new List<int>();
 
     }
 }

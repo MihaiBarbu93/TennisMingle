@@ -83,15 +83,10 @@ namespace TennisMingle.API.Controllers
         /// This PUT method is replacing all the properties of a tennis club
         /// </summary>
         [HttpPut("{tennisClubId}")]
-        public async Task<ActionResult> UpdateTennisClub(int cityId, int tennisClubId,
-            [FromBody] TennisClub tennisClub)
+        public async Task<ActionResult> UpdateTennisClub(TennisClub tennisClub)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
 
-            _tennisClubRepository.UpdateTennisClubAsync(cityId, tennisClubId, tennisClub);
+            _context.Entry(tennisClub).State = EntityState.Modified;
 
             /*            tennisClubFromDB.Image = tennisClub.Image;
             */
