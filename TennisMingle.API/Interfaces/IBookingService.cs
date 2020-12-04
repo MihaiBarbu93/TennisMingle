@@ -12,9 +12,9 @@ namespace TennisMingle.API.Interfaces
         Task<IEnumerable<BookingDto>> GetBookingsByClubAsync(int clubId);
         Task<IEnumerable<BookingDto>> GetBookingsByUserAsync(int userId);
 
-        Task<BookingDto> GetBookingAsync(int id);
+        Task<Booking> GetBookingAsync(int id);
 
-        void Book(Booking booking);
+        void Book(Booking booking, int userId, int clubId);
 
         Task<bool> SaveAllAsync();
         Task<bool> AlreadyBooked(DateTime dateStart, DateTime dateEnd);

@@ -6,10 +6,10 @@ using TennisMingle.API.Entities;
 
 namespace TennisMingle.API.Interfaces
 {
-    interface IFacilityService
+    public interface IFacilityService
     {
-        Task<Facility> AddFacilityAsync(Facility facility);
-        Task<Facility> DeleteFacilityAsync(string facilityId);
+        void AddFacility(Facility facility, int clubId);
+        void DeleteFacility(int facilityId);
 
     }
 }
