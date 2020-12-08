@@ -34,9 +34,9 @@ namespace TennisMingle.API.Controllers
         }
 
         [HttpGet("withcourtsavailable")]
-        public IActionResult GetTennisClubsWithCourts(int cityId)
+        public async Task<ActionResult<IEnumerable<TennisClub>>> GetTennisClubsWithCourts(int cityId)
         {
-            var tennisClubs = _tennisClubRepository.GetTennisClubsWithCourtsAvailableAsync(cityId);
+            var tennisClubs = await _tennisClubRepository.GetTennisClubsWithCourtsAvailableAsync(cityId);
 
             return Ok(tennisClubs);
         }
@@ -83,10 +83,10 @@ namespace TennisMingle.API.Controllers
         /// This PUT method is replacing all the properties of a tennis club
         /// </summary>
         [HttpPut("{tennisClubId}")]
-        public async Task<ActionResult> UpdateTennisClub(TennisClub tennisClub)
+        public async Task<ActionResult> UpdateTennisClub(int cityId, int tennisClubId, TennisClub tennisClub)
         {
 
-            _context.Entry(tennisClub).State = EntityState.Modified;
+            _tennisClubRepository.UpdateTennisClubAsync(cityId, tennisClubId, tennisClub);
 
             /*            tennisClubFromDB.Image = tennisClub.Image;
             */

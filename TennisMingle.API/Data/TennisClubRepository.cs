@@ -66,14 +66,14 @@ namespace TennisMingle.API.Data
 
             try
             {
-                return await _context.TennisClubs
-                .Where(tc => (tc.CityId == cityId))
-                .Include(tc => tc.City)
-                .Include(tc => tc.Facilities)
+                var result = await _context.TennisClubs
+                .Where(tc => tc.CityId == cityId && tc.TennisCourts.Any(tco => tco.IsAvailable == true))
                 .Include(tc => tc.TennisCourts)
+                .Include(tc => tc.Facilities)
                 .Include(tc => tc.Photos)
                 .Include(tc => tc.Users)
                 .ToListAsync();
+                return result;
             } 
             catch (Exception ex)
             {
