@@ -1,6 +1,8 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-success">
   <div class="logo-area">
-    <img class="logo" src="./assets/logo.png" />
+    <a class="navbar-brand" routerLink="/">
+      <img class="logo" src="./assets/logo.png" />
+    </a>
   </div>
 
   <div class="btn-group ml-4" dropdown>
@@ -21,13 +23,18 @@
       aria-labelledby="button-basic"
     >
       <li role="menuitem">
-        <a class="dropdown-item" href="#">Brasov</a>
+        <a class="dropdown-item" routerLink="/tennis-clubs">Brasov</a>
       </li>
       <li role="menuitem">
-        <a class="dropdown-item" href="#">Cluj</a>
+        <a class="dropdown-item" routerLink="/tennis-clubs">Cluj</a>
       </li>
       <li role="menuitem">
-        <a class="dropdown-item" href="#">Iasi</a>
+        <a
+          class="dropdown-item"
+          routerLink="/tennis-clubs"
+          routerLinkActive="router-link-active"
+          >Iasi</a
+        >
       </li>
     </ul>
   </div>
