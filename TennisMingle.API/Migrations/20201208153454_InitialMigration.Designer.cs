@@ -10,8 +10,8 @@ using TennisMingle.API.Data;
 namespace TennisMingle.API.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20201204131606_MovePricePropertyToTennisClub")]
-    partial class MovePricePropertyToTennisClub
+    [Migration("20201208153454_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -83,20 +83,20 @@ namespace TennisMingle.API.Migrations
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("PersonId")
-                        .HasColumnType("int");
-
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("TennisCourtId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("PersonId");
-
                     b.HasIndex("TennisCourtId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Bookings");
                 });
@@ -126,14 +126,14 @@ namespace TennisMingle.API.Migrations
                     b.Property<int>("FacilityType")
                         .HasColumnType("int");
 
-                    b.Property<int>("TennisClubId")
+                    b.Property<int?>("TennisClubId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("TennisClubId");
 
-                    b.ToTable("Facility");
+                    b.ToTable("Facilities");
                 });
 
             modelBuilder.Entity("TennisMingle.API.Entities.Photo", b =>
@@ -181,7 +181,7 @@ namespace TennisMingle.API.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Surface");
+                    b.ToTable("Surfaces");
                 });
 
             modelBuilder.Entity("TennisMingle.API.Entities.TennisClub", b =>
@@ -232,9 +232,6 @@ namespace TennisMingle.API.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<bool>("IsAvailable")
-                        .HasColumnType("bit");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(50)")
@@ -270,25 +267,24 @@ namespace TennisMingle.API.Migrations
 
             modelBuilder.Entity("TennisMingle.API.Entities.Booking", b =>
                 {
-                    b.HasOne("TennisMingle.API.Entities.AppUser", "Person")
-                        .WithMany("Bookings")
-                        .HasForeignKey("PersonId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
                     b.HasOne("TennisMingle.API.Entities.TennisCourt", "TennisCourt")
                         .WithMany()
                         .HasForeignKey("TennisCourtId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.HasOne("TennisMingle.API.Entities.AppUser", "User")
+                        .WithMany("Bookings")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("TennisMingle.API.Entities.Facility", b =>
                 {
-                    b.HasOne("TennisMingle.API.Entities.TennisClub", "TennisClub")
+                    b.HasOne("TennisMingle.API.Entities.TennisClub", null)
                         .WithMany("Facilities")
                         .HasForeignKey("TennisClubId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("TennisMingle.API.Entities.Photo", b =>
@@ -316,7 +312,7 @@ namespace TennisMingle.API.Migrations
             modelBuilder.Entity("TennisMingle.API.Entities.TennisCourt", b =>
                 {
                     b.HasOne("TennisMingle.API.Entities.Surface", "Surface")
-                        .WithMany("TennisCourts")
+                        .WithMany()
                         .HasForeignKey("SurfaceId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
