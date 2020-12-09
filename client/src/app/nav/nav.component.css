@@ -1,0 +1,22 @@
+.dropdown-toggle,
+.dropdown-item {
+  cursor: pointer;
+}
+
+img {
+  max-height: 50px;
+  border: 2px solid #fff;
+  display: inline;
+}
+
+.navbar-nav {
+  display: inline-block;
+}
+
+.navbar-nav > li {
+  display: inline-block;
+}
+
+nav {
+  background-color: #56e07b !important;
+}
