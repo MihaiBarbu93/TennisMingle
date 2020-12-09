@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TennisMingle.API.Data;
+using TennisMingle.API.DTOs;
 using TennisMingle.API.Entities;
 using TennisMingle.API.Interfaces;
 using TennisMingle.API.Services;
@@ -101,9 +102,9 @@ namespace TennisMingle.API.Controllers
             return BadRequest("Failed to update tennis court");
         }
 
-        public void UpdateSurface(int tennisCourtId, Surface surface)
+        public void UpdateSurface(Surface surface)
         {
-            _surfaceService.UpdateSurface(tennisCourtId, surface);
+            _surfaceService.UpdateSurface(surface);
         }
 
     }

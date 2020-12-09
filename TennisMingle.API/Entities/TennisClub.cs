@@ -61,14 +61,15 @@ namespace TennisMingle.API.Entities
         /// The uploaded tennis club image
         /// </summary>
         /// 
-
-        public ICollection<Photo> Photos { get; set; }
-
-        public ICollection<AppUser> Users { get; set; }
-
         public ICollection<TennisCourt> TennisCourts { get; set; }
 
         public ICollection<Facility> Facilities { get; set; }
+#nullable enable
+        public ICollection<Photo>? Photos { get; set; }
+
+        public ICollection<AppUser>? Users { get; set; }
+
+       
 
     }
 }

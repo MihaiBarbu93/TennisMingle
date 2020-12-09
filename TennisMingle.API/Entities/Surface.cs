@@ -15,6 +15,5 @@ namespace TennisMingle.API.Entities
         [Required]
         public SurfaceType SurfaceType { get; set; }
 
-        public List<TennisCourt> TennisCourts { get; set; }
     }
 }
