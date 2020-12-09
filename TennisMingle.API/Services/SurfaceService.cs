@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,11 +17,9 @@ namespace TennisMingle.API.Services
         {
             this._context = _context;
         }
-        public void UpdateSurface(int tennisCourtId, Surface surface)
+        public void UpdateSurface(Surface surface)
         {
-            var tennisCourt = _context.TennisCourts.FirstOrDefault(tc => tc.Id == tennisCourtId);
-
-            tennisCourt.Surface.SurfaceType = surface.SurfaceType;
+            _context.Entry(surface).State = EntityState.Modified;
 
         }
     }

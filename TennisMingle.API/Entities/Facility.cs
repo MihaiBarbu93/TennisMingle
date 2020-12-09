@@ -13,7 +13,10 @@ namespace TennisMingle.API.Entities
     {
         public int Id { get; set; }
         public FacilityType FacilityType { get; set; }
-        public int TennisClubId { get; set; }
-        public TennisClub TennisClub { get; set; }
+#nullable enable
+        public TennisClub? TennisClub { get; set; }
+
+        public int? TennisClubId { get; set; }
+
     }
 }

@@ -87,5 +87,9 @@ namespace TennisMingle.API.Data
             return await _context.TennisCourts.OrderByDescending(t => t.Id).FirstAsync(); ;
         }
 
+        public async Task<TennisCourt> GetTennisCourtAvailableAsync(int tennisClubId)
+        {
+            return await _context.TennisCourts.Where(tc => tc.TennisClubId == tennisClubId).FirstOrDefaultAsync(tc => tc.IsAvailable == true);
+        }
     }
 }

@@ -10,8 +10,8 @@ using TennisMingle.API.Data;
 namespace TennisMingle.API.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20201204152853_UpdateFacilityAndSurface")]
-    partial class UpdateFacilityAndSurface
+    [Migration("20201208155855_Updatefacility")]
+    partial class Updatefacility
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -232,9 +232,6 @@ namespace TennisMingle.API.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<bool>("IsAvailable")
-                        .HasColumnType("bit");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(50)")
@@ -316,7 +313,7 @@ namespace TennisMingle.API.Migrations
             modelBuilder.Entity("TennisMingle.API.Entities.TennisCourt", b =>
                 {
                     b.HasOne("TennisMingle.API.Entities.Surface", "Surface")
-                        .WithMany("TennisCourts")
+                        .WithMany()
                         .HasForeignKey("SurfaceId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();

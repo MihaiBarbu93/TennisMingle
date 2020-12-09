@@ -164,7 +164,7 @@ namespace TennisMingle.API.Data
             }   
         }
 
-        public void PartiallyUpdateTennisClub(int tennisClubId, TennisClub tennisClubFromDB)
+        /*public void PartiallyUpdateTennisClub(int tennisClubId, TennisClub tennisClubFromDB)
         {
 
             tennisClubFromDB = _context.TennisClubs.FirstOrDefault(tc => tc.Id == tennisClubId);
@@ -173,7 +173,7 @@ namespace TennisMingle.API.Data
             {
                 throw new ArgumentNullException($"{nameof(tennisClubFromDB)} entity must not be null");
             }      
-        }
+        }*/
 
         public async Task<bool> SaveAllAsync()
         {
