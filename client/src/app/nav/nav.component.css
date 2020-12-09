@@ -3,10 +3,8 @@
   cursor: pointer;
 }
 
-img {
-  max-height: 50px;
-  border: 2px solid #fff;
-  display: inline;
+.navbar {
+  padding: 0 2rem 0 0;
 }
 
 .navbar-nav {
@@ -17,6 +15,15 @@ img {
   display: inline-block;
 }
 
-nav {
-  background-color: #56e07b !important;
+.logo-area {
+  background-color: black;
+  padding: 0.5rem 0 0.5rem 1rem;
+}
+
+.logo-area > a {
+  color: black;
+}
+
+.logo {
+  height: 36px;
 }
