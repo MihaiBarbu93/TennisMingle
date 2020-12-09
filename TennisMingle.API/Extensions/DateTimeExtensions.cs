@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TennisMingle.API.Entities;
 
 namespace TennisMingle.API.Extensions
 {
@@ -14,5 +15,6 @@ namespace TennisMingle.API.Extensions
             if (dob.Date > today.AddYears(-age)) age--;
             return age;
         }
+
     }
 }

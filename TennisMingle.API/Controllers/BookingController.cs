@@ -1,190 +1,112 @@
-﻿using Microsoft.AspNetCore.JsonPatch;
+﻿using API.Extensions;
+using AutoMapper;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using System.Threading.Tasks;
 using TennisMingle.API.Data;
+using TennisMingle.API.DTOs;
 using TennisMingle.API.Entities;
+using TennisMingle.API.Interfaces;
 
 namespace TennisMingle.API.Controllers
 {
-   
+    [Route("api/{tennisClubId}/booking")]
     public class BookingController : BaseApiController
     {
-        private readonly AppDbContext _context;
-        public BookingController(AppDbContext context)
+        private readonly IUserRepository _userRepository;
+        private readonly ITennisCourtRepository _tennisCourtRepository;
+        private readonly IBookingService _bookingService;
+        private readonly IMapper _mapper;
+        public BookingController(IBookingService bookingService, IMapper mapper,
+            IUserRepository userRepository, ITennisCourtRepository tennisCourtRepository)
         {
-            _context = context;
+            _tennisCourtRepository = tennisCourtRepository;
+            _userRepository = userRepository;
+            _bookingService = bookingService;
+            _mapper = mapper;
         }
  
         [HttpGet]
-        [Route("{id}", Name = "GetBooking")]
-        public IActionResult GetBooking(int id)
+        [Route("{bookingId}", Name = "GetBooking")]
+        public async Task<ActionResult<Booking>> GetBooking(int bookingId)
         {
-            var booking = _context.Bookings.FirstOrDefault(c => c.Id == id);
-            if (booking == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(booking);
+            return Ok(_bookingService.GetBookingAsync(bookingId));
         }
-
         
         [HttpPost]
-        public IActionResult BookTennisCourt(int tennisClubId,
-            [FromBody] Booking booking)
+        public async Task<ActionResult> BookTennisCourt(int tennisClubId, Booking booking)
         {
-
-            var tennisClub = _context.TennisClubs.Include(tennisClub => tennisClub.TennisCourts).FirstOrDefault(tc => tc.Id == tennisClubId);
-
-            if (tennisClub == null)
+            Booking newBooking;
+            if (await _bookingService.CheckAvailability(booking, tennisClubId))
             {
-                return NotFound();
+                var user = await _userRepository.GetUserByUsernameAsync(User.GetUsername());
+                var tennisCourtAvailable =(TennisCourt) await _tennisCourtRepository.GetTennisCourtAvailableAsync(tennisClubId);
+                if (user != null)
+                {
+                    newBooking = new Booking
+                    {
+                        User = user,
+                        UserId = user.Id,
+                        DateStart = booking.DateStart,
+                        DateEnd = booking.DateEnd,
+                        TennisCourt = tennisCourtAvailable,
+                        TennisCourtId = tennisCourtAvailable.Id,
+
+                    };
+                }
+                else 
+                {
+                    newBooking = new Booking
+                    {
+                        FirstName = booking.FirstName,
+                        LastName = booking.LastName,
+                        PhoneNumber = booking.PhoneNumber,
+                        DateStart = booking.DateStart,
+                        DateEnd = booking.DateEnd,
+                        TennisCourt = tennisCourtAvailable,
+                        TennisCourtId = tennisCourtAvailable.Id,
+
+                    };
+                }
+                
+                _bookingService.Book(newBooking);
+                if (await _bookingService.SaveAllAsync())
+                {
+                    var lastBooking = await _bookingService.GetLastBooking();
+                    return CreatedAtRoute("GetBooking", new {tennisClubId = tennisClubId, bookingId = booking.Id }, lastBooking);
+                }
             }
-            if (tennisClub.TennisCourts==null)
-            {
-                return NotFound();
-            }
-
-            var bookingToCreate = new Booking()
-            {
-                DateStart = booking.DateStart,
-                DateEnd = booking.DateEnd,
-                TennisCourtId = booking.TennisCourtId,
-                FirstName = booking.FirstName,
-                LastName = booking.LastName,
-                PhoneNumber = booking.PhoneNumber,
-                //to implement at authentification feature
-              /*  PersonId = booking.PersonId*/
-            };
-            var tennisCourt = _context.TennisCourts.Where(tc => tc.Id == booking.TennisCourtId).FirstOrDefault();
-            tennisCourt.IsAvailable = false;
-            _context.Bookings.Add(bookingToCreate);
-            _context.SaveChanges();
-
-            return CreatedAtRoute(
-                "GetBooking", new {tennisClubId, id = _context.Bookings.ToList().Last().Id }, bookingToCreate);
+            return BadRequest("Unavailable on that time");
         }
 
-
-       /* [HttpPut]
-        [Route("{id}")]
-        public IActionResult UpdateTennisCourt(int cityId, int tennisClubId, int id,
-            [FromBody] TennisCourt tennisCourt)
+        [HttpPut]
+        public async Task<ActionResult> UpdateBooking(BookingUpdateDto bookingUpdateDto)
         {
-            var city = _context.Cities.FirstOrDefault(c => c.Id == cityId);
+            var booking = await _bookingService.GetBookingAsync(bookingUpdateDto.Id);
 
-            if (city == null)
-            {
-                return NotFound();
-            }
+            _mapper.Map(bookingUpdateDto, booking);
 
-            var tennisClub = _context.TennisClubs.FirstOrDefault(tc => tc.Id == tennisClubId);
+            _bookingService.UpdateBooking(bookingUpdateDto);
 
-            if (tennisClub == null)
-            {
-                return NotFound();
-            }
+            if (await _bookingService.SaveAllAsync()) return NoContent();
 
-            var tennisCourtToUpdate = (from p in _context.TennisCourts
-                                        where p.Id == id
-                                        select p).SingleOrDefault();
-
-            tennisCourtToUpdate.Name = tennisCourt.Name;
-            tennisCourtToUpdate.SurfaceId = tennisCourt.SurfaceId;
-            tennisCourtToUpdate.Price = tennisCourt.Price;
-            tennisCourtToUpdate.TennisClubId = tennisClubId;
-
-            _context.SaveChanges();
-
-            return NoContent();
+            return BadRequest("Failed to modify booking");
         }
 
-        /// <summary>
-        /// This PATCH method is replacing only one property of a tennis court
-        /// </summary>
-        [HttpPatch]
-        [Route("{id}")]
-
-        public IActionResult PartiallyUpdateTennisCourt(int cityId, int tennisClubId, int id,
-            [FromBody] JsonPatchDocument<TennisCourt> patchDoc)
-        {
-            var city = _context.Cities.FirstOrDefault(c => c.Id == cityId);
-
-            if (city == null)
-            {
-                return NotFound();
-            }
-
-            var tennisClub = _context.TennisClubs.FirstOrDefault(tc => tc.Id == tennisClubId);
-
-            if (tennisClub == null)
-            {
-                return NotFound();
-            }
-
-            var tennisCourtFromDb = (from p in _context.TennisCourts
-                                        where p.Id == id
-                                        select p).SingleOrDefault();
-            if (tennisCourtFromDb == null)
-            {
-                return NotFound();
-            }
-            var tennisCourtToPatch = tennisCourtFromDb;
-
-            patchDoc.ApplyTo(tennisCourtToPatch, ModelState);
-
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            tennisCourtFromDb.Name = tennisCourtToPatch.Name;
-            tennisCourtFromDb.SurfaceId = tennisCourtToPatch.SurfaceId;
-            tennisCourtFromDb.Price = tennisCourtToPatch.Price;
-
-            _context.SaveChanges();
-
-            return NoContent();
-        }
-
-        /// <summary>
-        /// This DELETE method removes a tennis court from a club with a specific id 
-        /// </summary>
         [HttpDelete]
-        [Route("{id}")]
+        [Route("{bookingId}")]
 
-        public IActionResult DeleteTennisCourt(int cityId, int tennisClubId, int id)
+        public async Task<ActionResult> DeleteBooking(int bookingId)
         {
-            var city = _context.Cities.FirstOrDefault(c => c.Id == cityId);
 
-            if (city == null)
-            {
-                return NotFound();
-            }
+            _bookingService.DeleteBooking(bookingId);
 
-            var tennisClub = _context.TennisClubs.FirstOrDefault(tc => tc.Id == tennisClubId);
+            if (await _bookingService.SaveAllAsync()) return NoContent();
 
-            if (tennisClub == null)
-            {
-                return NotFound();
-            }
-
-            var tennisCourtToDelete = (from p in _context.TennisCourts
-                                        where p.Id == id
-                                        select p).SingleOrDefault();
-            if (tennisCourtToDelete == null)
-            {
-                return NotFound();
-            }
-
-            _context.TennisCourts.Remove(tennisCourtToDelete);
-            _context.SaveChanges();
-
-            return NoContent();
+            return BadRequest("Failed to delete booking");
         }
-       */
-
     }
-    }
+}
 

@@ -8,7 +8,7 @@ namespace TennisMingle.API.Interfaces
 {
     public interface ISurfaceService
     {
-        void UpdateSurface(int tennisClubId, Surface surface);
+        void UpdateSurface(Surface surface);
 
     }
 }

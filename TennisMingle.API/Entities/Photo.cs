@@ -17,9 +17,7 @@ namespace TennisMingle.API.Entities
 #nullable enable
         public TennisClub? TennisClub { get; set; }
         public int? TennisClubId { get; set; }
-
         public AppUser? Person { get; set; }
-
         public int? PersonId { get; set; }
     }
 }

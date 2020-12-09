@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace TennisMingle.API.DTOs
 {
-    public class BookingDto
+    public class BookingUpdateDto
     {
         public int Id { get; set; }
         public DateTime DateStart { get; set; }

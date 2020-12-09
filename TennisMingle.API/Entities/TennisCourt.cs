@@ -10,7 +10,6 @@ namespace TennisMingle.API.Entities
 {
     public class TennisCourt
     {
-#nullable enable
         /// <summary>
         /// Id of the tennis court
         /// </summary>
@@ -23,7 +22,7 @@ namespace TennisMingle.API.Entities
         [MaxLength(50)]
         public string Name { get; set; }
 
-        public Surface? Surface { get; set; }
+        public Surface Surface { get; set; }
 
         public int SurfaceId { get; set; }
 
@@ -31,15 +30,15 @@ namespace TennisMingle.API.Entities
         /// <summary>
         /// The availability of the tennis court
         /// </summary>
-        public bool IsAvailable { get; set; } = true;
-
+        [NotMapped]
+        public bool IsAvailable { get; set; }
 
         /// <summary>
         /// The surface type of the tennis court
         /// </summary>
         public int TennisClubId { get; set; }
 
-        public TennisClub? TennisClub { get; set; }
+        public TennisClub TennisClub { get; set; }
 
     }
 }
