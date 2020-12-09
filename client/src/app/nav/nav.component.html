@@ -1,37 +1,44 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-success">
   <div class="logo-area">
     <img class="logo" src="./assets/logo.png" />
-    <a routerLink="/">TennisMingle</a>
   </div>
 
-  <ul class="navbar-nav mr-auto">
+  <div class="btn-group ml-4" dropdown>
+    <button
+      id="button-basic"
+      dropdownToggle
+      type="button"
+      class="btn btn-success dropdown-toggle toggle-cities"
+      aria-controls="dropdown-basic"
+    >
+      BUCHAREST <span class="caret"></span>
+    </button>
+    <ul
+      id="dropdown-basic"
+      *dropdownMenu
+      class="dropdown-menu"
+      role="menu"
+      aria-labelledby="button-basic"
+    >
+      <li role="menuitem">
+        <a class="dropdown-item" href="#">Brasov</a>
+      </li>
+      <li role="menuitem">
+        <a class="dropdown-item" href="#">Cluj</a>
+      </li>
+      <li role="menuitem">
+        <a class="dropdown-item" href="#">Iasi</a>
+      </li>
+    </ul>
+  </div>
+  <ul class="navbar-nav mr-auto ml-2">
     <ng-container>
       <li class="nav-item">
         <a class="nav-link" routerLink="/members" routerLinkActive="active"
-          >Matches</a
-        >
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/lists" routerLinkActive="active"
-          >Lists</a
-        >
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/messages" routerLinkActive="active"
-          >Messages</a
-        >
-      </li>
-      <li>
-        <a class="nav-link" routerLink="/admin" routerLinkActive="active"
-          >Admin</a
+          ><i class="fas fa-search"></i> Search</a
         >
       </li>
     </ng-container>
-    <li class="nav-item">
-      <a class="nav-link" routerLink="/errors" routerLinkActive="active"
-        >Errors</a
-      >
-    </li>
   </ul>
 
   <!-- <div

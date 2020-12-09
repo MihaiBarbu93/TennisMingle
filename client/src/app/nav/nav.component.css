@@ -18,12 +18,18 @@
 .logo-area {
   background-color: black;
   padding: 0.5rem 0 0.5rem 1rem;
-}
-
-.logo-area > a {
-  color: black;
+  width: 18em;
 }
 
 .logo {
   height: 36px;
+}
+
+.toggle-cities,
+.toggle-cities:hover,
+.toggle-cities:active,
+.toggle-cities:focus,
+.toggle-cities:visited {
+  background-color: #28a745;
+  border: 0;
 }
