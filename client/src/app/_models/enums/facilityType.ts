@@ -1,0 +1,13 @@
+export enum FacilityType {
+  PARKING,
+  TOILETS,
+  DRESSROOM,
+  SHOWERS,
+  STANDS,
+  NOCTURNE,
+  OUTDOOR_LAND,
+  BAR,
+  TERRASE,
+  WI_FI,
+  RESTAURANT,
+}

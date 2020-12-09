@@ -1,3 +1,4 @@
+import { SharedModule } from './_modules/shared.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -14,14 +15,21 @@ import { TennisClubDetailComponent } from './tennis-club/tennis-club-detail/tenn
 import { TennisClubCardComponent } from './tennis-club/tennis-club-card/tennis-club-card.component';
 
 @NgModule({
-  declarations: [AppComponent, NavComponent, HomeComponent, TennisClubListComponent, TennisClubDetailComponent, TennisClubCardComponent],
+  declarations: [
+    AppComponent,
+    NavComponent,
+    HomeComponent,
+    TennisClubListComponent,
+    TennisClubDetailComponent,
+    TennisClubCardComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
-    BsDropdownModule.forRoot(),
+    SharedModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
