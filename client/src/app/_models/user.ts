@@ -12,4 +12,5 @@ export interface User {
   userType: UserType;
   bookings: Booking[];
   tennisClubId: number;
+  token: string;
 }
