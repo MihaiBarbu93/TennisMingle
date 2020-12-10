@@ -311,6 +311,14 @@ btn:focus textarea:focus {
   margin-top: 2rem;
 }
 
+.tm-pt-2 {
+  padding-top: 2rem;
+}
+
+.tm-pb-2 {
+  padding-bottom: 2rem;
+}
+
 .tm-mt-4 {
   margin-top: 4rem;
 }
