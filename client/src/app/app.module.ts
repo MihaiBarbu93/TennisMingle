@@ -14,6 +14,9 @@ import { TennisClubDetailComponent } from './tennis-club/tennis-club-detail/tenn
 import { TennisClubCardComponent } from './tennis-club/tennis-club-card/tennis-club-card.component';
 import { FooterComponent } from './footer/footer.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { RegisterComponent } from './register/register.component';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -24,6 +27,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     TennisClubDetailComponent,
     TennisClubCardComponent,
     FooterComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,6 +37,10 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     FormsModule,
     SharedModule,
     FontAwesomeModule,
+    BsDropdownModule.forRoot(),
+    ToastrModule.forRoot({
+      positionClass: 'toast-bottom-right'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent],
