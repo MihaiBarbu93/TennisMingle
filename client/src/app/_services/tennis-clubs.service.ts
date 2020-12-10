@@ -12,8 +12,10 @@ export class TennisClubsService {
 
   constructor(private http: HttpClient) {}
 
-  getTennisClubs() {
-    return this.http.get<TennisClub[]>(this.baseUrl + 'cities/1/tennisclubs');
+  getTennisClubs(cityId: number) {
+    return this.http.get<TennisClub[]>(
+      this.baseUrl + 'cities/' + cityId + '/tennisclubs'
+    );
   }
 
   getTennisClub(userId: number) {

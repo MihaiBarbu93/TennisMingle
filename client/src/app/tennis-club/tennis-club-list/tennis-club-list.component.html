@@ -1,1 +1,106 @@
-<p>tennis-club-list works!</p>
+<div class="container text-center tm-pt-2">
+  <div class="tm-pb-2">
+    <i
+      >There are <b>{{ tennisClubs.length }}</b> places to play tennis within a
+      5 mile radius of your desired location
+    </i>
+  </div>
+  <!-- <div class="row mt-5 mb-4">
+      <div class="col-md-3 col-lg-3 col-xl-2 small">
+          <div class="filter text-left">
+              <div class="mb-4">
+                  <div class="mt-4">
+                      <p class="filter-type font-weight-bold mb-1">Facilites</p>
+                      <div class="tm-divider"></div>
+                      @foreach (var tennisClub in Model.TennisClubs)
+                      {
+                          foreach (var facility in tennisClub.Facilities)
+                          {
+                              <div class="form-check">
+                                  <input type="checkbox" class="form-check-input" id="materialUnchecked">
+                                  <label class="form-check-label" for="materialUnchecked">@facility.FacilityType</label>
+                              </div>
+                          }
+                      }
+                  <div class="mt-4">
+                      <p class="filter-type font-weight-bold mb-1">Surface</p>
+                      <div class="tm-divider"></div>
+
+                      @foreach (var surface in Model.Surfaces)
+                      {
+                          <div class="form-check">
+                              <input type="checkbox" class="form-check-input" id="materialUnchecked">
+                              <label class="form-check-label" for="materialUnchecked">@surface.SurfaceType</label>
+                          </div>
+                      }
+                  </div>
+
+                  </div>
+              </div>
+          </div>
+
+      </div> -->
+  <div
+    class="col-md-9 col-lg-9 col-xl-10"
+    *ngFor="let tennisClub of tennisClubs"
+  >
+    <div class="row pt-4 mb-3 bg-white club-summary rounded">
+      <div class="col-6 col-lg-4 pr-0 align-items-stretch mb-3">
+        <img
+          src="~/Images/@club.Image"
+          class="img-fluid rounded-image"
+          w-100
+          h-100
+          alt=""
+        />
+      </div>
+      <div class="col-6 col-lg-8 pr-0 mb-2">
+        <div class="thumbnail text-left">
+          <div class="row mb-3">
+            <div class="col-12 col-lg-5 col-xl-6">
+              <div class="caption">
+                <h3 class="pull-right club-info-name">{{ tennisClub.name }}</h3>
+                <p class="mb-1 club-info-address">{{ tennisClub.address }}</p>
+                <p class="mb-1 club-info-address">
+                  <span class="club-info-schedule">Schedule: </span
+                  >{{ tennisClub.schedule }}
+                </p>
+                <p>{{ tennisClub.phoneNumber }}</p>
+              </div>
+            </div>
+            <div
+              class="col-12 col-lg-7 col-xl-6 mt-lg-0 cursor pointer mlp-block-link"
+            >
+              <div class="addToCart">
+                <p class="button">
+                  <a
+                    class="btn tm-btn--secondary"
+                    asp-controller="TennisClub"
+                    asp-action="TennisClub"
+                    asp-all-route-data="parms"
+                    >Explore Venue</a
+                  >
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="club-info-divider mb-2"></div>
+          <div class="row text-left">
+            <div class="col-12 body3 d-none d-md-block mb-2">
+              <div class="list-inline">
+                <div class="list-inline-item">
+                  <span class="badge badge-success">open</span>
+                </div>
+                <div class="list-inline-item">
+                  <i class="fas fa-map-marker-alt"></i>
+                  <span class="distance-info">5 km away</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="club-info-divider mb-2"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
