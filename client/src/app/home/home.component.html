@@ -1,3 +1,117 @@
-<div class="container" *ngFor="let city of cities">
-  <p>{{ city.name }}</p>
+<header class="masthead">
+  <div class="container-fluid find-court-container">
+    <p class="h3 find-court-header font-weight-bolder">
+      Find <span class="font-weight-bolder text-dark">your</span> court
+    </p>
+    <p class="text-dark text-center">Book tennis courts in Romania</p>
+    <!--Blue select-->
+    <form method="post" class="form-horizontal" role="form">
+      <div class="form-group">
+        <div class="row">
+          <div class="alert-danger" asp-validation-summary="ModelOnly"></div>
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <label asp-for="Cities" class="control-label"></label>
+            <select class="form-control bg-dark text-white mb-2"></select>
+            <input
+              type="datetime-local"
+              id="followup_next_followup_date"
+              class="mt-2 w-100"
+              name="followup_next_followup_date"
+              placeholder="Choose a reservation date"
+              value='@DateTime.Now.ToString("s")'
+            />
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <input
+              id="Submit1"
+              class="find-court-button w-100 bg-dark"
+              type="submit"
+              value="submit"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+            Selected Country ID: 5555
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</header>
+
+<div class="container tm-mt-4 tm-mb-4">
+  <div class="row site-description">
+    <div class="col sm-4 text-center">
+      <fa-icon class="fa-2x" [icon]="faSearch"></fa-icon>
+      <p class="h3 mt-2 site-description-header">Find</p>
+      <div class="justify-content-center mt-1 tm-mb-2">
+        <div class="divider-short tm-mb-2"></div>
+      </div>
+      <p class="site-description-text">
+        Are you looking to play after work, organise your Sunday League team, or
+        exact revenge on the tennis court? Explore the largest network of tennis
+        facilities in Romania. Simply enter your location, choose the date and
+        hit the search button.
+      </p>
+    </div>
+    <div class="col sm-4 text-center">
+      <fa-icon class="fa-2x" [icon]="faCalendar"></fa-icon>
+      <p class="h3 mt-2 site-description-header">Book</p>
+      <div class="justify-content-center mt-1 tm-mb-2">
+        <div class="divider-short tm-mb-2"></div>
+      </div>
+      <p class="site-description-text">
+        Once you’ve found the perfect court, get booked in quicker and make
+        easier payment. Connect with the venue through the enquiry form to make
+        an online booking. We work with the best tennis facilities in the
+        Romania to simplify organising sport.
+      </p>
+    </div>
+    <div class="col sm-4 text-center">
+      <fa-icon class="fa-2x" [icon]="faRunning"></fa-icon>
+      <p class="h3 mt-2 site-description-header">Play</p>
+      <div class="justify-content-center mt-1 tm-mb-2 text-center">
+        <div class="divider-short"></div>
+      </div>
+      <p class="site-description-text">
+        You’re the hero, you’ve found a stunning court, booked with ease and now
+        its time to play. The scene is set for your epic match, where dreams can
+        be made or broken. Pain is only temporary but victory is forever, so
+        leave nothing behind.
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6 col-md-3 sg-mb-1">
+      <div class="stats text-center text">
+        <p class="h4 pt-3 stats-header font-weight-bolder">3</p>
+        <p class="h5 mb-4 stats-info text-uppercase">cities</p>
+      </div>
+    </div>
+    <div class="col-sm-6 col-md-3 sg-mb-1">
+      <div class="stats text-center text">
+        <p class="h4 pt-3 stats-header font-weight-bolder">5</p>
+        <p class="h5 mb-4 stats-info text-uppercase">tennis clubs</p>
+      </div>
+    </div>
+    <div class="col-sm-6 col-md-3 sg-mb-1">
+      <div class="stats text-center text">
+        <p class="h4 pt-3 stats-header font-weight-bolder">12</p>
+        <p class="h5 mb-4 stats-info text-uppercase">surfaces</p>
+      </div>
+    </div>
+    <div class="col-sm-6 col-md-3 sg-mb-1">
+      <div class="stats text-center text">
+        <p class="h4 pt-3 stats-header font-weight-bolder">10</p>
+        <p class="h5 mb-4 stats-info text-uppercase">players + coaches</p>
+      </div>
+    </div>
+  </div>
 </div>

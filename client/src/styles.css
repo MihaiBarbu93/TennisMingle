@@ -4,3 +4,423 @@
 img {
   border: 0 !important;
 }
+
+/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+/* Provide sufficient contrast against white background */
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+/* Remove outline for non-keyboard :focus */
+*:focus:not(.focus-visible) {
+  outline: none;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  font-size: 14px;
+}
+
+body {
+  font-family: Verdana, Geneva, sans-serif;
+  margin-bottom: 0px !important;
+  background-color: white;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.05);
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+footer {
+  background-color: #ececec;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  line-height: 60px; /* Vertically center the text there */
+}
+
+.site-logo {
+  background-color: black;
+  display: inline-block;
+  padding-top: 11px;
+  padding-left: 25px;
+}
+
+.top-nav {
+  height: 56px;
+  font-family: Verdana, Geneva, sans-serif;
+}
+
+.cities-collapse {
+  background-color: #56e07b;
+}
+
+.navbar-venue-partner {
+  background-color: white;
+}
+
+.navbar-venue-partner-link {
+  color: black;
+  text-transform: uppercase;
+  line-height: 56px;
+  font-weight: bolder;
+}
+
+.navbar-venue-partner-link:hover {
+  color: black;
+  text-decoration: none;
+}
+
+.container-fluid {
+  margin-right: 0px;
+  margin-left: 0px;
+  padding-right: 0px;
+  padding-left: 0px;
+  margin-top: 0px;
+}
+
+.masthead {
+  height: 42em;
+  background-image: url("./assets/couple-tennis-court.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: white;
+  position: relative;
+}
+
+.find-court-container {
+  background-color: #fff;
+  position: absolute;
+  width: 418px;
+  top: 12em;
+  left: 6em;
+  padding: 10px;
+  box-shadow: 0 15px 35px 0 rgba(0, 0, 0, 0.25);
+}
+
+.find-court-header {
+  font-size: 2em;
+  text-transform: uppercase;
+  color: #56e07b;
+  text-align: center;
+}
+
+.find-court-button {
+  background-color: #222;
+  padding: 0.5em 2rem;
+  text-transform: uppercase;
+  color: #56e07b;
+  font-size: 1.125rem;
+  transition: all ease 0.3s;
+}
+
+.find-court-button:hover {
+  background-color: black;
+}
+
+.club-summary {
+  padding: 8px 16px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14),
+    0 2px 1px -1px rgba(0, 0, 0, 0.12), -1px 0 0 0 rgba(0, 0, 0, 0.05);
+}
+
+.rounded-image {
+  border-radius: 0.25rem;
+}
+
+.tm-btn--secondary {
+  background-color: #56e07b;
+  text-transform: uppercase;
+  color: black;
+  padding: 0.5rem 2rem;
+  font-size: 1rem;
+  font-weight: bolder;
+  line-height: 1.5rem;
+  transition: background-color 0.25s;
+  outline: none;
+}
+
+.tm-btn--secondary:hover {
+  color: #373737;
+  background-color: #d4f7de;
+}
+
+a:focus,
+button:focus,
+input:focus,
+btn:focus textarea:focus {
+  outline: none;
+}
+
+.club-info-name {
+  color: #188155;
+  font-size: 1.125rem;
+  font-weight: bold;
+}
+
+.club-info-address {
+  font-size: 14px;
+}
+
+.club-info-schedule {
+  font-weight: bolder;
+}
+
+.club-info-divider {
+  background-color: #d6d5d5;
+  height: 1px;
+}
+
+.badge {
+  /* display: inline-block; */
+  /* padding: .25em .4em; */
+  /* font-size: 75%; */
+  /* font-weight: 700; */
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  /* border-radius: .25rem; */
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.badge {
+  padding: 0.25rem 0.35rem 0.2rem;
+  text-transform: uppercase;
+  font-family: "Frank New", sans-serif;
+  font-weight: 400;
+  font-size: 0.625rem;
+  color: #fff;
+  border-radius: 0.1875rem;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem 0.2rem;
+}
+
+.badge-success {
+  background-color: #56e07b;
+  color: #2f285a;
+}
+
+.cities-collapse-nav {
+  color: #2f285a;
+}
+
+.cities-collapse-nav:hover {
+  color: #2f285a;
+  text-decoration: none;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  display: none;
+  float: left;
+  min-width: 10rem;
+  padding: 0.5rem 0;
+  margin: 0.125rem 0 0;
+  font-size: 1rem;
+  color: #212529;
+  text-align: left;
+  list-style: none;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 0.25rem;
+}
+
+.dropdown-item {
+  display: block;
+  width: 100%;
+  padding: 0.25rem 1.5rem;
+  clear: both;
+  font-weight: 400;
+  color: #212529;
+  text-align: inherit;
+  white-space: nowrap;
+  background-color: transparent;
+  border: 0;
+  text-transform: capitalize;
+}
+
+.user-area {
+  text-transform: uppercase;
+  font-weight: bolder;
+}
+
+.tm-mb-2 {
+  margin-bottom: 2em;
+}
+
+.tm-mb-4 {
+  margin-bottom: 4em;
+}
+
+.tm-mt-2 {
+  margin-top: 2rem;
+}
+
+.tm-mt-4 {
+  margin-top: 4rem;
+}
+
+.tm-ml-4 {
+  margin-left: 4rem;
+}
+
+.site-description {
+  margin-bottom: 3rem;
+}
+
+.site-description-icon {
+  font-size: 3rem;
+  margin-bottom: 2em;
+}
+
+.site-description-header {
+  text-transform: uppercase;
+  font-size: 1.3rem;
+  font-weight: bolder;
+}
+
+.divider-short {
+  border-top: 4px solid #56e07b;
+  width: 70px;
+  margin: 0 auto;
+}
+
+.tm-divider {
+  background-color: #d6d5d5;
+  height: 1px;
+  margin-bottom: 1em;
+}
+
+.tm-divider-long {
+  background-color: #56e07b;
+  height: 4px;
+  margin-bottom: 1em;
+}
+
+.stats {
+  background-color: white;
+  border: 4px solid #56e07b;
+}
+
+.distance-info {
+  font-size: 1em;
+}
+
+.social {
+  background: linear-gradient(90deg, #56e07b 50%, black 50%);
+}
+
+.social-links-area {
+  height: 108px;
+  font-size: 3em;
+}
+
+.social-link {
+  color: black;
+}
+
+.social-link:hover {
+  color: black;
+  text-decoration: none;
+}
+
+.social-newsletter {
+  height: 108px;
+}
+
+.email-input {
+  color: #373737;
+  height: calc(1.5em + 0.75rem + 2px + 8px);
+  box-shadow: none;
+  border: none;
+  padding: 0.275rem 0.75rem;
+  border-radius: 0.25rem;
+}
+
+.newsletter-submit-button {
+  height: calc(1.5em + 0.75rem + 2px + 8px);
+}
+
+.filters {
+  min-width: 137px;
+}
+
+.thumbnail {
+  padding-left: 20px;
+}
+
+.filter-type {
+  font-size: 1.1em;
+}
+
+/* Set the size of the div element that contains the map */
+#map {
+  height: 400px;
+  /* The height is 400 pixels */
+  width: 100%;
+  /* The width is the width of the web page */
+}
+
+.footer-link {
+  color: #188155;
+}
+
+.footer-link:hover {
+  color: #5da788;
+  text-decoration: none;
+}
