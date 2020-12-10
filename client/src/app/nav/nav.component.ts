@@ -11,6 +11,8 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 export class NavComponent implements OnInit {
   cities: City[] = [];
   faSearch = faSearch;
+  selectedCity!: City;
+
   constructor(private citiesService: CitiesService) {}
 
   ngOnInit(): void {
@@ -20,6 +22,7 @@ export class NavComponent implements OnInit {
   loadCities() {
     return this.citiesService.getCities().subscribe((cities) => {
       this.cities = cities;
+      this.selectedCity = cities[0];
     });
   }
 }
