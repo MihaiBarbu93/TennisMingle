@@ -23,9 +23,11 @@
       aria-labelledby="button-basic"
     >
       <li role="menuitem" *ngFor="let city of cities">
-        <a class="dropdown-item" routerLink="{{ city.name }}/tennis-clubs">{{
-          city.name
-        }}</a>
+        <a
+          class="dropdown-item"
+          routerLink="cities/{{ city.id }}/tennis-clubs"
+          >{{ city.name }}</a
+        >
       </li>
     </ul>
   </div>

@@ -1,6 +1,9 @@
+import { City } from './../../_models/city';
 import { TennisClubsService } from './../../_services/tennis-clubs.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { TennisClub } from 'src/app/_models/tennisClub';
+import { ActivatedRoute } from '@angular/router';
+import { CitiesService } from 'src/app/_services/cities.service';
 
 @Component({
   selector: 'app-tennis-club-list',
@@ -9,10 +12,16 @@ import { TennisClub } from 'src/app/_models/tennisClub';
 })
 export class TennisClubListComponent implements OnInit {
   tennisClubs: TennisClub[] = [];
-  constructor(private tennisClubService: TennisClubsService) {}
+  cityId!: number;
+  constructor(
+    private tennisClubService: TennisClubsService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    this.loadTennisClubs(1);
+    this.cityId = +this.route.snapshot.params.cityId;
+    console.log(this.cityId);
+    this.loadTennisClubs(this.cityId);
   }
 
   loadTennisClubs(cityId: number) {
