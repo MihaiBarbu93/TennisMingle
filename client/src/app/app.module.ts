@@ -13,6 +13,7 @@ import { HomeComponent } from './home/home.component';
 import { TennisClubListComponent } from './tennis-club/tennis-club-list/tennis-club-list.component';
 import { TennisClubDetailComponent } from './tennis-club/tennis-club-detail/tennis-club-detail.component';
 import { TennisClubCardComponent } from './tennis-club/tennis-club-card/tennis-club-card.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { TennisClubCardComponent } from './tennis-club/tennis-club-card/tennis-c
     TennisClubListComponent,
     TennisClubDetailComponent,
     TennisClubCardComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
