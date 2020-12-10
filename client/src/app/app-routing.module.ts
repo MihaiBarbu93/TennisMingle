@@ -6,7 +6,7 @@ import { TennisClubDetailComponent } from './tennis-club/tennis-club-detail/tenn
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: ':cityName/tennis-clubs', component: TennisClubListComponent },
+  { path: 'cities/:cityId/tennis-clubs', component: TennisClubListComponent },
   { path: 'tennis-clubs/:id', component: TennisClubDetailComponent },
   { path: '**', component: HomeComponent, pathMatch: 'full' },
 ];

@@ -52,6 +52,7 @@ namespace TennisMingle.API.Data
                .Include(tc => tc.TennisCourts)
                .Include(tc => tc.Photos)
                .Include(tc => tc.Users)
+               .Where(tc => tc.CityId == cityId)
                .ToListAsync();
             }
             catch (Exception ex)

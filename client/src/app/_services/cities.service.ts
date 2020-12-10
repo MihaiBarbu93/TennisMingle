@@ -7,6 +7,7 @@ import { City } from '../_models/city';
   providedIn: 'root',
 })
 export class CitiesService {
+  city!: City;
   baseUrl: string = environment.apiUrl;
   constructor(private http: HttpClient) {}
 
@@ -19,6 +20,12 @@ export class CitiesService {
   }
 
   getCity(cityId: number) {
-    return this.http.get<City>(this.baseUrl + cityId);
+    return this.http.get<City>(this.baseUrl + 'cities/' + cityId);
+  }
+
+  getCityName(cityId: number) {
+    this.getCity(cityId).subscribe((city) => {
+      this.city = city;
+    });
   }
 }
