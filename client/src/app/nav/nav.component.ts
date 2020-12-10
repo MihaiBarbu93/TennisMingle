@@ -1,6 +1,7 @@
 import { CitiesService } from './../_services/cities.service';
 import { Component, OnInit } from '@angular/core';
 import { City } from '../_models/city';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-nav',
@@ -9,6 +10,7 @@ import { City } from '../_models/city';
 })
 export class NavComponent implements OnInit {
   cities: City[] = [];
+  faSearch = faSearch;
   constructor(private citiesService: CitiesService) {}
 
   ngOnInit(): void {

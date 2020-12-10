@@ -13,7 +13,7 @@
       class="btn btn-success dropdown-toggle toggle-cities"
       aria-controls="dropdown-basic"
     >
-      {{ cities[0].name }} <span class="caret"></span>
+      Bucharest <span class="caret"></span>
     </button>
     <ul
       id="dropdown-basic"
@@ -31,7 +31,7 @@
     <ng-container>
       <li class="nav-item">
         <a class="nav-link" routerLink="/" routerLinkActive="active"
-          ><i class="fas fa-search"></i> Search</a
+          ><fa-icon [icon]="faSearch"></fa-icon> Search</a
         >
       </li>
     </ng-container>
