@@ -3,6 +3,11 @@ import { environment } from './../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { City } from '../_models/city';
+import {
+  faSearch,
+  faCalendar,
+  faRunning,
+} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-home',
@@ -12,6 +17,9 @@ import { City } from '../_models/city';
 export class HomeComponent implements OnInit {
   baseUrl = environment.apiUrl;
   cities: City[] = [];
+  faSearch = faSearch;
+  faCalendar = faCalendar;
+  faRunning = faRunning;
 
   constructor(private citiesService: CitiesService) {}
 
