@@ -3,46 +3,32 @@
     <p class="h3 find-court-header font-weight-bolder">
       Find <span class="font-weight-bolder text-dark">your</span> court
     </p>
-    <p class="text-dark text-center">Book tennis courts in Romania</p>
+    <p class="text-dark text-center find-court-subheader">
+      Book tennis courts in Romania
+    </p>
     <!--Blue select-->
-    <form method="post" class="form-horizontal" role="form">
-      <div class="form-group">
-        <div class="row">
-          <div class="alert-danger" asp-validation-summary="ModelOnly"></div>
-          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <label asp-for="Cities" class="control-label"></label>
-            <select class="form-control bg-dark text-white mb-2"></select>
-            <input
-              type="datetime-local"
-              id="followup_next_followup_date"
-              class="mt-2 w-100"
-              name="followup_next_followup_date"
-              placeholder="Choose a reservation date"
-              value='@DateTime.Now.ToString("s")'
-            />
-          </div>
-        </div>
-      </div>
-      <div class="form-group">
+    <div class="form-group">
+      <label for="citiesSelect">citiesSelect</label>
+      <ngx-select
+        [formControl]="ngxControl"
+        [allowClear]="true"
+        [defaultValue]="citiesSelect[0]"
+        [items]="citiesSelect"
+      >
+      </ngx-select>
+      <div class="form-group mt-2">
         <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <input
               id="Submit1"
-              class="find-court-button w-100 bg-dark"
+              class="find-court-button w-100 bg-dark rounded"
               type="submit"
               value="submit"
             />
           </div>
         </div>
       </div>
-      <div class="form-group">
-        <div class="row">
-          <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
-            Selected Country ID: 5555
-          </div>
-        </div>
-      </div>
-    </form>
+    </div>
   </div>
 </header>
 
