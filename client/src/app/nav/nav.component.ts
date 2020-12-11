@@ -1,5 +1,7 @@
+import { DataService } from './../_services/data-service.service';
+import { ActivatedRoute } from '@angular/router';
 import { CitiesService } from './../_services/cities.service';
-import { Component, OnInit, TemplateRef  } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { City } from '../_models/city';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { AccountService } from '../_services/account.service';
@@ -14,15 +16,22 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 })
 export class NavComponent implements OnInit {
   cities: City[] = [];
-  
+
   modalRef!: BsModalRef;
   faSearch = faSearch;
   config = {
-    keyboard: true
+    keyboard: true,
   };
 
-  constructor(private citiesService: CitiesService,public accountService: AccountService, 
-    private router: Router, private toastr: ToastrService, private modalService: BsModalService) {}
+  constructor(
+    private citiesService: CitiesService,
+    public accountService: AccountService,
+    private router: Router,
+    private modalService: BsModalService,
+    private data: DataService
+  ) {}
+  selectedCity!: City;
+  cityName!: string;
 
   ngOnInit(): void {
     this.loadCities();
@@ -31,9 +40,9 @@ export class NavComponent implements OnInit {
   loadCities() {
     return this.citiesService.getCities().subscribe((cities) => {
       this.cities = cities;
+      this.cityName = cities[0].name;
     });
   }
-  
 
   logout() {
     this.accountService.logout();
@@ -41,11 +50,13 @@ export class NavComponent implements OnInit {
   }
 
   openModal(template: TemplateRef<any>) {
-    console.log("open modal");
+    console.log('open modal');
     this.modalRef = this.modalService.show(template, this.config);
   }
 
- 
-
-
+  isHiddenChange(): void {
+    this.data.currentMessage.subscribe(
+      (message) => (this.cityName = this.cities[+message - 1].name)
+    );
+  }
 }
