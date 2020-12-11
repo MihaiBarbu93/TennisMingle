@@ -35,7 +35,10 @@ namespace TennisMingle.API.Controllers
             {
                 UserName = registerDTO.UserName.ToLower(),
                 PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDTO.Password)),
-                PasswordSalt = hmac.Key
+                PasswordSalt = hmac.Key,
+                City = registerDTO.City,
+                DateOfBirth = registerDTO.DateOfBirth,
+                UserType = registerDTO.UserType
             };
 
             _context.Users.Add(person);
