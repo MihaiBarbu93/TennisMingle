@@ -1,3 +1,5 @@
+import { DataService } from './../_services/data-service.service';
+import { ActivatedRoute } from '@angular/router';
 import { CitiesService } from './../_services/cities.service';
 import { Component, OnInit } from '@angular/core';
 import { City } from '../_models/city';
@@ -12,8 +14,12 @@ export class NavComponent implements OnInit {
   cities: City[] = [];
   faSearch = faSearch;
   selectedCity!: City;
+  cityName!: string;
 
-  constructor(private citiesService: CitiesService) {}
+  constructor(
+    private citiesService: CitiesService,
+    private data: DataService
+  ) {}
 
   ngOnInit(): void {
     this.loadCities();
@@ -22,7 +28,13 @@ export class NavComponent implements OnInit {
   loadCities() {
     return this.citiesService.getCities().subscribe((cities) => {
       this.cities = cities;
-      this.selectedCity = cities[0];
+      this.cityName = cities[0].name;
     });
+  }
+
+  isHiddenChange(): void {
+    this.data.currentMessage.subscribe(
+      (message) => (this.cityName = this.cities[+message - 1].name)
+    );
   }
 }
