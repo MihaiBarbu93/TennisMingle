@@ -16,7 +16,9 @@ export class TennisClubListComponent implements OnInit {
   constructor(
     private tennisClubService: TennisClubsService,
     private route: ActivatedRoute
-  ) {}
+  ) {
+    this.subscribeRouteChange();
+  }
 
   ngOnInit(): void {
     this.cityId = +this.route.snapshot.params.cityId;
@@ -30,5 +32,11 @@ export class TennisClubListComponent implements OnInit {
       .subscribe((tennisClubs) => {
         this.tennisClubs = tennisClubs;
       });
+  }
+
+  subscribeRouteChange() {
+    this.route.params.subscribe((params = {}) => {
+      this.loadTennisClubs(params.cityId);
+    });
   }
 }
