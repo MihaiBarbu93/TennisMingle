@@ -8,6 +8,7 @@ import {
   faCalendar,
   faRunning,
 } from '@fortawesome/free-solid-svg-icons';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -20,6 +21,8 @@ export class HomeComponent implements OnInit {
   faSearch = faSearch;
   faCalendar = faCalendar;
   faRunning = faRunning;
+  public ngxControl = new FormControl();
+  citiesSelect: string[] = [];
 
   constructor(private citiesService: CitiesService) {}
 
@@ -30,6 +33,14 @@ export class HomeComponent implements OnInit {
   loadCities() {
     return this.citiesService.getCities().subscribe((cities) => {
       this.cities = cities;
+      this.getCitiesNames();
+    });
+  }
+
+  getCitiesNames() {
+    this.cities.forEach((city) => {
+      console.log(city);
+      this.citiesSelect.push(city.name);
     });
   }
 }

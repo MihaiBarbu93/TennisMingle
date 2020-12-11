@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import "../node_modules/font-awesome/css/font-awesome.css";
-@import"../node_modules/ngx-bootstrap/datepicker/bs-datepicker.css";
+@import "../node_modules/ngx-bootstrap/datepicker/bs-datepicker.css";
 
 img {
   border: 0 !important;
@@ -149,10 +149,14 @@ footer {
 }
 
 .find-court-header {
-  font-size: 2em;
+  font-size: 3em;
   text-transform: uppercase;
   color: #56e07b;
   text-align: center;
+}
+
+.find-court-subheader {
+  font-size: 1.2em;
 }
 
 .find-court-button {
@@ -166,6 +170,7 @@ footer {
 
 .find-court-button:hover {
   background-color: black;
+  cursor: pointer;
 }
 
 .club-summary {
@@ -434,5 +439,11 @@ btn:focus textarea:focus {
   text-decoration: none;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
