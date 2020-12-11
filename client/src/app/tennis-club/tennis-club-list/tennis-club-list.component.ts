@@ -1,9 +1,9 @@
+import { DataService } from './../../_services/data-service.service';
 import { City } from './../../_models/city';
 import { TennisClubsService } from './../../_services/tennis-clubs.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { TennisClub } from 'src/app/_models/tennisClub';
 import { ActivatedRoute } from '@angular/router';
-import { CitiesService } from 'src/app/_services/cities.service';
 
 @Component({
   selector: 'app-tennis-club-list',
@@ -15,14 +15,14 @@ export class TennisClubListComponent implements OnInit {
   cityId!: number;
   constructor(
     private tennisClubService: TennisClubsService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private data: DataService
   ) {
     this.subscribeRouteChange();
   }
 
   ngOnInit(): void {
     this.cityId = +this.route.snapshot.params.cityId;
-    console.log(this.cityId);
     this.loadTennisClubs(this.cityId);
   }
 
@@ -37,6 +37,7 @@ export class TennisClubListComponent implements OnInit {
   subscribeRouteChange() {
     this.route.params.subscribe((params = {}) => {
       this.loadTennisClubs(params.cityId);
+      this.data.changeMessage(params.cityId);
     });
   }
 }
