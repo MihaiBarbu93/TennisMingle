@@ -1,8 +1,7 @@
+import { DataService } from './_services/data-service.service';
 import { SharedModule } from './_modules/shared.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { MatSliderModule } from '@angular/material/slider';
-import { MatSelectModule } from '@angular/material/select';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -22,9 +21,6 @@ import { BsModalService } from 'ngx-bootstrap/modal';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { LoginComponent } from './login/login.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
-import {MatNativeDateModule} from '@angular/material/core';
-import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
-
 
 @NgModule({
   declarations: [
@@ -46,21 +42,14 @@ import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
     BsDatepickerModule.forRoot(),
     FormsModule,
     SharedModule,
-    MatSliderModule,
-    MatSelectModule,
     FontAwesomeModule,
     BsDropdownModule.forRoot(),
     ToastrModule.forRoot({
-      positionClass: 'toast-bottom-right'
+      positionClass: 'toast-bottom-right',
     }),
     ModalModule.forRoot(),
-    MatNativeDateModule,
-    ReactiveFormsModule,
   ],
-  providers: [
-    { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },
-    BsModalService
-  ],
+  providers: [BsModalService, DataService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

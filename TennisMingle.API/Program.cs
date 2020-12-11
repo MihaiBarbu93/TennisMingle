@@ -23,7 +23,7 @@ namespace TennisMingle.API
             {
                 var context = services.GetRequiredService<AppDbContext>();
                 await context.Database.MigrateAsync();
-                await Seed.SeedUsers(context);
+                await Seed.SeedCities(context);
             }
             catch (System.Exception ex)
             {

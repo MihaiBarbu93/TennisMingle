@@ -5,7 +5,7 @@
     </a>
   </div>
 
-  <div class="btn-group ml-4" dropdown>
+  <div class="btn-group ml-4" dropdown (onHidden)="isHiddenChange()">
     <button
       id="button-basic"
       dropdownToggle
@@ -13,7 +13,7 @@
       class="btn btn-success dropdown-toggle toggle-cities"
       aria-controls="dropdown-basic"
     >
-      Bucharest <span class="caret"></span>
+      {{ cityName }} <span class="caret"></span>
     </button>
     <ul
       id="dropdown-basic"
@@ -23,7 +23,11 @@
       aria-labelledby="button-basic"
     >
       <li role="menuitem" *ngFor="let city of cities">
-        <a class="dropdown-item" routerLink="/tennis-clubs">{{ city.name }}</a>
+        <a
+          class="dropdown-item"
+          routerLink="cities/{{ city.id }}/tennis-clubs"
+          >{{ city.name }}</a
+        >
       </li>
     </ul>
   </div>
