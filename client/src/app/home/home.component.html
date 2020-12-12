@@ -7,28 +7,25 @@
       Book tennis courts in Romania
     </p>
     <!--Blue select-->
-    <div class="form-group">
+    <form [formGroup]="findCourtForm" (ngSubmit)="onSubmit()">
       <label for="citiesSelect">citiesSelect</label>
-      <ngx-select
-        [formControl]="ngxControl"
-        [allowClear]="true"
-        [defaultValue]="citiesSelect[0]"
-        [items]="citiesSelect"
+      <select
+        class="w-100 p-2"
+        formArrayName="selectCity"
+        (change)="selectCity($event)"
       >
-      </ngx-select>
-      <div class="form-group mt-2">
-        <div class="row">
-          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <input
-              id="Submit1"
-              class="find-court-button w-100 bg-dark rounded"
-              type="submit"
-              value="submit"
-            />
-          </div>
-        </div>
-      </div>
-    </div>
+        <option *ngFor="let city of citiesSelect" [ngValue]="undefined">
+          {{ city }}
+        </option>
+      </select>
+      <button
+        type="submit"
+        id="submitButton"
+        class="find-court-button w-100 bg-dark rounded mt-4"
+      >
+        Find Court
+      </button>
+    </form>
   </div>
 </header>
 
