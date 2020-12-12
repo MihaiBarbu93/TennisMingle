@@ -738,7 +738,7 @@
           {
             "Name": "Parcoe",
             "Price": 80,
-            "IsAvailable": true,
+            "IsAvailable": false,
             "Surface": {
               "SurfaceType": 1
             }
@@ -2463,7 +2463,7 @@
           {
             "Name": "Temorak",
             "Price": 71,
-            "IsAvailable": true,
+            "IsAvailable": false,
             "Surface": {
               "SurfaceType": 8
             }
@@ -2633,7 +2633,7 @@
           {
             "Name": "Zillacom",
             "Price": 46,
-            "IsAvailable": true,
+            "IsAvailable": false,
             "Surface": {
               "SurfaceType": 1
             }
@@ -2710,7 +2710,7 @@
           {
             "Name": "Signity",
             "Price": 58,
-            "IsAvailable": true,
+            "IsAvailable": false,
             "Surface": {
               "SurfaceType": 7
             }
@@ -2718,7 +2718,7 @@
           {
             "Name": "Strozen",
             "Price": 75,
-            "IsAvailable": true,
+            "IsAvailable": false,
             "Surface": {
               "SurfaceType": 3
             }

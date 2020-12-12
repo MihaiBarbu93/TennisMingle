@@ -45,7 +45,9 @@ export class HomeComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.router.navigateByUrl('cities/' + this.citySelected + '/tennis-clubs');
+    this.router.navigateByUrl(
+      'cities/' + this.citySelected + '/tennis-clubs-withcourts'
+    );
   }
 
   selectCity(event: { target: { value: any } }): void {

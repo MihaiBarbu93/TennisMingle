@@ -24,7 +24,7 @@ export class TennisClubsService {
     );
   }
 
-  getCitiesWithCourtsAvailable(cityId: number) {
+  getTennisClubsWithCourtsAvailable(cityId: number) {
     return this.http.get<TennisClub[]>(
       this.baseUrl + 'cities/' + cityId + '/tennisclubs/withcourtsavailable'
     );

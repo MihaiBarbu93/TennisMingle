@@ -3,7 +3,7 @@ import { City } from './../../_models/city';
 import { TennisClubsService } from './../../_services/tennis-clubs.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { TennisClub } from 'src/app/_models/tennisClub';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-tennis-club-list',
@@ -16,22 +16,30 @@ export class TennisClubListComponent implements OnInit {
   constructor(
     private tennisClubService: TennisClubsService,
     private route: ActivatedRoute,
-    private data: DataService
+    private data: DataService,
+    private router: Router
   ) {
     this.subscribeRouteChange();
   }
 
   ngOnInit(): void {
     this.cityId = +this.route.snapshot.params.cityId;
+
     this.loadTennisClubs(this.cityId);
   }
 
   loadTennisClubs(cityId: number) {
-    return this.tennisClubService
-      .getTennisClubs(cityId)
-      .subscribe((tennisClubs) => {
-        this.tennisClubs = tennisClubs;
-      });
+    return this.router.url.includes('courts')
+      ? this.tennisClubService
+          .getTennisClubsWithCourtsAvailable(cityId)
+          .subscribe((tennisClubs) => {
+            this.tennisClubs = tennisClubs;
+          })
+      : this.tennisClubService
+          .getTennisClubs(cityId)
+          .subscribe((tennisClubs) => {
+            this.tennisClubs = tennisClubs;
+          });
   }
 
   subscribeRouteChange() {
