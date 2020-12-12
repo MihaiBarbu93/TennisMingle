@@ -23,6 +23,7 @@ export class CitiesService {
     return this.http.get<City>(this.baseUrl + 'cities/' + cityId);
   }
 
+
   getCityName(cityId: number) {
     this.getCity(cityId).subscribe((city) => {
       this.city = city;

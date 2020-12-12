@@ -30,7 +30,6 @@ namespace TennisMingle.API.Entities
         /// <summary>
         /// The availability of the tennis court
         /// </summary>
-        [NotMapped]
         public bool IsAvailable { get; set; }
 
         /// <summary>
