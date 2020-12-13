@@ -112,8 +112,9 @@ footer {
   color: #333;
   text-transform: uppercase;
   line-height: 59px;
-  font-weight: bolder;
+  font-weight: 500;
   letter-spacing: 0.05em;
+  font-size: 1.1em;
 }
 
 .navbar-venue-partner-link:hover {
@@ -277,7 +278,6 @@ btn:focus textarea:focus {
   min-width: 10rem;
   padding: 0.5rem 0;
   margin: 0.125rem 0 0;
-  font-size: 1rem;
   color: #212529;
   text-align: left;
   list-style: none;
@@ -289,8 +289,14 @@ btn:focus textarea:focus {
 
 .toggle-cities {
   text-transform: uppercase;
-  color: whitesmoke;
+  color: #2f285a;
+  font-weight: bolder;
 }
+
+.toggle-cities:hover {
+  color: #2f285a;
+}
+
 .dropdown-item {
   display: block;
   width: 100%;
@@ -504,4 +510,8 @@ body {
 
 .filter-option {
   font-size: 1.15em;
+}
+
+.bg-success {
+  background-color: #56e07b !important;
 }
