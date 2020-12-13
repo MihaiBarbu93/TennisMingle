@@ -13,6 +13,29 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class TennisClubListComponent implements OnInit {
   tennisClubs: TennisClub[] = [];
   cityId!: number;
+  facilities: string[] = [
+    'PARKING',
+    'TOILETS',
+    'DRESSROOM',
+    'SHOWERS',
+    'STANDS',
+    'NOCTURNE',
+    'OUTDOOR_LAND',
+    'BAR',
+    'TERRASE',
+    'WI_FI',
+    'RESTAURANT',
+  ];
+  surfaces: string[] = [
+    'ACRYLIC',
+    'ARTIFICIAL_CLAY',
+    'ARTIFICIAL_GRASS',
+    'ASPHALT',
+    'CARPET',
+    'CLAY',
+    'CONCRETE',
+    'GRASS',
+  ];
   constructor(
     private tennisClubService: TennisClubsService,
     private route: ActivatedRoute,

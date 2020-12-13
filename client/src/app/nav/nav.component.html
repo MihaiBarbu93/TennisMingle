@@ -13,7 +13,8 @@
       class="btn btn-success dropdown-toggle toggle-cities"
       aria-controls="dropdown-basic"
     >
-      {{ cityName }} <span class="caret"></span>
+      <span>{{ cityName }}</span>
+      <span class="caret nav-city-caret"></span>
     </button>
     <ul
       id="dropdown-basic"
@@ -34,8 +35,12 @@
   <ul class="navbar-nav mr-auto ml-2">
     <ng-container>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/" routerLinkActive="active"
-          ><fa-icon [icon]="faSearch"></fa-icon> Search</a
+        <a
+          class="nav-link search-link"
+          routerLink="/"
+          routerLinkActive="active"
+          style="white-space: nowrap"
+          ><fa-icon [icon]="faSearch" class="mr-1"></fa-icon> Search</a
         >
       </li>
     </ng-container>
@@ -63,39 +68,56 @@
       </div>
     </div> -->
 
-    <div class="dropdown" *ngIf="(accountService.currentUser$ | async) as user" dropdown>
-      <a class="dropdown-toggle text-light" dropdownToggle>Welcome {{user.username | titlecase}}</a>
-      <div class="dropdown-menu mt-3" *dropdownMenu>
-          <a class="dropdown-item">Edit Profile</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" (click)="logout()" >Logout</a>
-      </div>
+  <div
+    class="dropdown"
+    *ngIf="accountService.currentUser$ | async as user"
+    dropdown
+  >
+    <a class="dropdown-toggle text-light" dropdownToggle
+      >Welcome {{ user.username | titlecase }}</a
+    >
+    <div class="dropdown-menu mt-3" *dropdownMenu>
+      <a class="dropdown-item">Edit Profile</a>
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" (click)="logout()">Logout</a>
     </div>
-    <div *ngIf="(accountService.currentUser$ | async) === null" _ngcontent-c4="" class="d-none d-lg-flex align-items-center justify-content-end h-100 w-100 pr-lg-3 pr-xl-0">
-
-      <div class="d-flex flex-row ng-tns-c4-0 ng-star-inserted">
-        <a class="text-button-default -medium" href="javascript:void(0);" (click)="openModal(registerTemplate)">
-          Sign up
-        </a>
-        <div class="mx-3">|</div>
-        <a class="text-button-default -medium" href="javascript:void(0);" (click)="openModal(loginTemplate)">
-          Login
-        </a>
-      </div>
+  </div>
+  <div
+    *ngIf="(accountService.currentUser$ | async) === null"
+    _ngcontent-c4=""
+    class="d-none d-lg-flex align-items-center justify-content-end h-100 w-100 pr-lg-3 pr-xl-0"
+  >
+    <div class="d-flex flex-row ng-tns-c4-0 ng-star-inserted mr-4">
+      <a
+        class="text-button-default -medium register-link"
+        href="javascript:void(0);"
+        (click)="openModal(registerTemplate)"
+      >
+        Sign up
+      </a>
+      <div class="mx-3 login-register-pipe">|</div>
+      <a
+        class="text-button-default -medium login-link"
+        href="javascript:void(0);"
+        (click)="openModal(loginTemplate)"
+      >
+        Login
+      </a>
     </div>
-  <!-- <form *ngIf="(accountService.currentUser$ | async) === null" #loginForm="ngForm" class="form-inline mt-2 mt-md-0" (ngSubmit)="login()" 
+  </div>
+  <!-- <form *ngIf="(accountService.currentUser$ | async) === null" #loginForm="ngForm" class="form-inline mt-2 mt-md-0" (ngSubmit)="login()"
       autocomplete="off">
-      <input 
+      <input
           name="username"
           [(ngModel)]="model.username"
-          class="form-control mr-sm-2" 
-          type="text" 
+          class="form-control mr-sm-2"
+          type="text"
           placeholder="Username">
-      <input 
+      <input
           name="password"
           [(ngModel)]="model.password"
-          class="form-control mr-sm-2" 
-          type="password" 
+          class="form-control mr-sm-2"
+          type="password"
           placeholder="Password">
       <button class="btn btn-success my-2 my-sm-0" type="submit">Login</button>
   </form>
@@ -113,24 +135,39 @@
   <ng-template #registerTemplate>
     <div class="modal-header">
       <h4 class="modal-title pull-left">Tennis Mingle</h4>
-      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <button
+        type="button"
+        class="close pull-right"
+        aria-label="Close"
+        (click)="modalRef.hide()"
+      >
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     <div class="modal-body">
-        <app-register [modalRefFromNavComponent] = "modalRef"></app-register>
+      <app-register [modalRefFromNavComponent]="modalRef"></app-register>
     </div>
   </ng-template>
   <ng-template #loginTemplate>
     <div class="modal-header">
       <h4 class="modal-title pull-left">Tennis Mingle</h4>
-      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <button
+        type="button"
+        class="close pull-right"
+        aria-label="Close"
+        (click)="modalRef.hide()"
+      >
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     <div class="modal-body">
-        <app-login [modalRefFromNavComponent] = "modalRef"></app-login>
-        
+      <app-login [modalRefFromNavComponent]="modalRef"></app-login>
     </div>
   </ng-template>
+  <div
+    *ngIf="(accountService.currentUser$ | async) === null"
+    class="navbar-venue-partner col-2 text-center pull-right"
+  >
+    <a class="navbar-venue-partner-link">become a venue partner</a>
+  </div>
 </nav>

@@ -70,7 +70,6 @@ export class HomeComponent implements OnInit {
 
   getCitiesNames() {
     this.cities.forEach((city) => {
-      console.log(city);
       this.citiesSelect.push(city.name);
     });
   }
