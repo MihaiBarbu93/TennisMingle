@@ -4,7 +4,7 @@
 }
 
 .navbar {
-  padding: 0 2rem 0 0;
+  padding: 0 0 0 0;
 }
 
 .navbar-nav {
@@ -22,7 +22,7 @@
 }
 
 .logo {
-  height: 36px;
+  height: 32px;
 }
 
 .toggle-cities,
@@ -34,4 +34,18 @@
   border: 0;
 }
 
+.login-link,
+.register-link {
+  color: whitesmoke;
+  text-transform: uppercase;
+}
 
+.login-register-pipe {
+  color: whitesmoke;
+}
+
+.search-link {
+  font-size: 1.15em;
+  text-transform: uppercase;
+  color: whitesmoke !important;
+}

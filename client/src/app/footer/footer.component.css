@@ -128,6 +128,10 @@
   /* The width is the width of the web page */
 }
 
+.page-footer {
+  font-size: 1.1em;
+}
+
 .footer-link {
   color: #188155;
 }
@@ -135,4 +139,8 @@
 .footer-link:hover {
   color: #5da788;
   text-decoration: none;
+}
+
+.footer-menu-title {
+  font-size: 1.2em;
 }

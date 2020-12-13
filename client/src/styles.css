@@ -44,7 +44,7 @@ html {
 body {
   font-family: Verdana, Geneva, sans-serif;
   margin-bottom: 0px !important;
-  background-color: white;
+  background-color: whitesmoke;
 }
 
 @media (min-width: 768px) {
@@ -109,15 +109,17 @@ footer {
 }
 
 .navbar-venue-partner-link {
-  color: black;
+  color: #333;
   text-transform: uppercase;
-  line-height: 56px;
+  line-height: 59px;
   font-weight: bolder;
+  letter-spacing: 0.05em;
 }
 
 .navbar-venue-partner-link:hover {
-  color: black;
+  color: #555 !important;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .container-fluid {
@@ -129,7 +131,7 @@ footer {
 }
 
 .masthead {
-  height: 42em;
+  height: 50em;
   background-image: url("./assets/couple-tennis-court.jpg");
   background-size: cover;
   background-position: center;
@@ -175,8 +177,7 @@ footer {
 
 .club-summary {
   padding: 8px 16px;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14),
-    0 2px 1px -1px rgba(0, 0, 0, 0.12), -1px 0 0 0 rgba(0, 0, 0, 0.05);
+  border: 2px solid #56e07b;
 }
 
 .rounded-image {
@@ -286,6 +287,10 @@ btn:focus textarea:focus {
   border-radius: 0.25rem;
 }
 
+.toggle-cities {
+  text-transform: uppercase;
+  color: whitesmoke;
+}
 .dropdown-item {
   display: block;
   width: 100%;
@@ -419,7 +424,7 @@ btn:focus textarea:focus {
 }
 
 .filter-type {
-  font-size: 1.1em;
+  font-size: 1.3em;
 }
 
 /* Set the size of the div element that contains the map */
@@ -430,15 +435,6 @@ btn:focus textarea:focus {
   /* The width is the width of the web page */
 }
 
-.footer-link {
-  color: #188155;
-}
-
-.footer-link:hover {
-  color: #5da788;
-  text-decoration: none;
-}
-
 html,
 body {
   height: 100%;
@@ -446,4 +442,66 @@ body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+/* Base for label styling */
+[type="checkbox"]:not(:checked),
+[type="checkbox"]:checked {
+  position: absolute;
+  left: -9999px;
+}
+[type="checkbox"]:not(:checked) + label,
+[type="checkbox"]:checked + label {
+  position: relative;
+  padding-left: 25px;
+  cursor: pointer;
+}
+
+/* checkbox aspect */
+[type="checkbox"]:not(:checked) + label:before,
+[type="checkbox"]:checked + label:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 2px;
+  width: 17px;
+  height: 17px;
+  border: 1px solid black;
+  background: white;
+  border-radius: 4px;
+}
+/* checked mark aspect */
+[type="checkbox"]:not(:checked) + label:after,
+[type="checkbox"]:checked + label:after {
+  content: "✔";
+  position: absolute;
+  top: 0;
+  left: 4px;
+  font-size: 14px;
+  color: #09ad7e;
+}
+/* checked mark aspect changes */
+[type="checkbox"]:not(:checked) + label:after {
+  opacity: 0;
+  transform: scale(0);
+}
+[type="checkbox"]:checked + label:after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+[type="checkbox"]:disabled:checked + label:after {
+  color: #999;
+}
+[type="checkbox"]:disabled + label {
+  color: #aaa;
+}
+/* accessibility */
+/* [type="checkbox"]:checked:focus + label:before,
+[type="checkbox"]:not(:checked):focus + label:before {
+  border: 1px dotted black;
+} */
+
+.filter-option {
+  font-size: 1.15em;
 }
