@@ -4,6 +4,7 @@ import { TennisClubsService } from './../../_services/tennis-clubs.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { TennisClub } from 'src/app/_models/tennisClub';
 import { ActivatedRoute, Router } from '@angular/router';
+import { faThemeisle } from '@fortawesome/free-brands-svg-icons';
 
 @Component({
   selector: 'app-tennis-club-list',
@@ -14,29 +15,8 @@ export class TennisClubListComponent implements OnInit {
   tennisClubs: TennisClub[] = [];
   cityId!: number;
   facilitiesDynamic: string[] = [];
-  facilities: string[] = [
-    'PARKING',
-    'TOILETS',
-    'DRESSROOM',
-    'SHOWERS',
-    'STANDS',
-    'NOCTURNE',
-    'OUTDOOR_LAND',
-    'BAR',
-    'TERRASE',
-    'WI_FI',
-    'RESTAURANT',
-  ];
-  surfaces: string[] = [
-    'ACRYLIC',
-    'ARTIFICIAL_CLAY',
-    'ARTIFICIAL_GRASS',
-    'ASPHALT',
-    'CARPET',
-    'CLAY',
-    'CONCRETE',
-    'GRASS',
-  ];
+  facilities: string[] = [];
+  surfaces: string[] = [];
   constructor(
     private tennisClubService: TennisClubsService,
     private route: ActivatedRoute,
@@ -49,7 +29,13 @@ export class TennisClubListComponent implements OnInit {
   ngOnInit(): void {
     this.cityId = +this.route.snapshot.params.cityId;
 
-    this.loadTennisClubs(this.cityId);
+    this.loadAllData(this.cityId);
+  }
+
+  loadAllData(cityId: number) {
+    this.loadTennisClubs(cityId);
+    this.loadFacilities(cityId);
+    this.loadSurfaces(cityId);
   }
 
   loadTennisClubs(cityId: number) {
@@ -66,9 +52,25 @@ export class TennisClubListComponent implements OnInit {
           });
   }
 
+  loadFacilities(cityId: number) {
+    return this.tennisClubService
+      .getFacilitiesForTennisClubsPerCity(cityId)
+      .subscribe((facilities) => {
+        this.facilities = facilities;
+      });
+  }
+
+  loadSurfaces(cityId: number) {
+    return this.tennisClubService
+      .getSurfacesForTennisClubsPerCity(cityId)
+      .subscribe((surfaces) => {
+        this.surfaces = surfaces;
+      });
+  }
+
   subscribeRouteChange() {
     this.route.params.subscribe((params = {}) => {
-      this.loadTennisClubs(params.cityId);
+      this.loadAllData(params.cityId);
       this.data.changeMessage(params.cityId);
     });
   }
