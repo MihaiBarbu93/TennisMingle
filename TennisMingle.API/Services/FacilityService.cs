@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,13 +35,13 @@ namespace TennisMingle.API.Services
 
         }
 
-        public List<FacilityType> GetFacilities(int cityId) {
-           return  _context.TennisClubs
+        public async Task<List<string>> GetFacilities(int cityId) {
+           return await  _context.TennisClubs
             .Where(tc => tc.CityId == cityId)
             .SelectMany(tc => tc.Facilities)
-            .Select(fac => fac.FacilityType)
+            .Select(fac => fac.FacilityType.ToString())
             .Distinct()
-            .ToList();
+            .ToListAsync();
 
         }
 

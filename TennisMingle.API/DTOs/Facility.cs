@@ -9,6 +9,6 @@ namespace TennisMingle.API.DTOs
     public class Facility
     {
         public int Id { get; set; }
-        public FacilityType FacilityType { get; set; }
+        public @string FacilityType { get; set; }
     }
 }

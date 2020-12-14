@@ -11,7 +11,7 @@ namespace TennisMingle.API.Interfaces
     {
         void AddFacility(Facility facility, int clubId);
         void DeleteFacility(int clubId, int facilityId);
-        List<FacilityType> GetFacilities(int cityId);
+        Task<List<string>> GetFacilities(int cityId);
 
     }
 }
