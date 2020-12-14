@@ -145,7 +145,8 @@
       </button>
     </div>
     <div class="modal-body">
-      <app-register [modalRefFromNavComponent]="modalRef"></app-register>
+      <app-register [modalRefFromNavComponent]="modalRef"
+                    [dropdownCities]="cities"></app-register>
     </div>
   </ng-template>
   <ng-template #loginTemplate>
