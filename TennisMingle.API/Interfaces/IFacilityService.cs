@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TennisMingle.API.Entities;
+using TennisMingle.API.Enums;
 
 namespace TennisMingle.API.Interfaces
 {
@@ -10,6 +11,7 @@ namespace TennisMingle.API.Interfaces
     {
         void AddFacility(Facility facility, int clubId);
         void DeleteFacility(int clubId, int facilityId);
+        List<FacilityType> GetFacilities(int cityId);
 
     }
 }

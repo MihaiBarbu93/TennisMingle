@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using TennisMingle.API.Data;
 using TennisMingle.API.Entities;
+using TennisMingle.API.Enums;
 using TennisMingle.API.Interfaces;
 
 namespace TennisMingle.API.Services
@@ -33,9 +34,19 @@ namespace TennisMingle.API.Services
 
         }
 
-/*        private async Task<bool> FacilityExists(Facility facility, int clubId)
-        {
-            return await _context.TennisClubs.Find(clubId).Facilities.AnyAsync(f => f.FacilityType == facility.FacilityType);
-        }*/
+        public List<FacilityType> GetFacilities(int cityId) {
+           return  _context.TennisClubs
+            .Where(tc => tc.CityId == cityId)
+            .SelectMany(tc => tc.Facilities)
+            .Select(fac => fac.FacilityType)
+            .Distinct()
+            .ToList();
+
+        }
+
+        // private async Task<bool> FacilityExists(Facility facility, int clubId)
+        // {
+        //     return await _context.TennisClubs.Find(clubId).Facilities.AnyAsync(f => f.FacilityType == facility.FacilityType);
+        // }
     }
 }
