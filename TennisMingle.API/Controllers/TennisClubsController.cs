@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using TennisMingle.API.Data;
 using TennisMingle.API.Entities;
+using TennisMingle.API.Enums;
 using TennisMingle.API.Interfaces;
 
 namespace TennisMingle.API.Controllers
@@ -16,9 +17,11 @@ namespace TennisMingle.API.Controllers
     {
         private AppDbContext _context;
         private readonly ITennisClubRepository _tennisClubRepository;
+        private readonly IFacilityService _facilityService;
 
-        public TennisClubController(AppDbContext context, ITennisClubRepository tennisClubRepository)
+        public TennisClubController(AppDbContext context, ITennisClubRepository tennisClubRepository, IFacilityService facilityService)
         {
+            _facilityService = facilityService;
             _context = context;
             _tennisClubRepository = tennisClubRepository;
         }
@@ -73,7 +76,7 @@ namespace TennisMingle.API.Controllers
 
             if (await _tennisClubRepository.SaveAllAsync())
             {
-                return CreatedAtRoute("GetTennisClub", new { cityId, tennisClubId = _tennisClubRepository.GetIdForCreatedTennisClub()}, tennisClubToAdd);
+                return CreatedAtRoute("GetTennisClub", new { cityId, tennisClubId = _tennisClubRepository.GetIdForCreatedTennisClub() }, tennisClubToAdd);
             }
 
             return BadRequest("Failed to add tennis club");
@@ -96,44 +99,44 @@ namespace TennisMingle.API.Controllers
 
         }
 
-/*        /// <summary>
-        /// This PATCH method is replacing only one property of a tennis club
-        /// </summary>
-        [HttpPatch("{tennisClubId}")]
-        public IActionResult PartiallyUpdateTennisClub(int cityId, int tennisClubId,
-            [FromBody] JsonPatchDocument<TennisClub> patchDoc)
-        {
+        /*        /// <summary>
+                /// This PATCH method is replacing only one property of a tennis club
+                /// </summary>
+                [HttpPatch("{tennisClubId}")]
+                public IActionResult PartiallyUpdateTennisClub(int cityId, int tennisClubId,
+                    [FromBody] JsonPatchDocument<TennisClub> patchDoc)
+                {
 
-            var city = _context.Cities.FirstOrDefault(c => c.Id == cityId);
-            if (city == null)
-            {
-                return NotFound();
-            }
-            var tennisClubFromDB = _context.TennisClubs.FirstOrDefault(tc => tc.Id == tennisClubId);
-            if (tennisClubFromDB == null)
-            {
-                return NotFound();
-            }
-            var tennisClubToPatch = tennisClubFromDB;
+                    var city = _context.Cities.FirstOrDefault(c => c.Id == cityId);
+                    if (city == null)
+                    {
+                        return NotFound();
+                    }
+                    var tennisClubFromDB = _context.TennisClubs.FirstOrDefault(tc => tc.Id == tennisClubId);
+                    if (tennisClubFromDB == null)
+                    {
+                        return NotFound();
+                    }
+                    var tennisClubToPatch = tennisClubFromDB;
 
-            patchDoc.ApplyTo(tennisClubToPatch, ModelState);
+                    patchDoc.ApplyTo(tennisClubToPatch, ModelState);
 
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+                    if (!ModelState.IsValid)
+                    {
+                        return BadRequest(ModelState);
+                    }
 
-            tennisClubFromDB.Name = tennisClubToPatch.Name;
-            tennisClubFromDB.Address = tennisClubToPatch.Address;
-            tennisClubFromDB.PhoneNumber = tennisClubToPatch.PhoneNumber;
-            tennisClubFromDB.Description = tennisClubToPatch.Description;
-            tennisClubFromDB.Schedule = tennisClubToPatch.Schedule;
-*//*            tennisClubFromDB.Image = tennisClubToPatch.Image;
-*//*
-            _context.SaveChanges();
+                    tennisClubFromDB.Name = tennisClubToPatch.Name;
+                    tennisClubFromDB.Address = tennisClubToPatch.Address;
+                    tennisClubFromDB.PhoneNumber = tennisClubToPatch.PhoneNumber;
+                    tennisClubFromDB.Description = tennisClubToPatch.Description;
+                    tennisClubFromDB.Schedule = tennisClubToPatch.Schedule;
+        *//*            tennisClubFromDB.Image = tennisClubToPatch.Image;
+        *//*
+                    _context.SaveChanges();
 
-            return NoContent();
-        }*/
+                    return NoContent();
+                }*/
 
         /// <summary>
         /// This DELETE method removes a tennis club from a city with a specific id 
@@ -146,6 +149,13 @@ namespace TennisMingle.API.Controllers
             if (await _tennisClubRepository.SaveAllAsync()) return Ok();
 
             return BadRequest("Problem deleting this tennis club");
+        }
+
+        [HttpGet]
+        [Route("allfacilities")]
+        public async Task<ActionResult<IEnumerable<FacilityType>>> getAllFacilities(int cityId)
+        {
+            return _facilityService.GetFacilities(cityId);
         }
     }
 }

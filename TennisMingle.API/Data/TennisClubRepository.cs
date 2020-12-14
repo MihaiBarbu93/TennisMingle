@@ -185,5 +185,13 @@ namespace TennisMingle.API.Data
         {
            return _context.TennisClubs.LastAsync().Id;
         }
+
+        // public async Task<IEnumerable<Facility>> GetFacilitiesAsync(int cityId) {
+
+        //     return await _context.TennisClubs.
+        //                 Where()
+        // }
+
     }
+    
 }

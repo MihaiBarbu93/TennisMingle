@@ -13,6 +13,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class TennisClubListComponent implements OnInit {
   tennisClubs: TennisClub[] = [];
   cityId!: number;
+  facilitiesDynamic: string[] = [];
   facilities: string[] = [
     'PARKING',
     'TOILETS',
