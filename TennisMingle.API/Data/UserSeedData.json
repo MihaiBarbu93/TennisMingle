@@ -16,7 +16,7 @@
             "FacilityType": 3
           },
           {
-            "FacilityType": 1
+            "FacilityType": 4
           },
           {
             "FacilityType": 9
@@ -95,13 +95,13 @@
         "Schedule": "L-D 08:00 - 21:00",
         "Facilities": [
           {
-            "FacilityType": 11
+            "FacilityType": 0
           },
           {
             "FacilityType": 5
           },
           {
-            "FacilityType": 3
+            "FacilityType": 2
           },
           {
             "FacilityType": 3
@@ -119,7 +119,7 @@
             "Price": 68,
             "IsAvailable": false,
             "Surface": {
-              "SurfaceType": 8
+              "SurfaceType": 0
             }
           },
           {
@@ -271,7 +271,7 @@
             "FacilityType": 9
           },
           {
-            "FacilityType": 11
+            "FacilityType": 0
           },
           {
             "FacilityType": 5
@@ -297,7 +297,7 @@
             "Price": 72,
             "IsAvailable": false,
             "Surface": {
-              "SurfaceType": 8
+              "SurfaceType": 0
             }
           },
           {
@@ -549,7 +549,7 @@
             "Price": 71,
             "IsAvailable": false,
             "Surface": {
-              "SurfaceType": 8
+              "SurfaceType": 0
             }
           },
           {
@@ -709,7 +709,7 @@
             "FacilityType": 2
           },
           {
-            "FacilityType": 11
+            "FacilityType": 0
           }
         ],
         "Photos": [
@@ -791,7 +791,7 @@
             "FacilityType": 7
           },
           {
-            "FacilityType": 11
+            "FacilityType": 0
           },
           {
             "FacilityType": 5
@@ -902,7 +902,7 @@
             "Price": 36,
             "IsAvailable": true,
             "Surface": {
-              "SurfaceType": 8
+              "SurfaceType": 0
             }
           },
           {
@@ -961,7 +961,7 @@
             "FacilityType": 8
           },
           {
-            "FacilityType": 8
+            "FacilityType": 3
           },
           {
             "FacilityType": 9
@@ -987,7 +987,7 @@
             "Price": 66,
             "IsAvailable": true,
             "Surface": {
-              "SurfaceType": 8
+              "SurfaceType": 0
             }
           },
           {
@@ -1051,7 +1051,7 @@
             "FacilityType": 9
           },
           {
-            "FacilityType": 7
+            "FacilityType": 4
           },
           {
             "FacilityType": 10
@@ -1085,7 +1085,7 @@
             "Price": 49,
             "IsAvailable": true,
             "Surface": {
-              "SurfaceType": 8
+              "SurfaceType": 0
             }
           }
         ],
@@ -1396,7 +1396,7 @@
             "FacilityType": 0
           },
           {
-            "FacilityType": 11
+            "FacilityType": 8
           },
           {
             "FacilityType": 9
@@ -1569,7 +1569,7 @@
             "FacilityType": 10
           },
           {
-            "FacilityType": 11
+            "FacilityType": 7
           }
         ],
         "Photos": [
@@ -1600,7 +1600,7 @@
             "Price": 54,
             "IsAvailable": false,
             "Surface": {
-              "SurfaceType": 8
+              "SurfaceType": 0
             }
           }
         ],
@@ -1735,7 +1735,7 @@
         "Schedule": "L-D 08:00 - 21:00",
         "Facilities": [
           {
-            "FacilityType": 11
+            "FacilityType": 0
           },
           {
             "FacilityType": 4
@@ -1775,7 +1775,7 @@
             "Price": 61,
             "IsAvailable": false,
             "Surface": {
-              "SurfaceType": 8
+              "SurfaceType": 0
             }
           }
         ],
@@ -1852,7 +1852,7 @@
             "Price": 51,
             "IsAvailable": false,
             "Surface": {
-              "SurfaceType": 8
+              "SurfaceType": 0
             }
           },
           {
@@ -1908,7 +1908,7 @@
             "FacilityType": 9
           },
           {
-            "FacilityType": 10
+            "FacilityType": 1
           },
           {
             "FacilityType": 6
@@ -2014,7 +2014,7 @@
             "Price": 35,
             "IsAvailable": true,
             "Surface": {
-              "SurfaceType": 8
+              "SurfaceType": 0
             }
           },
           {
@@ -2089,7 +2089,7 @@
             "FacilityType": 10
           },
           {
-            "FacilityType": 9
+            "FacilityType": 5
           }
         ],
         "Photos": [
@@ -2282,7 +2282,7 @@
             "Price": 48,
             "IsAvailable": true,
             "Surface": {
-              "SurfaceType": 8
+              "SurfaceType": 0
             }
           },
           {
@@ -2341,10 +2341,10 @@
             "FacilityType": 5
           },
           {
-            "FacilityType": 11
+            "FacilityType": 0
           },
           {
-            "FacilityType": 0
+            "FacilityType": 8
           }
         ],
         "Photos": [
@@ -2431,7 +2431,7 @@
             "FacilityType": 5
           },
           {
-            "FacilityType": 11
+            "FacilityType": 7
           },
           {
             "FacilityType": 3
@@ -2465,7 +2465,7 @@
             "Price": 71,
             "IsAvailable": false,
             "Surface": {
-              "SurfaceType": 8
+              "SurfaceType": 0
             }
           }
         ],
@@ -2534,7 +2534,7 @@
             "Price": 61,
             "IsAvailable": false,
             "Surface": {
-              "SurfaceType": 8
+              "SurfaceType": 0
             }
           },
           {
@@ -2598,7 +2598,7 @@
             "FacilityType": 9
           },
           {
-            "FacilityType": 9
+            "FacilityType": 8
           },
           {
             "FacilityType": 4
@@ -2855,7 +2855,7 @@
         "Schedule": "L-D 08:00 - 21:00",
         "Facilities": [
           {
-            "FacilityType": 11
+            "FacilityType": 0
           },
           {
             "FacilityType": 7
@@ -2879,7 +2879,7 @@
             "Price": 74,
             "IsAvailable": false,
             "Surface": {
-              "SurfaceType": 8
+              "SurfaceType": 0
             }
           },
           {
@@ -2943,7 +2943,7 @@
             "FacilityType": 7
           },
           {
-            "FacilityType": 11
+            "FacilityType": 0
           },
           {
             "FacilityType": 4
@@ -3034,7 +3034,7 @@
             "FacilityType": 1
           },
           {
-            "FacilityType": 2
+            "FacilityType": 3
           }
         ],
         "Photos": [
@@ -3209,7 +3209,7 @@
             "FacilityType": 8
           },
           {
-            "FacilityType": 7
+            "FacilityType": 2
           }
         ],
         "Photos": [
@@ -3285,7 +3285,7 @@
         "Schedule": "L-D 08:00 - 21:00",
         "Facilities": [
           {
-            "FacilityType": 11
+            "FacilityType": 0
           },
           {
             "FacilityType": 3
@@ -3402,7 +3402,7 @@
             "Price": 34,
             "IsAvailable": false,
             "Surface": {
-              "SurfaceType": 8
+              "SurfaceType": 0
             }
           },
           {

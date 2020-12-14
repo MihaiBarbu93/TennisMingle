@@ -12,7 +12,7 @@ namespace TennisMingle.API.Entities
     public class Facility
     {
         public int Id { get; set; }
-        public FacilityType FacilityType { get; set; }
+        public @string FacilityType { get; set; }
 #nullable enable
         public TennisClub? TennisClub { get; set; }
 

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using TennisMingle.API.Data;
 using TennisMingle.API.DTOs;
 using TennisMingle.API.Entities;
+using TennisMingle.API.Enums;
 using TennisMingle.API.Interfaces;
 using TennisMingle.API.Services;
 
@@ -105,6 +106,13 @@ namespace TennisMingle.API.Controllers
         public void UpdateSurface(Surface surface)
         {
             _surfaceService.UpdateSurface(surface);
+        }
+
+        [HttpGet]
+        [Route("~/api/cities/{cityId}/allsurfaces")]
+        public async Task<ActionResult<IEnumerable<string>>> getAllFacilities(int cityId)
+        {
+            return await _surfaceService.GetSurfaces(cityId);
         }
 
     }

@@ -153,9 +153,9 @@ namespace TennisMingle.API.Controllers
 
         [HttpGet]
         [Route("allfacilities")]
-        public async Task<ActionResult<IEnumerable<FacilityType>>> getAllFacilities(int cityId)
+        public async Task<ActionResult<IEnumerable<string>>> getAllFacilities(int cityId)
         {
-            return _facilityService.GetFacilities(cityId);
+            return await _facilityService.GetFacilities(cityId);
         }
     }
 }
