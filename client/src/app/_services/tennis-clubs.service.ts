@@ -1,3 +1,4 @@
+import { FacilityType } from './../_models/enums/facilityType';
 import { TennisClub } from './../_models/tennisClub';
 import { HttpClient } from '@angular/common/http';
 import { environment } from './../../environments/environment';
@@ -28,5 +29,19 @@ export class TennisClubsService {
     return this.http.get<TennisClub[]>(
       this.baseUrl + 'cities/' + cityId + '/tennisclubs/withcourtsavailable'
     );
+  }
+
+  getFacilitiesForTennisClubsPerCity(cityId: number) {
+    let facilities = this.http.get<string[]>(
+      this.baseUrl + 'cities/' + cityId + '/tennisclubs/allfacilities'
+    );
+    return facilities;
+  }
+
+  getSurfacesForTennisClubsPerCity(cityId: number) {
+    let surfaces = this.http.get<string[]>(
+      this.baseUrl + 'cities/' + cityId + '/allsurfaces'
+    );
+    return surfaces;
   }
 }
