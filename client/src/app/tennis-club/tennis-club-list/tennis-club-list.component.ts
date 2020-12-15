@@ -5,7 +5,7 @@ import { TennisClubsService } from './../../_services/tennis-clubs.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { TennisClub } from 'src/app/_models/tennisClub';
 import { ActivatedRoute, Router } from '@angular/router';
-import { faThemeisle } from '@fortawesome/free-brands-svg-icons';
+import { ThisReceiver } from '@angular/compiler';
 
 @Component({
   selector: 'app-tennis-club-list',
@@ -20,6 +20,8 @@ export class TennisClubListComponent implements OnInit {
   reactiveForm!: FormGroup;
   selectedFacilitiesValues!: string[];
   selectedFacilitiesError: boolean = true;
+  selectedSurfacesValues!: string[];
+  selectedSurfacesError: boolean = true;
 
   constructor(
     private tennisClubService: TennisClubsService,
@@ -38,22 +40,24 @@ export class TennisClubListComponent implements OnInit {
 
   initForm() {
     this.reactiveForm = this.formBuilder.group({
-      facilitiesCheckBoxes: this.addFacilitiesControl(),
+      facilitiesCheckBoxes: this.addFormControl(this.facilities),
+      surfacesCheckBoxes: this.addFormControl(this.surfaces),
     });
   }
 
-  addFacilitiesControl() {
-    const arr = this.facilities.map((facility) => {
+  addFormControl(dataArray: string[]) {
+    const arr = dataArray.map((data) => {
       return this.formBuilder.control(false);
     });
-
-    console.log(arr);
-
     return this.formBuilder.array(arr);
   }
 
   get facilitiesArray() {
     return <FormArray>this.reactiveForm.get('facilitiesCheckBoxes');
+  }
+
+  get surfacesArray() {
+    return <FormArray>this.reactiveForm.get('surfacesCheckBoxes');
   }
 
   getSelectedFacilitiesValue() {
@@ -67,9 +71,20 @@ export class TennisClubListComponent implements OnInit {
       this.selectedFacilitiesValues.length > 0 ? false : true;
   }
 
-  checkFacilitiesControlTouched() {
+  getSelectedSurfacesValue() {
+    this.selectedSurfacesValues = [];
+    this.surfacesArray.controls.forEach((control, i) => {
+      if (control.value) {
+        this.selectedSurfacesValues.push(this.surfaces[i]);
+      }
+    });
+    this.selectedSurfacesError =
+      this.selectedSurfacesValues.length > 0 ? false : true;
+  }
+
+  checkFormControlTouched(dataArray: FormArray) {
     let flg = false;
-    this.facilitiesArray.controls.forEach((control) => {
+    dataArray.controls.forEach((control) => {
       if (control.touched) {
         flg = true;
       }
@@ -78,11 +93,17 @@ export class TennisClubListComponent implements OnInit {
   }
 
   submitHandler() {
-    console.log('sugeoooo');
-    const newQuery = this.selectedFacilitiesValues;
-    if (this.reactiveForm.valid && !this.selectedFacilitiesError) {
-      console.log('sugeoooo');
-      console.log(this.reactiveForm.value, newQuery);
+    const newQueryFacilities = this.selectedFacilitiesValues;
+    const newQuerySurfaces = this.selectedSurfacesValues;
+    if (
+      this.reactiveForm.valid &&
+      (!this.selectedFacilitiesError || !this.selectedSurfacesError)
+    ) {
+      console.log(
+        this.reactiveForm.value,
+        newQueryFacilities,
+        newQuerySurfaces
+      );
     }
   }
 
@@ -112,7 +133,7 @@ export class TennisClubListComponent implements OnInit {
       .subscribe((facilities) => {
         this.facilities = facilities;
         this.reactiveForm = this.formBuilder.group({
-          facilitiesCheckBoxes: this.addFacilitiesControl(),
+          facilitiesCheckBoxes: this.addFormControl(this.facilities),
         });
         this.initForm();
       });
@@ -123,6 +144,10 @@ export class TennisClubListComponent implements OnInit {
       .getSurfacesForTennisClubsPerCity(cityId)
       .subscribe((surfaces) => {
         this.surfaces = surfaces;
+        this.reactiveForm = this.formBuilder.group({
+          surfacesCheckBoxes: this.addFormControl(surfaces),
+        });
+        this.initForm();
       });
   }
 

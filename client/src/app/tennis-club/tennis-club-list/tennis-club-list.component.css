@@ -13,6 +13,10 @@
   margin-left: -8px;
 }
 
+.find-club-button:hover {
+  cursor: pointer;
+}
+
 .custom-invalid-feedback {
   color: red;
 }
