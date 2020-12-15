@@ -6,8 +6,9 @@ import { Booking } from './booking';
 
 export interface User {
   
-  username: string;
+  userName: string;
   token: string;
+  knownAs: string;
   //id: number;
   // dateOfBirth: Date;
   // city: City;

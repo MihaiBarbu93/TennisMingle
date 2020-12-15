@@ -27,6 +27,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { LoginComponent } from './login/login.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { NgxSelectModule } from 'ngx-select-ex';
+import { SelectDropDownModule } from 'ngx-select-dropdown';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { NgxSelectModule } from 'ngx-select-ex';
     NgxSelectModule,
     ModalModule.forRoot(),
     ReactiveFormsModule,
+    SelectDropDownModule
   ],
   providers: [BsModalService, DataService],
   bootstrap: [AppComponent],

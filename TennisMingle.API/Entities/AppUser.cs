@@ -17,6 +17,7 @@ namespace TennisMingle.API.Entities
         public byte[] PasswordSalt { get; set; }
         public DateTime DateOfBirth { get; set; }
         public City City { get; set; }
+        public int CityId { get; set; }
         public string Bio { get; set; }
         public Photo Photo { get; set; }
 

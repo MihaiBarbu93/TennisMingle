@@ -96,6 +96,7 @@
               "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
               "./node_modules/font-awesome/css/font-awesome.min.css",
               "./node_modules/ngx-toastr/toastr.css",
+              "../node_modules/ngx-select-dropdown/dist/assets/style.css",
               "src/styles.css"
             ],
             "scripts": []
