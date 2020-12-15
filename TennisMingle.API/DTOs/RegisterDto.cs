@@ -20,6 +20,7 @@ namespace TennisMingle.API.DTOs
         public DateTime DateOfBirth { get; set; }
 
         public City City { get; set; }
+        public int CityId { get; set; }
 
         public UserType UserType { get; set; }
     }

@@ -17,12 +17,14 @@ namespace TennisMingle.API.Controllers
     {
         private readonly AppDbContext _context;
         private readonly ITokenService _tokenService;
+        private readonly ICityRepository _cityRepository;
 
         /* public ITokenService _tokenService { get; set; }*/
-        public AccountController(AppDbContext context, ITokenService tokenService)
+        public AccountController(AppDbContext context, ITokenService tokenService, ICityRepository cityRepository)
         {
             _tokenService = tokenService;
             _context = context;
+            _cityRepository = cityRepository; 
         }
         [HttpPost("register")]
         public async Task<ActionResult<UserDto>> Register(RegisterDto registerDTO)
@@ -36,7 +38,7 @@ namespace TennisMingle.API.Controllers
                 UserName = registerDTO.UserName.ToLower(),
                 PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDTO.Password)),
                 PasswordSalt = hmac.Key,
-                City = registerDTO.City,
+                CityId = registerDTO.City.Id,
                 DateOfBirth = registerDTO.DateOfBirth,
                 UserType = registerDTO.UserType
             };
@@ -71,8 +73,7 @@ namespace TennisMingle.API.Controllers
             return new UserDto
             {
                 UserName = user.UserName,
-                Token = _tokenService.CreateToken(user),
-                PhotoUrl = user.Photo.Url
+                Token = _tokenService.CreateToken(user)
             };
         }
 

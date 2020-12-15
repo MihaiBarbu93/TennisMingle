@@ -25,14 +25,16 @@
             [multiple]="false" 
             [(ngModel)]="model.userType"
             [config] = "configUserType"
-            [options]="userTypes"></ngx-select-dropdown>
+            [options]="userTypes"
+            name="usertype"></ngx-select-dropdown>
     </div>
     <div class="form-group">
         <ngx-select-dropdown
             [multiple]="false"
             [(ngModel)]="model.city"
             [config] ="configCities"
-            [options]="citiesForRegister"></ngx-select-dropdown>
+            [options]="dropdownCities"
+            name="city"></ngx-select-dropdown>
     </div>
     <div class="form-group text-center">
         <button class="btn btn-success mr-2" type="submit" (click)="confirm()">Register</button>
