@@ -6,6 +6,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { TennisClub } from 'src/app/_models/tennisClub';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ThisReceiver } from '@angular/compiler';
+import { ConsoleReporter } from 'jasmine';
 
 @Component({
   selector: 'app-tennis-club-list',
@@ -67,8 +68,6 @@ export class TennisClubListComponent implements OnInit {
         this.selectedFacilitiesValues.push(this.facilities[i]);
       }
     });
-    this.selectedFacilitiesError =
-      this.selectedFacilitiesValues.length > 0 ? false : true;
   }
 
   getSelectedSurfacesValue() {
@@ -78,8 +77,6 @@ export class TennisClubListComponent implements OnInit {
         this.selectedSurfacesValues.push(this.surfaces[i]);
       }
     });
-    this.selectedSurfacesError =
-      this.selectedSurfacesValues.length > 0 ? false : true;
   }
 
   checkFormControlTouched(dataArray: FormArray) {
@@ -92,18 +89,27 @@ export class TennisClubListComponent implements OnInit {
     return flg;
   }
 
+  noFilterOptionSelected() {
+    return (this.selectedFacilitiesValues?.length === 0 &&
+      this.selectedSurfacesValues?.length === 0) ||
+      (!this.selectedFacilitiesValues && !this.selectedSurfacesValues)
+      ? true
+      : false;
+  }
+
+  handleErrorMessage() {
+    let errorElement = document.getElementById('errorFilterElement');
+    this.noFilterOptionSelected()
+      ? (errorElement.style.display = 'block')
+      : (errorElement.style.display = 'none');
+  }
+
   submitHandler() {
-    const newQueryFacilities = this.selectedFacilitiesValues;
+    this.handleErrorMessage();
     const newQuerySurfaces = this.selectedSurfacesValues;
-    if (
-      this.reactiveForm.valid &&
-      (!this.selectedFacilitiesError || !this.selectedSurfacesError)
-    ) {
-      console.log(
-        this.reactiveForm.value,
-        newQueryFacilities,
-        newQuerySurfaces
-      );
+    const allOptions = newQuerySurfaces;
+    if (this.reactiveForm.valid && allOptions) {
+      console.log(this.reactiveForm.value, allOptions);
     }
   }
 
