@@ -12,3 +12,7 @@
   transition: all ease 0.3s;
   margin-left: -8px;
 }
+
+.custom-invalid-feedback {
+  color: red;
+}
