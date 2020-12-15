@@ -7,57 +7,79 @@
   </div>
   <div class="row mt-4 mb-4">
     <div class="col-md-3 col-lg-3 col-xl-2 small">
-      <div class="filter text-left">
-        <div class="mb-4">
-          <div class="mt-4">
-            <p class="filter-type font-weight-bold mb-1">Facilites</p>
-            <div class="tm-divider"></div>
-            <div
-              class="form-check mb-2"
-              *ngFor="let facility of facilities"
-              style="margin-left: -25px"
-            >
-              <input
-                type="checkbox"
-                class="form-check-input"
-                id="facility_{{ facilities.indexOf(facility) }}"
-              />
-              <label
-                class="form-check-label filter-option"
-                for="facility_{{ facilities.indexOf(facility) }}"
-                >{{ facility | lowercase }}</label
-              >
-            </div>
-            <div class="mt-4">
-              <p class="filter-type font-weight-bold mb-1">Surface</p>
-              <div class="tm-divider"></div>
-              <div
-                class="form-check mb-2"
-                *ngFor="let surface of surfaces"
-                style="margin-left: -25px"
-              >
-                <input
-                  type="checkbox"
-                  class="form-check-input"
-                  id="surface_{{ surfaces.indexOf(surface) }}"
-                />
-                <label
-                  class="form-check-label filter-option"
-                  for="surface_{{ surfaces.indexOf(surface) }}"
-                  >{{ surface | lowercase }}
-                </label>
+      <form action="">
+        <div class="filter text-left">
+          <div
+            *ngIf="reactiveForm"
+            class="form-group"
+            [formGroup]="reactiveForm"
+          >
+            <div class="mb-4">
+              <div class="mt-4">
+                <p class="filter-type font-weight-bold mb-1">Facilites</p>
+                <div class="tm-divider"></div>
+                <div
+                  class="form-check mb-2"
+                  *ngFor="
+                    let control of facilitiesArray.controls;
+                    let i = index
+                  "
+                  style="margin-left: -25px"
+                >
+                  <input
+                    type="checkbox"
+                    class="form-check-input"
+                    id="facCheckbox{{ i }}"
+                    [formControl]="control"
+                    (change)="getSelectedFacilitiesValue()"
+                  />
+                  <label
+                    class="form-check-label filter-option"
+                    for="facCheckbox{{ i }}"
+                    >{{ facilities[i] | lowercase }}</label
+                  >
+                </div>
+                <small
+                  id="fnHelp"
+                  *ngIf="
+                    selectedFacilitiesError && checkFacilitiesControlTouched()
+                  "
+                  class="form-text custom-invalid-feedback"
+                  >Chose at least one option</small
+                >
+                <div class="mt-4">
+                  <p class="filter-type font-weight-bold mb-1">Surface</p>
+                  <div class="tm-divider"></div>
+                  <div
+                    class="form-check mb-2"
+                    *ngFor="let surface of surfaces"
+                    style="margin-left: -25px"
+                  >
+                    <input
+                      type="checkbox"
+                      class="form-check-input"
+                      id="surface_{{ surfaces.indexOf(surface) }}"
+                    />
+                    <label
+                      class="form-check-label filter-option"
+                      for="surface_{{ surfaces.indexOf(surface) }}"
+                      >{{ surface | lowercase }}
+                    </label>
+                  </div>
+                </div>
+                <button
+                  (click)="submitHandler()"
+                  type="button"
+                  id="submitButton"
+                  class="find-club-button w-100 bg-dark rounded mt-4"
+                >
+                  Find club
+                </button>
               </div>
             </div>
-            <button
-              type="submit"
-              id="submitButton"
-              class="find-club-button w-100 bg-dark rounded mt-4"
-            >
-              Find club
-            </button>
           </div>
         </div>
-      </div>
+      </form>
     </div>
     <div class="col-md-9 col-lg-9 col-xl-10">
       <div
