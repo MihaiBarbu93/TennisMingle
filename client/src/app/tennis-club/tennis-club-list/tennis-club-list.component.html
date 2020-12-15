@@ -45,28 +45,39 @@
                     selectedFacilitiesError && checkFacilitiesControlTouched()
                   "
                   class="form-text custom-invalid-feedback"
-                  >Chose at least one option</small
+                  >Choose at least one option</small
                 >
                 <div class="mt-4">
                   <p class="filter-type font-weight-bold mb-1">Surface</p>
                   <div class="tm-divider"></div>
                   <div
                     class="form-check mb-2"
-                    *ngFor="let surface of surfaces"
+                    *ngFor="
+                      let control of surfacesArray.controls;
+                      let i = index
+                    "
                     style="margin-left: -25px"
                   >
                     <input
                       type="checkbox"
                       class="form-check-input"
-                      id="surface_{{ surfaces.indexOf(surface) }}"
+                      id="surfaceCheckbox{{ i }}"
+                      [formControl]="control"
+                      (change)="getSelectedSurfacesValue()"
                     />
                     <label
                       class="form-check-label filter-option"
-                      for="surface_{{ surfaces.indexOf(surface) }}"
-                      >{{ surface | lowercase }}
+                      for="surfaceCheckbox{{ i }}"
+                      >{{ surfaces[i] | lowercase }}
                     </label>
                   </div>
                 </div>
+                <small
+                  id="fnHelp"
+                  *ngIf="selectedSurfacesError && checkSurfacesControlTouched()"
+                  class="form-text custom-invalid-feedback"
+                  >Choose at least one option</small
+                >
                 <button
                   (click)="submitHandler()"
                   type="button"
