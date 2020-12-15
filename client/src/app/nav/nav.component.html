@@ -68,23 +68,17 @@
       </div>
     </div> -->
 
-  <div
-    class="dropdown"
-    *ngIf="accountService.currentUser$ | async as user"
-    dropdown
-  >
-    <a class="dropdown-toggle text-light" dropdownToggle
-      >Welcome {{ user.username | titlecase }}</a
-    >
-    <div class="dropdown-menu mt-3" *dropdownMenu>
-      <a class="dropdown-item">Edit Profile</a>
-      <div class="dropdown-divider"></div>
-      <a class="dropdown-item" (click)="logout()">Logout</a>
-    </div>
+    <div class="dropdown" *ngIf="(accountService.currentUser$ | async) as user" dropdown>
+      <a class="dropdown-toggle text-light ml-2" dropdownToggle>Welcome {{user.knownAs || user.userName | titlecase}}</a>
+      <div class="dropdown-menu mt-3" *dropdownMenu>
+          <a routerLink='/member/edit' class="dropdown-item">Edit Profile</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" (click)="logout()" >Logout</a>
+      </div>
   </div>
+
   <div
     *ngIf="(accountService.currentUser$ | async) === null"
-    _ngcontent-c4=""
     class="d-none d-lg-flex align-items-center justify-content-end h-100 w-100 pr-lg-3 pr-xl-0"
   >
     <div class="d-flex flex-row ng-tns-c4-0 ng-star-inserted mr-4">

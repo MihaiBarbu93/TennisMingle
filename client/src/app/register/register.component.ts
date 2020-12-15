@@ -14,7 +14,7 @@ export class RegisterComponent implements OnInit {
   @Input() modalRefFromNavComponent: any;
   @Input() dropdownCities!: City[];
   userTypes: any[] = [];
-  citiesForRegister: string[] = [];
+
 
 
   
@@ -33,7 +33,7 @@ export class RegisterComponent implements OnInit {
     inputDirection: 'ltr' // the direction of the search input can be rtl or ltr(default)
   }
   configCities = {
-    displayKey:"description", //if objects array passed which key to be displayed defaults to description
+    displayKey:"name", //if objects array passed which key to be displayed defaults to description
     search:true, //true/false for the search functionlity defaults to false,
     height: 'auto', //height of the list so that if there are more no of items it can show a scroll defaults to auto. With auto height scroll will never appear
     placeholder:'Select your city', // text to be displayed when no item is selected defaults to Select,
@@ -53,7 +53,7 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUserTypes();
-    this.getCitiesNames();
+
    
     
   }
@@ -61,14 +61,16 @@ export class RegisterComponent implements OnInit {
   getUserTypes(){
     for(var n in UserType) {
       if(typeof UserType[n] === 'number') this.userTypes.push(n);
+    
     }
   }
+  
 
-  getCitiesNames(){
-    this.dropdownCities.forEach( (c) => {
-      this.citiesForRegister.push(c.name);
-  });  
-  }
+  // getCitiesNames(){
+  //   this.dropdownCities.forEach( (c) => {
+  //     this.citiesForRegister.push(c.name);
+  // });  
+  // }
 
   register() {
     this.accountService.register(this.model).subscribe(response => {
