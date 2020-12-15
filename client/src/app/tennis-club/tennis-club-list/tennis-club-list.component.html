@@ -42,7 +42,8 @@
                 <small
                   id="fnHelp"
                   *ngIf="
-                    selectedFacilitiesError && checkFacilitiesControlTouched()
+                    selectedFacilitiesError &&
+                    checkFormControlTouched(facilitiesArray)
                   "
                   class="form-text custom-invalid-feedback"
                   >Choose at least one option</small
@@ -74,7 +75,10 @@
                 </div>
                 <small
                   id="fnHelp"
-                  *ngIf="selectedSurfacesError && checkSurfacesControlTouched()"
+                  *ngIf="
+                    selectedSurfacesError &&
+                    checkFormControlTouched(surfacesArray)
+                  "
                   class="form-text custom-invalid-feedback"
                   >Choose at least one option</small
                 >

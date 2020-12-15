@@ -40,21 +40,13 @@ export class TennisClubListComponent implements OnInit {
 
   initForm() {
     this.reactiveForm = this.formBuilder.group({
-      facilitiesCheckBoxes: this.addFacilitiesControl(),
-      surfacesCheckBoxes: this.addSurfacesControl(),
+      facilitiesCheckBoxes: this.addFormControl(this.facilities),
+      surfacesCheckBoxes: this.addFormControl(this.surfaces),
     });
   }
 
-  addFacilitiesControl() {
-    const arr = this.facilities.map((facility) => {
-      return this.formBuilder.control(false);
-    });
-
-    return this.formBuilder.array(arr);
-  }
-
-  addSurfacesControl() {
-    const arr = this.surfaces.map((surface) => {
+  addFormControl(dataArray: string[]) {
+    const arr = dataArray.map((data) => {
       return this.formBuilder.control(false);
     });
     return this.formBuilder.array(arr);
@@ -88,22 +80,11 @@ export class TennisClubListComponent implements OnInit {
     });
     this.selectedSurfacesError =
       this.selectedSurfacesValues.length > 0 ? false : true;
-    console.log(this.selectedSurfacesError);
   }
 
-  checkFacilitiesControlTouched() {
+  checkFormControlTouched(dataArray: FormArray) {
     let flg = false;
-    this.facilitiesArray.controls.forEach((control) => {
-      if (control.touched) {
-        flg = true;
-      }
-    });
-    return flg;
-  }
-
-  checkSurfacesControlTouched() {
-    let flg = false;
-    this.surfacesArray.controls.forEach((control) => {
+    dataArray.controls.forEach((control) => {
       if (control.touched) {
         flg = true;
       }
@@ -152,7 +133,7 @@ export class TennisClubListComponent implements OnInit {
       .subscribe((facilities) => {
         this.facilities = facilities;
         this.reactiveForm = this.formBuilder.group({
-          facilitiesCheckBoxes: this.addFacilitiesControl(),
+          facilitiesCheckBoxes: this.addFormControl(this.facilities),
         });
         this.initForm();
       });
@@ -163,9 +144,8 @@ export class TennisClubListComponent implements OnInit {
       .getSurfacesForTennisClubsPerCity(cityId)
       .subscribe((surfaces) => {
         this.surfaces = surfaces;
-        console.log(surfaces);
         this.reactiveForm = this.formBuilder.group({
-          surfacesCheckBoxes: this.addSurfacesControl(),
+          surfacesCheckBoxes: this.addFormControl(surfaces),
         });
         this.initForm();
       });
