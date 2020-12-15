@@ -39,15 +39,6 @@
                     >{{ facilities[i] | lowercase }}</label
                   >
                 </div>
-                <small
-                  id="fnHelp"
-                  *ngIf="
-                    selectedFacilitiesError &&
-                    checkFormControlTouched(facilitiesArray)
-                  "
-                  class="form-text custom-invalid-feedback"
-                  >Choose at least one option</small
-                >
                 <div class="mt-4">
                   <p class="filter-type font-weight-bold mb-1">Surface</p>
                   <div class="tm-divider"></div>
@@ -73,15 +64,13 @@
                     </label>
                   </div>
                 </div>
-                <small
-                  id="fnHelp"
-                  *ngIf="
-                    selectedSurfacesError &&
-                    checkFormControlTouched(surfacesArray)
-                  "
+                <p
+                  id="errorFilterElement"
+                  style="display: none"
                   class="form-text custom-invalid-feedback"
-                  >Choose at least one option</small
                 >
+                  Choose at least one option
+                </p>
                 <button
                   (click)="submitHandler()"
                   type="button"
