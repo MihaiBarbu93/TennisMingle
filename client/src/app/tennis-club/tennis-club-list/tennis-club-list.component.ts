@@ -5,8 +5,9 @@ import { TennisClubsService } from './../../_services/tennis-clubs.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { TennisClub } from 'src/app/_models/tennisClub';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ThisReceiver } from '@angular/compiler';
-import { ConsoleReporter } from 'jasmine';
+import { Observable } from 'rxjs';
+import { isEmpty } from 'rxjs/operators';
+import { analyzeAndValidateNgModules } from '@angular/compiler';
 
 @Component({
   selector: 'app-tennis-club-list',
@@ -15,13 +16,14 @@ import { ConsoleReporter } from 'jasmine';
 })
 export class TennisClubListComponent implements OnInit {
   tennisClubs: TennisClub[] = [];
+  tennisClubs$: Observable<any>;
   cityId!: number;
   facilities: string[] = [];
   surfaces: string[] = [];
   reactiveForm!: FormGroup;
-  selectedFacilitiesValues!: string[];
+  selectedFacilitiesValues: string[] = [];
   selectedFacilitiesError: boolean = true;
-  selectedSurfacesValues!: string[];
+  selectedSurfacesValues: string[] = [];
   selectedSurfacesError: boolean = true;
 
   constructor(
@@ -66,8 +68,14 @@ export class TennisClubListComponent implements OnInit {
     this.facilitiesArray.controls.forEach((control, i) => {
       if (control.value) {
         this.selectedFacilitiesValues.push(this.facilities[i]);
+        console.log(
+          this.selectedFacilitiesValues[
+            this.selectedFacilitiesValues.length - 1
+          ]
+        );
       }
     });
+    this.loadTennisClubs(this.cityId);
   }
 
   getSelectedSurfacesValue() {
@@ -77,6 +85,10 @@ export class TennisClubListComponent implements OnInit {
         this.selectedSurfacesValues.push(this.surfaces[i]);
       }
     });
+    console.log(
+      this.selectedSurfacesValues[this.selectedSurfacesValues.length - 1]
+    );
+    this.loadTennisClubs(this.cityId);
   }
 
   checkFormControlTouched(dataArray: FormArray) {
@@ -97,21 +109,22 @@ export class TennisClubListComponent implements OnInit {
       : false;
   }
 
-  handleErrorMessage() {
-    let errorElement = document.getElementById('errorFilterElement');
-    this.noFilterOptionSelected()
-      ? (errorElement.style.display = 'block')
-      : (errorElement.style.display = 'none');
-  }
+  // handleErrorMessage() {
+  //   let errorElement = document.getElementById('errorFilterElement');
+  //   this.noFilterOptionSelected()
+  //     ? (errorElement.style.display = 'block')
+  //     : (errorElement.style.display = 'none');
+  // }
 
-  submitHandler() {
-    this.handleErrorMessage();
-    const newQuerySurfaces = this.selectedSurfacesValues;
-    const allOptions = newQuerySurfaces;
-    if (this.reactiveForm.valid && allOptions) {
-      console.log(this.reactiveForm.value, allOptions);
-    }
-  }
+  // submitHandler() {
+  //   this.handleErrorMessage();
+  //   const allOptions = this.selectedFacilitiesValues.concat(
+  //     this.selectedSurfacesValues
+  //   );
+  //   if (allOptions.length > 0) {
+  //     // this.tennisClubs = this.tennisClubs.filter((tc) => tc.includ);
+  //   }
+  // }
 
   loadAllData(cityId: number) {
     this.loadTennisClubs(cityId);
@@ -120,18 +133,57 @@ export class TennisClubListComponent implements OnInit {
   }
 
   loadTennisClubs(cityId: number) {
-    return this.router.url.includes('courts')
-      ? this.tennisClubService
-          .getTennisClubsWithCourtsAvailable(cityId)
-          .subscribe((tennisClubs) => {
-            this.tennisClubs = tennisClubs;
-          })
-      : this.tennisClubService
-          .getTennisClubs(cityId)
-          .subscribe((tennisClubs) => {
-            this.tennisClubs = tennisClubs;
-          });
+    console.log(this.selectedFacilitiesValues.length);
+    console.log(this.selectedSurfacesValues.length);
+    if (this.tennisClubs.length === 0) {
+      return this.router.url.includes('courts')
+        ? this.tennisClubService
+            .getTennisClubsWithCourtsAvailable(cityId)
+            .subscribe((tennisClubs) => {
+              this.tennisClubs = tennisClubs;
+            })
+        : this.tennisClubService
+            .getTennisClubs(cityId)
+            .subscribe((tennisClubs) => {
+              this.tennisClubs = tennisClubs;
+              console.log(tennisClubs);
+            });
+    } else {
+      if (
+        this.tennisClubs[0].cityId === cityId &&
+        (this.selectedSurfacesValues.length !== 0 ||
+          this.selectedFacilitiesValues.length !== 0)
+      ) {
+        this.tennisClubs = this.tennisClubs.filter(
+          (tc) => tc == this.tennisClubs[this.tennisClubs.length - 1]
+        );
+      } else
+        this.router.url.includes('courts')
+          ? this.tennisClubService
+              .getTennisClubsWithCourtsAvailable(cityId)
+              .subscribe((tennisClubs) => {
+                this.tennisClubs = tennisClubs;
+              })
+          : this.tennisClubService
+              .getTennisClubs(cityId)
+              .subscribe((tennisClubs) => {
+                this.tennisClubs = tennisClubs;
+                console.log(tennisClubs);
+              });
+    }
   }
+
+  // loadTennisClubsAsyncPipe(cityId: number) {
+  //   if (this.tennisClubs$ === undefined) {
+  //     this.router.url.includes('courts')
+  //       ? (this.tennisClubs$ = this.tennisClubService.getTennisClubsWithCourtsAvailable(
+  //           cityId
+  //         ))
+  //       : (this.tennisClubs$ = this.tennisClubService.getTennisClubs(cityId));
+  //   } else {
+  //     this.tennisClubs$ = new Observable<any>();
+  //   }
+  // }
 
   loadFacilities(cityId: number) {
     return this.tennisClubService
