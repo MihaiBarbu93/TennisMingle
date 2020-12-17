@@ -47,11 +47,10 @@ namespace TennisMingle.API.Controllers
         /// <summary>
         /// This GET method returns a tennis club with a specific id 
         /// </summary>
-        [HttpGet]
-        [Route("{tennisClubId}", Name = "GetTennisClub")]
-        public IActionResult GetTennisClub(int tennisClubId)
+        [HttpGet("{tennisClubId}")]
+        public async Task<ActionResult<TennisClub>> GetTennisClub(int tennisClubId)
         {
-            var tennisClub = _tennisClubRepository.GetTenisClubByIdAsync(tennisClubId);
+            var tennisClub = await _tennisClubRepository.GetTenisClubByIdAsync(tennisClubId);
 
             return Ok(tennisClub);
         }
