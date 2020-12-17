@@ -17,7 +17,7 @@ import { FacilityType } from './../../_models/enums/facilityType';
 })
 export class TennisClubListComponent implements OnInit {
   tennisClubs: TennisClub[] = [];
-  tennisClubs$: Observable<any>;
+  unfilteredTennisClubs: TennisClub[] = [];
   cityId!: number;
   facilities: string[] = [];
   surfaces: string[] = [];
@@ -26,6 +26,7 @@ export class TennisClubListComponent implements OnInit {
   selectedFacilitiesError: boolean = true;
   selectedSurfacesValues: number[] = [];
   selectedSurfacesError: boolean = true;
+  filteringStarted: boolean = false;
   allFacilities: string[] = [
     'PARKING',
     'TOILETS',
@@ -156,28 +157,36 @@ export class TennisClubListComponent implements OnInit {
   }
 
   loadTennisClubs(cityId: number) {
-    console.log(this.selectedFacilitiesValues.length);
-    console.log(this.selectedSurfacesValues.length);
-    if (this.tennisClubs.length === 0) {
+    if (this.tennisClubs.length === 0 && !this.filteringStarted) {
       return this.router.url.includes('courts')
         ? this.tennisClubService
             .getTennisClubsWithCourtsAvailable(cityId)
             .subscribe((tennisClubs) => {
               this.tennisClubs = tennisClubs;
+              this.unfilteredTennisClubs = tennisClubs;
             })
         : this.tennisClubService
             .getTennisClubs(cityId)
             .subscribe((tennisClubs) => {
               this.tennisClubs = tennisClubs;
-              console.log(tennisClubs);
+              this.unfilteredTennisClubs = tennisClubs;
             });
     } else {
       if (
-        this.tennisClubs[0].cityId === cityId &&
+        this.tennisClubs[0]?.cityId === cityId &&
         (this.selectedSurfacesValues.length !== 0 ||
           this.selectedFacilitiesValues.length !== 0)
       ) {
-        console.log(this.selectedFacilitiesValues);
+        this.filteringStarted = true;
+        this.tennisClubs = this.tennisClubs.filter((tc) =>
+          this.selectedFacilitiesValues.every((fac) =>
+            tc.facilities.some(
+              (tcfac) => tcfac.facilityType.toString() == fac.toString()
+            )
+          )
+        );
+      } else if (this.tennisClubs.length === 0 && this.filteringStarted) {
+        this.tennisClubs = this.unfilteredTennisClubs;
         this.tennisClubs = this.tennisClubs.filter((tc) =>
           this.selectedFacilitiesValues.every((fac) =>
             tc.facilities.some(
@@ -196,7 +205,6 @@ export class TennisClubListComponent implements OnInit {
               .getTennisClubs(cityId)
               .subscribe((tennisClubs) => {
                 this.tennisClubs = tennisClubs;
-                console.log(tennisClubs);
               });
       }
     }
