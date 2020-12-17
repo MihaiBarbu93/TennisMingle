@@ -28,6 +28,7 @@ import { LoginComponent } from './login/login.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { NgxSelectModule } from 'ngx-select-ex';
 import { SelectDropDownModule } from 'ngx-select-dropdown';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,10 @@ import { SelectDropDownModule } from 'ngx-select-dropdown';
     NgxSelectModule,
     ModalModule.forRoot(),
     ReactiveFormsModule,
-    SelectDropDownModule
+    SelectDropDownModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAHkvce8fYg5UNgF_Xkp1alX_2EIxtNQJo'
+    })
   ],
   providers: [BsModalService, DataService],
   bootstrap: [AppComponent],
