@@ -50,6 +50,7 @@ namespace TennisMingle.API.Data
                .Include(tc => tc.City)
                .Include(tc => tc.Facilities)
                .Include(tc => tc.TennisCourts)
+               .ThenInclude(tc => tc.Surface)
                .Include(tc => tc.Photos)
                .Include(tc => tc.Users)
                .Where(tc => tc.CityId == cityId)

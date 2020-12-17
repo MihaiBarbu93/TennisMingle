@@ -109,9 +109,7 @@ export class TennisClubListComponent implements OnInit {
         );
       }
     });
-    console.log(
-      this.selectedSurfacesValues[this.selectedSurfacesValues.length - 1]
-    );
+    console.log(this.selectedSurfacesValues);
     this.loadTennisClubs(this.cityId);
   }
 
@@ -178,21 +176,35 @@ export class TennisClubListComponent implements OnInit {
           this.selectedFacilitiesValues.length !== 0)
       ) {
         this.filteringStarted = true;
-        this.tennisClubs = this.tennisClubs.filter((tc) =>
-          this.selectedFacilitiesValues.every((fac) =>
-            tc.facilities.some(
-              (tcfac) => tcfac.facilityType.toString() == fac.toString()
+        this.tennisClubs = this.tennisClubs.filter(
+          (tc) =>
+            this.selectedFacilitiesValues.every((fac) =>
+              tc.facilities.some(
+                (tcfac) => tcfac.facilityType.toString() == fac.toString()
+              )
+            ) &&
+            this.selectedSurfacesValues.every((surface) =>
+              tc.tennisCourts.some(
+                (tco) =>
+                  tco.surface.surfaceType.toString() == surface.toString()
+              )
             )
-          )
         );
       } else if (this.tennisClubs.length === 0 && this.filteringStarted) {
         this.tennisClubs = this.unfilteredTennisClubs;
-        this.tennisClubs = this.tennisClubs.filter((tc) =>
-          this.selectedFacilitiesValues.every((fac) =>
-            tc.facilities.some(
-              (tcfac) => tcfac.facilityType.toString() == fac.toString()
+        this.tennisClubs = this.tennisClubs.filter(
+          (tc) =>
+            this.selectedFacilitiesValues.every((fac) =>
+              tc.facilities.some(
+                (tcfac) => tcfac.facilityType.toString() == fac.toString()
+              )
+            ) &&
+            this.selectedSurfacesValues.every((surface) =>
+              tc.tennisCourts.some(
+                (tco) =>
+                  tco.surface.surfaceType.toString() == surface.toString()
+              )
             )
-          )
         );
       } else {
         this.router.url.includes('courts')
