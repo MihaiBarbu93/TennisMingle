@@ -71,6 +71,7 @@ namespace TennisMingle.API.Data
                 var result = await _context.TennisClubs
                 .Where(tc => tc.CityId == cityId && tc.TennisCourts.Any(tco => tco.IsAvailable == true))
                 .Include(tc => tc.TennisCourts)
+                .ThenInclude(tc => tc.Surface)
                 .Include(tc => tc.Facilities)
                 .Include(tc => tc.Photos)
                 .Include(tc => tc.Users)
