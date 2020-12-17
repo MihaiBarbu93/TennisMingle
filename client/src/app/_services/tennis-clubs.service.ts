@@ -19,6 +19,12 @@ export class TennisClubsService {
     );
   }
 
+  getTennisClubById(cityId: number, tennisClubId: number) {
+    return this.http.get<TennisClub>(
+      this.baseUrl + 'cities/' + cityId + '/tennisclubs/' + tennisClubId
+    );
+  }
+
   getTennisClub(userId: number) {
     return this.http.get<TennisClub>(
       this.baseUrl + 'cities/1/tennisclubs/' + userId

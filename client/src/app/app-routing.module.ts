@@ -11,7 +11,7 @@ const routes: Routes = [
     path: 'cities/:cityId/tennis-clubs-withcourts',
     component: TennisClubListComponent,
   },
-  { path: 'tennis-clubs/:id', component: TennisClubDetailComponent },
+  { path: 'cities/:cityId/tennis-clubs/:id', component: TennisClubDetailComponent },
   { path: '**', component: HomeComponent, pathMatch: 'full' },
 ];
 

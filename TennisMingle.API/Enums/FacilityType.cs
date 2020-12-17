@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace TennisMingle.API.Enums
 {
-    public enum @string
+    public enum FacilityType
     {
         PARKING,
         TOILETS,
