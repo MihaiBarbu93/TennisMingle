@@ -11,11 +11,13 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FormControl } from '@angular/forms';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
+  providers: [DatePipe],
 })
 export class HomeComponent implements OnInit {
   baseUrl = environment.apiUrl;
@@ -27,12 +29,16 @@ export class HomeComponent implements OnInit {
   citiesSelect: string[] = [];
   findCourtForm!: FormGroup;
   citySelected: number = 1;
+  newDate = new Date();
+  today: string;
 
   constructor(
     private citiesService: CitiesService,
     private formBuilder: FormBuilder,
     private router: Router
-  ) {}
+  ) {
+    this.today = this.newDate.toISOString().substring(0, 19);
+  }
 
   ngOnInit(): void {
     this.loadCities();
