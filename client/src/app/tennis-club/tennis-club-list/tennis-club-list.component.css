@@ -20,3 +20,8 @@
 .custom-invalid-feedback {
   color: red;
 }
+
+.tc-image {
+  width: 100%;
+  height: 100%;
+}
