@@ -88,11 +88,11 @@
     <div class="col-md-9 col-lg-9 col-xl-10" *ngIf="tennisClubs">
       <div
         *ngFor="let tennisClub of tennisClubs"
-        class="row pt-4 tm-mb-2 bg-white club-summary rounded"
+        class="row pt-4 mb-4 bg-white club-summary rounded"
       >
         <div class="col-6 col-lg-4 pr-0 align-items-stretch mb-3">
           <img
-            src="~/Images/@club.Image"
+            src="{{ tennisClub.photos[0].url }}"
             class="img-fluid rounded-image"
             w-100
             h-100
@@ -102,39 +102,43 @@
         <div class="col-6 col-lg-8 pr-0 mb-2">
           <div class="thumbnail text-left">
             <div class="row mb-3">
-              <div class="col-12 col-lg-5 col-xl-6">
-                <div class="caption">
-                  <p class="club-info-name">{{ tennisClub.name }}</p>
-                  <p class="mb-1 club-info-address">
-                    <span class="club-info-schedule">Address: </span
-                    >{{ tennisClub.address }}
-                  </p>
-                  <p class="mb-1 club-info-address">
-                    <span class="club-info-schedule">Schedule: </span
-                    >{{ tennisClub.schedule }}
-                  </p>
-                  <p class="club-info-address">
-                    <span class="club-info-schedule">Phone: </span
-                    >{{ tennisClub.phoneNumber }}
-                  </p>
-                </div>
-              </div>
-              <div
-                class="col-12 col-lg-7 col-xl-6 mt-lg-0 cursor pointer mlp-block-link"
-              >
-                <div class="addToCart">
-                  <p class="button">
-                    <a
-                      class="btn tm-btn--secondary"
-                      href="cities/{{cityId}}/tennis-clubs/{{ tennisClub.id }}"
-                      >Explore Venue</a
-                    >
-                  </p>
+              <div class="caption col-6 col-lg-8 pr-0 align-items-stretch mb-3">
+                <div class="row">
+                  <div class="col-5 col-lg-5 col-xl-6">
+                    <p class="club-info-name">{{ tennisClub.name }}</p>
+                    <p class="mb-1 club-info-address">
+                      <span class="club-info-schedule">Address: </span
+                      >{{ tennisClub.address }}
+                    </p>
+                    <p class="mb-1 club-info-address">
+                      <span class="club-info-schedule">Schedule: </span
+                      >{{ tennisClub.schedule }}
+                    </p>
+                    <p class="club-info-address">
+                      <span class="club-info-schedule">Phone: </span
+                      >{{ tennisClub.phoneNumber }}
+                    </p>
+                  </div>
+                  <div
+                    class="col-7 col-lg-7 col-xl-6 mt-lg-0 cursor pointer mlp-block-link"
+                  >
+                    <div class="addToCart">
+                      <p class="button">
+                        <a
+                          class="btn tm-btn--secondary"
+                          href="cities/{{ cityId }}/tennis-clubs/{{
+                            tennisClub.id
+                          }}"
+                          >Explore Venue</a
+                        >
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-            <div class="club-info-divider mb-2"></div>
-            <div class="row text-left">
+            <div class="row">
+              <div class="club-info-divider mb-2"></div>
               <div class="col-12 body3 d-none d-md-block mb-2">
                 <div class="list-inline">
                   <div class="list-inline-item">
