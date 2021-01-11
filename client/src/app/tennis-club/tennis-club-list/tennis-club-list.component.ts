@@ -131,23 +131,6 @@ export class TennisClubListComponent implements OnInit {
       : false;
   }
 
-  // handleErrorMessage() {
-  //   let errorElement = document.getElementById('errorFilterElement');
-  //   this.noFilterOptionSelected()
-  //     ? (errorElement.style.display = 'block')
-  //     : (errorElement.style.display = 'none');
-  // }
-
-  // submitHandler() {
-  //   this.handleErrorMessage();
-  //   const allOptions = this.selectedFacilitiesValues.concat(
-  //     this.selectedSurfacesValues
-  //   );
-  //   if (allOptions.length > 0) {
-  //     // this.tennisClubs = this.tennisClubs.filter((tc) => tc.includ);
-  //   }
-  // }
-
   loadAllData(cityId: number) {
     this.loadTennisClubs(cityId);
     this.loadFacilities(cityId);
@@ -156,70 +139,96 @@ export class TennisClubListComponent implements OnInit {
 
   loadTennisClubs(cityId: number) {
     if (this.tennisClubs.length === 0 && !this.filteringStarted) {
-      return this.router.url.includes('courts')
-        ? this.tennisClubService
-            .getTennisClubsWithCourtsAvailable(cityId)
-            .subscribe((tennisClubs) => {
-              this.tennisClubs = tennisClubs;
-              this.unfilteredTennisClubs = tennisClubs;
-            })
-        : this.tennisClubService
-            .getTennisClubs(cityId)
-            .subscribe((tennisClubs) => {
-              this.tennisClubs = tennisClubs;
-              this.unfilteredTennisClubs = tennisClubs;
-            });
+      return this.InitialTennisClubsLoad(cityId);
     } else {
       if (
         this.tennisClubs[0]?.cityId === cityId &&
         (this.selectedSurfacesValues.length !== 0 ||
           this.selectedFacilitiesValues.length !== 0)
       ) {
-        this.filteringStarted = true;
-        this.tennisClubs = this.tennisClubs.filter(
-          (tc) =>
-            this.selectedFacilitiesValues.every((fac) =>
-              tc.facilities.some(
-                (tcfac) => tcfac.facilityType.toString() == fac.toString()
-              )
-            ) &&
-            this.selectedSurfacesValues.every((surface) =>
-              tc.tennisCourts.some(
-                (tco) =>
-                  tco.surface.surfaceType.toString() == surface.toString()
-              )
-            )
-        );
+        this.StartFiltering();
       } else if (this.tennisClubs.length === 0 && this.filteringStarted) {
-        this.tennisClubs = this.unfilteredTennisClubs;
-        this.tennisClubs = this.tennisClubs.filter(
-          (tc) =>
-            this.selectedFacilitiesValues.every((fac) =>
-              tc.facilities.some(
-                (tcfac) => tcfac.facilityType.toString() == fac.toString()
-              )
-            ) &&
-            this.selectedSurfacesValues.every((surface) =>
-              tc.tennisCourts.some(
-                (tco) =>
-                  tco.surface.surfaceType.toString() == surface.toString()
-              )
-            )
-        );
+        this.ReversedFiltering();
       } else {
-        this.router.url.includes('courts')
-          ? this.tennisClubService
-              .getTennisClubsWithCourtsAvailable(cityId)
-              .subscribe((tennisClubs) => {
-                this.tennisClubs = tennisClubs;
-              })
-          : this.tennisClubService
-              .getTennisClubs(cityId)
-              .subscribe((tennisClubs) => {
-                this.tennisClubs = tennisClubs;
-              });
+        this.ResetFiltering(cityId);
       }
     }
+  }
+
+  private InitialTennisClubsLoad(cityId: number) {
+    return this.router.url.includes('courts')
+      ? this.LoadTennisClubsWithCourtsAvailable(
+          cityId,
+          this.tennisClubs,
+          this.unfilteredTennisClubs
+        )
+      : this.LoadAllTennisClubs(
+          cityId,
+          this.tennisClubs,
+          this.unfilteredTennisClubs
+        );
+  }
+
+  private StartFiltering() {
+    this.filteringStarted = true;
+    this.tennisClubs = this.tennisClubs.filter(
+      (tc) => this.ApplyFilteredFacilities(tc) && this.ApplyFilteredSurfaces(tc)
+    );
+  }
+
+  private ReversedFiltering() {
+    this.tennisClubs = this.unfilteredTennisClubs;
+    this.tennisClubs = this.tennisClubs.filter(
+      (tc) => this.ApplyFilteredFacilities(tc) && this.ApplyFilteredSurfaces(tc)
+    );
+  }
+
+  private ResetFiltering(cityId: number) {
+    this.router.url.includes('courts')
+      ? this.LoadTennisClubsWithCourtsAvailable(cityId, this.tennisClubs)
+      : this.LoadAllTennisClubs(cityId, this.tennisClubs);
+  }
+
+  private LoadTennisClubsWithCourtsAvailable(
+    cityId: number,
+    tennisClubs: TennisClub[],
+    unfilteredTennisClubs?: TennisClub[]
+  ) {
+    return this.tennisClubService
+      .getTennisClubsWithCourtsAvailable(cityId)
+      .subscribe((tennisClubs) => {
+        this.tennisClubs = tennisClubs;
+        this.unfilteredTennisClubs = tennisClubs;
+      });
+  }
+
+  private LoadAllTennisClubs(
+    cityId: number,
+    tennisClubs: TennisClub[],
+    unfilteredTennisClubs?: TennisClub[]
+  ) {
+    return this.tennisClubService
+      .getTennisClubs(cityId)
+      .subscribe((tennisClubs) => {
+        this.tennisClubs = tennisClubs;
+        this.unfilteredTennisClubs = tennisClubs;
+      });
+  }
+
+  private ApplyFilteredFacilities(tc: TennisClub) {
+    return this.selectedFacilitiesValues.every((fac) =>
+      tc.facilities.some(
+        (tcfac) => tcfac.facilityType.toString() == fac.toString()
+      )
+    );
+  }
+
+  private ApplyFilteredSurfaces(tc: TennisClub): unknown {
+    return this.selectedSurfacesValues.every((surface) =>
+      tc.tennisCourts.some(
+        (tco) => tco.surface.surfaceType.toString() == surface.toString()
+      )
+    );
   }
 
   // loadTennisClubsAsyncPipe(cityId: number) {
