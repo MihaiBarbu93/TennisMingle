@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavComponent } from './nav/nav.component';
 import {
@@ -29,6 +29,10 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { NgxSelectModule } from 'ngx-select-ex';
 import { SelectDropDownModule } from 'ngx-select-dropdown';
 import { AgmCoreModule } from '@agm/core';
+import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
+import { ErrorInterceptor } from './_interceptors/error.interceptor';
+import { NotFoundComponent } from './errors/not-found/not-found.component';
+import { ServerErrorComponent } from './errors/server-error/server-error.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +45,9 @@ import { AgmCoreModule } from '@agm/core';
     FooterComponent,
     RegisterComponent,
     LoginComponent,
+    TestErrorsComponent,
+    NotFoundComponent,
+    ServerErrorComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,7 +70,11 @@ import { AgmCoreModule } from '@agm/core';
       apiKey: 'AIzaSyAHkvce8fYg5UNgF_Xkp1alX_2EIxtNQJo'
     })
   ],
-  providers: [BsModalService, DataService],
+  providers: [
+    BsModalService,
+     DataService,
+     {provide: HTTP_INTERCEPTORS, useClass:ErrorInterceptor, multi: true}
+    ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
