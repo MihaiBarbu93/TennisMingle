@@ -5747,11 +5747,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\TM\\TennisMingle\\TennisMingle.API\\TennisMingle.API.csproj",
+      "projectUniqueName": "D:\\.NET-C#\\TW4\\TennisMingle\\TennisMingle.API\\TennisMingle.API.csproj",
       "projectName": "TennisMingle.API",
-      "projectPath": "D:\\TM\\TennisMingle\\TennisMingle.API\\TennisMingle.API.csproj",
+      "projectPath": "D:\\.NET-C#\\TW4\\TennisMingle\\TennisMingle.API\\TennisMingle.API.csproj",
       "packagesPath": "C:\\Users\\Silviu\\.nuget\\packages\\",
-      "outputPath": "D:\\TM\\TennisMingle\\TennisMingle.API\\obj\\",
+      "outputPath": "D:\\.NET-C#\\TW4\\TennisMingle\\TennisMingle.API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Silviu\\AppData\\Roaming\\NuGet\\NuGet.Config",
