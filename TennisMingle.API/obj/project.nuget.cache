@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "6/UJkmmd9rBiqZtl1HVD+D8mVYA+S7/wOJoTms203R8qX9oHhm474C8nuCvp+M/CjdhHuKbVcKFdp1k89sUWTw==",
+  "dgSpecHash": "c9hDW4ktOzqjocqUWW7qFZLm+gjZ2eXwmEEQffHppoWtECmElHu5VnYSV1cC3q22D+Xx+WarJDlZe920vthxbw==",
   "success": true,
-  "projectFilePath": "D:\\TM\\TennisMingle\\TennisMingle.API\\TennisMingle.API.csproj",
+  "projectFilePath": "D:\\.NET-C#\\TW4\\TennisMingle\\TennisMingle.API\\TennisMingle.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Silviu\\.nuget\\packages\\automapper\\10.1.0\\automapper.10.1.0.nupkg.sha512",
     "C:\\Users\\Silviu\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.0\\automapper.extensions.microsoft.dependencyinjection.8.1.0.nupkg.sha512",
