@@ -21,11 +21,13 @@ namespace TennisMingle.API.Controllers
         private readonly ICityRepository _cityRepository;
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
+        private readonly RoleManager<AppRole> _roleManager;
         private readonly IUserRepository _userRepository;
 
         /* public ITokenService _tokenService { get; set; }*/
         public AccountController(IUserRepository userRepository, AppDbContext context,
-            UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, ITokenService tokenService,
+            UserManager<AppUser> userManager, SignInManager<AppUser> signInManager,
+            RoleManager<AppRole> roleManager, ITokenService tokenService,
             ICityRepository cityRepository)
         {
             _tokenService = tokenService;
@@ -33,6 +35,7 @@ namespace TennisMingle.API.Controllers
             _cityRepository = cityRepository;
             _userManager = userManager;
             _signInManager = signInManager;
+            _roleManager = roleManager;
             _userRepository = userRepository;
         }
         [HttpPost("register")]
@@ -51,21 +54,24 @@ namespace TennisMingle.API.Controllers
             };
 
             var result = await _userManager.CreateAsync(user, registerDTO.Password);
+            await _userManager.AddToRoleAsync(user, "Coach");
 
             if (!result.Succeeded) return BadRequest(result.Errors);
+
+            var roleResults = await _userManager.AddToRoleAsync(user, "Player");
+
+            if (!roleResults.Succeeded) return BadRequest(roleResults.Errors);
 
             return new UserDto
             {
                 UserName = user.UserName,
-                Token = _tokenService.CreateToken(user)
+                Token = await _tokenService.CreateToken(user)
             };
         }
 
         [HttpPost("login")]
         public async Task<ActionResult<UserDto>> Login(LoginDto loginDto)
         {
-
-            var useruuuu = await _userRepository.GetUserByUsernameAsync("vasile");
             var user = await _userManager.Users
                 .Include(p=>p.Photo)
                 .SingleOrDefaultAsync(x => x.UserName == loginDto.Username);
@@ -79,7 +85,7 @@ namespace TennisMingle.API.Controllers
             return new UserDto
             {
                 UserName = user.UserName,
-                Token = _tokenService.CreateToken(user)
+                Token = await _tokenService.CreateToken(user)
             };
         }
 

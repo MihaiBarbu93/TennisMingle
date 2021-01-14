@@ -10,7 +10,8 @@ namespace TennisMingle.API.Data
 {
     public class Seed
     {
-        public static async Task SeedCities(AppDbContext context, UserManager<AppUser> userManager)
+        public static async Task SeedCities(AppDbContext context, UserManager<AppUser> userManager, 
+                            RoleManager<AppRole> roleManager)
         {
             if (await userManager.Users.AnyAsync()) return;
 
@@ -22,6 +23,19 @@ namespace TennisMingle.API.Data
             {
                 await context.Cities.AddAsync(city);
             }
+
+            var roles = new List<AppRole>
+            {
+                new AppRole{Name = "Administrator"},
+                new AppRole{Name = "Player"},
+                new AppRole{Name = "Coach"}
+            };
+
+            foreach (var role in roles)
+            {
+                await roleManager.CreateAsync(role);
+            }
+
             await context.SaveChangesAsync();
 
             await UsersPasswordEncryption(context);
