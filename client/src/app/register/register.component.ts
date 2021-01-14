@@ -3,6 +3,7 @@ import { AccountService } from '../_services/account.service';
 import { ToastrService } from 'ngx-toastr';
 import { UserType } from '../_models/enums/userType';
 import { City } from '../_models/city';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -14,6 +15,13 @@ export class RegisterComponent implements OnInit {
   @Input() modalRefFromNavComponent: any;
   @Input() dropdownCities!: City[];
   userTypes: any[] = [];
+  registerForm =new FormGroup({
+    username: new FormControl('', Validators.required),
+    password: new FormControl('', Validators.required),
+    birthDate: new FormControl(''),
+    role: new FormControl(''),
+    city: new FormControl(''),
+  });
 
 
 
@@ -22,7 +30,7 @@ export class RegisterComponent implements OnInit {
     displayKey:"description", //if objects array passed which key to be displayed defaults to description
     search:true, //true/false for the search functionlity defaults to false,
     height: 'auto', //height of the list so that if there are more no of items it can show a scroll defaults to auto. With auto height scroll will never appear
-    placeholder:'Select your type', // text to be displayed when no item is selected defaults to Select,
+    placeholder:'Select your role', // text to be displayed when no item is selected defaults to Select,
     customComparator: ()=>{}, // a custom function using which user wants to sort the items. default is undefined and Array.sort() will be used in that case,
     limitTo: 0 ,// number thats limits the no of options displayed in the UI (if zero, options will not be limited)
     moreText: 'more', // text to be displayed whenmore than one items are selected like Option 1 + 5 more
@@ -53,10 +61,26 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUserTypes();
-
-   
-    
+    this.registerForm = new FormGroup({
+      username: new FormControl(this.model.username, [
+        Validators.required,
+        Validators.minLength(4)
+      ]),
+      password: new FormControl(this.model.password, [
+        Validators.required,
+        Validators.minLength(5)
+      ]),
+      birthDate: new FormControl(this.model.birthDate),
+      role: new FormControl(this.model.role),
+      city: new FormControl(this.model.city),
+    });    
   }
+
+  get username() { return this.registerForm.get('username'); }
+  get password() { return this.registerForm.get('password'); }
+  get birthDate() { return this.registerForm.get('birthDate'); }
+  get role() { return this.registerForm.get('usertype'); }
+  get city() { return this.registerForm.get('city'); }
 
   getUserTypes(){
     for(var n in UserType) {
@@ -74,15 +98,11 @@ export class RegisterComponent implements OnInit {
 
   register() {
     this.accountService.register(this.model).subscribe(response => {
-      console.log(response);
+      console.log(response),
+      this.modalRefFromNavComponent.hide();
     }, error => {
       console.log(error);
       this.toastr.error(error.error);
     })
   }
-  confirm(): void {
-    this.modalRefFromNavComponent.hide();
-  }
-
-
 }
