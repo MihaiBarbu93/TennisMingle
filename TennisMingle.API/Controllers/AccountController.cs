@@ -54,11 +54,10 @@ namespace TennisMingle.API.Controllers
             };
 
             var result = await _userManager.CreateAsync(user, registerDTO.Password);
-            await _userManager.AddToRoleAsync(user, "Coach");
 
             if (!result.Succeeded) return BadRequest(result.Errors);
 
-            var roleResults = await _userManager.AddToRoleAsync(user, "Player");
+            var roleResults = await _userManager.AddToRoleAsync(user, "Administrator");
 
             if (!roleResults.Succeeded) return BadRequest(roleResults.Errors);
 

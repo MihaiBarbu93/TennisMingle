@@ -36,6 +36,13 @@ namespace TennisMingle.API.Extensions
                         ValidateAudience = false
                     };
                 });
+
+            services.AddAuthorization(opt =>
+            {
+                opt.AddPolicy("RequireAdminRole", policy => policy.RequireRole("Administrator"));
+                opt.AddPolicy("RequireCoachRole", policy => policy.RequireRole("Coach"));
+            });
+
             return services;
         }
 
