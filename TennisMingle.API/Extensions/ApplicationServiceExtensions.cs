@@ -30,7 +30,7 @@ namespace TennisMingle.API.Extensions
             services.AddScoped<IFacilityService, FacilityService>();
             services.AddScoped<ISurfaceService, SurfaceService>();
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
-            services.AddDbContextPool<AppDbContext>(options => options.UseSqlServer(config.GetConnectionString("TennisMingleConnectionString")));
+            services.AddDbContextPool<AppDbContext>(options => options.UseSqlServer(config.GetConnectionString("TennisMingleConnectionString"), x => x.UseNetTopologySuite()));
 
             services.AddTransient<TennisMingleSeeder>();
             services.AddMvc().AddNewtonsoftJson(options =>
