@@ -9,10 +9,6 @@
   font-weight: bolder;
 }
 
-.navbar-nav {
-  display: inline-block;
-}
-
 .navbar-nav > li {
   display: inline-block;
 }

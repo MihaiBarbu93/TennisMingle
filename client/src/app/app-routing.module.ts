@@ -1,3 +1,4 @@
+import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
 import { TennisClubListComponent } from './tennis-club/tennis-club-list/tennis-club-list.component';
 import { HomeComponent } from './home/home.component';
 import { NgModule } from '@angular/core';
@@ -14,11 +15,19 @@ const routes: Routes = [
     path: 'cities/:cityId/tennis-clubs-withcourts',
     component: TennisClubListComponent,
   },
-  { path: 'cities/:cityId/tennis-clubs/:id', component: TennisClubDetailComponent },
-  {path: 'errors', component: TestErrorsComponent},
-  {path: 'not-found', component: NotFoundComponent},
-  {path: 'server-error', component: ServerErrorComponent},
-  {path: '**', component: NotFoundComponent, pathMatch: 'full'}
+  {
+    path: 'cities/:cityId/tennis-clubs/:id',
+    component: TennisClubDetailComponent,
+  },
+  {
+    path: 'admin',
+    component: AdminPanelComponent,
+  },
+  { path: 'errors', component: TestErrorsComponent },
+  { path: 'errors', component: TestErrorsComponent },
+  { path: 'not-found', component: NotFoundComponent },
+  { path: 'server-error', component: ServerErrorComponent },
+  { path: '**', component: NotFoundComponent, pathMatch: 'full' },
 ];
 
 @NgModule({
