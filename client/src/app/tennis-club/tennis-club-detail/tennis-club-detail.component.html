@@ -7,7 +7,7 @@
                         <fa-icon class="fa" [icon]="faChevronLeft"></fa-icon> Explore nearby venues
                     </a><br/><br />
                     <div class="h2">
-                        {{tennisClub.name}}
+                        {{tennisClub?.name}}
                         <fa-icon class="fa" [icon]="faCheckCircle" style="color: #188155;"></fa-icon>
                     </div><br/>
                 </div>
@@ -34,7 +34,7 @@
                 <div class="col-sm-12 mb-3">
                     <div class="row">
                         <div class="col-12 d-flex flex-row">
-                            <img class="img-fluid lazyloaded rounded-image" imgservice="w=578" loading="lazy" src="" style="width: 100%"  src="{{ tennisClub.photos[0].url }}">
+                            <img class="img-fluid lazyloaded rounded-image" imgservice="w=578" loading="lazy" src="" style="width: 100%"  src="{{ tennisClub?.photos[0].url }}">
                         </div>
                     </div>
                 </div>
@@ -63,7 +63,7 @@
                         <div class="card-body">
                             <div class="row">
 
-                                <agm-map [zoom]="120" [latitude]="lat" [longitude]="lng" (mapClick)="onChoseLocation($event)">
+                                <agm-map [zoom]="50" [latitude]="lat" [longitude]="lng" (mapClick)="onChoseLocation($event)">
                                     <agm-marker
                                       [latitude]="lat"
                                       [longitude]="lng"
@@ -72,7 +72,7 @@
                             </div>
                             <p>
                                 <fa-icon class="fa-2x" [icon]="faMapMarked"></fa-icon>
-                                {{tennisClub.address}}
+                                {{tennisClub?.address}}
                             </p>
                         </div>
                         <hr>
@@ -83,7 +83,7 @@
                                     <li class="ng-star-inserted">
                                         <p class="small">
                                             <strong>
-                                                <span class="">{{tennisClub.price}} Ron/hour</span>
+                                                <span class="">{{tennisClub?.price}} Ron/hour</span>
                                             </strong>
                                         </p>
                                         <p class="small text-muted">
@@ -108,7 +108,7 @@
                                         <tbody>
                                             <tr>
                                                 <!-- <td>@Model.TennisClub.Schedule</td> -->
-                                                <td>{{tennisClub.schedule}}</td>
+                                                <td>{{tennisClub?.schedule}}</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -126,7 +126,7 @@
                 </div>
                 <div class="card-body">
                     <!-- <p >@Model.TennisClub.Description </p> -->
-                    <p>{{tennisClub.description}}</p>
+                    <p>{{tennisClub?.description}}</p>
                 </div>
             </div>
         </div>
@@ -173,7 +173,7 @@
                 </div>
                 <div class="card-body">
                     <p>
-                       {{tennisClub.address}} <br>              
+                       {{tennisClub?.address}} <br>              
                     </p>
                 </div>
             </div>

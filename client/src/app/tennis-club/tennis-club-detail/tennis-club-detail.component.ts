@@ -44,8 +44,8 @@ export class TennisClubDetailComponent implements OnInit {
   faBaseballBall = faBaseballBall;
   faEnvelope = faEnvelope;
   faMap = faMap;
-  lat:  51.678418; 
-  lng: 7.809007;
+  lat =  51.678418; 
+  lng = 7.809007;
   
   facilities: any[] = [];
   reactiveForm!: FormGroup;
