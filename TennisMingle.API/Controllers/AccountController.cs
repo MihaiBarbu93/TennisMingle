@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -18,62 +19,72 @@ namespace TennisMingle.API.Controllers
         private readonly AppDbContext _context;
         private readonly ITokenService _tokenService;
         private readonly ICityRepository _cityRepository;
+        private readonly UserManager<AppUser> _userManager;
+        private readonly SignInManager<AppUser> _signInManager;
+        private readonly RoleManager<AppRole> _roleManager;
+        private readonly IUserRepository _userRepository;
 
         /* public ITokenService _tokenService { get; set; }*/
-        public AccountController(AppDbContext context, ITokenService tokenService, ICityRepository cityRepository)
+        public AccountController(IUserRepository userRepository, AppDbContext context,
+            UserManager<AppUser> userManager, SignInManager<AppUser> signInManager,
+            RoleManager<AppRole> roleManager, ITokenService tokenService,
+            ICityRepository cityRepository)
         {
             _tokenService = tokenService;
             _context = context;
-            _cityRepository = cityRepository; 
+            _cityRepository = cityRepository;
+            _userManager = userManager;
+            _signInManager = signInManager;
+            _roleManager = roleManager;
+            _userRepository = userRepository;
         }
         [HttpPost("register")]
         public async Task<ActionResult<UserDto>> Register(RegisterDto registerDTO)
         {
             if (await UserExists(registerDTO.UserName)) return BadRequest("Username is taken");
 
-            using var hmac = new HMACSHA512();
 
-            var person = new AppUser
+            var user = new AppUser
             {
                 UserName = registerDTO.UserName.ToLower(),
-                PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDTO.Password)),
-                PasswordSalt = hmac.Key,
-                CityId = registerDTO.City.Id,
-                DateOfBirth = registerDTO.DateOfBirth,
-                UserType = registerDTO.UserType
+
+                CityId = 1,
+                DateOfBirth = new DateTime(2010, 8, 18),
+                UserType = Enums.UserType.ADMINISTRATOR
             };
 
-            _context.Users.Add(person);
-            await _context.SaveChangesAsync();
+            var result = await _userManager.CreateAsync(user, registerDTO.Password);
+
+            if (!result.Succeeded) return BadRequest(result.Errors);
+
+            var roleResults = await _userManager.AddToRoleAsync(user, "Administrator");
+
+            if (!roleResults.Succeeded) return BadRequest(roleResults.Errors);
+
             return new UserDto
             {
-                UserName = person.UserName,
-                Token = _tokenService.CreateToken(person)
+                UserName = user.UserName,
+                Token = await _tokenService.CreateToken(user)
             };
         }
 
         [HttpPost("login")]
         public async Task<ActionResult<UserDto>> Login(LoginDto loginDto)
         {
-            var user = await _context.Users
+            var user = await _userManager.Users
                 .Include(p=>p.Photo)
                 .SingleOrDefaultAsync(x => x.UserName == loginDto.Username);
 
             if (user == null) return Unauthorized("Invalid username");
 
-            using var hmac = new HMACSHA512(user.PasswordSalt);
+            var result = await _signInManager.CheckPasswordSignInAsync(user, loginDto.Password, false);
 
-            var computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(loginDto.Password));
-
-            for (int i = 0; i < computedHash.Length; i++)
-            {
-                if (computedHash[i] != user.PasswordHash[i]) return Unauthorized("Invalid password");
-            }
+            if (!result.Succeeded) return Unauthorized();
 
             return new UserDto
             {
                 UserName = user.UserName,
-                Token = _tokenService.CreateToken(user)
+                Token = await _tokenService.CreateToken(user)
             };
         }
 
