@@ -7,6 +7,7 @@ import { TennisClubDetailComponent } from './tennis-club/tennis-club-detail/tenn
 import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
 import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { ServerErrorComponent } from './errors/server-error/server-error.component';
+import { AdminGuard } from './_guards/admin.guard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -22,6 +23,7 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdminPanelComponent,
+    canActivate: [AdminGuard],
   },
   { path: 'errors', component: TestErrorsComponent },
   { path: 'errors', component: TestErrorsComponent },

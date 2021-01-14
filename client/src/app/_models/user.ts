@@ -3,12 +3,10 @@ import { Photo } from './photo';
 import { City } from './city';
 import { Booking } from './booking';
 
-
 export interface User {
-  
   userName: string;
   token: string;
-  knownAs: string;
+  roles: string[];
   //id: number;
   // dateOfBirth: Date;
   // city: City;
@@ -17,5 +15,4 @@ export interface User {
   // userType: UserType;
   // bookings: Booking[];
   // tennisClubId: number;
-  
 }
