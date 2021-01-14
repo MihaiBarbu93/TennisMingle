@@ -25,8 +25,9 @@ namespace TennisMingle.API
             {
                 var context = services.GetRequiredService<AppDbContext>();
                 var userManager = services.GetRequiredService<UserManager<AppUser>>();
+                var roleManager = services.GetRequiredService<RoleManager<AppRole>>();
                 await context.Database.MigrateAsync();
-                await Seed.SeedCities(context, userManager);
+                await Seed.SeedCities(context, userManager, roleManager);
             }
             catch (System.Exception ex)
             {

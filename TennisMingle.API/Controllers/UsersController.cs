@@ -28,7 +28,7 @@ namespace TennisMingle.API.Controllers
             _mapper = mapper;
             _userRepository = userRepository;
         }
-
+/*        [Authorize(Roles = "Coach")]*/
         [HttpGet]
         public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers()
         {
