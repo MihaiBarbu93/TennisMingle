@@ -1,9 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using TennisMingle.API.Entities;
@@ -12,9 +10,10 @@ namespace TennisMingle.API.Data
 {
     public class Seed
     {
-        public static async Task SeedCities(AppDbContext context)
+        public static async Task SeedCities(AppDbContext context, UserManager<AppUser> userManager, 
+                            RoleManager<AppRole> roleManager)
         {
-            if (await context.Cities.AnyAsync()) return;
+            if (await userManager.Users.AnyAsync()) return;
 
             var userData = await System.IO.File.ReadAllTextAsync("Data/UserSeedData.json");
             var cities = JsonSerializer.Deserialize<List<City>>(userData);
@@ -23,6 +22,18 @@ namespace TennisMingle.API.Data
             foreach (var city in cities)
             {
                 await context.Cities.AddAsync(city);
+            }
+
+            var roles = new List<AppRole>
+            {
+                new AppRole{Name = "Administrator"},
+                new AppRole{Name = "Player"},
+                new AppRole{Name = "Coach"}
+            };
+
+            foreach (var role in roles)
+            {
+                await roleManager.CreateAsync(role);
             }
 
             await context.SaveChangesAsync();
@@ -34,11 +45,9 @@ namespace TennisMingle.API.Data
         {
             foreach (var user in context.Users)
             {
-                using var hmac = new HMACSHA512();
 
                 user.UserName = user.UserName.ToLower();
-                user.PasswordSalt = hmac.Key;
-                user.PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes("Pa$$w0rd"));
+
             }
 
             await context.SaveChangesAsync();
