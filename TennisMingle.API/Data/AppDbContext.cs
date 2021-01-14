@@ -30,7 +30,7 @@ namespace TennisMingle.API.Data
             modelBuilder.Entity<AppRole>()
                 .HasMany(ur => ur.UserRoles)
                 .WithOne(u => u.Role)
-                .HasForeignKey(ur => ur.Role)
+                .HasForeignKey(ur => ur.RoleId)
                 .IsRequired();
 
             foreach (var foreignKey in modelBuilder.Model.GetEntityTypes()
