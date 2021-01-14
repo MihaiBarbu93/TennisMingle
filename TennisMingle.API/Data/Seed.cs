@@ -1,9 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using TennisMingle.API.Entities;
@@ -12,9 +10,9 @@ namespace TennisMingle.API.Data
 {
     public class Seed
     {
-        public static async Task SeedCities(AppDbContext context)
+        public static async Task SeedCities(AppDbContext context, UserManager<AppUser> userManager)
         {
-            if (await context.Cities.AnyAsync()) return;
+            if (await userManager.Users.AnyAsync()) return;
 
             var userData = await System.IO.File.ReadAllTextAsync("Data/UserSeedData.json");
             var cities = JsonSerializer.Deserialize<List<City>>(userData);
@@ -24,7 +22,6 @@ namespace TennisMingle.API.Data
             {
                 await context.Cities.AddAsync(city);
             }
-
             await context.SaveChangesAsync();
 
             await UsersPasswordEncryption(context);
