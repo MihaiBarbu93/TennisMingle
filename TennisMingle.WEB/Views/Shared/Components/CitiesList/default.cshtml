@@ -1,0 +1,18 @@
+﻿@model EntityViewModel
+
+<li class="dropdown">
+    <a @*asp-controller="Cities"
+       asp-action="GetCities"*@  href="#"
+       class="dropdown-toggle cities-collapse-nav" data-toggle="dropdown">Choose a city<b class="caret"></b></a>
+    <ul class="dropdown-menu">
+        @foreach (var city in Model.Cities)
+        {
+            <li>
+                <a class="dropdown-item" asp-controller="Cities"
+                   asp-route-cityId="@city.Id" asp-action="TennisClubs">@city.Name</a>
+            </li>
+        }
+        <li class="divider"></li>
+
+    </ul>
+</li>

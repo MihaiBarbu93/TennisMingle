@@ -1,0 +1,64 @@
+.dropdown-toggle,
+.dropdown-item {
+  cursor: pointer;
+}
+
+.navbar {
+  padding: 0 0 0 0;
+  color: #2f285a;
+  font-weight: bolder;
+}
+
+.navbar-nav {
+  display: inline-block;
+}
+
+.navbar-nav > li {
+  display: inline-block;
+}
+
+.logo-area {
+  background-color: black;
+  padding: 0.5rem 0 0.5rem 1rem;
+  width: 18em;
+}
+
+.logo {
+  height: 32px;
+}
+
+.toggle-cities,
+.toggle-cities:hover,
+.toggle-cities:active,
+.toggle-cities:focus,
+.toggle-cities:visited {
+  background-color: #56e07b;
+  border: 0;
+  font-size: 1.1em;
+  font-weight: 500;
+}
+
+.login-link,
+.register-link {
+  color: #2f285a;
+  font-size: 1.1em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.login-link:hover,
+.register-link:hover {
+  text-decoration: none;
+}
+
+.login-register-pipe {
+  color: #2f285a;
+  font-size: 1.1em;
+}
+
+.search-link {
+  font-size: 1.1em;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: #2f285a !important;
+}

@@ -1,0 +1,160 @@
+<div class="container text-center tm-pt-2">
+  <div class="tm-pb-2">
+    <i class="tennis-clubs-preview-info"
+      >There are <b>{{ tennisClubs.length }}</b> places to play tennis within a
+      5 mile radius of your desired location
+    </i>
+  </div>
+  <div class="row mt-4 mb-4">
+    <div class="col-md-3 col-lg-3 col-xl-2 small">
+      <form action="">
+        <div class="filter text-left">
+          <div
+            *ngIf="reactiveForm"
+            class="form-group"
+            [formGroup]="reactiveForm"
+          >
+            <div class="mb-4">
+              <div class="mt-4">
+                <p class="filter-type font-weight-bold mb-1">Facilites</p>
+                <div class="tm-divider"></div>
+                <div
+                  class="form-check mb-2"
+                  *ngFor="
+                    let control of facilitiesArray.controls;
+                    let i = index
+                  "
+                  style="margin-left: -25px"
+                >
+                  <input
+                    type="checkbox"
+                    class="form-check-input"
+                    id="facCheckbox{{ i }}"
+                    [formControl]="control"
+                    (change)="getSelectedFacilitiesValue()"
+                  />
+                  <label
+                    class="form-check-label filter-option"
+                    for="facCheckbox{{ i }}"
+                    >{{ facilities[i] | lowercase }}</label
+                  >
+                </div>
+                <div class="mt-4">
+                  <p class="filter-type font-weight-bold mb-1">Surface</p>
+                  <div class="tm-divider"></div>
+                  <div
+                    class="form-check mb-2"
+                    *ngFor="
+                      let control of surfacesArray.controls;
+                      let i = index
+                    "
+                    style="margin-left: -25px"
+                  >
+                    <input
+                      type="checkbox"
+                      class="form-check-input"
+                      id="surfaceCheckbox{{ i }}"
+                      [formControl]="control"
+                      (change)="getSelectedSurfacesValue()"
+                    />
+                    <label
+                      class="form-check-label filter-option"
+                      for="surfaceCheckbox{{ i }}"
+                      >{{ surfaces[i] | lowercase }}
+                    </label>
+                  </div>
+                </div>
+                <!-- <p
+                  id="errorFilterElement"
+                  style="display: none"
+                  class="form-text custom-invalid-feedback"
+                >
+                  Choose at least one option
+                </p>
+                <button
+                  (click)="submitHandler()"
+                  type="button"
+                  id="submitButton"
+                  class="find-club-button w-100 bg-dark rounded mt-4"
+                >
+                  Find club
+                </button> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-9 col-lg-9 col-xl-10" *ngIf="tennisClubs">
+      <div
+        *ngFor="let tennisClub of tennisClubs"
+        class="row pt-4 mb-4 bg-white club-summary rounded"
+      >
+        <div class="col-6 col-lg-4 pr-0 align-items-stretch mb-3">
+          <img
+            src="{{ tennisClub.photos[0].url }}"
+            class="img-fluid rounded-image"
+            w-100
+            h-100
+            alt=""
+          />
+        </div>
+        <div class="col-6 col-lg-8 pr-0 mb-2">
+          <div class="thumbnail text-left">
+            <div class="row mb-3">
+              <div class="caption col-6 col-lg-8 pr-0 align-items-stretch mb-3">
+                <div class="row">
+                  <div class="col-5 col-lg-5 col-xl-6">
+                    <p class="club-info-name">{{ tennisClub.name }}</p>
+                    <p class="mb-1 club-info-address">
+                      <span class="club-info-schedule">Address: </span
+                      >{{ tennisClub.address }}
+                    </p>
+                    <p class="mb-1 club-info-address">
+                      <span class="club-info-schedule">Schedule: </span
+                      >{{ tennisClub.schedule }}
+                    </p>
+                    <p class="club-info-address">
+                      <span class="club-info-schedule">Phone: </span
+                      >{{ tennisClub.phoneNumber }}
+                    </p>
+                  </div>
+                  <div
+                    class="col-7 col-lg-7 col-xl-6 mt-lg-0 cursor pointer mlp-block-link"
+                  >
+                    <div class="addToCart">
+                      <p class="button">
+                        <a
+                          class="btn tm-btn--secondary"
+                          href="cities/{{ cityId }}/tennis-clubs/{{
+                            tennisClub.id
+                          }}"
+                          >Explore Venue</a
+                        >
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="club-info-divider mb-2"></div>
+              <div class="col-12 body3 d-none d-md-block mb-2">
+                <div class="list-inline">
+                  <div class="list-inline-item">
+                    <span class="badge badge-success">open</span>
+                  </div>
+                  <div class="list-inline-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span class="distance-info">5 km away</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="club-info-divider mb-2"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
