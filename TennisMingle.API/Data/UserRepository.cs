@@ -31,10 +31,10 @@ namespace TennisMingle.API.Data
                 .SingleOrDefaultAsync();
         }
 
-        public async Task<IEnumerable<AppUserDto>> GetMembersAsync()
+        public async Task<IEnumerable<MemberDto>> GetMembersAsync()
         {
             return await _context.Users
-                .ProjectTo<AppUserDto>(_mapper.ConfigurationProvider)
+                .ProjectTo<MemberDto>(_mapper.ConfigurationProvider)
                 .ToListAsync();
         }
 

@@ -8,5 +8,6 @@ namespace TennisMingle.API.DTOs
     public class AppUserDto
     {
         public string Username { get; set; }
+        public int Age { get; set; }
     }
 }

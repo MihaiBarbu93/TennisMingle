@@ -13,10 +13,10 @@ namespace TennisMingle.API.Helpers
     {
         public AutoMapperProfiles()
         {
-            CreateMap<AppUser, AppUserDto>()
-/*                .ForMember(dest => dest.PhotoUrl, opt => opt.MapFrom(src =>
+            CreateMap<AppUser, MemberDto>()
+                .ForMember(dest => dest.PhotoUrl, opt => opt.MapFrom(src =>
                     src.Photo.Url))
-                .ForMember(dest => dest.Age, opt => opt.MapFrom(src => src.DateOfBirth.CalculateAge()))*/;
+                .ForMember(dest => dest.Age, opt => opt.MapFrom(src => src.DateOfBirth.CalculateAge()));
             CreateMap<Photo, PhotoDto>();
             CreateMap<MemberUpdateDto, AppUser>();
             CreateMap<CityDto, City>();
