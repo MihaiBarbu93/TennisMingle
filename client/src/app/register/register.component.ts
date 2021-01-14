@@ -74,15 +74,11 @@ export class RegisterComponent implements OnInit {
 
   register() {
     this.accountService.register(this.model).subscribe(response => {
-      console.log(response);
+      console.log(response),
+      this.modalRefFromNavComponent.hide();
     }, error => {
       console.log(error);
       this.toastr.error(error.error);
     })
   }
-  confirm(): void {
-    this.modalRefFromNavComponent.hide();
-  }
-
-
 }

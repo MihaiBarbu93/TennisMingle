@@ -21,13 +21,11 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.accountService.login(this.model).subscribe(response => {
-      this.router.navigateByUrl('/');
+      this.router.navigateByUrl('/'),
+      this.modalRefFromNavComponent.hide();
     })
   }
 
-  confirm(): void {
-    this.modalRefFromNavComponent.hide();
-  }
  
 
 }
