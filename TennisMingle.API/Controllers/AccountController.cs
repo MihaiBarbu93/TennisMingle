@@ -20,15 +20,19 @@ namespace TennisMingle.API.Controllers
         private readonly ITokenService _tokenService;
         private readonly ICityRepository _cityRepository;
         private readonly UserManager<AppUser> _userManager;
+        private readonly SignInManager<AppUser> _signInManager;
         private readonly IUserRepository _userRepository;
 
         /* public ITokenService _tokenService { get; set; }*/
-        public AccountController(IUserRepository userRepository, AppDbContext context, UserManager<AppUser> userManager, ITokenService tokenService, ICityRepository cityRepository)
+        public AccountController(IUserRepository userRepository, AppDbContext context,
+            UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, ITokenService tokenService,
+            ICityRepository cityRepository)
         {
             _tokenService = tokenService;
             _context = context;
             _cityRepository = cityRepository;
             _userManager = userManager;
+            _signInManager = signInManager;
             _userRepository = userRepository;
         }
         [HttpPost("register")]
@@ -67,6 +71,10 @@ namespace TennisMingle.API.Controllers
                 .SingleOrDefaultAsync(x => x.UserName == loginDto.Username);
 
             if (user == null) return Unauthorized("Invalid username");
+
+            var result = await _signInManager.CheckPasswordSignInAsync(user, loginDto.Password, false);
+
+            if (!result.Succeeded) return Unauthorized();
 
             return new UserDto
             {
