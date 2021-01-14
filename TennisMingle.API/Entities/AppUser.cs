@@ -1,20 +1,12 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
-using TennisMingle.API.Entities;
 using TennisMingle.API.Enums;
 
 namespace TennisMingle.API.Entities
 {
-    public class AppUser
+    public class AppUser:IdentityUser<int>
     {
-        public int Id { get; set; }
-        public string UserName { get; set; }
-        public byte[] PasswordHash { get; set; }
-        public byte[] PasswordSalt { get; set; }
         public DateTime DateOfBirth { get; set; }
         
         public string Bio { get; set; }
@@ -27,6 +19,8 @@ namespace TennisMingle.API.Entities
         public int? CityId { get; set; }
         public int? TennisClubId { get; set; }
         public TennisClub? TennisClub { get; set; }
+
+        public ICollection<AppUserRole> UserRoles { get; set; }
 
     }
 }

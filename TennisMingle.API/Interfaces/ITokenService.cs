@@ -8,6 +8,6 @@ namespace TennisMingle.API.Interfaces
 {
     public interface ITokenService
     {
-        string CreateToken(AppUser person);
+        Task<string> CreateToken(AppUser person);
     }
 }

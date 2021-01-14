@@ -9,6 +9,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using TennisMingle.API.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using TennisMingle.API.Entities;
 
 namespace TennisMingle.API
 {
@@ -22,8 +24,10 @@ namespace TennisMingle.API
             try
             {
                 var context = services.GetRequiredService<AppDbContext>();
+                var userManager = services.GetRequiredService<UserManager<AppUser>>();
+                var roleManager = services.GetRequiredService<RoleManager<AppRole>>();
                 await context.Database.MigrateAsync();
-                await Seed.SeedCities(context);
+                await Seed.SeedCities(context, userManager, roleManager);
             }
             catch (System.Exception ex)
             {

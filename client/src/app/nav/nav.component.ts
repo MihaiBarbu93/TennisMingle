@@ -16,7 +16,7 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 })
 export class NavComponent implements OnInit {
   cities: City[] = [];
-
+  
   modalRef!: BsModalRef;
   faSearch = faSearch;
   config = {
