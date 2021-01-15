@@ -36,6 +36,7 @@ import { ServerErrorComponent } from './errors/server-error/server-error.compone
 import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
 import { HasRoleDirective } from './_directives/has-role.directive';
 import { UserManagementComponent } from './admin/user-management/user-management.component';
+import { RolesModalComponent } from './modals/roles-modal/roles-modal.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { UserManagementComponent } from './admin/user-management/user-management
     AdminPanelComponent,
     HasRoleDirective,
     UserManagementComponent,
+    RolesModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -73,14 +75,15 @@ import { UserManagementComponent } from './admin/user-management/user-management
     ReactiveFormsModule,
     SelectDropDownModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyAHkvce8fYg5UNgF_Xkp1alX_2EIxtNQJo'
-    })
+      apiKey: 'AIzaSyAHkvce8fYg5UNgF_Xkp1alX_2EIxtNQJo',
+    }),
   ],
   providers: [
     BsModalService,
-     DataService,
-     {provide: HTTP_INTERCEPTORS, useClass:ErrorInterceptor, multi: true}
-    ],
+    DataService,
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
+  entryComponents: [RolesModalComponent],
 })
 export class AppModule {}
