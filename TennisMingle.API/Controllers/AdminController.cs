@@ -19,7 +19,6 @@ namespace TennisMingle.API.Controllers
         }
 
 
-        [Authorize(Policy="RequireAdminRole")]
         [HttpGet("users-with-roles")]
         public async Task<ActionResult> GetUsersWithRoles()
         {

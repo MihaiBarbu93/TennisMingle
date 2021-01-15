@@ -1,0 +1,8 @@
+a,
+span {
+  color: green !important;
+}
+
+a.nav-link {
+  color: green !important;
+}
