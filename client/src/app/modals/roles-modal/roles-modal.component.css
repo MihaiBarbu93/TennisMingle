@@ -1,0 +1,49 @@
+.role-label {
+  margin-left: 15px;
+  margin-top: 2px;
+}
+
+input[type="checkbox"]:checked:after {
+  background: #5cb85c !important;
+  color: white !important;
+  width: 17px;
+  height: 17px;
+  background: white;
+  border-radius: 4px;
+}
+
+input[type="checkbox"] {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeSpeed;
+  width: 17px;
+  height: 17px;
+  margin-right: 6px;
+  display: block;
+  float: left;
+  position: relative;
+  cursor: pointer;
+}
+
+input[type="checkbox"]:after {
+  content: "";
+  vertical-align: middle;
+  text-align: center;
+  line-height: 17px;
+  position: absolute;
+  cursor: pointer;
+  left: 0;
+  top: 0;
+  font-size: 10px;
+  width: 17px;
+  height: 17px;
+  border-radius: 4px;
+}
+
+input[type="checkbox"]:checked:after {
+  content: "\2714";
+  color: #fff;
+}
+
+input[type="checkbox"]:after {
+  box-shadow: none !important;
+}

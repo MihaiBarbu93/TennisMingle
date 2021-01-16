@@ -1,5 +1,5 @@
 <div class="modal-header">
-  <h4 class="modal-title pull-left">Edit roles for {{ user.userName }}</h4>
+  <h4 class="modal-title pull-left">Edit roles for {{ user.username }}</h4>
   <button
     type="button"
     class="close pull-right"
@@ -20,7 +20,7 @@
         (change)="role.checked = !role.checked"
         [disabled]="role.name === 'Administrator'"
       />
-      <label>{{ role.name }}</label>
+      <label class="role-label">{{ role.name }}</label>
     </div>
   </form>
 </div>

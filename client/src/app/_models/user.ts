@@ -4,7 +4,7 @@ import { City } from './city';
 import { Booking } from './booking';
 
 export interface User {
-  userName: string;
+  username: string;
   token: string;
   roles: string[];
   //id: number;

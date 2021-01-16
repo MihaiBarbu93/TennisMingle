@@ -1,18 +1,17 @@
 {
   "format": 1,
   "restore": {
-
-    "D:\\.NET-C#\\TW4\\TennisMingle\\TennisMingle.API\\TennisMingle.API.csproj": {}
+    "D:\\.NET-C#\\TW4\\TennisMingle\\TennisMingle.APi\\TennisMingle.API.csproj": {}
   },
   "projects": {
-    "D:\\.NET-C#\\TW4\\TennisMingle\\TennisMingle.API\\TennisMingle.API.csproj": {
+    "D:\\.NET-C#\\TW4\\TennisMingle\\TennisMingle.APi\\TennisMingle.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\.NET-C#\\TW4\\TennisMingle\\TennisMingle.API\\TennisMingle.API.csproj",
+        "projectUniqueName": "D:\\.NET-C#\\TW4\\TennisMingle\\TennisMingle.APi\\TennisMingle.API.csproj",
         "projectName": "TennisMingle.API",
-        "projectPath": "D:\\.NET-C#\\TW4\\TennisMingle\\TennisMingle.API\\TennisMingle.API.csproj",
+        "projectPath": "D:\\.NET-C#\\TW4\\TennisMingle\\TennisMingle.APi\\TennisMingle.API.csproj",
         "packagesPath": "C:\\Users\\Silviu\\.nuget\\packages\\",
-        "outputPath": "D:\\.NET-C#\\TW4\\TennisMingle\\TennisMingle.API\\obj\\",
+        "outputPath": "D:\\.NET-C#\\TW4\\TennisMingle\\TennisMingle.APi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Silviu\\AppData\\Roaming\\NuGet\\NuGet.Config",
