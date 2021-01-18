@@ -44,16 +44,15 @@ export class TennisClubDetailComponent implements OnInit {
   faBaseballBall = faBaseballBall;
   faEnvelope = faEnvelope;
   faMap = faMap;
-  lat =  51.678418; 
-  lng = 7.809007;
+
   
   facilities: any[] = [];
   reactiveForm!: FormGroup;
   locationChosen = false;
 
   onChoseLocation(event) {
-    this.lat = event.coords.lat;
-    this.lng =  event.coords.lng;
+    this.tennisClub.geoLat = event.coords.lat;
+    this.tennisClub.geoLong =  event.coords.lng;
     this.locationChosen = true;
   }
 

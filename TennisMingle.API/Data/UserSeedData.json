@@ -7,7 +7,8 @@
         "PhoneNumber": "(981) 573-3549",
         "Address": "Brooklyn Avenue",
         "Description": "Aliqua minim laboris Lorem culpa labore labore incididunt. Ea aliqua minim deserunt officia eiusmod enim qui dolore veniam ut occaecat aliqua. Laborum qui culpa ex incididunt sunt duis enim cupidatat ullamco et anim. Non nostrud fugiat esse sit laboris ex velit velit proident laborum Lorem quis eu sint.\r\n",
-        "Schedule": "L-D 08:00 - 21:00","Location": {"type": "Point","coordinates": [44.4723, 26.0695]},
+        "Schedule": "L-D 08:00 - 21:00",
+        "Location": {"type": "Point","coordinates": [44.4723, 26.0695]},
         "Facilities": [
           {
             "FacilityType": 7
@@ -69,7 +70,8 @@
         "PhoneNumber": "(993) 563-2737",
         "Address": "Fenimore Street",
         "Description": "Sint esse labore nisi aliquip laboris enim et exercitation occaecat pariatur duis Lorem culpa. Dolor ex est esse id reprehenderit ex ad culpa et ea est. Ipsum ullamco sit excepteur est ea id ea pariatur ipsum.\r\n",
-        "Schedule": "L-D 08:00 - 21:00","Location": {"type": "Point","coordinates": [44.4723, 26.0695]},
+        "Schedule": "L-D 08:00 - 21:00",
+        "Location": {"type": "Point","coordinates": [44.4723, 26.0695]},
         "Facilities": [
           {
             "FacilityType": 10
@@ -131,7 +133,8 @@
         "PhoneNumber": "(846) 483-2879",
         "Address": "Crescent Street",
         "Description": "Enim exercitation laboris Lorem nisi ut Lorem aliqua esse mollit irure dolor non minim eiusmod. Minim do ipsum eu duis cillum ipsum aute sit esse nostrud exercitation. Reprehenderit et nisi in velit deserunt elit nostrud occaecat id aliqua ullamco quis cillum. Incididunt incididunt laboris nisi cupidatat duis ut dolore ea adipisicing mollit ipsum laborum dolor.\r\n",
-        "Schedule": "L-D 08:00 - 21:00","Location": {"type": "Point","coordinates": [44.4723, 26.0695]},
+        "Schedule": "L-D 08:00 - 21:00",
+        "Location": {"type": "Point","coordinates": [44.4723, 26.0695]},
         "Facilities": [
           {
             "FacilityType": 7
@@ -193,7 +196,8 @@
         "PhoneNumber": "(895) 530-3828",
         "Address": "Boulevard Court",
         "Description": "Laborum quis culpa officia adipisicing minim pariatur quis dolor fugiat do qui magna fugiat consequat. Laborum eu ut commodo id sint duis. Do exercitation anim eiusmod dolore sint laboris sunt in aliqua voluptate. Cupidatat est pariatur ea quis ex enim ullamco ex nisi anim ullamco eiusmod quis est.\r\n",
-        "Schedule": "L-D 08:00 - 21:00","Location": {"type": "Point","coordinates": [44.4723, 26.0695]},
+        "Schedule": "L-D 08:00 - 21:00",
+        "Location": {"type": "Point","coordinates": [44.4723, 26.0695]},
         "Facilities": [
           {
             "FacilityType": 11
