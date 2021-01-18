@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Text.Json;
 using System.Threading.Tasks;
 using TennisMingle.API.Entities;
+using TennisMingle.API.Extensions;
 
 namespace TennisMingle.API.Data
 {
@@ -15,8 +16,8 @@ namespace TennisMingle.API.Data
         {
             if (await userManager.Users.AnyAsync()) return;
 
-            var userData = await System.IO.File.ReadAllTextAsync("Data/UserSeedData.json");
-            var cities = JsonSerializer.Deserialize<List<City>>(userData);
+            /*var userData = await System.IO.File.ReadAllTextAsync("Data/UserSeedData.json");*/
+            var cities = JsonExtensions.LoadFromFileWithGeoJson<List<City>>("Data/UserSeedData.json");
 
             if (cities == null) return;
             foreach (var city in cities)

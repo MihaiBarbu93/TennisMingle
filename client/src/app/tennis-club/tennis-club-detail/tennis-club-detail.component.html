@@ -63,10 +63,10 @@
                         <div class="card-body">
                             <div class="row">
 
-                                <agm-map [zoom]="50" [latitude]="lat" [longitude]="lng" (mapClick)="onChoseLocation($event)">
+                                <agm-map [zoom]="50" [latitude]="tennisClub.geoLat" [longitude]="tennisClub.geoLong" (mapClick)="onChoseLocation($event)">
                                     <agm-marker
-                                      [latitude]="lat"
-                                      [longitude]="lng"
+                                      [latitude]="tennisClub.geoLat"
+                                      [longitude]="tennisClub.geoLong"
                                       *ngIf="locationChosen"></agm-marker>
                                   </agm-map>
                             </div>

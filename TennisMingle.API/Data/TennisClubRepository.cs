@@ -24,16 +24,20 @@ namespace TennisMingle.API.Data
 
         public async Task<TennisClub> GetTenisClubByIdAsync(int tennisClubId)
         {
+            TennisClub tennisClub;
 
             try
             {
-                return await _context.TennisClubs
+                tennisClub = await _context.TennisClubs
                 .Include(tc => tc.City)
                 .Include(tc => tc.Facilities)
                 .Include(tc => tc.TennisCourts)
                 .Include(tc => tc.Photos)
                 .Include(tc => tc.Users)
                 .SingleOrDefaultAsync(tc => tc.Id == tennisClubId);
+                tennisClub.GeoLat = tennisClub.Location.Coordinate.X;
+                tennisClub.GeoLong = tennisClub.Location.Coordinate.Y;
+                return tennisClub;
             }
             catch (Exception ex)
             {

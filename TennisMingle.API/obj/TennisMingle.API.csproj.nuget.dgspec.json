@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\.NET-C#\\TW4\\TennisMingle\\TennisMingle.APi\\TennisMingle.API.csproj": {}
+    "C:\\Users\\Mihai\\Desktop\\TennisMingle\\TennisMingle\\TennisMingle.API\\TennisMingle.API.csproj": {}
   },
   "projects": {
-    "D:\\.NET-C#\\TW4\\TennisMingle\\TennisMingle.APi\\TennisMingle.API.csproj": {
+    "C:\\Users\\Mihai\\Desktop\\TennisMingle\\TennisMingle\\TennisMingle.API\\TennisMingle.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\.NET-C#\\TW4\\TennisMingle\\TennisMingle.APi\\TennisMingle.API.csproj",
+        "projectUniqueName": "C:\\Users\\Mihai\\Desktop\\TennisMingle\\TennisMingle\\TennisMingle.API\\TennisMingle.API.csproj",
         "projectName": "TennisMingle.API",
-        "projectPath": "D:\\.NET-C#\\TW4\\TennisMingle\\TennisMingle.APi\\TennisMingle.API.csproj",
-        "packagesPath": "C:\\Users\\Silviu\\.nuget\\packages\\",
-        "outputPath": "D:\\.NET-C#\\TW4\\TennisMingle\\TennisMingle.APi\\obj\\",
+        "projectPath": "C:\\Users\\Mihai\\Desktop\\TennisMingle\\TennisMingle\\TennisMingle.API\\TennisMingle.API.csproj",
+        "packagesPath": "C:\\Users\\Mihai\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Mihai\\Desktop\\TennisMingle\\TennisMingle\\TennisMingle.API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Silviu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Mihai\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -54,7 +54,7 @@
             },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[3.1.8, )"
+              "version": "[5.0.2, )"
             },
             "Microsoft.AspNetCore.JsonPatch": {
               "target": "Package",
@@ -66,23 +66,31 @@
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[3.1.9, )"
+              "version": "[5.0.2, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[3.1.9, )"
+              "version": "[5.0.2, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[3.1.9, )"
+              "version": "[5.0.2, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer.NetTopologySuite": {
+              "target": "Package",
+              "version": "[5.0.2, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[3.1.9, )"
+              "version": "[5.0.2, )"
+            },
+            "NetTopologySuite.IO.GeoJSON": {
+              "target": "Package",
+              "version": "[2.0.4, )"
             },
             "Newtonsoft.Json": {
               "target": "Package",
