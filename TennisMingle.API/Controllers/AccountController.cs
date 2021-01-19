@@ -48,9 +48,9 @@ namespace TennisMingle.API.Controllers
             {
                 UserName = registerDTO.UserName.ToLower(),
 
-                CityId = 1,
-                DateOfBirth = new DateTime(2010, 8, 18),
-                UserType = Enums.UserType.ADMINISTRATOR
+                CityId = registerDTO.City.Id,
+                DateOfBirth = registerDTO.DateOfBirth,
+                UserType = registerDTO.UserType
             };
 
             var result = await _userManager.CreateAsync(user, registerDTO.Password);

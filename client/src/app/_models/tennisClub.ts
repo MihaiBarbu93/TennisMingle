@@ -18,7 +18,7 @@ export interface TennisClub {
   facilities: Facility[];
   photos: Photo[];
   users: User[];
+  location: any;
   geoLat: number;
   geoLong: number;
-
 }
