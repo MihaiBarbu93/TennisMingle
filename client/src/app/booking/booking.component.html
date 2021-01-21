@@ -33,27 +33,27 @@
             <label for="DateStart">Select Date</label>
             <input type="text"
             placeholder="Datepicker"
-            class="form-control ng-pristine ng-invalid submitted"
+            class="form-control ng-pristine"
             name="DateStart"
             formControlName="DateStart"
+            (bsValueChange)="onDateChange($event)"    
             bsDatepicker
             [(ngModel)]="model.dateStart">
-
+            <span class="help-block" *ngIf="bookingForm.get('DateStart').invalid && bookingForm.get('DateStart').touched">
+                Booking date is required
+            </span>
         </div>
-        <span class="help-block" *ngIf="bookingForm.get('DateStart').invalid && bookingForm.get('DateStart').touched">
-            Booking date is required
-        </span>
-        <timepicker class="form-control ng-pristine ng-invalid submitted"  
-        [(ngModel)]="model.time" 
-        [showMeridian]="false"
-        name="TimeStart"
-        formControlName="TimeStart"
-        >
-        </timepicker>
-        <span class="help-block" *ngIf="bookingForm.get('TimeStart').invalid && bookingForm.get('TimeStart').touched">
-            Booking time is required
-        </span>
-        
+        <div class="form-group col-md-6 mb-3">
+            <timepicker class="form-control ng-pristine ng-invalid submitted"  
+            [(ngModel)]="model.time" 
+            [showMeridian]="false"
+            name="Time"
+            formControlName="Time">
+            </timepicker>
+            <span class="help-block" *ngIf="bookingForm.get('Time').invalid && bookingForm.get('Time').touched">
+                Booking time is required
+            </span>
+        </div>
     </div>
     <div class="form-row">
         <div class="form-group col-md-12 mb-3">

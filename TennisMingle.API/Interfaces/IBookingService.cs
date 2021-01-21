@@ -19,7 +19,7 @@ namespace TennisMingle.API.Interfaces
         void UpdateBooking(BookingUpdateDto bookingUpdateDto);
 
         Task<bool> SaveAllAsync();
-        Task<bool> CheckAvailability(Booking booking, int tennisClubId);
+        Task<bool> CheckAvailability(BookingDto booking, int tennisClubId);
 
         Task<Booking> GetLastBooking();
 

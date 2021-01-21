@@ -36,46 +36,50 @@ namespace TennisMingle.API.Controllers
         }
         
         [HttpPost]
-        public async Task<ActionResult> BookTennisCourt(int tennisClubId, Booking booking)
+        public async Task<ActionResult> BookTennisCourt(int tennisClubId, BookingDto booking)
         {
-            Booking newBooking;
+            BookingDto newBooking;
+            Booking bookingToCreate = null;
             if (await _bookingService.CheckAvailability(booking, tennisClubId))
             {
-                var user = await _userRepository.GetUserByUsernameAsync(User.GetUsername());
-                var tennisCourtAvailable =(TennisCourt) await _tennisCourtRepository.GetTennisCourtAvailableAsync(tennisClubId);
+      
+                var user = await _userRepository.GetUserByUsernameAsync(booking.UserName);
+
+      
                 if (user != null)
                 {
-                    newBooking = new Booking
+                    newBooking = new BookingDto
                     {
-                        User = user,
                         UserId = user.Id,
                         DateStart = booking.DateStart,
                         DateEnd = booking.DateEnd,
-                        TennisCourt = tennisCourtAvailable,
-                        TennisCourtId = tennisCourtAvailable.Id,
+                        TennisCourtId = booking.TennisCourtId,
+                        FirstName = booking.FirstName,
+                        LastName = booking.LastName,
+                        PhoneNumber = booking.PhoneNumber
 
                     };
                 }
                 else 
                 {
-                    newBooking = new Booking
+                    newBooking = new BookingDto
                     {
-                        FirstName = booking.FirstName,
-                        LastName = booking.LastName,
-                        PhoneNumber = booking.PhoneNumber,
                         DateStart = booking.DateStart,
                         DateEnd = booking.DateEnd,
-                        TennisCourt = tennisCourtAvailable,
-                        TennisCourtId = tennisCourtAvailable.Id,
+                        TennisCourtId = booking.TennisCourtId,
+                        FirstName = booking.FirstName,
+                        LastName = booking.LastName,
+                        PhoneNumber = booking.PhoneNumber
 
                     };
                 }
+                _mapper.Map(newBooking, bookingToCreate);
                 
-                _bookingService.Book(newBooking);
+                _bookingService.Book(bookingToCreate);
                 if (await _bookingService.SaveAllAsync())
                 {
                     var lastBooking = await _bookingService.GetLastBooking();
-                    return CreatedAtRoute("GetBooking", new {tennisClubId = tennisClubId, bookingId = booking.Id }, lastBooking);
+                    return CreatedAtRoute("GetBooking", new {tennisClubId = tennisClubId, bookingId = bookingToCreate.Id }, lastBooking);
                 }
             }
             return BadRequest("Unavailable on that time");

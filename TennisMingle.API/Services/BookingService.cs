@@ -23,7 +23,7 @@ namespace TennisMingle.API.Services
         }
 
         //to modify
-        public async Task<bool> CheckAvailability(Booking booking, int tennisClubId)
+        public async Task<bool> CheckAvailability(BookingDto booking, int tennisClubId)
         {
             return await _context.Bookings
                 .Where(b => b.TennisCourt.TennisClubId == tennisClubId)
