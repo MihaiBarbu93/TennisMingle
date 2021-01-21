@@ -7,6 +7,8 @@ export interface User {
   username: string;
   token: string;
   roles: string[];
+  knownAs: string;
+  gender: string;
   //id: number;
   // dateOfBirth: Date;
   // city: City;

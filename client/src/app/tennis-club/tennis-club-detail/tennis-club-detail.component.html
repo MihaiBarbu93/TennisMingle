@@ -63,10 +63,10 @@
                         <div class="card-body">
                             <div class="row">
 
-                                <agm-map [zoom]="50" [latitude]="tennisClub.geoLat" [longitude]="tennisClub.geoLong" (mapClick)="onChoseLocation($event)">
+                                <agm-map [zoom]="8" [latitude]="lat" [longitude]="lng" (mapClick)="onChoseLocation($event)">
                                     <agm-marker
-                                      [latitude]="tennisClub.geoLat"
-                                      [longitude]="tennisClub.geoLong"
+                                      [latitude]="lat"
+                                      [longitude]="lng"
                                       *ngIf="locationChosen"></agm-marker>
                                   </agm-map>
                             </div>
@@ -186,58 +186,9 @@
                     </div>
                 </div>
                 <div class="card-body rounded-bottom">
-                    <form asp-controller="TennisClub"
-                            asp-action="BookCourt"
-                            asp-all-route-data="parms"
-                            class="needs-validation" method="post" novalidate>
-                        <div class="form-row">
-                            <div class="col-md-6 mb-3">
-                                <label for="validationCustom01">First Name</label>
-                                <input type="text" class="form-control" id="validationCustom01" name="FirstName" required>
-                                <div class="valid-feedback">
-                                    Looks good!
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="validationCustom02">Last name</label>
-                                <input type="text" class="form-control" id="validationCustom02" name="LastName" required>
-                                <div class="valid-feedback">
-                                    Looks good!
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="col-md-12 mb-3">
-                                <label for="validationCustom03">Phone Number</label>
-                                <input type="text" class="form-control" id="validationCustom03" name="PhoneNumber" required>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="col-md-12 mb-3">
-                                <label for="validationCustom04">Select Date & Time</label>
-                                <input type="text"
-                                placeholder="Datepicker"
-                                class="form-control"
-                                name="dateofbirth"
-                                bsDatepicker
-                             
-                                [(ngModel)]="model.dateofbirth">
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="col-md-12 mb-3">
-                                <label for="validationCustom06">Select Duration</label>
-                                <select class="custom-select" id="validationCustom06" name="Duration" required>
-                                    <option selected disabled>Choose...</option>
-                                    <!-- @for (int i = 1; i < 11; i++)
-                                    {
-                                        <option value="@i">@i</option>
-                                    } -->
-                                </select>
-                            </div>
-                        </div>
-                        <button class="btn btn-primary" type="submit">Submit Enquiry</button>
-                    </form>
+                    <app-booking
+                    [tennisClubFromDetail]="tennisClub"
+                    ></app-booking>
             </div>
                 <div class="card mb-3 pf-card card-similar ng-star-inserted">
                     <div class="card-header">

@@ -1,22 +1,14 @@
-<form [formGroup]="loginForm" (ngSubmit)="login()" autocomplete="off">
+<form [formGroup]="loginForm" (ngSubmit)="login()" autocomplete="off" novalidate>
     <h2 class="text-center text-primary">Login</h2>
     <hr>
     <div class="form-group">
-        <input id="username" type="text" class="form-control" formControlName="username"
+        <input id="username" type="text" class="form-control ng-invalid submitted" formControlName="username"
         [(ngModel)]="model.username" placeholder="Username" required>
     </div>
     <div class="form-group">
-        <input type="password" class="form-control" formControlName="password" 
+        <input type="password" class="form-control ng-invalid submitted" formControlName="password" 
             [(ngModel)]="model.password" placeholder="Password" required >
     </div>
-    <div *ngIf="password.invalid || username.invalid"
-    class="alert alert-danger">
-
-  <div *ngIf="password.errors.required">
-    Username and password are required.
-  </div>
-  </div>
-    
     <div class="form-group text-center">
         <button class="btn btn-success mr-2" type="submit" >Login</button>
     </div>

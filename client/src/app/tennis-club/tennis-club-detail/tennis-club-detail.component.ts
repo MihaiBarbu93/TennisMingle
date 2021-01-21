@@ -29,7 +29,7 @@ import {
 })
 export class TennisClubDetailComponent implements OnInit {
   model: any = {};
-  tennisClub: TennisClub;
+  tennisClub!: TennisClub;
   tennisClubId: number;
   cityId: number;
   faSearch = faSearch;
@@ -44,6 +44,8 @@ export class TennisClubDetailComponent implements OnInit {
   faBaseballBall = faBaseballBall;
   faEnvelope = faEnvelope;
   faMap = faMap;
+  lat : number;
+  lng : number;
 
   
   facilities: any[] = [];
@@ -51,8 +53,8 @@ export class TennisClubDetailComponent implements OnInit {
   locationChosen = false;
 
   onChoseLocation(event) {
-    this.tennisClub.geoLat = event.coords.lat;
-    this.tennisClub.geoLong =  event.coords.lng;
+    this.lat = event.coords.lat;
+    this.lng =  event.coords.lng;
     this.locationChosen = true;
   }
 
@@ -66,6 +68,7 @@ export class TennisClubDetailComponent implements OnInit {
     this.tennisClubId = +this.route.snapshot.params.id;
     this.loadTennisClub(this.cityId, this.tennisClubId);
     console.log(this.facilities);
+    
   }
 
   ngAfterContentInit(){
@@ -80,6 +83,8 @@ export class TennisClubDetailComponent implements OnInit {
           .subscribe((tennisClub) => {
             this.tennisClub = tennisClub;
             this.getFacilityTypes(tennisClub.facilities);
+            this.lat = this.tennisClub.geoLat;
+            this.lng = this.tennisClub.geoLong;
           });   
   }
 
