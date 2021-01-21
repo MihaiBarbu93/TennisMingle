@@ -8,6 +8,7 @@ import { AccountService } from '../_services/account.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { User } from '../_models/user';
 
 @Component({
   selector: 'app-nav',
@@ -16,7 +17,7 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 })
 export class NavComponent implements OnInit {
   cities: City[] = [];
-  
+  user: User;
   modalRef!: BsModalRef;
   faSearch = faSearch;
   config = {

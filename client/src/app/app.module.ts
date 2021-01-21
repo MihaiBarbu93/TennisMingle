@@ -26,6 +26,7 @@ import { BsModalService } from 'ngx-bootstrap/modal';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { LoginComponent } from './login/login.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 import { NgxSelectModule } from 'ngx-select-ex';
 import { SelectDropDownModule } from 'ngx-select-dropdown';
 import { AgmCoreModule } from '@agm/core';
@@ -37,6 +38,7 @@ import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
 import { HasRoleDirective } from './_directives/has-role.directive';
 import { UserManagementComponent } from './admin/user-management/user-management.component';
 import { RolesModalComponent } from './modals/roles-modal/roles-modal.component';
+import { BookingComponent } from './booking/booking.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +58,7 @@ import { RolesModalComponent } from './modals/roles-modal/roles-modal.component'
     HasRoleDirective,
     UserManagementComponent,
     RolesModalComponent,
+    BookingComponent,
   ],
   imports: [
     BrowserModule,
@@ -77,6 +80,7 @@ import { RolesModalComponent } from './modals/roles-modal/roles-modal.component'
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAHkvce8fYg5UNgF_Xkp1alX_2EIxtNQJo',
     }),
+    TimepickerModule.forRoot()
   ],
   providers: [
     BsModalService,

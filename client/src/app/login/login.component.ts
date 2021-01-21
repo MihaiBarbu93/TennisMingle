@@ -14,34 +14,29 @@ import { Validators } from '@angular/forms';
 export class LoginComponent implements OnInit {
   @Input() modalRefFromNavComponent: any;
   model: any = {};
-  loginForm =new FormGroup({
-    username: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.required),
-  });
+  loginForm :FormGroup;
 
   constructor(public accountService: AccountService, 
     private router: Router, private toastr: ToastrService) { }
 
   ngOnInit(): void {
-    this.loginForm = new FormGroup({
-      username: new FormControl(this.model.username, [
-        Validators.required
-  
-      ]),
-      password: new FormControl(this.model.password,[
-        Validators.required
-      ])
-
+    this.loginForm =new FormGroup({
+      username: new FormControl('', Validators.required),
+      password: new FormControl('', Validators.required),
     });
   }
   get username() { return this.loginForm.get('username'); }
   get password() { return this.loginForm.get('password'); }
 
   login() {
+    if(!this.loginForm.invalid){
     this.accountService.login(this.model).subscribe(response => {
       this.router.navigateByUrl('/'),
       this.modalRefFromNavComponent.hide();
     })
+  }else{
+    this.loginForm.markAllAsTouched();
+  }
   }
 
  

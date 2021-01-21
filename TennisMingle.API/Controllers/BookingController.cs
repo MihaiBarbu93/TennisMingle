@@ -32,7 +32,7 @@ namespace TennisMingle.API.Controllers
         [Route("{bookingId}", Name = "GetBooking")]
         public async Task<ActionResult<Booking>> GetBooking(int bookingId)
         {
-            return Ok(_bookingService.GetBookingAsync(bookingId));
+            return Ok(await _bookingService.GetBookingAsync(bookingId));
         }
         
         [HttpPost]

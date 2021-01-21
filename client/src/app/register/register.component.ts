@@ -79,7 +79,7 @@ export class RegisterComponent implements OnInit {
   get username() { return this.registerForm.get('username'); }
   get password() { return this.registerForm.get('password'); }
   get birthDate() { return this.registerForm.get('birthDate'); }
-  get role() { return this.registerForm.get('usertype'); }
+  get role() { return this.registerForm.get('role'); }
   get city() { return this.registerForm.get('city'); }
 
   getUserTypes(){
