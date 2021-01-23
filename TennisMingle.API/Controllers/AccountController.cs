@@ -57,7 +57,7 @@ namespace TennisMingle.API.Controllers
 
             if (!result.Succeeded) return BadRequest(result.Errors);
 
-            var roleResults = await _userManager.AddToRoleAsync(user, "Administrator");
+            var roleResults = await _userManager.AddToRoleAsync(user, registerDTO.UserType.ToString());
 
             if (!roleResults.Succeeded) return BadRequest(roleResults.Errors);
 

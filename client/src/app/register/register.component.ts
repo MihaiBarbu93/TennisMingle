@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { UserType } from '../_models/enums/userType';
 import { City } from '../_models/city';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UsernameValidator } from '../_validators/username.validator';
 
 @Component({
   selector: 'app-register',
@@ -16,9 +17,16 @@ export class RegisterComponent implements OnInit {
   @Input() dropdownCities!: City[];
   userTypes: any[] = [];
   registerForm = new FormGroup({
-    username: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.required),
-    birthDate: new FormControl(''),
+    username: new FormControl('', [
+      Validators.required,
+      Validators.minLength(8),
+      UsernameValidator.cannotContainSpace,
+    ]),
+    password: new FormControl('', [
+      Validators.required,
+      Validators.minLength(8),
+    ]),
+    birthDate: new FormControl('', Validators.required),
     role: new FormControl(''),
     city: new FormControl(''),
   });
@@ -62,23 +70,41 @@ export class RegisterComponent implements OnInit {
     this.registerForm = new FormGroup({
       username: new FormControl(this.model.username, [
         Validators.required,
-        Validators.minLength(4),
+        Validators.minLength(8),
+        UsernameValidator.cannotContainSpace,
       ]),
       password: new FormControl(this.model.password, [
         Validators.required,
+        Validators.minLength(8),
+      ]),
+      birthDate: new FormControl(this.model.birthDate, [
+        Validators.required,
         Validators.minLength(5),
       ]),
-      birthDate: new FormControl(this.model.birthDate),
       role: new FormControl(this.model.role),
       city: new FormControl(this.model.city),
     });
   }
 
-  get username() { return this.registerForm.get('username'); }
-  get password() { return this.registerForm.get('password'); }
-  get birthDate() { return this.registerForm.get('birthDate'); }
-  get role() { return this.registerForm.get('role'); }
-  get city() { return this.registerForm.get('city'); }
+  get username() {
+    return this.registerForm.get('username');
+  }
+  get password() {
+    return this.registerForm.get('password');
+  }
+  get birthDate() {
+    return this.registerForm.get('birthDate');
+  }
+  get role() {
+    return this.registerForm.get('role');
+  }
+  get city() {
+    return this.registerForm.get('city');
+  }
+
+  get f() {
+    return this.registerForm.controls;
+  }
 
   getUserTypes() {
     for (var n in UserType) {
@@ -96,6 +122,7 @@ export class RegisterComponent implements OnInit {
     this.accountService.register(this.model).subscribe(
       (response) => {
         console.log(response), this.modalRefFromNavComponent.hide();
+        this.toastr.success('Account created successfully!');
       },
       (error) => {
         console.log(error);
