@@ -33,8 +33,10 @@ export class NavComponent implements OnInit {
   ) {}
   selectedCity!: City;
   cityName!: string;
+  loggedIn: boolean;
 
   ngOnInit(): void {
+    this.getCurrentUser();
     this.loadCities();
   }
 
@@ -47,7 +49,7 @@ export class NavComponent implements OnInit {
 
   logout() {
     this.accountService.logout();
-    this.router.navigateByUrl('/')
+    this.router.navigateByUrl('/');
   }
 
   openModal(template: TemplateRef<any>) {
@@ -58,6 +60,17 @@ export class NavComponent implements OnInit {
   isHiddenChange(): void {
     this.data.currentMessage.subscribe(
       (message) => (this.cityName = this.cities[+message - 1].name)
+    );
+  }
+
+  getCurrentUser() {
+    this.accountService.currentUser$.subscribe(
+      (user) => {
+        this.loggedIn = !user;
+      },
+      (error) => {
+        console.log(error);
+      }
     );
   }
 }

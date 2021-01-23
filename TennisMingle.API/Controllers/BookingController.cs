@@ -38,17 +38,16 @@ namespace TennisMingle.API.Controllers
         [HttpPost]
         public async Task<ActionResult> BookTennisCourt(int tennisClubId, BookingDto booking)
         {
-            BookingDto newBooking;
-            Booking bookingToCreate = null;
-            if (await _bookingService.CheckAvailability(booking, tennisClubId))
+            Booking newBooking;
+/*            if (await _bookingService.CheckAvailability(booking, tennisClubId))
             {
-      
+      */
                 var user = await _userRepository.GetUserByUsernameAsync(booking.UserName);
 
       
                 if (user != null)
                 {
-                    newBooking = new BookingDto
+                    newBooking = new Booking
                     {
                         UserId = user.Id,
                         DateStart = booking.DateStart,
@@ -62,7 +61,7 @@ namespace TennisMingle.API.Controllers
                 }
                 else 
                 {
-                    newBooking = new BookingDto
+                    newBooking = new Booking
                     {
                         DateStart = booking.DateStart,
                         DateEnd = booking.DateEnd,
@@ -73,15 +72,18 @@ namespace TennisMingle.API.Controllers
 
                     };
                 }
-                _mapper.Map(newBooking, bookingToCreate);
                 
-                _bookingService.Book(bookingToCreate);
+                _bookingService.Book(newBooking);
                 if (await _bookingService.SaveAllAsync())
                 {
                     var lastBooking = await _bookingService.GetLastBooking();
-                    return CreatedAtRoute("GetBooking", new {tennisClubId = tennisClubId, bookingId = bookingToCreate.Id }, lastBooking);
+                    return CreatedAtRoute("GetBooking", new {tennisClubId = tennisClubId, bookingId = newBooking.Id }, lastBooking);
                 }
-            }
+            /*            }
+             *            
+             *          
+                        return BadRequest("Unavailable on that time");*/
+
             return BadRequest("Unavailable on that time");
         }
 

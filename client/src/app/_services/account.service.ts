@@ -17,6 +17,7 @@ export class AccountService {
   constructor(private http: HttpClient) {}
 
   login(model: any) {
+    console.log(model);
     return this.http.post<User>(this.baseUrl + 'account/login', model).pipe(
       map((response: User) => {
         const user = response;
@@ -48,6 +49,7 @@ export class AccountService {
     Array.isArray(roles) ? (user.roles = roles) : user.roles.push(roles);
     localStorage.setItem('user', JSON.stringify(user));
     this.currentUserSource.next(user);
+    console.log(user);
   }
 
   logout() {

@@ -5,7 +5,7 @@ import { Booking } from './booking';
 
 export interface User {
   id: number;
-  username: string;
+  userName: string;
   token: string;
   roles: string[];
   knownAs: string;
