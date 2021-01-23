@@ -457,3 +457,28 @@ body {
 .bg-success {
   background-color: #56e07b !important;
 }
+
+.signup-register-header {
+  color: #56e07b;
+  font-size: 2.5em;
+  text-transform: uppercase;
+  margin-bottom: 1.5em !important;
+}
+
+.register-login-modal-header {
+  padding: 1em 1em 0 0 !important;
+  border-bottom: 0 !important;
+}
+
+.form-control,
+.form-selects {
+  margin-top: 1.5em !important;
+}
+
+.modal-dialog {
+  max-width: 400px;
+}
+
+.register-login-button {
+  width: 100%;
+}
