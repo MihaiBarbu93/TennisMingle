@@ -38,6 +38,7 @@ export class LoginComponent implements OnInit {
     if (!this.loginForm.invalid) {
       this.accountService.login(this.model).subscribe((response) => {
         this.router.navigateByUrl('/'), this.modalRefFromNavComponent.hide();
+        this.toastr.success("You've successfully login into your account");
       });
     } else {
       this.loginForm.markAllAsTouched();
