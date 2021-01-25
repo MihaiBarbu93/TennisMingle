@@ -34,13 +34,13 @@
   </div>
   <div class="col-md-4">
     <div class="btn-group">
-      <div
+      <!-- <div
         class="btn btn-success"
         (click)="setView(CalendarView.Month)"
         [class.active]="view === CalendarView.Month"
       >
         Month
-      </div>
+      </div> -->
       <div
         class="btn btn-success"
         (click)="setView(CalendarView.Week)"
@@ -60,7 +60,7 @@
 </div>
 <br />
 <div [ngSwitch]="view">
-  <mwl-calendar-month-view
+  <!-- <mwl-calendar-month-view
     *ngSwitchCase="CalendarView.Month"
     [viewDate]="viewDate"
     [events]="events"
@@ -71,17 +71,19 @@
     (eventTimesChanged)="eventTimesChanged($event)"
     (beforeViewRender)="beforeMonthViewRender($event)"
   >
-  </mwl-calendar-month-view>
+  </mwl-calendar-month-view> -->
   <mwl-calendar-week-view
     (hourSegmentClicked)="hourSegmentClicked.emit($event)"
     *ngSwitchCase="CalendarView.Week"
     [viewDate]="viewDate"
     [events]="events"
     [refresh]="refresh"
+    [dayStartHour]="dayStartHour"
+    [dayEndHour]="dayEndHour"
     (eventClicked)="handleEvent('Clicked', $event.event)"
     (eventTimesChanged)="eventTimesChanged($event)"
-    (beforeViewRender)="beforeWeekViewRender($event)"
     (hourSegmentClicked)="startBooking($event)"
+    (beforeViewRender)="beforeWeekViewRender($event)"
   >
   </mwl-calendar-week-view>
   <mwl-calendar-day-view
@@ -89,6 +91,8 @@
     [viewDate]="viewDate"
     [events]="events"
     [refresh]="refresh"
+    [dayStartHour]="dayStartHour"
+    [dayEndHour]="dayEndHour"
     (eventClicked)="handleEvent('Clicked', $event.event)"
     (eventTimesChanged)="eventTimesChanged($event)"
     (hourSegmentClicked)="clickedDate = $event.date"

@@ -16,6 +16,7 @@ import {
   isSameDay,
   isSameMonth,
   addHours,
+  getHours,
 } from 'date-fns';
 import { Subject } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -62,6 +63,10 @@ export class BookingCalendarComponent implements OnInit {
 
   clickedDate: Date;
 
+  dayStartHour = Math.max(8);
+
+  dayEndHour = Math.min(22);
+
   modalData: {
     action: string;
     event: CalendarEvent;
@@ -88,44 +93,44 @@ export class BookingCalendarComponent implements OnInit {
   refresh: Subject<any> = new Subject();
 
   events: CalendarEvent[] = [
-    {
-      start: subDays(startOfDay(new Date()), 1),
-      end: addDays(new Date(), 1),
-      title: 'A 3 day event',
-      color: colors.red,
-      actions: this.actions,
-      allDay: true,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true,
-      },
-      draggable: true,
-    },
-    {
-      start: startOfDay(new Date()),
-      title: 'An event with no end date',
-      color: colors.yellow,
-      actions: this.actions,
-    },
-    {
-      start: subDays(endOfMonth(new Date()), 3),
-      end: addDays(endOfMonth(new Date()), 3),
-      title: 'A long event that spans 2 months',
-      color: colors.blue,
-      allDay: true,
-    },
-    {
-      start: addHours(startOfDay(new Date()), 2),
-      end: addHours(new Date(), 2),
-      title: 'A draggable and resizable event',
-      color: colors.yellow,
-      actions: this.actions,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true,
-      },
-      draggable: true,
-    },
+    // {
+    //   start: subDays(startOfDay(new Date()), 1),
+    //   end: addDays(new Date(), 1),
+    //   title: 'A 3 day event',
+    //   color: colors.red,
+    //   actions: this.actions,
+    //   allDay: true,
+    //   resizable: {
+    //     beforeStart: true,
+    //     afterEnd: true,
+    //   },
+    //   draggable: true,
+    // },
+    // {
+    //   start: startOfDay(new Date()),
+    //   title: 'An event with no end date',
+    //   color: colors.yellow,
+    //   actions: this.actions,
+    // },
+    // {
+    //   start: subDays(endOfMonth(new Date()), 3),
+    //   end: addDays(endOfMonth(new Date()), 3),
+    //   title: 'A long event that spans 2 months',
+    //   color: colors.blue,
+    //   allDay: true,
+    // },
+    // {
+    //   start: addHours(startOfDay(new Date()), 2),
+    //   end: addHours(new Date(), 2),
+    //   title: 'A draggable and resizable event',
+    //   color: colors.yellow,
+    //   actions: this.actions,
+    //   resizable: {
+    //     beforeStart: true,
+    //     afterEnd: true,
+    //   },
+    //   draggable: true,
+    // },
   ];
 
   activeDayIsOpen: boolean = true;
@@ -133,6 +138,13 @@ export class BookingCalendarComponent implements OnInit {
   constructor(private modal: NgbModal) {}
   ngOnInit(): void {
     console.log('Implement this!');
+    var divsToHide = document.querySelectorAll(
+      '.cal-week-view mwl-calendar-week-view-hour-segment'
+    );
+    console.log(divsToHide);
+    for (var i = 0; i < divsToHide.length; i++) {
+      console.log('pula');
+    }
   }
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
@@ -149,14 +161,14 @@ export class BookingCalendarComponent implements OnInit {
     }
   }
 
-  beforeMonthViewRender(renderEvent: CalendarMonthViewBeforeRenderEvent): void {
-    renderEvent.body.forEach((day) => {
-      const dayOfMonth = day.date.getDate();
-      if (dayOfMonth > 5 && dayOfMonth < 10 && day.inMonth) {
-        day.cssClass = 'bg-pink';
-      }
-    });
-  }
+  // beforeMonthViewRender(renderEvent: CalendarMonthViewBeforeRenderEvent): void {
+  //   renderEvent.body.forEach((day) => {
+  //     const dayOfMonth = day.date.getDate();
+  //     if (dayOfMonth > 5 && dayOfMonth < 10 && day.inMonth) {
+  //       day.cssClass = 'bg-pink';
+  //     }
+  //   });
+  // }
 
   beforeWeekViewRender(renderEvent: CalendarWeekViewBeforeRenderEvent) {
     renderEvent.hourColumns.forEach((hourColumn) => {
