@@ -25,6 +25,7 @@ import {
   CalendarEventTimesChangedEvent,
   CalendarView,
 } from 'angular-calendar';
+import { Event } from 'jquery';
 
 const colors: any = {
   red: {
@@ -49,11 +50,13 @@ const colors: any = {
 export class BookingCalendarComponent implements OnInit {
   @ViewChild('modalContent', { static: true }) modalContent: TemplateRef<any>;
 
-  view: CalendarView = CalendarView.Month;
+  view: CalendarView = CalendarView.Week;
 
   CalendarView = CalendarView;
 
   viewDate: Date = new Date();
+
+  clickedDate: Date;
 
   modalData: {
     action: string;
@@ -185,6 +188,12 @@ export class BookingCalendarComponent implements OnInit {
         },
       },
     ];
+  }
+
+  startBooking(event) {
+    this.viewDate = event.date;
+    console.log(this.viewDate);
+    this.modal.open(this.modalContent, { size: 'lg' });
   }
 
   deleteEvent(eventToDelete: CalendarEvent) {

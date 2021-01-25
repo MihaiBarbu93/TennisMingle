@@ -79,6 +79,7 @@
     [refresh]="refresh"
     (eventClicked)="handleEvent('Clicked', $event.event)"
     (eventTimesChanged)="eventTimesChanged($event)"
+    (hourSegmentClicked)="startBooking($event)"
   >
   </mwl-calendar-week-view>
   <mwl-calendar-day-view
@@ -88,6 +89,35 @@
     [refresh]="refresh"
     (eventClicked)="handleEvent('Clicked', $event.event)"
     (eventTimesChanged)="eventTimesChanged($event)"
+    (hourSegmentClicked)="clickedDate = $event.date"
   >
   </mwl-calendar-day-view>
 </div>
+
+<ng-template #modalContent let-close="close">
+  <div class="modal-header">
+    <h5 class="modal-title">Tennis Court Reservation</h5>
+    <button type="button" class="close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div>
+      Action:
+      <pre>
+Date: {{ viewDate.getDate() }} Hour: {{ viewDate.getHours() }}:{{
+          viewDate.getMinutes() !== 0 ? viewDate.getMinutes() : "00"
+        }}</pre
+      >
+    </div>
+    <div>
+      Event:
+      <pre>{{ modalData?.event | json }}</pre>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-secondary" (click)="close()">
+      OK
+    </button>
+  </div>
+</ng-template>
