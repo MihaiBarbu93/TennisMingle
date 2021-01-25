@@ -20,10 +20,14 @@ import {
 import { Subject } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {
+  CalendarDayViewBeforeRenderEvent,
   CalendarEvent,
   CalendarEventAction,
   CalendarEventTimesChangedEvent,
+  CalendarMonthViewBeforeRenderEvent,
+  CalendarMonthViewDay,
   CalendarView,
+  CalendarWeekViewBeforeRenderEvent,
 } from 'angular-calendar';
 import { Event } from 'jquery';
 
@@ -145,6 +149,39 @@ export class BookingCalendarComponent implements OnInit {
     }
   }
 
+  beforeMonthViewRender(renderEvent: CalendarMonthViewBeforeRenderEvent): void {
+    renderEvent.body.forEach((day) => {
+      const dayOfMonth = day.date.getDate();
+      if (dayOfMonth > 5 && dayOfMonth < 10 && day.inMonth) {
+        day.cssClass = 'bg-pink';
+      }
+    });
+  }
+
+  beforeWeekViewRender(renderEvent: CalendarWeekViewBeforeRenderEvent) {
+    renderEvent.hourColumns.forEach((hourColumn) => {
+      hourColumn.hours.forEach((hour) => {
+        hour.segments.forEach((segment) => {
+          if (segment.date.getHours() < 8 || segment.date.getHours() > 22) {
+            segment.cssClass = 'bg-pink';
+          }
+        });
+      });
+    });
+  }
+
+  beforeDayViewRender(renderEvent: CalendarDayViewBeforeRenderEvent) {
+    renderEvent.hourColumns.forEach((hourColumn) => {
+      hourColumn.hours.forEach((hour) => {
+        hour.segments.forEach((segment) => {
+          if (segment.date.getHours() < 8 || segment.date.getHours() > 22) {
+            segment.cssClass = 'bg-pink';
+          }
+        });
+      });
+    });
+  }
+
   eventTimesChanged({
     event,
     newStart,
@@ -191,9 +228,12 @@ export class BookingCalendarComponent implements OnInit {
   }
 
   startBooking(event) {
-    this.viewDate = event.date;
-    console.log(this.viewDate);
-    this.modal.open(this.modalContent, { size: 'lg' });
+    console.log(typeof event.date.getHours());
+    if (event.date.getHours() > 7 && event.date.getHours() < 23) {
+      this.viewDate = event.date;
+      console.log(this.viewDate);
+      this.modal.open(this.modalContent, { size: 'lg' });
+    }
   }
 
   deleteEvent(eventToDelete: CalendarEvent) {

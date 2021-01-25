@@ -69,6 +69,7 @@
     (dayClicked)="dayClicked($event.day)"
     (eventClicked)="handleEvent('Clicked', $event.event)"
     (eventTimesChanged)="eventTimesChanged($event)"
+    (beforeViewRender)="beforeMonthViewRender($event)"
   >
   </mwl-calendar-month-view>
   <mwl-calendar-week-view
@@ -79,6 +80,7 @@
     [refresh]="refresh"
     (eventClicked)="handleEvent('Clicked', $event.event)"
     (eventTimesChanged)="eventTimesChanged($event)"
+    (beforeViewRender)="beforeWeekViewRender($event)"
     (hourSegmentClicked)="startBooking($event)"
   >
   </mwl-calendar-week-view>
@@ -90,6 +92,7 @@
     (eventClicked)="handleEvent('Clicked', $event.event)"
     (eventTimesChanged)="eventTimesChanged($event)"
     (hourSegmentClicked)="clickedDate = $event.date"
+    (beforeViewRender)="beforeDayViewRender($event)"
   >
   </mwl-calendar-day-view>
 </div>
@@ -105,14 +108,10 @@
     <div>
       Action:
       <pre>
-Date: {{ viewDate.getDate() }} Hour: {{ viewDate.getHours() }}:{{
+Day: {{ viewDate.getDate() }} Hour: {{ viewDate.getHours() }}:{{
           viewDate.getMinutes() !== 0 ? viewDate.getMinutes() : "00"
         }}</pre
       >
-    </div>
-    <div>
-      Event:
-      <pre>{{ modalData?.event | json }}</pre>
     </div>
   </div>
   <div class="modal-footer">

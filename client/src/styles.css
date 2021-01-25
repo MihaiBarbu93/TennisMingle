@@ -476,3 +476,9 @@ body {
 .register-login-button {
   width: 100%;
 }
+
+.bg-pink {
+  background-color: hotpink !important;
+  pointer-events: none;
+  opacity: 0.4;
+}
