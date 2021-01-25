@@ -47,3 +47,8 @@ input[type="checkbox"]:checked:after {
 input[type="checkbox"]:after {
   box-shadow: none !important;
 }
+/*
+.form-control,
+.form-selects {
+  margin-top: 1.5em !important;
+} */

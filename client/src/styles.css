@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import "../node_modules/font-awesome/css/font-awesome.css";
 @import "../node_modules/ngx-bootstrap/datepicker/bs-datepicker.css";
-
+@import "../node_modules/angular-calendar/css/angular-calendar.css";
 img {
   border: 0 !important;
 }
@@ -199,7 +199,7 @@ footer {
 
 .tm-btn--secondary:hover {
   color: #373737;
-  background-color: #d4f7de;
+  background-color: #7ee79a;
 }
 
 a:focus,
@@ -469,12 +469,6 @@ body {
   padding: 1em 1em 0 0 !important;
   border-bottom: 0 !important;
 }
-
-.form-control,
-.form-selects {
-  margin-top: 1.5em !important;
-}
-
 .modal-dialog {
   max-width: 400px;
 }

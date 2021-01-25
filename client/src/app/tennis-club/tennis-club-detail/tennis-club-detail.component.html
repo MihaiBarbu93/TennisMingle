@@ -1,204 +1,238 @@
 <div class="container mb-2">
-    <div class="row">
-        <div class="col-md-8 mt-3">
-            <div class="row">
-                <div class="col-sm-12 mb-0">
-                    <a href="">
-                        <fa-icon class="fa" [icon]="faChevronLeft"></fa-icon> Explore nearby venues
-                    </a><br/><br />
-                    <div class="h2">
-                        {{tennisClub?.name}}
-                        <fa-icon class="fa" [icon]="faCheckCircle" style="color: #188155;"></fa-icon>
-                    </div><br/>
-                </div>
-            </div>
-            <div class="row d-md-none">
-                <div class="col-sm-12 mb-3">
-                    <div class="dropdown">
-                        <button aria-haspopup="true" class="btn btn-block btn-mlp-darker font-white cursor pointer dropdown-toggle" id="dropdownSelectSportFormat" ngbdropdowntoggle="" type="button" aria-expanded="false">
-                            Indoor
-                        </button>
-                        <div aria-labelledby="dropdownSelectSportFormat" class="dropdown-menu py-0 w-100" ngbdropdownmenu="" x-placement="bottom-left">
-                                
-                            <a class="dropdown-item py-2 ng-star-inserted" href="/london/venue/islington-tennis-centre/tennis-indoor-32679">
-                                Indoor
-                            </a>
-                            <a class="dropdown-item py-2 ng-star-inserted" href="/london/venue/islington-tennis-centre/tennis-outdoor-32680">
-                                Outdoor | Hard (macadam)
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12 mb-3">
-                    <div class="row">
-                        <div class="col-12 d-flex flex-row">
-                            <img class="img-fluid lazyloaded rounded-image" imgservice="w=578" loading="lazy" src="" style="width: 100%"  src="{{ tennisClub?.photos[0].url }}">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row d-md-none ng-star-inserted">
-                <div class="col-sm-12 mb-2">
-                    <div class="card pf-card mb-2">
-                        <div class="card-header">
-                            <span class="icon icon-mlp_tennis"></span>
-                            <div>
-                                
-                                Facilities
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12 mb-sm-0 mb-md-3">
-                    <div class="card pf-card mb-3" id="mlp-map-scroll-to">
-                        <div class="card-header" role="tab">
-                            <div>
-                                Location, Opening Hours and Prices
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-
-                                <agm-map [zoom]="8" [latitude]="lat" [longitude]="lng" (mapClick)="onChoseLocation($event)">
-                                    <agm-marker
-                                      [latitude]="lat"
-                                      [longitude]="lng"
-                                      *ngIf="locationChosen"></agm-marker>
-                                  </agm-map>
-                            </div>
-                            <p>
-                                <fa-icon class="fa-2x" [icon]="faMapMarked"></fa-icon>
-                                {{tennisClub?.address}}
-                            </p>
-                        </div>
-                        <hr>
-                        <div class="row pl-4">
-                            <div class="col-sm-6 ng-star-inserted">
-                                <div class="h5">Prices</div>
-                                <ul class="list-unstyled ng-star-inserted">
-                                    <li class="ng-star-inserted">
-                                        <p class="small">
-                                            <strong>
-                                                <span class="">{{tennisClub?.price}} Ron/hour</span>
-                                            </strong>
-                                        </p>
-                                        <p class="small text-muted">
-                                        </p>
-                                        <p class="small text-muted">
-                                        </p>
-                                        <hr>
-                                    </li>
-                                </ul>
-                                <div class="ng-star-inserted">
-                                    <div class="h5">Public Transport</div>
-                                    <p class="small">
-                                        <fa-icon class="fa-2x" [icon]="faBus"></fa-icon><br>
-                                        <fa-icon class="fa-2x" [icon]="faTram"></fa-icon>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="ng-star-inserted">
-                                    <div class="h5">Opening Hours</div>
-                                    <table class="table table-borderless ng-star-inserted">
-                                        <tbody>
-                                            <tr>
-                                                <!-- <td>@Model.TennisClub.Schedule</td> -->
-                                                <td>{{tennisClub?.schedule}}</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="card pf-card ng-star-inserted">
-                <div class="card-header" role="tab">
-                    <div class="h7">
-                        Description
-                    </div>
-                </div>
-                <div class="card-body">
-                    <!-- <p >@Model.TennisClub.Description </p> -->
-                    <p>{{tennisClub?.description}}</p>
-                </div>
-            </div>
+  <div class="row">
+    <div class="col-md-8 mt-3">
+      <div class="row">
+        <div class="col-sm-12 mb-0">
+          <a href="">
+            <fa-icon class="fa" [icon]="faChevronLeft"></fa-icon> Explore nearby
+            venues </a
+          ><br /><br />
+          <div class="h2">
+            {{ tennisClub?.name }}
+            <fa-icon
+              class="fa"
+              [icon]="faCheckCircle"
+              style="color: #188155"
+            ></fa-icon>
+          </div>
+          <br />
         </div>
-        <div class="col-md-4 mt-3">
-            <div class="card mb-3 pf-card mlp-sport-format d-none d-md-block">
-                <div class="card-header">
-                    <div class="h6">
-                        <fa-icon class="fa-2x" [icon]="faBaseballBall"></fa-icon>
-                        Tennis Courts
-                    </div>
-                </div>
-                <div class="card-body">
-                    <ul class="list-inline">
-                        <li class="list-inline-item mb-1 ng-star-inserted">
-                            <a class="-warning -active" placement="top" tooltipclass="sg-tooltip--warn" href="">
-                                Indoor 
-                            </a>
-                        </li>
-                        <li class="list-inline-item mb-1 ng-star-inserted">
-                            <a class="-warning" placement="top" tooltipclass="sg-tooltip--warn" href="">
-                                Outdoor | Hard (macadam) 
-                            </a>
-                        </li>
-                    </ul>
-                    <div class="mt-4 ng-star-inserted">
-                        <div >Facilities</div>
-                        <ul class="list-inline font body3 mb-0">
-                         
-                            <li  *ngFor="let facility of facilities"
-                             class="list-inline-item ng-star-inserted">
-                             <fa-icon class="fa" [icon]="faCheckSquare"></fa-icon>
-                                {{facility.toString()}}
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+      </div>
+      <div class="row d-md-none">
+        <div class="col-sm-12 mb-3">
+          <div class="dropdown">
+            <button
+              aria-haspopup="true"
+              class="btn btn-block btn-mlp-darker font-white cursor pointer dropdown-toggle"
+              id="dropdownSelectSportFormat"
+              ngbdropdowntoggle=""
+              type="button"
+              aria-expanded="false"
+            >
+              Indoor
+            </button>
+            <div
+              aria-labelledby="dropdownSelectSportFormat"
+              class="dropdown-menu py-0 w-100"
+              ngbdropdownmenu=""
+              x-placement="bottom-left"
+            >
+              <a
+                class="dropdown-item py-2 ng-star-inserted"
+                href="/london/venue/islington-tennis-centre/tennis-indoor-32679"
+              >
+                Indoor
+              </a>
+              <a
+                class="dropdown-item py-2 ng-star-inserted"
+                href="/london/venue/islington-tennis-centre/tennis-outdoor-32680"
+              >
+                Outdoor | Hard (macadam)
+              </a>
             </div>
-            <div class="card pf-card mb-3">
-                <div class="card-header">
-                    <div>
-                        <fa-icon class="fa-2x" [icon]="faMapMarked"></fa-icon>
-                        Address
-                    </div>
-                </div>
-                <div class="card-body">
-                    <p>
-                       {{tennisClub?.address}} <br>              
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12 mb-3">
+          <div class="row">
+            <div class="col-12 d-flex flex-row">
+              <img
+                class="img-fluid lazyloaded rounded-image"
+                imgservice="w=578"
+                loading="lazy"
+                src=""
+                style="width: 100%"
+                src="{{ tennisClub?.photos[0].url }}"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row d-md-none ng-star-inserted">
+        <div class="col-sm-12 mb-2">
+          <div class="card pf-card mb-2">
+            <div class="card-header">
+              <span class="icon icon-mlp_tennis"></span>
+              <div>Facilities</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12 mb-sm-0 mb-md-3">
+          <div class="card pf-card mb-3" id="mlp-map-scroll-to">
+            <div class="card-header" role="tab">
+              <div>Location, Opening Hours and Prices</div>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <agm-map
+                  [zoom]="8"
+                  [latitude]="lat"
+                  [longitude]="lng"
+                  (mapClick)="onChoseLocation($event)"
+                >
+                  <agm-marker
+                    [latitude]="lat"
+                    [longitude]="lng"
+                    *ngIf="locationChosen"
+                  ></agm-marker>
+                </agm-map>
+              </div>
+              <p>
+                <fa-icon class="fa-2x" [icon]="faMapMarked"></fa-icon>
+                {{ tennisClub?.address }}
+              </p>
+            </div>
+            <hr />
+            <div class="row pl-4">
+              <div class="col-sm-6 ng-star-inserted">
+                <div class="h5">Prices</div>
+                <ul class="list-unstyled ng-star-inserted">
+                  <li class="ng-star-inserted">
+                    <p class="small">
+                      <strong>
+                        <span class="">{{ tennisClub?.price }} Ron/hour</span>
+                      </strong>
                     </p>
+                    <p class="small text-muted"></p>
+                    <p class="small text-muted"></p>
+                    <hr />
+                  </li>
+                </ul>
+                <div class="ng-star-inserted">
+                  <div class="h5">Public Transport</div>
+                  <p class="small">
+                    <fa-icon class="fa-2x" [icon]="faBus"></fa-icon><br />
+                    <fa-icon class="fa-2x" [icon]="faTram"></fa-icon>
+                  </p>
                 </div>
-            </div>
-            <div id="mlp-enquiry"></div>
-            <div class="card mb-3 pf-card pf-card-green-highlight">
-                <div class="card-header">
-                    <div>
-                        <fa-icon class="fa-2x" [icon]="faMapMarked"></fa-icon>
-                        Request to book
-                    </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="ng-star-inserted">
+                  <div class="h5">Opening Hours</div>
+                  <table class="table table-borderless ng-star-inserted">
+                    <tbody>
+                      <tr>
+                        <!-- <td>@Model.TennisClub.Schedule</td> -->
+                        <td>{{ tennisClub?.schedule }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
-                <div class="card-body rounded-bottom">
-                    <app-booking
-                    [tennisClubFromDetail]="tennisClub"
-                    ></app-booking>
+              </div>
             </div>
-                <div class="card mb-3 pf-card card-similar ng-star-inserted">
-                    <div class="card-header">
-                        <div>
-                            <fa-icon class="fa-2x" [icon]="faMap"></fa-icon>
-                            Nearby Tennis Courts
-                        </div>
-                    </div>
+          </div>
+        </div>
+      </div>
+      <app-booking-calendar></app-booking-calendar>
+      <div class="card pf-card ng-star-inserted">
+        <div class="card-header" role="tab">
+          <div class="h7">Description</div>
+        </div>
+        <div class="card-body">
+          <!-- <p >@Model.TennisClub.Description </p> -->
+          <p>{{ tennisClub?.description }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 mt-3">
+      <div class="card mb-3 pf-card mlp-sport-format d-none d-md-block">
+        <div class="card-header">
+          <div class="h6">
+            <fa-icon class="fa-2x" [icon]="faBaseballBall"></fa-icon>
+            Tennis Courts
+          </div>
+        </div>
+        <div class="card-body">
+          <ul class="list-inline">
+            <li class="list-inline-item mb-1 ng-star-inserted">
+              <a
+                class="-warning -active"
+                placement="top"
+                tooltipclass="sg-tooltip--warn"
+                href=""
+              >
+                Indoor
+              </a>
+            </li>
+            <li class="list-inline-item mb-1 ng-star-inserted">
+              <a
+                class="-warning"
+                placement="top"
+                tooltipclass="sg-tooltip--warn"
+                href=""
+              >
+                Outdoor | Hard (macadam)
+              </a>
+            </li>
+          </ul>
+          <div class="mt-4 ng-star-inserted">
+            <div>Facilities</div>
+            <ul class="list-inline font body3 mb-0">
+              <li
+                *ngFor="let facility of facilities"
+                class="list-inline-item ng-star-inserted"
+              >
+                <fa-icon class="fa" [icon]="faCheckSquare"></fa-icon>
+                {{ facility.toString() }}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="card pf-card mb-3">
+        <div class="card-header">
+          <div>
+            <fa-icon class="fa-2x" [icon]="faMapMarked"></fa-icon>
+            Address
+          </div>
+        </div>
+        <div class="card-body">
+          <p>{{ tennisClub?.address }} <br /></p>
+        </div>
+      </div>
+      <div id="mlp-enquiry"></div>
+      <div class="card mb-3 pf-card pf-card-green-highlight">
+        <div class="card-header">
+          <div>
+            <fa-icon class="fa-2x" [icon]="faMapMarked"></fa-icon>
+            Request to book
+          </div>
+        </div>
+        <div class="card-body rounded-bottom">
+          <app-booking [tennisClubFromDetail]="tennisClub"></app-booking>
+        </div>
+        <div class="card mb-3 pf-card card-similar ng-star-inserted">
+          <div class="card-header">
+            <div>
+              <fa-icon class="fa-2x" [icon]="faMap"></fa-icon>
+              Nearby Tennis Courts
+            </div>
+          </div>
 
-                    <!-- @{ foreach (var tennisClub in Model.TennisClubs)
+          <!-- @{ foreach (var tennisClub in Model.TennisClubs)
                         {
                             var prm = new Dictionary<string, string>()
                                                                                                                                                                                                                                                                                                 {
@@ -206,29 +240,33 @@
                         { "tennisClubId", tennisClub.Id.ToString() }
                     }; -->
 
-                        <a class="card-body cursor pointer pb-0 ng-star-inserted">
-                            <div class="row">
-                                <div class="col-4 col-md-12 col-lg-6 col-xl-4 pb-2">
-                                    <img class="media-object rounded pf-card__img" height="66" imgservice="w=170" width="100" src="">
-                                </div>
-                                <div class="col-8 col-md-12  col-lg-6 col-xl-8">
-                                    <div>
-                                        <!-- @tennisClub.Name -->
-                                    </div>
-                                    <p>
-                                        <!-- @tennisClub.Address.Address -->
-                                    </p>
-                                    <p>
-                                        <fa-icon class="fa-2x" [icon]="faBus"></fa-icon>
-                                        <fa-icon class="fa-2x" [icon]="faTram"></fa-icon>
-                                    </p>
-                                </div>
-                            </div>
-                        </a>
+          <a class="card-body cursor pointer pb-0 ng-star-inserted">
+            <div class="row">
+              <div class="col-4 col-md-12 col-lg-6 col-xl-4 pb-2">
+                <img
+                  class="media-object rounded pf-card__img"
+                  height="66"
+                  imgservice="w=170"
+                  width="100"
+                  src=""
+                />
+              </div>
+              <div class="col-8 col-md-12 col-lg-6 col-xl-8">
+                <div>
+                  <!-- @tennisClub.Name -->
                 </div>
+                <p>
+                  <!-- @tennisClub.Address.Address -->
+                </p>
+                <p>
+                  <fa-icon class="fa-2x" [icon]="faBus"></fa-icon>
+                  <fa-icon class="fa-2x" [icon]="faTram"></fa-icon>
+                </p>
+              </div>
             </div>
+          </a>
         </div>
+      </div>
     </div>
+  </div>
 </div>
-
-

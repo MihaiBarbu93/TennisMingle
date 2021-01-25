@@ -39,6 +39,10 @@ import { HasRoleDirective } from './_directives/has-role.directive';
 import { UserManagementComponent } from './admin/user-management/user-management.component';
 import { RolesModalComponent } from './modals/roles-modal/roles-modal.component';
 import { BookingComponent } from './booking/booking.component';
+import { BookingCalendarComponent } from './tennis-club/booking-calendar/booking-calendar.component';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -59,6 +63,7 @@ import { BookingComponent } from './booking/booking.component';
     UserManagementComponent,
     RolesModalComponent,
     BookingComponent,
+    BookingCalendarComponent,
   ],
   imports: [
     BrowserModule,
@@ -80,7 +85,13 @@ import { BookingComponent } from './booking/booking.component';
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAHkvce8fYg5UNgF_Xkp1alX_2EIxtNQJo',
     }),
-    TimepickerModule.forRoot()
+    TimepickerModule.forRoot(),
+    BrowserAnimationsModule,
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    }),
+    NgbModule,
   ],
   providers: [
     BsModalService,

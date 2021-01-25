@@ -11,3 +11,8 @@ select.ng-invalid.ng-touched {
 .validation-error-message {
   margin-left: 0.5em;
 }
+
+.form-control,
+.form-selects {
+  margin-top: 1.5em !important;
+}
