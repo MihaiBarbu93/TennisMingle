@@ -4,6 +4,8 @@ import { Booking } from '../_models/booking';
 import { BookingService } from '../_services/booking.service';
 import { AccountService } from '../_services/account.service';
 import { User } from '../_models/user';
+import * as moment from 'moment';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-booking',
@@ -17,23 +19,30 @@ export class BookingComponent implements OnInit {
   bookingForm: FormGroup;
   myDateValue: Date;
   previousDate: Date;
+  minDate = new Date();
+
+
+  
 
   constructor(
     private bookingService: BookingService,
-    public accountService: AccountService
+    public accountService: AccountService,
+    public datepipe: DatePipe
   ) {}
 
   ngOnInit(): void {
     this.bookingForm = new FormGroup({
-      FirstName: new FormControl(this.model.firstName, Validators.required),
-      LastName: new FormControl(this.model.lastName, Validators.required),
-      PhoneNumber: new FormControl(this.model.phoneNumber, Validators.required),
+      FirstName: new FormControl(this.model.firstName, [Validators.required, Validators.minLength(3)]),
+      LastName: new FormControl(this.model.lastName, [Validators.required, Validators.minLength(3)]),
+      PhoneNumber: new FormControl(this.model.phoneNumber, [Validators.required,Validators.minLength(5),Validators.pattern('^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$')]),
       DateStart: new FormControl(this.model.dateStart, Validators.required),
       Time: new FormControl(this.model.time, Validators.required),
       Duration: new FormControl(this.model.duration, Validators.required),
     });
-    this.myDateValue = new Date();
-  }
+
+
+ 
+    }
   get firstName() {
     return this.bookingForm.get('FirstName');
   }
@@ -54,6 +63,8 @@ export class BookingComponent implements OnInit {
   }
 
   onDateChange(newDate: Date) {
+  
+    
     this.previousDate = new Date(newDate);
   }
 

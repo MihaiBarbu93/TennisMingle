@@ -15,15 +15,11 @@
         name="FirstName"
         formControlName="FirstName"
       />
-      <span
-        class="help-block"
-        *ngIf="
-          bookingForm.get('FirstName').invalid &&
-          bookingForm.get('FirstName').touched
-        "
-      >
-        First name is required
-      </span>
+      <p class="error" *ngIf="bookingForm.get('FirstName').invalid && (bookingForm.get('FirstName').dirty || bookingForm.get('FirstName').touched)">
+        <ng-container *ngIf="bookingForm.get('FirstName').hasError('required')">
+            First name is Required!
+        </ng-container>
+    </p>
     </div>
     <div class="form-group col-md-6 mb-3">
       <label for="LastName">Last name</label>
@@ -35,15 +31,11 @@
         name="LastName"
         formControlName="LastName"
       />
-      <span
-        class="help-block"
-        *ngIf="
-          bookingForm.get('LastName').invalid &&
-          bookingForm.get('LastName').touched
-        "
-      >
-        Last name is required
-      </span>
+      <p class="error" *ngIf="bookingForm.get('LastName').invalid && (bookingForm.get('LastName').dirty || bookingForm.get('LastName').touched)">
+        <ng-container *ngIf="bookingForm.get('LastName').hasError('required')">
+            Last name is Required!
+        </ng-container>
+    </p>
     </div>
   </div>
   <div class="form-row">
@@ -57,64 +49,59 @@
         name="PhoneNumber"
         formControlName="PhoneNumber"
       />
-      <span
-        class="help-block"
-        *ngIf="
-          bookingForm.get('PhoneNumber').invalid &&
-          bookingForm.get('PhoneNumber').touched
-        "
-      >
-        Phone number is required
-      </span>
+      <p class="error" *ngIf="bookingForm.get('PhoneNumber').invalid && (bookingForm.get('PhoneNumber').dirty || bookingForm.get('PhoneNumber').touched)">
+        <ng-container *ngIf="bookingForm.get('PhoneNumber').hasError('required')">
+            PhoneNumber is Required!
+        </ng-container>
+        <ng-container *ngIf="bookingForm.get('PhoneNumber').hasError('pattern')">
+            * Invalid PhoneNumber number.
+        </ng-container>
+    </p>
+        
     </div>
   </div>
   <div class="form-row">
     <div class="form-group col-md-6 mb-3">
       <label for="DateStart">Select Date</label>
-      <input
+      <input 
         type="text"
         placeholder="Datepicker"
         class="form-control ng-pristine"
         name="DateStart"
         formControlName="DateStart"
         (bsValueChange)="onDateChange($event)"
+        [minDate]="minDate"
         bsDatepicker
         [(ngModel)]="model.dateStart"
+
       />
-      <span
-        class="help-block"
-        *ngIf="
-          bookingForm.get('DateStart').invalid &&
-          bookingForm.get('DateStart').touched
-        "
-      >
-        Booking date is required
-      </span>
+      <p class="error" *ngIf="bookingForm.get('DateStart').invalid && bookingForm.get('DateStart').touched">
+        <ng-container *ngIf="bookingForm.get('DateStart').hasError('required')">
+            Booking date is Required!
+        </ng-container>
+    </p>
     </div>
     <div class="form-group col-md-6 mb-3">
       <timepicker
-        class="form-control ng-pristine ng-invalid submitted"
+        class="form-control ng-pristine"
         [(ngModel)]="model.time"
         [showMeridian]="false"
         name="Time"
         formControlName="Time"
       >
       </timepicker>
-      <span
-        class="help-block"
-        *ngIf="
-          bookingForm.get('Time').invalid && bookingForm.get('Time').touched
-        "
-      >
-        Booking time is required
-      </span>
+      <p class="error" *ngIf="bookingForm.get('Time').invalid &&  bookingForm.get('Time').touched">
+        <ng-container *ngIf="bookingForm.get('Time').hasError('required')">
+            Booking time is Required!
+        </ng-container>
+    </p>
     </div>
   </div>
   <div class="form-row">
     <div class="form-group col-md-12 mb-3">
       <label for="Duration">Select Duration (expressed in hours)</label>
       <select
-        class="custom-select form-control ng-pristine ng-invalid submitted"
+        class="custom-select form-control ng-pristine"
         id="Duration"
         name="Duration"
         formControlName="Duration"
@@ -124,15 +111,11 @@
           {{ nr }}
         </option>
       </select>
-      <span
-        class="help-block"
-        *ngIf="
-          bookingForm.get('Duration').invalid &&
-          bookingForm.get('Duration').touched
-        "
-      >
-        Booking hours are required
-      </span>
+      <p class="error" *ngIf="bookingForm.get('Duration').invalid && bookingForm.get('Duration').touched">
+        <ng-container *ngIf="bookingForm.get('Duration').hasError('required')">
+            Booking hours are Required!
+        </ng-container>
+    </p>
     </div>
   </div>
   <div class="form-group">
