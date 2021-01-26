@@ -101,26 +101,17 @@
   </mwl-calendar-day-view>
 </div>
 
-<ng-template #modalContent let-close="close">
+<ng-template id="booking-calendar-modal" #modalContent let-close="close">
   <div class="modal-header">
-    <h5 class="modal-title">Tennis Court Reservation</h5>
+    <h2 class="modal-title">Tennis Court Reservation</h2>
     <button type="button" class="close" (click)="close()">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-  <div class="modal-body">
-    <div>
-      Action:
-      <pre>
-Day: {{ viewDate.getDate() }} Hour: {{ viewDate.getHours() }}:{{
-          viewDate.getMinutes() !== 0 ? viewDate.getMinutes() : "00"
-        }}</pre
-      >
-    </div>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline-secondary" (click)="close()">
-      OK
-    </button>
+  <div class="card-body rounded-bottom">
+    <app-booking-from-calendar
+      [tennisClubFromDetail]="tennisClubFromDetail"
+      [viewDate]="viewDate"
+    ></app-booking-from-calendar>
   </div>
 </ng-template>

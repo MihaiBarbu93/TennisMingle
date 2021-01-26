@@ -43,6 +43,7 @@ import { BookingCalendarComponent } from './tennis-club/booking-calendar/booking
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BookingFromCalendarComponent } from './booking-from-calendar/booking-from-calendar.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     RolesModalComponent,
     BookingComponent,
     BookingCalendarComponent,
+    BookingFromCalendarComponent,
   ],
   imports: [
     BrowserModule,

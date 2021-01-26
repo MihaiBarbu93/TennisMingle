@@ -6,6 +6,7 @@ import {
   OnInit,
   Output,
   EventEmitter,
+  Input,
 } from '@angular/core';
 import {
   startOfDay,
@@ -19,7 +20,7 @@ import {
   getHours,
 } from 'date-fns';
 import { Subject } from 'rxjs';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import {
   CalendarDayViewBeforeRenderEvent,
   CalendarEvent,
@@ -53,9 +54,11 @@ const colors: any = {
   styleUrls: ['./booking-calendar.component.css'],
 })
 export class BookingCalendarComponent implements OnInit {
+  @Input() tennisClubFromDetail: any;
   @ViewChild('modalContent', { static: true }) modalContent: TemplateRef<any>;
 
   view: CalendarView = CalendarView.Week;
+  modalReference: NgbModalRef;
 
   CalendarView = CalendarView;
 
@@ -136,16 +139,7 @@ export class BookingCalendarComponent implements OnInit {
   activeDayIsOpen: boolean = true;
 
   constructor(private modal: NgbModal) {}
-  ngOnInit(): void {
-    console.log('Implement this!');
-    var divsToHide = document.querySelectorAll(
-      '.cal-week-view mwl-calendar-week-view-hour-segment'
-    );
-    console.log(divsToHide);
-    for (var i = 0; i < divsToHide.length; i++) {
-      console.log('pula');
-    }
-  }
+  ngOnInit(): void {}
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {
@@ -258,5 +252,9 @@ export class BookingCalendarComponent implements OnInit {
 
   closeOpenMonthViewDay() {
     this.activeDayIsOpen = false;
+  }
+
+  close() {
+    this.modalReference.close();
   }
 }

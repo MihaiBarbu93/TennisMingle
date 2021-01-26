@@ -1,0 +1,159 @@
+<form
+  [formGroup]="bookingForm"
+  (ngSubmit)="bookCourt()"
+  autocomplete="off"
+  novalidate
+>
+  <div class="form-row">
+    <div class="form-group col-md-6 mb-3">
+      <label for="FirstName">First Name</label>
+      <input
+        [(ngModel)]="model.firstName"
+        type="text"
+        class="form-control ng-pristine ng-invalid submitted"
+        id="FirstName"
+        name="FirstName"
+        formControlName="FirstName"
+      />
+      <span
+        class="help-block"
+        *ngIf="
+          bookingForm.get('FirstName').invalid &&
+          bookingForm.get('FirstName').touched
+        "
+      >
+        First name is required
+      </span>
+    </div>
+    <div class="form-group col-md-6 mb-3">
+      <label for="LastName">Last name</label>
+      <input
+        [(ngModel)]="model.lastName"
+        type="text"
+        class="form-control ng-pristine ng-invalid submitted"
+        id="LastName"
+        name="LastName"
+        formControlName="LastName"
+      />
+      <span
+        class="help-block"
+        *ngIf="
+          bookingForm.get('LastName').invalid &&
+          bookingForm.get('LastName').touched
+        "
+      >
+        Last name is required
+      </span>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-12 mb-3">
+      <label for="PhoneNumber">Phone Number</label>
+      <input
+        [(ngModel)]="model.phoneNumber"
+        type="text"
+        class="form-control ng-pristine ng-invalid submitted"
+        id="PhoneNumber"
+        name="PhoneNumber"
+        formControlName="PhoneNumber"
+      />
+      <span
+        class="help-block"
+        *ngIf="
+          bookingForm.get('PhoneNumber').invalid &&
+          bookingForm.get('PhoneNumber').touched
+        "
+      >
+        Phone number is required
+      </span>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-6 mb-3">
+      <label for="DateStart">Select Date</label>
+      <input
+        type="text"
+        placeholder="Datepicker"
+        class="form-control ng-pristine"
+        name="DateStart"
+        formControlName="DateStart"
+        (bsValueChange)="onDateChange($event)"
+        bsDatepicker
+        [(ngModel)]="model.dateStart"
+        value="{{ viewDate.getDate() }}"
+      />
+      <span
+        class="help-block"
+        *ngIf="
+          bookingForm.get('DateStart').invalid &&
+          bookingForm.get('DateStart').touched
+        "
+      >
+        Booking date is required
+      </span>
+    </div>
+    <div class="form-group col-md-6 mb-3">
+      <timepicker
+        class="form-control ng-pristine ng-invalid submitted"
+        [(ngModel)]="model.time"
+        [showMeridian]="false"
+        name="Time"
+        formControlName="Time"
+      >
+      </timepicker>
+      <span
+        class="help-block"
+        *ngIf="
+          bookingForm.get('Time').invalid && bookingForm.get('Time').touched
+        "
+      >
+        Booking time is required
+      </span>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-12 mb-3">
+      <label for="Duration">Select Duration (expressed in hours)</label>
+      <select
+        class="custom-select form-control ng-pristine ng-invalid submitted"
+        id="Duration"
+        name="Duration"
+        formControlName="Duration"
+        [(ngModel)]="model.duration"
+      >
+        <option *ngFor="let nr of bookingHours" value="{{ nr }}">
+          {{ nr }}
+        </option>
+      </select>
+      <span
+        class="help-block"
+        *ngIf="
+          bookingForm.get('Duration').invalid &&
+          bookingForm.get('Duration').touched
+        "
+      >
+        Booking hours are required
+      </span>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <button
+      class="btn tm-btn--secondary booking-submit-button w-100 mt-2"
+      type="submit"
+    >
+      Submit
+    </button>
+    <!-- <button
+      type="button"
+      class="btn btn-outline-secondary close tm-btn--danger booking-cancel-button"
+      data-dismiss="modal"
+      (click)="close()"
+    >
+      Cancel
+    </button> -->
+  </div>
+</form>
