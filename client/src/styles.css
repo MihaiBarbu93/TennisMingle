@@ -186,20 +186,20 @@ footer {
 }
 
 .tm-btn--secondary {
-  background-color: #56e07b;
+  background-color: #56e07b !important;
   text-transform: uppercase;
-  color: black;
+  color: black !important;
   padding: 0.5rem 2rem;
-  font-size: 1rem;
-  font-weight: bolder;
-  line-height: 1.5rem;
-  transition: background-color 0.25s;
+  font-size: 1rem !important;
+  font-weight: bolder !important;
+  line-height: 1.5rem !important;
+  transition: background-color 0.25s !important;
   outline: none;
 }
 
 .tm-btn--secondary:hover {
   color: #373737;
-  background-color: #7ee79a;
+  background-color: #7ee79a !important;
 }
 
 a:focus,
