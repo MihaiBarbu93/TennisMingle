@@ -43,6 +43,7 @@ import { BookingCalendarComponent } from './tennis-club/booking-calendar/booking
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -94,6 +95,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     NgbModule,
   ],
   providers: [
+    DatePipe,
     BsModalService,
     DataService,
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
