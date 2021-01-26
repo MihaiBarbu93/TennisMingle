@@ -1,7 +1,7 @@
 import { DataService } from './_services/data-service.service';
 import { SharedModule } from './_modules/shared.module';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -44,7 +44,9 @@ import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DatePipe } from '@angular/common';
+import { NgxSpinnerModule } from "ngx-spinner";
 import { BookingFromCalendarComponent } from './booking-from-calendar/booking-from-calendar.component';
+import { LoadingInterceptor } from './_interceptors/loading.interceptor';
 
 @NgModule({
   declarations: [
@@ -76,6 +78,7 @@ import { BookingFromCalendarComponent } from './booking-from-calendar/booking-fr
     BsDatepickerModule.forRoot(),
     FormsModule,
     SharedModule,
+    NgxSpinnerModule,
     FontAwesomeModule,
     BsDropdownModule.forRoot(),
     ToastrModule.forRoot({
@@ -101,8 +104,11 @@ import { BookingFromCalendarComponent } from './booking-from-calendar/booking-fr
     BsModalService,
     DataService,
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    {provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true}
   ],
   bootstrap: [AppComponent],
   entryComponents: [RolesModalComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+
 })
 export class AppModule {}
