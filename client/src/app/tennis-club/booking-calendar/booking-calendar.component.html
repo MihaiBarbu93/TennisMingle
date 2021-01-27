@@ -27,10 +27,10 @@
     <mwl-calendar-week-view
       *ngSwitchCase="'week'"
       [dayStartHour]="8"
-      [dayEndHour]="20"
+      [dayEndHour]="22"
       [viewDate]="viewDate"
       [events]="events"
-      (hourSegmentClicked)="hourSegmentClicked.emit($event)"
+      (hourSegmentClicked)="startBooking($event)"
     >
     </mwl-calendar-week-view>
     <mwl-calendar-day-view
