@@ -1,4 +1,6 @@
-<h1 class="p-4 text-center">Reserve a tennis court</h1>
+<h1 class="p-4 text-center" *ngIf="loadCalendar">
+  Reserve a tennis court from {{ tennisClubFromDetail.name }}
+</h1>
 <div class="row text-center">
   <div class="col-md-4">
     <div class="btn-group">

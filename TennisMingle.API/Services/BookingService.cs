@@ -46,6 +46,11 @@ namespace TennisMingle.API.Services
 
         public async Task<IEnumerable<BookingUpdateDto>> GetBookingsByClubAsync(int clubId)
         {
+            var result = await _context.Bookings
+                .Include(b => b.TennisCourt.TennisClub)
+                .Where(b => b.TennisCourt.TennisClubId == clubId)
+                .ProjectTo<BookingUpdateDto>(_mapper.ConfigurationProvider)
+                .ToListAsync();
             return await _context.Bookings
                 .Include(b=>b.TennisCourt.TennisClub)
                 .Where(b=>b.TennisCourt.TennisClubId==clubId)

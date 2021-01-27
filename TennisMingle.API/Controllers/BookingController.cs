@@ -3,6 +3,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TennisMingle.API.Data;
@@ -33,6 +34,13 @@ namespace TennisMingle.API.Controllers
         public async Task<ActionResult<Booking>> GetBooking(int bookingId)
         {
             return Ok(await _bookingService.GetBookingAsync(bookingId));
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Booking>>> GetBookings(int tennisClubId) {
+            var result = await _bookingService.GetBookingsByClubAsync(tennisClubId);
+
+            return Ok(await _bookingService.GetBookingsByClubAsync(tennisClubId));
         }
         
         [HttpPost]

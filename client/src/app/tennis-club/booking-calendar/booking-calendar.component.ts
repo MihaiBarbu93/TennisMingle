@@ -70,6 +70,8 @@ export class BookingCalendarComponent implements OnInit {
 
   dayEndHour = Math.min(22);
 
+  loadCalendar: boolean = false;
+
   modalData: {
     action: string;
     event: CalendarEvent;
@@ -140,6 +142,10 @@ export class BookingCalendarComponent implements OnInit {
 
   constructor(private modal: NgbModal) {}
   ngOnInit(): void {}
+
+  ngAfterViewInit() {
+    this.loadCalendar = true;
+  }
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {

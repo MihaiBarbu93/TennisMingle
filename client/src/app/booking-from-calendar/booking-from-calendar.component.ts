@@ -8,6 +8,7 @@ import {
 } from '@angular/forms';
 import { AccountService } from '../_services/account.service';
 import { BookingService } from '../_services/booking.service';
+import { TennisClub } from '../_models/tennisClub';
 
 @Component({
   selector: 'app-booking-from-calendar',
@@ -23,6 +24,7 @@ export class BookingFromCalendarComponent implements OnInit {
   myDateValue: Date;
   previousDate: Date;
   timeInitial: { hour: number; minutes: number } = { hour: 5, minutes: 24 };
+  tennisClub: TennisClub;
 
   constructor(
     private bookingService: BookingService,
