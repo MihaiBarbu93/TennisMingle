@@ -1,3 +1,4 @@
+import { map } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -74,6 +75,8 @@ export class TennisClubDetailComponent implements OnInit {
 
   ngOnChanges() {
     this.loadTennisClub(this.cityId, this.tennisClubId);
+    console.log(this.allBookings);
+    this.getHoursForBooking(this.allBookings);
   }
 
   ngAfterContentInit() {}
@@ -87,18 +90,32 @@ export class TennisClubDetailComponent implements OnInit {
         this.lat = this.tennisClub.geoLat;
         this.lng = this.tennisClub.geoLong;
         console.log('maaasa');
-        this.loadAllBookings(tennisClub.id);
+        this.loadAllBookings(28);
       });
   }
 
   loadAllBookings(tennisClubId: number) {
-    this.bookingService
-      .getBookingsForAClub(tennisClubId)
+    let bookingsModified = [];
+    let allBookings = this.bookingService.getBookingsForAClub(tennisClubId);
+
+    allBookings
+      .pipe(
+        map((booking) =>
+          booking.map((booking) => {
+            booking['dateStart'] = new Date();
+          })
+        )
+      )
       .subscribe((bookings) => {
-        console.log(bookings);
         this.allBookings = bookings;
-        console.log(this.allBookings);
       });
+  }
+
+  getHoursForBooking(bookings: Booking[]) {
+    let bookingHours = [];
+    bookings.forEach((element) => {
+      bookingHours.push(element[1].getHours());
+    });
   }
 
   getFacilityTypes(fac: any) {

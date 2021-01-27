@@ -148,6 +148,7 @@
       </div>
       <app-booking-calendar
         [tennisClubFromDetail]="tennisClub"
+        [allBookings]="allBookings"
       ></app-booking-calendar>
       <div class="card pf-card ng-star-inserted">
         <div class="card-header" role="tab">
@@ -224,10 +225,7 @@
           </div>
         </div>
         <div class="card-body rounded-bottom">
-          <app-booking
-            [tennisClubFromDetail]="tennisClub"
-            [allBookings]="allBookings"
-          ></app-booking>
+          <app-booking [tennisClubFromDetail]="tennisClub"></app-booking>
         </div>
         <div class="card mb-3 pf-card card-similar ng-star-inserted">
           <div class="card-header">

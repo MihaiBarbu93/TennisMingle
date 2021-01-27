@@ -8,6 +8,7 @@ import {
   Output,
   EventEmitter,
   Input,
+  ChangeDetectorRef,
 } from '@angular/core';
 import {
   startOfDay,
@@ -34,6 +35,9 @@ import {
 } from 'angular-calendar';
 import { Event } from 'jquery';
 import { Booking } from 'src/app/_models/booking';
+import { TennisClubsService } from 'src/app/_services/tennis-clubs.service';
+import { ActivatedRoute } from '@angular/router';
+import { TennisClub } from 'src/app/_models/tennisClub';
 
 const colors: any = {
   red: {
@@ -71,6 +75,8 @@ export class BookingCalendarComponent implements OnInit {
   dayStartHour = Math.max(8);
 
   dayEndHour = Math.min(22);
+  tennisClubId: number;
+  cityId: number;
 
   allBookingsArrive: boolean = false;
 
@@ -100,19 +106,25 @@ export class BookingCalendarComponent implements OnInit {
   refresh: Subject<any> = new Subject();
 
   events: CalendarEvent[] = [
-    // {
-    //   start: subDays(startOfDay(new Date()), 1),
-    //   end: addDays(new Date(), 1),
-    //   title: 'A 3 day event',
-    //   color: colors.red,
-    //   actions: this.actions,
-    //   allDay: true,
-    //   resizable: {
-    //     beforeStart: true,
-    //     afterEnd: true,
-    //   },
-    //   draggable: true,
-    // },
+    {
+      start: startOfDay(new Date()),
+      title: 'pulaaaa',
+      color: colors.yellowsunflower,
+      id: '1',
+    },
+    {
+      start: subDays(startOfDay(new Date()), 1),
+      end: addDays(new Date(), 1),
+      title: 'A 3 day event',
+      color: colors.red,
+      actions: this.actions,
+      allDay: true,
+      resizable: {
+        beforeStart: true,
+        afterEnd: true,
+      },
+      draggable: true,
+    },
     // {
     //   start: startOfDay(new Date()),
     //   title: 'An event with no end date',
@@ -144,11 +156,71 @@ export class BookingCalendarComponent implements OnInit {
 
   constructor(
     private modal: NgbModal,
-    private bookingService: BookingService
+    private bookingService: BookingService,
+    private cdr: ChangeDetectorRef,
+    private tennisClubService: TennisClubsService,
+    private route: ActivatedRoute
   ) {}
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.cityId = +this.route.snapshot.params.cityId;
+    this.tennisClubId = +this.route.snapshot.params.id;
+    this.loadEvents();
+  }
 
-  ngAfterContentInit() {}
+  loadEvents(): void {
+    this.bookingService
+      .getBookingsForAClub(this.tennisClubId)
+      .subscribe((bookings: any) => {
+        console.log(bookings);
+        this.events = []; // create a new array here, angular will then be able to pick it up
+        for (let booking in bookings) {
+          console.log(bookings[booking]['dateStart']);
+          this.events.push({
+            start: startOfDay(new Date(bookings[booking]['dateStart'])),
+            title: 'pulaaaa',
+            color: colors.yellowsunflower,
+            actions: this.actions,
+            allDay: true,
+            resizable: {
+              beforeStart: true,
+              afterEnd: true,
+            },
+            draggable: true,
+          });
+          this.events.push({
+            start: startOfDay(new Date()),
+            end: addDays(new Date(), 1),
+            title: 'A 3 day event',
+            color: colors.red,
+            actions: this.actions,
+            allDay: true,
+            resizable: {
+              beforeStart: true,
+              afterEnd: true,
+            },
+            draggable: true,
+          });
+        }
+      });
+  }
+
+  ngAfterViewInit() {
+    this.cdr.detectChanges();
+    this.setView(this.view);
+    console.log(this.allBookings);
+    this.setView(this.view);
+  }
+
+  ngOnChanges() {
+    this.loadEvents();
+  }
+
+  setView(view: CalendarView) {
+    console.log(this.tennisClubFromDetail);
+    this.view = view;
+    this.cdr.detectChanges();
+    console.log('paaaaulaaa');
+  }
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {
@@ -184,14 +256,10 @@ export class BookingCalendarComponent implements OnInit {
   // }
 
   beforeWeekViewRender(renderEvent: CalendarWeekViewBeforeRenderEvent) {
-    console.log(this.allBookings[0]);
     renderEvent.hourColumns.forEach((hourColumn) => {
       hourColumn.hours.forEach((hour) => {
         hour.segments.forEach((segment) => {
-          if (
-            segment.date.getHours() < 8 ||
-            segment.date.getHours() > this.tennisClubFromDetail.id
-          ) {
+          if (segment.date.getHours() < 28 || segment.date.getHours() > 20) {
             segment.cssClass = 'bg-pink';
           }
         });
@@ -267,10 +335,6 @@ export class BookingCalendarComponent implements OnInit {
 
   deleteEvent(eventToDelete: CalendarEvent) {
     this.events = this.events.filter((event) => event !== eventToDelete);
-  }
-
-  setView(view: CalendarView) {
-    this.view = view;
   }
 
   closeOpenMonthViewDay() {
