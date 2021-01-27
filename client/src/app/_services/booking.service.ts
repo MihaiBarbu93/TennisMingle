@@ -62,10 +62,7 @@ export class BookingService {
     booking.dateEnd.setHours(
       Number(booking.dateStart.getHours()) + Number(model.duration)
     );
-    // booking.tennisCourtId = tennisClub.tennisCourts.find(
-    //   (tc) => tc.isAvailable === true
-    // ).id;
-    booking.tennisCourtId = tennisClub.id;
+    booking.tennisCourtId = tennisClub.tennisCourts[0].id;
     console.log(booking);
     return booking;
   }

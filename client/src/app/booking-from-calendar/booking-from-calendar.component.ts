@@ -9,6 +9,7 @@ import {
 import { AccountService } from '../_services/account.service';
 import { BookingService } from '../_services/booking.service';
 import { TennisClub } from '../_models/tennisClub';
+import { isThisMinute } from 'date-fns';
 
 @Component({
   selector: 'app-booking-from-calendar',

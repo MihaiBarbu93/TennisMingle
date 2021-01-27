@@ -20,8 +20,12 @@ import {
   isSameMonth,
   addHours,
   getHours,
+  startOfMonth,
+  startOfWeek,
+  endOfWeek,
+  format,
 } from 'date-fns';
-import { Subject } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import {
   CalendarDayViewBeforeRenderEvent,
@@ -38,21 +42,27 @@ import { Booking } from 'src/app/_models/booking';
 import { TennisClubsService } from 'src/app/_services/tennis-clubs.service';
 import { ActivatedRoute } from '@angular/router';
 import { TennisClub } from 'src/app/_models/tennisClub';
+import { HttpParams, HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
+import { datepickerAnimation } from 'ngx-bootstrap/datepicker/datepicker-animations';
 
-const colors: any = {
-  red: {
-    primary: '#ad2121',
-    secondary: '#FAE3E3',
-  },
-  blue: {
-    primary: '#1e90ff',
-    secondary: '#D1E8FF',
-  },
-  yellow: {
-    primary: '#e3bc08',
-    secondary: '#FDF1BA',
-  },
-};
+interface BookingFromDb {
+  id: number;
+  dateStart: string;
+  dateEnd: string;
+}
+
+function getTimezoneOffsetString(date: Date): string {
+  const timezoneOffset = date.getTimezoneOffset();
+  const hoursOffset = String(
+    Math.floor(Math.abs(timezoneOffset / 60))
+  ).padStart(2, '0');
+  const minutesOffset = String(Math.abs(timezoneOffset % 60)).padEnd(2, '0');
+  const direction = timezoneOffset > 0 ? '-' : '+';
+
+  return `T00:00:00${direction}${hoursOffset}:${minutesOffset}`;
+}
+
 @Component({
   selector: 'app-booking-calendar',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -65,164 +75,66 @@ export class BookingCalendarComponent implements OnInit {
   @ViewChild('modalContent', { static: true }) modalContent: TemplateRef<any>;
 
   view: CalendarView = CalendarView.Week;
-  modalReference: NgbModalRef;
-
-  CalendarView = CalendarView;
 
   viewDate: Date = new Date();
 
-  clickedDate: Date;
-  dayStartHour = Math.max(8);
+  events$: Observable<CalendarEvent<{ booking: BookingFromDb }>[]>;
 
-  dayEndHour = Math.min(22);
+  activeDayIsOpen: boolean = false;
+
   tennisClubId: number;
   cityId: number;
-
-  allBookingsArrive: boolean = false;
-
-  modalData: {
-    action: string;
-    event: CalendarEvent;
-  };
-
-  actions: CalendarEventAction[] = [
-    {
-      label: '<i class="fas fa-fw fa-pencil-alt"></i>',
-      a11yLabel: 'Edit',
-      onClick: ({ event }: { event: CalendarEvent }): void => {
-        this.handleEvent('Edited', event);
-      },
-    },
-    {
-      label: '<i class="fas fa-fw fa-trash-alt"></i>',
-      a11yLabel: 'Delete',
-      onClick: ({ event }: { event: CalendarEvent }): void => {
-        this.events = this.events.filter((iEvent) => iEvent !== event);
-        this.handleEvent('Deleted', event);
-      },
-    },
-  ];
-
-  refresh: Subject<any> = new Subject();
-
-  events: CalendarEvent[] = [
-    {
-      start: startOfDay(new Date()),
-      title: 'pulaaaa',
-      color: colors.yellowsunflower,
-      id: '1',
-    },
-    {
-      start: subDays(startOfDay(new Date()), 1),
-      end: addDays(new Date(), 1),
-      title: 'A 3 day event',
-      color: colors.red,
-      actions: this.actions,
-      allDay: true,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true,
-      },
-      draggable: true,
-    },
-    // {
-    //   start: startOfDay(new Date()),
-    //   title: 'An event with no end date',
-    //   color: colors.yellow,
-    //   actions: this.actions,
-    // },
-    // {
-    //   start: subDays(endOfMonth(new Date()), 3),
-    //   end: addDays(endOfMonth(new Date()), 3),
-    //   title: 'A long event that spans 2 months',
-    //   color: colors.blue,
-    //   allDay: true,
-    // },
-    // {
-    //   start: addHours(startOfDay(new Date()), 2),
-    //   end: addHours(new Date(), 2),
-    //   title: 'A draggable and resizable event',
-    //   color: colors.yellow,
-    //   actions: this.actions,
-    //   resizable: {
-    //     beforeStart: true,
-    //     afterEnd: true,
-    //   },
-    //   draggable: true,
-    // },
-  ];
-
-  activeDayIsOpen: boolean = true;
+  modalReference: any;
+  baseUrl = 'https://localhost:5001/api/';
 
   constructor(
     private modal: NgbModal,
     private bookingService: BookingService,
     private cdr: ChangeDetectorRef,
     private tennisClubService: TennisClubsService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private http: HttpClient
   ) {}
   ngOnInit(): void {
     this.cityId = +this.route.snapshot.params.cityId;
     this.tennisClubId = +this.route.snapshot.params.id;
-    this.loadEvents();
+    this.fetchEvents();
   }
 
-  loadEvents(): void {
-    this.bookingService
-      .getBookingsForAClub(this.tennisClubId)
-      .subscribe((bookings: any) => {
-        console.log(bookings);
-        this.events = []; // create a new array here, angular will then be able to pick it up
-        for (let booking in bookings) {
-          console.log(bookings[booking]['dateStart']);
-          this.events.push({
-            start: startOfDay(new Date(bookings[booking]['dateStart'])),
-            title: 'pulaaaa',
-            color: colors.yellowsunflower,
-            actions: this.actions,
-            allDay: true,
-            resizable: {
-              beforeStart: true,
-              afterEnd: true,
-            },
-            draggable: true,
-          });
-          this.events.push({
-            start: startOfDay(new Date()),
-            end: addDays(new Date(), 1),
-            title: 'A 3 day event',
-            color: colors.red,
-            actions: this.actions,
-            allDay: true,
-            resizable: {
-              beforeStart: true,
-              afterEnd: true,
-            },
-            draggable: true,
-          });
-        }
-      });
+  fetchEvents(): void {
+    const getStart: any = {
+      month: startOfMonth,
+      week: startOfWeek,
+      day: startOfDay,
+    }[this.view];
+
+    const getEnd: any = {
+      month: endOfMonth,
+      week: endOfWeek,
+      day: endOfDay,
+    }[this.view];
+
+    this.events$ = this.http.get<any>(this.baseUrl + '28/booking').pipe(
+      map((results: BookingFromDb[]) => {
+        return results.map((booking: BookingFromDb) => {
+          console.log(booking);
+          return {
+            title: 'unavailable',
+            start: new Date(booking.dateStart),
+            end: new Date(booking.dateEnd),
+          };
+        });
+      })
+    );
   }
 
-  ngAfterViewInit() {
-    this.cdr.detectChanges();
-    this.setView(this.view);
-    console.log(this.allBookings);
-    this.setView(this.view);
-  }
-
-  ngOnChanges() {
-    this.loadEvents();
-  }
-
-  setView(view: CalendarView) {
-    console.log(this.tennisClubFromDetail);
-    this.view = view;
-    this.cdr.detectChanges();
-    console.log('paaaaulaaa');
-  }
-
-  dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
+  dayClicked({
+    date,
+    events,
+  }: {
+    date: Date;
+    events: CalendarEvent<{ booking: BookingFromDb }>[];
+  }): void {
     if (isSameMonth(date, this.viewDate)) {
       if (
         (isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) ||
@@ -231,97 +143,9 @@ export class BookingCalendarComponent implements OnInit {
         this.activeDayIsOpen = false;
       } else {
         this.activeDayIsOpen = true;
+        this.viewDate = date;
       }
-      this.viewDate = date;
     }
-  }
-
-  loadAllBookings(tennisClubId: number) {
-    this.bookingService
-      .getBookingsForAClub(tennisClubId)
-      .subscribe((bookings) => {
-        this.allBookings = bookings;
-        console.log(this.allBookings);
-        this.allBookingsArrive = true;
-      });
-  }
-
-  // beforeMonthViewRender(renderEvent: CalendarMonthViewBeforeRenderEvent): void {
-  //   renderEvent.body.forEach((day) => {
-  //     const dayOfMonth = day.date.getDate();
-  //     if (dayOfMonth > 5 && dayOfMonth < 10 && day.inMonth) {
-  //       day.cssClass = 'bg-pink';
-  //     }
-  //   });
-  // }
-
-  beforeWeekViewRender(renderEvent: CalendarWeekViewBeforeRenderEvent) {
-    renderEvent.hourColumns.forEach((hourColumn) => {
-      hourColumn.hours.forEach((hour) => {
-        hour.segments.forEach((segment) => {
-          if (segment.date.getHours() < 28 || segment.date.getHours() > 20) {
-            segment.cssClass = 'bg-pink';
-          }
-        });
-      });
-    });
-  }
-
-  beforeDayViewRender(renderEvent: CalendarDayViewBeforeRenderEvent) {
-    renderEvent.hourColumns.forEach((hourColumn) => {
-      hourColumn.hours.forEach((hour) => {
-        hour.segments.forEach((segment) => {
-          if (segment.date.getHours() < 8 || segment.date.getHours() > 22) {
-            segment.cssClass = 'bg-pink';
-          }
-        });
-      });
-    });
-  }
-
-  eventTimesChanged({
-    event,
-    newStart,
-    newEnd,
-  }: CalendarEventTimesChangedEvent): void {
-    this.events = this.events.map((iEvent) => {
-      if (iEvent === event) {
-        return {
-          ...event,
-          start: newStart,
-          end: newEnd,
-        };
-      }
-      return iEvent;
-    });
-    this.handleEvent('Dropped or resized', event);
-  }
-
-  handleEvent(action: string, event: CalendarEvent): void {
-    this.modalData = { event, action };
-    this.modal.open(this.modalContent, { size: 'lg' });
-  }
-
-  @Output() hourSegmentClicked = new EventEmitter<{
-    date: Date;
-    sourceEvent: MouseEvent;
-  }>();
-
-  addEvent(): void {
-    this.events = [
-      ...this.events,
-      {
-        title: 'New event',
-        start: startOfDay(new Date()),
-        end: endOfDay(new Date()),
-        color: colors.red,
-        draggable: true,
-        resizable: {
-          beforeStart: true,
-          afterEnd: true,
-        },
-      },
-    ];
   }
 
   startBooking(event) {
@@ -333,12 +157,17 @@ export class BookingCalendarComponent implements OnInit {
     }
   }
 
-  deleteEvent(eventToDelete: CalendarEvent) {
-    this.events = this.events.filter((event) => event !== eventToDelete);
-  }
-
   closeOpenMonthViewDay() {
     this.activeDayIsOpen = false;
+  }
+
+  @Output() hourSegmentClicked = new EventEmitter<{
+    date: Date;
+    sourceEvent: MouseEvent;
+  }>();
+
+  submit() {
+    this.modalReference.open();
   }
 
   close() {

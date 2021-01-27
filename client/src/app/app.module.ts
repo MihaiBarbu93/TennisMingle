@@ -44,7 +44,7 @@ import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DatePipe } from '@angular/common';
-import { NgxSpinnerModule } from "ngx-spinner";
+import { NgxSpinnerModule } from 'ngx-spinner';
 import { BookingFromCalendarComponent } from './booking-from-calendar/booking-from-calendar.component';
 import { LoadingInterceptor } from './_interceptors/loading.interceptor';
 
@@ -68,7 +68,7 @@ import { LoadingInterceptor } from './_interceptors/loading.interceptor';
     RolesModalComponent,
     BookingComponent,
     BookingCalendarComponent,
-    BookingFromCalendarComponent
+    BookingFromCalendarComponent,
   ],
   imports: [
     BrowserModule,
@@ -104,11 +104,10 @@ import { LoadingInterceptor } from './_interceptors/loading.interceptor';
     BsModalService,
     DataService,
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    {provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true}
+    { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
   entryComponents: [RolesModalComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-
 })
 export class AppModule {}
