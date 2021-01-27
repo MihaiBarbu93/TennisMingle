@@ -21,6 +21,8 @@ import {
   faEnvelope,
   faMap,
 } from '@fortawesome/free-solid-svg-icons';
+import { Booking } from 'src/app/_models/booking';
+import { BookingService } from 'src/app/_services/booking.service';
 
 @Component({
   selector: 'app-tennis-club-detail',
@@ -46,6 +48,7 @@ export class TennisClubDetailComponent implements OnInit {
   faMap = faMap;
   lat: number;
   lng: number;
+  allBookings: Booking[];
 
   facilities: any[] = [];
   reactiveForm!: FormGroup;
@@ -59,14 +62,18 @@ export class TennisClubDetailComponent implements OnInit {
 
   constructor(
     private tennisClubService: TennisClubsService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private bookingService: BookingService
   ) {}
 
   ngOnInit(): void {
     this.cityId = +this.route.snapshot.params.cityId;
     this.tennisClubId = +this.route.snapshot.params.id;
     this.loadTennisClub(this.cityId, this.tennisClubId);
-    console.log(this.facilities);
+  }
+
+  ngOnChanges() {
+    this.loadTennisClub(this.cityId, this.tennisClubId);
   }
 
   ngAfterContentInit() {}
@@ -79,6 +86,18 @@ export class TennisClubDetailComponent implements OnInit {
         this.getFacilityTypes(tennisClub.facilities);
         this.lat = this.tennisClub.geoLat;
         this.lng = this.tennisClub.geoLong;
+        console.log('maaasa');
+        this.loadAllBookings(tennisClub.id);
+      });
+  }
+
+  loadAllBookings(tennisClubId: number) {
+    this.bookingService
+      .getBookingsForAClub(tennisClubId)
+      .subscribe((bookings) => {
+        console.log(bookings);
+        this.allBookings = bookings;
+        console.log(this.allBookings);
       });
   }
 

@@ -41,6 +41,10 @@ export class BookingService {
     );
   }
 
+  getBookingsForAClub(tennisClubId: number) {
+    return this.http.get<any>(this.baseUrl + tennisClubId + '/booking');
+  }
+
   convertModelToBooking(model: any, tennisClub: TennisClub) {
     let booking = <Booking>{};
     booking.firstName = model.firstName;

@@ -1,3 +1,4 @@
+import { BookingService } from './../../_services/booking.service';
 import {
   Component,
   ChangeDetectionStrategy,
@@ -32,6 +33,7 @@ import {
   CalendarWeekViewBeforeRenderEvent,
 } from 'angular-calendar';
 import { Event } from 'jquery';
+import { Booking } from 'src/app/_models/booking';
 
 const colors: any = {
   red: {
@@ -55,6 +57,7 @@ const colors: any = {
 })
 export class BookingCalendarComponent implements OnInit {
   @Input() tennisClubFromDetail: any;
+  @Input() allBookings: Booking[];
   @ViewChild('modalContent', { static: true }) modalContent: TemplateRef<any>;
 
   view: CalendarView = CalendarView.Week;
@@ -65,12 +68,11 @@ export class BookingCalendarComponent implements OnInit {
   viewDate: Date = new Date();
 
   clickedDate: Date;
-
   dayStartHour = Math.max(8);
 
   dayEndHour = Math.min(22);
 
-  loadCalendar: boolean = false;
+  allBookingsArrive: boolean = false;
 
   modalData: {
     action: string;
@@ -140,12 +142,13 @@ export class BookingCalendarComponent implements OnInit {
 
   activeDayIsOpen: boolean = true;
 
-  constructor(private modal: NgbModal) {}
+  constructor(
+    private modal: NgbModal,
+    private bookingService: BookingService
+  ) {}
   ngOnInit(): void {}
 
-  ngAfterViewInit() {
-    this.loadCalendar = true;
-  }
+  ngAfterContentInit() {}
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {
@@ -161,6 +164,16 @@ export class BookingCalendarComponent implements OnInit {
     }
   }
 
+  loadAllBookings(tennisClubId: number) {
+    this.bookingService
+      .getBookingsForAClub(tennisClubId)
+      .subscribe((bookings) => {
+        this.allBookings = bookings;
+        console.log(this.allBookings);
+        this.allBookingsArrive = true;
+      });
+  }
+
   // beforeMonthViewRender(renderEvent: CalendarMonthViewBeforeRenderEvent): void {
   //   renderEvent.body.forEach((day) => {
   //     const dayOfMonth = day.date.getDate();
@@ -171,10 +184,14 @@ export class BookingCalendarComponent implements OnInit {
   // }
 
   beforeWeekViewRender(renderEvent: CalendarWeekViewBeforeRenderEvent) {
+    console.log(this.allBookings[0]);
     renderEvent.hourColumns.forEach((hourColumn) => {
       hourColumn.hours.forEach((hour) => {
         hour.segments.forEach((segment) => {
-          if (segment.date.getHours() < 8 || segment.date.getHours() > 22) {
+          if (
+            segment.date.getHours() < 8 ||
+            segment.date.getHours() > this.tennisClubFromDetail.id
+          ) {
             segment.cssClass = 'bg-pink';
           }
         });
