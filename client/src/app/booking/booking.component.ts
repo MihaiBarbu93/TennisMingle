@@ -34,6 +34,7 @@ export class BookingComponent implements OnInit {
     this.bookingForm = new FormGroup({
       FirstName: new FormControl(this.model.firstName, [Validators.required, Validators.minLength(3)]),
       LastName: new FormControl(this.model.lastName, [Validators.required, Validators.minLength(3)]),
+      Email: new FormControl(this.model.email, [Validators.required, Validators.minLength(5)]),
       PhoneNumber: new FormControl(this.model.phoneNumber, [Validators.required,Validators.minLength(5),Validators.pattern('^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$')]),
       DateStart: new FormControl(this.model.dateStart, Validators.required),
       Time: new FormControl(this.model.time, Validators.required),
@@ -48,6 +49,9 @@ export class BookingComponent implements OnInit {
   }
   get lastName() {
     return this.bookingForm.get('LastName');
+  }
+  get email(){
+    return this.bookingForm.get('email');
   }
   get phoneNumber() {
     return this.bookingForm.get('PhoneNumber');
@@ -69,17 +73,11 @@ export class BookingComponent implements OnInit {
   }
 
   bookCourt() {
-    if (!this.bookingForm.invalid) {
-      this.bookingService
+    if (this.bookingForm.valid) {
+      return this.bookingService
         .book(this.model, this.tennisClubFromDetail)
-        .subscribe((response) => {
-          console.log(response);
-        });
-      console.log('Booking complete');
     } else {
-      console.log('Booking form invalid');
       this.bookingForm.markAllAsTouched();
-      console.log(this.bookingForm);
     }
   }
 }

@@ -12,7 +12,7 @@ import {
   faSearch,
   faCalendar,
   faRunning,
-  faCheckSquare,
+  faCheck,
   faMapMarked,
   faChevronLeft,
   faCheckCircle,
@@ -31,6 +31,7 @@ import { BookingService } from 'src/app/_services/booking.service';
   styleUrls: ['./tennis-club-detail.component.css'],
 })
 export class TennisClubDetailComponent implements OnInit {
+  tennisClubs : TennisClub[] = [];
   model: any = {};
   tennisClub!: TennisClub;
   tennisClubId: number;
@@ -39,7 +40,7 @@ export class TennisClubDetailComponent implements OnInit {
   faCalendar = faCalendar;
   faRunning = faRunning;
   faMapMarked = faMapMarked;
-  faCheckSquare = faCheckSquare;
+  faCheck = faCheck;
   faChevronLeft = faChevronLeft;
   faCheckCircle = faCheckCircle;
   faBus = faBus;
@@ -115,6 +116,14 @@ export class TennisClubDetailComponent implements OnInit {
     let bookingHours = [];
     bookings.forEach((element) => {
       bookingHours.push(element[1].getHours());
+    })
+  }
+
+      
+  loadTennisClubs(cityId: number, tennisClubId: number){
+    return this.tennisClubService.getTennisClubs(cityId).subscribe((tennisClubs)=>{
+      this.tennisClubs = tennisClubs;
+      this.tennisClubs.filter(tc => tc.id !== tennisClubId);
     });
   }
 

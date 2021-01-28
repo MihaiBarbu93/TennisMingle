@@ -83,7 +83,7 @@
         <div class="col-sm-12 mb-sm-0 mb-md-3">
           <div class="card pf-card mb-3" id="mlp-map-scroll-to">
             <div class="card-header" role="tab">
-              <div>Location, Opening Hours and Prices</div>
+              <div class="h6">Location, Opening Hours and Prices</div>
             </div>
             <div class="card-body">
               <div class="row">
@@ -91,19 +91,19 @@
                   [zoom]="15"
                   [latitude]="lat"
                   [longitude]="lng"
-                  (mapClick)="onChoseLocation($event)"
                 >
                   <agm-marker
                     [latitude]="lat"
                     [longitude]="lng"
-                    *ngIf="locationChosen"
-                  ></agm-marker>
+                  >
+                  </agm-marker>
                 </agm-map>
               </div>
-              <p>
-                <fa-icon class="fa-2x" [icon]="faMapMarked"></fa-icon>
+              <br>
+              <div class="h6">
+                <fa-icon class="fa" [icon]="faMapMarked"></fa-icon>
                 {{ tennisClub?.address }}
-              </p>
+              </div>
             </div>
             <hr />
             <div class="row pl-4">
@@ -124,8 +124,8 @@
                 <div class="ng-star-inserted">
                   <div class="h5">Public Transport</div>
                   <p class="small">
-                    <fa-icon class="fa-2x" [icon]="faBus"></fa-icon><br />
-                    <fa-icon class="fa-2x" [icon]="faTram"></fa-icon>
+                    <fa-icon class="fa" [icon]="faBus"></fa-icon><br />
+                    <fa-icon class="fa" [icon]="faTram"></fa-icon>
                   </p>
                 </div>
               </div>
@@ -164,7 +164,7 @@
       <div class="card mb-3 pf-card mlp-sport-format d-none d-md-block">
         <div class="card-header">
           <div class="h6">
-            <fa-icon class="fa-2x" [icon]="faBaseballBall"></fa-icon>
+            <fa-icon class="fa" [icon]="faBaseballBall"></fa-icon>
             Tennis Courts
           </div>
         </div>
@@ -192,13 +192,13 @@
             </li>
           </ul>
           <div class="mt-4 ng-star-inserted">
-            <div>Facilities</div>
+            <div class="h6">Facilities</div>
             <ul class="list-inline font body3 mb-0">
               <li
                 *ngFor="let facility of facilities"
                 class="list-inline-item ng-star-inserted"
               >
-                <fa-icon class="fa" [icon]="faCheckSquare"></fa-icon>
+                <fa-icon class="fa" [icon]="faCheck"></fa-icon>
                 {{ facility.toString() }}
               </li>
             </ul>
@@ -207,8 +207,8 @@
       </div>
       <div class="card pf-card mb-3">
         <div class="card-header">
-          <div>
-            <fa-icon class="fa-2x" [icon]="faMapMarked"></fa-icon>
+          <div class="h6">
+            <fa-icon class="fa" [icon]="faMapMarked"></fa-icon>
             Address
           </div>
         </div>
@@ -219,8 +219,8 @@
       <div id="mlp-enquiry"></div>
       <div class="card mb-3 pf-card pf-card-green-highlight">
         <div class="card-header">
-          <div>
-            <fa-icon class="fa-2x" [icon]="faMapMarked"></fa-icon>
+          <div class="h6">
+            <fa-icon class="fa" [icon]="faMapMarked"></fa-icon>
             Request to book
           </div>
         </div>
@@ -229,45 +229,38 @@
         </div>
         <div class="card mb-3 pf-card card-similar ng-star-inserted">
           <div class="card-header">
-            <div>
-              <fa-icon class="fa-2x" [icon]="faMap"></fa-icon>
+            <div class="h6">
+              <fa-icon class="fa" [icon]="faMap"></fa-icon>
               Nearby Tennis Courts
             </div>
           </div>
-
-          <!-- @{ foreach (var tennisClub in Model.TennisClubs)
-                        {
-                            var prm = new Dictionary<string, string>()
-                                                                                                                                                                                                                                                                                                {
-                        { "cityId",tennisClub.Address.CityId.ToString() },
-                        { "tennisClubId", tennisClub.Id.ToString() }
-                    }; -->
-
-          <a class="card-body cursor pointer pb-0 ng-star-inserted">
-            <div class="row">
-              <div class="col-4 col-md-12 col-lg-6 col-xl-4 pb-2">
-                <img
-                  class="media-object rounded pf-card__img"
-                  height="66"
-                  imgservice="w=170"
-                  width="100"
-                  src=""
-                />
-              </div>
-              <div class="col-8 col-md-12 col-lg-6 col-xl-8">
-                <div>
-                  <!-- @tennisClub.Name -->
+          <div *ngFor="let tc of tennisClubs">
+            <a class="card-body cursor pointer pb-0 ng-star-inserted">
+              <div class="row">
+                <div class="col-4 col-md-12 col-lg-6 col-xl-4 pb-2">
+                  <img
+                    class="media-object rounded pf-card__img"
+                    height="66"
+                    imgservice="w=170"
+                    width="100"
+                    src="{{ tc.photos[0].url }}"
+                  />
                 </div>
-                <p>
-                  <!-- @tennisClub.Address.Address -->
-                </p>
-                <p>
-                  <fa-icon class="fa-2x" [icon]="faBus"></fa-icon>
-                  <fa-icon class="fa-2x" [icon]="faTram"></fa-icon>
-                </p>
+                <div class="col-8 col-md-12 col-lg-6 col-xl-8">
+                  <div>
+                    {{tc.name}}
+                  </div>
+                  <p>
+                    {{tc.address}}
+                  </p>
+                  <p>
+                    <fa-icon class="fa" [icon]="faBus"></fa-icon>
+                    <fa-icon class="fa" [icon]="faTram"></fa-icon>
+                  </p>
+                </div>
               </div>
-            </div>
-          </a>
+            </a>
+          </div>
         </div>
       </div>
     </div>

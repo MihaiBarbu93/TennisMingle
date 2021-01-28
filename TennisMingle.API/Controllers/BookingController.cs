@@ -44,6 +44,17 @@ namespace TennisMingle.API.Controllers
         }
         
         [HttpPost]
+        [Route("check-availability", Name = "CheckAvailability")]
+        public async Task<ActionResult<int>> CheckAvailability(BookingDto booking, int tennisClubId)
+        {
+            var tennisCourtId = await _bookingService.CheckAvailability(booking, tennisClubId);
+
+            return tennisCourtId;
+           
+        }
+
+
+        [HttpPost]
         public async Task<ActionResult> BookTennisCourt(int tennisClubId, BookingDto booking)
         {
             Booking newBooking;
@@ -63,6 +74,7 @@ namespace TennisMingle.API.Controllers
                         TennisCourtId = booking.TennisCourtId,
                         FirstName = booking.FirstName,
                         LastName = booking.LastName,
+                        Email = booking.Email,
                         PhoneNumber = booking.PhoneNumber
 
                     };
@@ -76,6 +88,7 @@ namespace TennisMingle.API.Controllers
                         TennisCourtId = booking.TennisCourtId,
                         FirstName = booking.FirstName,
                         LastName = booking.LastName,
+                        Email = booking.Email,
                         PhoneNumber = booking.PhoneNumber
 
                     };
