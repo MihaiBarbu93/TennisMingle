@@ -47,6 +47,12 @@ export class NavComponent implements OnInit {
     });
   }
 
+  // login() {
+  //   this.accountService.login().subscribe((response) => {
+  //     this.router.navigateByUrl('/members');
+  //   });
+  // }
+
   logout() {
     this.accountService.logout();
     this.router.navigateByUrl('/');

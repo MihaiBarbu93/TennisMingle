@@ -10,7 +10,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
   styleUrls: ['./user-management.component.css'],
 })
 export class UserManagementComponent implements OnInit {
-  users: Partial<User[]>;
+  users: Partial<any>;
   bsModalRef: BsModalRef;
 
   constructor(
@@ -24,6 +24,7 @@ export class UserManagementComponent implements OnInit {
 
   getUsersWithRoles() {
     this.adminService.getUsersWithRoles().subscribe((users) => {
+      console.log(users);
       this.users = users;
     });
   }

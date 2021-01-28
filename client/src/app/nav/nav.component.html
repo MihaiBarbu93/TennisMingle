@@ -33,8 +33,8 @@
     </ul>
   </div>
   <ul class="navbar-nav mr-auto ml-2">
-    <ng-container>
-      <li class="nav-item">
+    <ng-container *ngIf="accountService.currentUser$ | async">
+      <!-- <li class="nav-item">
         <a
           class="nav-link search-link"
           routerLink="/"
@@ -42,7 +42,7 @@
           style="white-space: nowrap"
           ><fa-icon [icon]="faSearch" class="mr-1"></fa-icon> Search</a
         >
-      </li>
+      </li> -->
       <li *appHasRole="['Administrator']" class="nav-item">
         <a
           class="nav-link search-link"
