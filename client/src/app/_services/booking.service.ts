@@ -7,6 +7,7 @@ import { TennisClub } from '../_models/tennisClub';
 import { AccountService } from './account.service';
 import { map, take } from 'rxjs/operators';
 import { City } from '../_models/city';
+import { CompileShallowModuleMetadata } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root',
@@ -15,6 +16,7 @@ export class BookingService {
   booking: Booking;
   baseUrl = 'https://localhost:5001/api/';
   user: User;
+  tennisCourtId : number;
 
   constructor(
     private http: HttpClient,
@@ -27,24 +29,26 @@ export class BookingService {
 
   book(model: any, tennisClub: TennisClub) {
     this.booking = this.convertModelToBooking(model, tennisClub);
-    console.log(this.booking);
-    // var ceva = this.http
-    //   .get<City>(this.baseUrl + 'cities/' + 1)
-    //   .subscribe((data) => {
-    //     console.log(data); // ONLY WORKS ONCE
-    //   });
-    // console.log(ceva);
-    // return this.http.post<any>(this.baseUrl + 'account/login', this.booking);
-    return this.http.post<any>(
-      this.baseUrl + tennisClub.id + '/booking',
-      this.booking
-    );
+    this.CheckAvailability(model, tennisClub)
+    if (this.tennisCourtId>0){
+      this.booking.tennisCourtId = this.tennisCourtId;
+      console.log("Booking complete");
+      return this.http.post<any>(
+        this.baseUrl + tennisClub.id + '/booking',
+        this.booking
+      ).subscribe(data => console.log('data', data),
+      err => console.log('error', err),
+      () => console.log('Complete!'));
+    }else{
+      console.log("No courts available");
+    }
   }
 
   convertModelToBooking(model: any, tennisClub: TennisClub) {
     let booking = <Booking>{};
     booking.firstName = model.firstName;
     booking.lastName = model.lastName;
+    booking.email = model.email;
     booking.userName = this.user.userName;
     console.log(this.user.userName);
     booking.phoneNumber = model.phoneNumber;
@@ -58,11 +62,14 @@ export class BookingService {
     booking.dateEnd.setHours(
       Number(booking.dateStart.getHours()) + Number(model.duration)
     );
-    // booking.tennisCourtId = tennisClub.tennisCourts.find(
-    //   (tc) => tc.isAvailable === true
-    // ).id;
-    booking.tennisCourtId = tennisClub.id;
-    console.log(booking);
+    // booking.tennisCourtId = tennisClub.tennisCourts.find(tc=>tc).id;
     return booking;
+  
+  }
+
+  CheckAvailability(model: any, tennisClub: TennisClub){
+    return this.http.post<number>(
+      this.baseUrl  + tennisClub.id + '/booking/check-availability', this.booking
+    ).pipe(take(1)).subscribe(item => this.tennisCourtId=item);
   }
 }

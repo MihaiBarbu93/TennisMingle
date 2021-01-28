@@ -82,9 +82,6 @@ export class BookingFromCalendarComponent implements OnInit {
     if (!this.bookingForm.invalid) {
       this.bookingService
         .book(this.model, this.tennisClubFromDetail)
-        .subscribe((response) => {
-          console.log(response);
-        });
       console.log('Booking complete');
     } else {
       console.log('Booking form invalid');

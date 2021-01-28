@@ -23,13 +23,30 @@ namespace TennisMingle.API.Services
         }
 
         //to modify
-        public async Task<bool> CheckAvailability(BookingDto booking, int tennisClubId)
+        public async Task<int> CheckAvailability(BookingDto booking, int tennisClubId)
         {
-            return await _context.Bookings
-                .Where(b => b.TennisCourt.TennisClubId == tennisClubId)
-                .AnyAsync(b => (booking.DateStart < b.DateStart || booking.DateStart > b.DateEnd) &&
-                               (booking.DateEnd > b.DateStart || booking.DateEnd < b.DateEnd) && 
-                               b.TennisCourt.IsAvailable == true);
+
+            var tennisCourtUnavailableIds =  await _context.Bookings
+                .Where(b => b.TennisCourt.TennisClubId == tennisClubId 
+                && ((Convert.ToDateTime(booking.DateStart) >= b.DateStart && Convert.ToDateTime(booking.DateStart) < b.DateEnd)
+                || (Convert.ToDateTime(booking.DateEnd) > b.DateStart && Convert.ToDateTime(booking.DateEnd) < b.DateEnd)))
+                .Select(b=>b.TennisCourtId)
+                .ToListAsync();
+            var tennisCourts = await _context.TennisCourts
+                .Where(tc => tc.TennisClubId == tennisClubId)
+                .Include(tc => tc.Surface)
+                .Include(tc => tc.TennisClub)
+                .Select(tc=> tc.Id)
+                .ToListAsync();
+            if (tennisCourtUnavailableIds.Count >= tennisCourts.Count)
+            {
+                return -1;
+            }
+            else
+            {
+                var tennisCourtId = tennisCourts.Except(tennisCourtUnavailableIds).FirstOrDefault();
+                return tennisCourtId;
+            }
         }
 
         public void Book(Booking booking)

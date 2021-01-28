@@ -11,7 +11,7 @@ import {
   faSearch,
   faCalendar,
   faRunning,
-  faCheckSquare,
+  faCheck,
   faMapMarked,
   faChevronLeft,
   faCheckCircle,
@@ -28,6 +28,7 @@ import {
   styleUrls: ['./tennis-club-detail.component.css'],
 })
 export class TennisClubDetailComponent implements OnInit {
+  tennisClubs : TennisClub[] = [];
   model: any = {};
   tennisClub!: TennisClub;
   tennisClubId: number;
@@ -36,7 +37,7 @@ export class TennisClubDetailComponent implements OnInit {
   faCalendar = faCalendar;
   faRunning = faRunning;
   faMapMarked = faMapMarked;
-  faCheckSquare = faCheckSquare;
+  faCheck = faCheck;
   faChevronLeft = faChevronLeft;
   faCheckCircle = faCheckCircle;
   faBus = faBus;
@@ -80,6 +81,13 @@ export class TennisClubDetailComponent implements OnInit {
         this.lat = this.tennisClub.geoLat;
         this.lng = this.tennisClub.geoLong;
       });
+  }
+
+  loadTennisClubs(cityId: number, tennisClubId: number){
+    return this.tennisClubService.getTennisClubs(cityId).subscribe((tennisClubs)=>{
+      this.tennisClubs = tennisClubs;
+      this.tennisClubs.filter(tc => tc.id !== tennisClubId);
+    });
   }
 
   getFacilityTypes(fac: any) {

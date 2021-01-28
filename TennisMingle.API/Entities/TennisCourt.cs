@@ -26,12 +26,6 @@ namespace TennisMingle.API.Entities
 
         public int SurfaceId { get; set; }
 
-
-        /// <summary>
-        /// The availability of the tennis court
-        /// </summary>
-        public bool IsAvailable { get; set; }
-
         /// <summary>
         /// The surface type of the tennis court
         /// </summary>

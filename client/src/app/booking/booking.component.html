@@ -17,7 +17,7 @@
       />
       <p class="error" *ngIf="bookingForm.get('FirstName').invalid && (bookingForm.get('FirstName').dirty || bookingForm.get('FirstName').touched)">
         <ng-container *ngIf="bookingForm.get('FirstName').hasError('required')">
-            First name is Required!
+            First name is required
         </ng-container>
     </p>
     </div>
@@ -33,7 +33,23 @@
       />
       <p class="error" *ngIf="bookingForm.get('LastName').invalid && (bookingForm.get('LastName').dirty || bookingForm.get('LastName').touched)">
         <ng-container *ngIf="bookingForm.get('LastName').hasError('required')">
-            Last name is Required!
+            Last name is required
+        </ng-container>
+    </p>
+    </div>
+    <div class="form-group col-md-12 mb-3">
+      <label for="Email">Email address</label>
+      <input
+        [(ngModel)]="model.email"
+        type="email"
+        class="form-control ng-pristine ng-invalid submitted"
+        id="Email"
+        name="Email"
+        formControlName="Email"
+      />
+      <p class="error" *ngIf="bookingForm.get('Email').invalid && (bookingForm.get('Email').dirty || bookingForm.get('Email').touched)">
+        <ng-container *ngIf="bookingForm.get('Email').hasError('required')">
+            Email address is required
         </ng-container>
     </p>
     </div>
@@ -51,10 +67,10 @@
       />
       <p class="error" *ngIf="bookingForm.get('PhoneNumber').invalid && (bookingForm.get('PhoneNumber').dirty || bookingForm.get('PhoneNumber').touched)">
         <ng-container *ngIf="bookingForm.get('PhoneNumber').hasError('required')">
-            PhoneNumber is Required!
+            Phone number is required
         </ng-container>
         <ng-container *ngIf="bookingForm.get('PhoneNumber').hasError('pattern')">
-            * Invalid PhoneNumber number.
+            Invalid phone number
         </ng-container>
     </p>
         
@@ -77,7 +93,7 @@
       />
       <p class="error" *ngIf="bookingForm.get('DateStart').invalid && bookingForm.get('DateStart').touched">
         <ng-container *ngIf="bookingForm.get('DateStart').hasError('required')">
-            Booking date is Required!
+            Booking date is required
         </ng-container>
     </p>
     </div>
@@ -92,7 +108,7 @@
       </timepicker>
       <p class="error" *ngIf="bookingForm.get('Time').invalid &&  bookingForm.get('Time').touched">
         <ng-container *ngIf="bookingForm.get('Time').hasError('required')">
-            Booking time is Required!
+            Booking time is required
         </ng-container>
     </p>
     </div>
@@ -113,7 +129,7 @@
       </select>
       <p class="error" *ngIf="bookingForm.get('Duration').invalid && bookingForm.get('Duration').touched">
         <ng-container *ngIf="bookingForm.get('Duration').hasError('required')">
-            Booking hours are Required!
+            Booking hours are required
         </ng-container>
     </p>
     </div>

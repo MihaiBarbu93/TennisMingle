@@ -4,6 +4,10 @@ input.ng-invalid.ng-touched {
 select.ng-invalid.ng-touched {
     border: 1px solid red;
   } 
+timepicker.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
 .error{
   color: red;
+  padding: 5px;
 }

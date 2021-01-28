@@ -4,8 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TennisMingle.API.DTOs;
 using TennisMingle.API.Entities;
 using TennisMingle.API.Interfaces;
+using TennisMingle.API.Services;
 
 namespace TennisMingle.API.Data
 {
@@ -13,12 +15,14 @@ namespace TennisMingle.API.Data
     {
 
         private readonly AppDbContext _context;
+        private readonly IBookingService _bookingService;
         private readonly IMapper _mapper;
 
-        public TennisCourtRepository(AppDbContext context, IMapper mapper)
+        public TennisCourtRepository(AppDbContext context, IMapper mapper, IBookingService bookingService)
         {
             _context = context;
             _mapper = mapper;
+            _bookingService = bookingService;
         }
 
         public async Task<TennisCourt> GetTennisCourtByIdAsync(int tennisCourtId)
@@ -89,7 +93,7 @@ namespace TennisMingle.API.Data
 
         public async Task<TennisCourt> GetTennisCourtAvailableAsync(int tennisClubId)
         {
-            return await _context.TennisCourts.Where(tc => tc.TennisClubId == tennisClubId).FirstOrDefaultAsync(tc => tc.IsAvailable == true);
+            return await _context.TennisCourts.Where(tc => tc.TennisClubId == tennisClubId).FirstOrDefaultAsync();
         }
     }
 }
