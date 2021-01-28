@@ -114,18 +114,20 @@ export class BookingCalendarComponent implements OnInit {
       day: endOfDay,
     }[this.view];
 
-    this.events$ = this.http.get<any>(this.baseUrl + '28/booking').pipe(
-      map((results: BookingFromDb[]) => {
-        return results.map((booking: BookingFromDb) => {
-          console.log(booking);
-          return {
-            title: 'unavailable',
-            start: new Date(booking.dateStart),
-            end: new Date(booking.dateEnd),
-          };
-        });
-      })
-    );
+    this.events$ = this.http
+      .get<any>(this.baseUrl + this.tennisClubId + '/booking')
+      .pipe(
+        map((results: BookingFromDb[]) => {
+          return results.map((booking: BookingFromDb) => {
+            console.log(booking);
+            return {
+              title: 'unavailable',
+              start: new Date(booking.dateStart),
+              end: new Date(booking.dateEnd),
+            };
+          });
+        })
+      );
   }
 
   dayClicked({

@@ -40,9 +40,22 @@ export class BookingFromCalendarComponent implements OnInit {
 
   private createForm() {
     this.bookingForm = this.formBuilder.group({
-      FirstName: [this.model.firstName, Validators.required],
-      LastName: [this.model.lastName, Validators.required],
-      PhoneNumber: [this.model.phoneNumber, Validators.required],
+      FirstName: [
+        this.model.firstName,
+        [Validators.required, Validators.minLength(3)],
+      ],
+      LastName: [
+        this.model.lastName,
+        [Validators.required, Validators.minLength(3)],
+      ],
+      PhoneNumber: [
+        this.model.phoneNumber,
+        [
+          Validators.required,
+          Validators.minLength(5),
+          Validators.pattern('^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-s./0-9]*$'),
+        ],
+      ],
       DateStart: [this.model.dateStart],
       Time: [this.model.time],
       Duration: [this.model.duration, Validators.required],
@@ -83,8 +96,7 @@ export class BookingFromCalendarComponent implements OnInit {
 
   bookCourt() {
     if (!this.bookingForm.invalid) {
-      this.bookingService
-        .book(this.model, this.tennisClubFromDetail)
+      this.bookingService.book(this.model, this.tennisClubFromDetail);
       console.log('Booking complete');
     } else {
       console.log('Booking form invalid');

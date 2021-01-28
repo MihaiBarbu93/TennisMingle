@@ -15,15 +15,18 @@
         name="FirstName"
         formControlName="FirstName"
       />
-      <span
-        class="help-block"
+      <p
+        class="error"
         *ngIf="
           bookingForm.get('FirstName').invalid &&
-          bookingForm.get('FirstName').touched
+          (bookingForm.get('FirstName').dirty ||
+            bookingForm.get('FirstName').touched)
         "
       >
-        First name is required
-      </span>
+        <ng-container *ngIf="bookingForm.get('FirstName').hasError('required')">
+          First name is required
+        </ng-container>
+      </p>
     </div>
     <div class="form-group col-md-6 mb-3">
       <label for="LastName">Last name</label>
@@ -35,15 +38,18 @@
         name="LastName"
         formControlName="LastName"
       />
-      <span
-        class="help-block"
+      <p
+        class="error"
         *ngIf="
           bookingForm.get('LastName').invalid &&
-          bookingForm.get('LastName').touched
+          (bookingForm.get('LastName').dirty ||
+            bookingForm.get('LastName').touched)
         "
       >
-        Last name is required
-      </span>
+        <ng-container *ngIf="bookingForm.get('LastName').hasError('required')">
+          Last name is required
+        </ng-container>
+      </p>
     </div>
   </div>
 
@@ -58,15 +64,25 @@
         name="PhoneNumber"
         formControlName="PhoneNumber"
       />
-      <span
-        class="help-block"
+      <p
+        class="error"
         *ngIf="
           bookingForm.get('PhoneNumber').invalid &&
-          bookingForm.get('PhoneNumber').touched
+          (bookingForm.get('PhoneNumber').dirty ||
+            bookingForm.get('PhoneNumber').touched)
         "
       >
-        Phone number is required
-      </span>
+        <ng-container
+          *ngIf="bookingForm.get('PhoneNumber').hasError('required')"
+        >
+          Phone number is required
+        </ng-container>
+        <ng-container
+          *ngIf="bookingForm.get('PhoneNumber').hasError('pattern')"
+        >
+          Invalid phone number
+        </ng-container>
+      </p>
     </div>
   </div>
 
@@ -131,15 +147,17 @@
           {{ nr }}
         </option>
       </select>
-      <span
-        class="help-block"
+      <p
+        class="error"
         *ngIf="
           bookingForm.get('Duration').invalid &&
           bookingForm.get('Duration').touched
         "
       >
-        Booking hours are required
-      </span>
+        <ng-container *ngIf="bookingForm.get('Duration').hasError('required')">
+          Booking hours are required
+        </ng-container>
+      </p>
     </div>
   </div>
 
