@@ -95,10 +95,6 @@ footer {
   padding-left: 25px;
 }
 
-.container {
-  min-height: 800px !important;
-}
-
 .top-nav {
   height: 56px;
   font-family: Verdana, Geneva, sans-serif;

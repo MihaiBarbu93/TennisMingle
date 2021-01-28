@@ -29,7 +29,7 @@ export class UserManagementComponent implements OnInit {
     });
   }
 
-  openRolesModal(user: User) {
+  openRolesModal(user: any) {
     const config = {
       class: 'modal-dialog-centered',
       initialState: {
@@ -46,7 +46,7 @@ export class UserManagementComponent implements OnInit {
       };
       if (rolesToUpdate) {
         this.adminService
-          .updateUserRoles(user.userName, rolesToUpdate.roles)
+          .updateUserRoles(user.username, rolesToUpdate.roles)
           .subscribe(() => {
             user.roles = [...rolesToUpdate.roles];
           });
