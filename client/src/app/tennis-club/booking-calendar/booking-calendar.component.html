@@ -1,0 +1,59 @@
+<h1 class="p-4 text-center">Book a tennis court</h1>
+<mwl-demo-utils-calendar-header
+  [(view)]="view"
+  [(viewDate)]="viewDate"
+  (viewDateChange)="fetchEvents()"
+  (viewChange)="fetchEvents()"
+>
+</mwl-demo-utils-calendar-header>
+
+<ng-template #loading>
+  <div class="text-center">
+    <i class="fas fa-spin fa-spinner fa-5x"></i> <br />
+    Loading events...
+  </div>
+</ng-template>
+
+<div *ngIf="events$ | async; else loading; let events">
+  <div [ngSwitch]="view">
+    <mwl-calendar-month-view
+      *ngSwitchCase="'month'"
+      [viewDate]="viewDate"
+      [events]="events"
+      [activeDayIsOpen]="activeDayIsOpen"
+      (dayClicked)="dayClicked($event.day)"
+    >
+    </mwl-calendar-month-view>
+    <mwl-calendar-week-view
+      *ngSwitchCase="'week'"
+      [dayStartHour]="8"
+      [dayEndHour]="22"
+      [viewDate]="viewDate"
+      [events]="events"
+      (hourSegmentClicked)="startBooking($event)"
+      (beforeViewRender)="beforeWeekViewRender($event)"
+    >
+    </mwl-calendar-week-view>
+    <mwl-calendar-day-view
+      *ngSwitchCase="'day'"
+      [viewDate]="viewDate"
+      [events]="events"
+    >
+    </mwl-calendar-day-view>
+  </div>
+</div>
+
+<ng-template id="booking-calendar-modal" #modalContent let-close="close">
+  <div class="modal-header">
+    <h2 class="modal-title">Tennis Court Reservation</h2>
+    <button type="button" class="close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="card-body rounded-bottom">
+    <app-booking-from-calendar
+      [tennisClubFromDetail]="tennisClubFromDetail"
+      [viewDate]="viewDate"
+    ></app-booking-from-calendar>
+  </div>
+</ng-template>

@@ -3,8 +3,8 @@ export interface Booking {
   dateStart: Date;
   dateEnd: Date;
   tennisCourtId: number;
-  confirmed: boolean;
-  userId: number;
+  userName: string;
+  email:string;
   firstName: string;
   lastName: string;
   phoneNumber: string;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NetTopologySuite.Geometries;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -6,6 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using TennisMingle.API.Entities;
 using TennisMingle.API.Enums;
+using TennisMingle.API.Helpers;
 
 namespace TennisMingle.API.Entities
 {
@@ -38,13 +40,14 @@ namespace TennisMingle.API.Entities
         public int CityId { get; set; }
         public string Address { get; set; }
 
+        public Point Location { get; set; }
 
         /// <summary>
         /// The tennis club description
         /// </summary>
         public string Description { get; set; }
 
-        // <summary>
+        /// <summary>
         /// The tennis club schedule
         /// </summary>
         [Required]
@@ -61,6 +64,10 @@ namespace TennisMingle.API.Entities
         /// The uploaded tennis club image
         /// </summary>
         /// 
+        [NotMapped]
+        public double GeoLat { get; set; }
+        [NotMapped]
+        public double GeoLong { get; set; }
         public ICollection<TennisCourt> TennisCourts { get; set; }
 
         public ICollection<Facility> Facilities { get; set; }

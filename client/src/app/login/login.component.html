@@ -1,25 +1,37 @@
-<form [formGroup]="loginForm" (ngSubmit)="login()" autocomplete="off">
-    <h2 class="text-center text-primary">Login</h2>
-    <hr>
-    <div class="form-group">
-        <input id="username" type="text" class="form-control" formControlName="username"
-        [(ngModel)]="model.username" placeholder="Username" required>
-    </div>
-    <div class="form-group">
-        <input type="password" class="form-control" formControlName="password" 
-            [(ngModel)]="model.password" placeholder="Password" required >
-    </div>
-    <div *ngIf="password.invalid || username.invalid"
-    class="alert alert-danger">
-
-  <div *ngIf="password.errors.required">
-    Username and password are required.
+<form
+  [formGroup]="loginForm"
+  (ngSubmit)="login()"
+  autocomplete="off"
+  novalidate
+>
+  <p class="text-center signup-register-header mb-4">Login</p>
+  <div class="form-group">
+    <input
+      id="username"
+      type="text"
+      class="form-control ng-invalid submitted"
+      formControlName="username"
+      [(ngModel)]="model.username"
+      placeholder="Username"
+      required
+    />
   </div>
+  <div class="form-group">
+    <input
+      type="password"
+      class="form-control ng-invalid submitted"
+      formControlName="password"
+      [(ngModel)]="model.password"
+      placeholder="Password"
+      required
+    />
   </div>
-    
-    <div class="form-group text-center">
-        <button class="btn btn-success mr-2" type="submit" >Login</button>
-    </div>
-    
+  <div id="loginErrorMessage">
+    <p class="error pl-2">Username or password is incorrect</p>
+  </div>
+  <div class="form-group text-center">
+    <button class="btn btn-success mr-2 register-login-button" type="submit">
+      Login
+    </button>
+  </div>
 </form>
-

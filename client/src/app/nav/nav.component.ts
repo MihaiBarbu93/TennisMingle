@@ -8,6 +8,7 @@ import { AccountService } from '../_services/account.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { User } from '../_models/user';
 
 @Component({
   selector: 'app-nav',
@@ -16,7 +17,7 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 })
 export class NavComponent implements OnInit {
   cities: City[] = [];
-  
+  user: User;
   modalRef!: BsModalRef;
   faSearch = faSearch;
   config = {
@@ -32,8 +33,10 @@ export class NavComponent implements OnInit {
   ) {}
   selectedCity!: City;
   cityName!: string;
+  loggedIn: boolean;
 
   ngOnInit(): void {
+    this.getCurrentUser();
     this.loadCities();
   }
 
@@ -44,9 +47,15 @@ export class NavComponent implements OnInit {
     });
   }
 
+  // login() {
+  //   this.accountService.login().subscribe((response) => {
+  //     this.router.navigateByUrl('/members');
+  //   });
+  // }
+
   logout() {
     this.accountService.logout();
-    this.router.navigateByUrl('/')
+    this.router.navigateByUrl('/');
   }
 
   openModal(template: TemplateRef<any>) {
@@ -57,6 +66,17 @@ export class NavComponent implements OnInit {
   isHiddenChange(): void {
     this.data.currentMessage.subscribe(
       (message) => (this.cityName = this.cities[+message - 1].name)
+    );
+  }
+
+  getCurrentUser() {
+    this.accountService.currentUser$.subscribe(
+      (user) => {
+        this.loggedIn = !user;
+      },
+      (error) => {
+        console.log(error);
+      }
     );
   }
 }

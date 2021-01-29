@@ -1,0 +1,17 @@
+.bg-pink {
+  background-color: hotpink !important;
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+.booking-submit-button,
+.booking-cancel-button {
+  width: 10em;
+}
+
+:host {
+  --blue-primary: #1e90ff;
+  --blue-secondary: #d1e8ff;
+}
+
+

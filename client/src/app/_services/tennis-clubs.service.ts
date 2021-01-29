@@ -25,7 +25,7 @@ export class TennisClubsService {
     );
   }
 
-  getTennisClub(userId: number) {
+  getTennisClubByUserId(userId: number) {
     return this.http.get<TennisClub>(
       this.baseUrl + 'cities/1/tennisclubs/' + userId
     );

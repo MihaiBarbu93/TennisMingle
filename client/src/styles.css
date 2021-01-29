@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import "../node_modules/font-awesome/css/font-awesome.css";
 @import "../node_modules/ngx-bootstrap/datepicker/bs-datepicker.css";
-
+@import "../node_modules/angular-calendar/css/angular-calendar.css";
 img {
   border: 0 !important;
 }
@@ -186,20 +186,20 @@ footer {
 }
 
 .tm-btn--secondary {
-  background-color: #56e07b;
+  background-color: #56e07b !important;
   text-transform: uppercase;
-  color: black;
+  color: black !important;
   padding: 0.5rem 2rem;
-  font-size: 1rem;
-  font-weight: bolder;
-  line-height: 1.5rem;
-  transition: background-color 0.25s;
+  font-size: 1rem !important;
+  font-weight: bolder !important;
+  line-height: 1.5rem !important;
+  transition: background-color 0.25s !important;
   outline: none;
 }
 
 .tm-btn--secondary:hover {
   color: #373737;
-  background-color: #d4f7de;
+  background-color: #7ee79a !important;
 }
 
 a:focus,
@@ -450,68 +450,40 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-/* Base for label styling */
-[type="checkbox"]:not(:checked),
-[type="checkbox"]:checked {
-  position: absolute;
-  left: -9999px;
-}
-[type="checkbox"]:not(:checked) + label,
-[type="checkbox"]:checked + label {
-  position: relative;
-  padding-left: 25px;
-  cursor: pointer;
-}
-
-/* checkbox aspect */
-[type="checkbox"]:not(:checked) + label:before,
-[type="checkbox"]:checked + label:before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 2px;
-  width: 17px;
-  height: 17px;
-  border: 1px solid black;
-  background: white;
-  border-radius: 4px;
-}
-/* checked mark aspect */
-[type="checkbox"]:not(:checked) + label:after,
-[type="checkbox"]:checked + label:after {
-  content: "✔";
-  position: absolute;
-  top: 0;
-  left: 4px;
-  font-size: 14px;
-  color: #09ad7e;
-}
-/* checked mark aspect changes */
-[type="checkbox"]:not(:checked) + label:after {
-  opacity: 0;
-  transform: scale(0);
-}
-[type="checkbox"]:checked + label:after {
-  opacity: 1;
-  transform: scale(1);
-}
-
-[type="checkbox"]:disabled:checked + label:after {
-  color: #999;
-}
-[type="checkbox"]:disabled + label {
-  color: #aaa;
-}
-/* accessibility */
-/* [type="checkbox"]:checked:focus + label:before,
-[type="checkbox"]:not(:checked):focus + label:before {
-  border: 1px dotted black;
-} */
-
-.filter-option {
+/ .filter-option {
   font-size: 1.15em;
 }
 
 .bg-success {
   background-color: #56e07b !important;
+}
+
+.signup-register-header {
+  color: #56e07b;
+  font-size: 2.5em;
+  text-transform: uppercase;
+  margin-bottom: 1.5em !important;
+}
+
+.register-login-modal-header {
+  padding: 1em 1em 0 0 !important;
+  border-bottom: 0 !important;
+}
+.modal-dialog {
+  max-width: 400px;
+}
+
+.register-login-button {
+  width: 100%;
+}
+
+.bg-pink {
+  background-color: lightpink !important;
+  pointer-events: none;
+}
+
+.cal-day-segment-disabled,
+.cal-day-segment-disabled:hover {
+  background-color: grey !important;
+  cursor: not-allowed;
 }

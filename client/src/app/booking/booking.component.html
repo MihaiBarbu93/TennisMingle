@@ -1,0 +1,142 @@
+<form
+  [formGroup]="bookingForm"
+  (ngSubmit)="bookCourt()"
+  autocomplete="off"
+  novalidate
+>
+  <div class="form-row">
+    <div class="form-group col-md-6 mb-3">
+      <label for="FirstName">First Name</label>
+      <input
+        [(ngModel)]="model.firstName"
+        type="text"
+        class="form-control ng-pristine ng-invalid submitted"
+        id="FirstName"
+        name="FirstName"
+        formControlName="FirstName"
+      />
+      <p class="error" *ngIf="bookingForm.get('FirstName').invalid && (bookingForm.get('FirstName').dirty || bookingForm.get('FirstName').touched)">
+        <ng-container *ngIf="bookingForm.get('FirstName').hasError('required')">
+            First name is required
+        </ng-container>
+    </p>
+    </div>
+    <div class="form-group col-md-6 mb-3">
+      <label for="LastName">Last name</label>
+      <input
+        [(ngModel)]="model.lastName"
+        type="text"
+        class="form-control ng-pristine ng-invalid submitted"
+        id="LastName"
+        name="LastName"
+        formControlName="LastName"
+      />
+      <p class="error" *ngIf="bookingForm.get('LastName').invalid && (bookingForm.get('LastName').dirty || bookingForm.get('LastName').touched)">
+        <ng-container *ngIf="bookingForm.get('LastName').hasError('required')">
+            Last name is required
+        </ng-container>
+    </p>
+    </div>
+    <div class="form-group col-md-12 mb-3">
+      <label for="Email">Email address</label>
+      <input
+        [(ngModel)]="model.email"
+        type="email"
+        class="form-control ng-pristine ng-invalid submitted"
+        id="Email"
+        name="Email"
+        formControlName="Email"
+      />
+      <p class="error" *ngIf="bookingForm.get('Email').invalid && (bookingForm.get('Email').dirty || bookingForm.get('Email').touched)">
+        <ng-container *ngIf="bookingForm.get('Email').hasError('required')">
+            Email address is required
+        </ng-container>
+    </p>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-12 mb-3">
+      <label for="PhoneNumber">Phone Number</label>
+      <input
+        [(ngModel)]="model.phoneNumber"
+        type="text"
+        class="form-control ng-pristine ng-invalid submitted"
+        id="PhoneNumber"
+        name="PhoneNumber"
+        formControlName="PhoneNumber"
+      />
+      <p class="error" *ngIf="bookingForm.get('PhoneNumber').invalid && (bookingForm.get('PhoneNumber').dirty || bookingForm.get('PhoneNumber').touched)">
+        <ng-container *ngIf="bookingForm.get('PhoneNumber').hasError('required')">
+            Phone number is required
+        </ng-container>
+        <ng-container *ngIf="bookingForm.get('PhoneNumber').hasError('pattern')">
+            Invalid phone number
+        </ng-container>
+    </p>
+        
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6 mb-3">
+      <label for="DateStart">Select Date</label>
+      <input 
+        type="text"
+        placeholder="Datepicker"
+        class="form-control ng-pristine"
+        name="DateStart"
+        formControlName="DateStart"
+        (bsValueChange)="onDateChange($event)"
+        [minDate]="minDate"
+        bsDatepicker
+        [(ngModel)]="model.dateStart"
+
+      />
+      <p class="error" *ngIf="bookingForm.get('DateStart').invalid && bookingForm.get('DateStart').touched">
+        <ng-container *ngIf="bookingForm.get('DateStart').hasError('required')">
+            Booking date is required
+        </ng-container>
+    </p>
+    </div>
+    <div class="form-group col-md-6 mb-3">
+      <timepicker
+        class="form-control ng-pristine"
+        [(ngModel)]="model.time"
+        [showMeridian]="false"
+        name="Time"
+        formControlName="Time"
+      >
+      </timepicker>
+      <p class="error" *ngIf="bookingForm.get('Time').invalid &&  bookingForm.get('Time').touched">
+        <ng-container *ngIf="bookingForm.get('Time').hasError('required')">
+            Booking time is required
+        </ng-container>
+    </p>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-12 mb-3">
+      <label for="Duration">Select Duration (expressed in hours)</label>
+      <select
+        class="custom-select form-control ng-pristine"
+        id="Duration"
+        name="Duration"
+        formControlName="Duration"
+        [(ngModel)]="model.duration"
+      >
+        <option *ngFor="let nr of bookingHours" value="{{ nr }}">
+          {{ nr }}
+        </option>
+      </select>
+      <p class="error" *ngIf="bookingForm.get('Duration').invalid && bookingForm.get('Duration').touched">
+        <ng-container *ngIf="bookingForm.get('Duration').hasError('required')">
+            Booking hours are required
+        </ng-container>
+    </p>
+    </div>
+  </div>
+  <div class="form-group">
+    <button class="btn btn-block tm-btn--secondary" type="submit">
+      Submit Enquiry
+    </button>
+  </div>
+</form>

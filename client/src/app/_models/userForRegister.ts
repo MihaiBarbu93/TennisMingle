@@ -3,13 +3,11 @@ import { Photo } from './photo';
 import { City } from './city';
 import { Booking } from './booking';
 
-
 export interface UserForRegister {
-  
   username: string;
+  password: string;
   token: string;
-  dateOfbirth: Date;
+  dateofbirth: Date;
   city: City;
-  usertype: UserType;
-  
+  userType: UserType;
 }

@@ -24,16 +24,20 @@ namespace TennisMingle.API.Data
 
         public async Task<TennisClub> GetTenisClubByIdAsync(int tennisClubId)
         {
+            TennisClub tennisClub;
 
             try
             {
-                return await _context.TennisClubs
+                tennisClub = await _context.TennisClubs
                 .Include(tc => tc.City)
                 .Include(tc => tc.Facilities)
                 .Include(tc => tc.TennisCourts)
                 .Include(tc => tc.Photos)
                 .Include(tc => tc.Users)
                 .SingleOrDefaultAsync(tc => tc.Id == tennisClubId);
+                tennisClub.GeoLat = tennisClub.Location.Coordinate.X;
+                tennisClub.GeoLong = tennisClub.Location.Coordinate.Y;
+                return tennisClub;
             }
             catch (Exception ex)
             {
@@ -69,7 +73,7 @@ namespace TennisMingle.API.Data
             try
             {
                 var result = await _context.TennisClubs
-                .Where(tc => tc.CityId == cityId && tc.TennisCourts.Any(tco => tco.IsAvailable == true))
+                .Where(tc => tc.CityId == cityId)
                 .Include(tc => tc.TennisCourts)
                 .ThenInclude(tc => tc.Surface)
                 .Include(tc => tc.Facilities)

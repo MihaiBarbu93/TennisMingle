@@ -33,14 +33,23 @@
     </ul>
   </div>
   <ul class="navbar-nav mr-auto ml-2">
-    <ng-container>
-      <li class="nav-item">
+    <ng-container *ngIf="accountService.currentUser$ | async">
+      <!-- <li class="nav-item">
         <a
           class="nav-link search-link"
           routerLink="/"
           routerLinkActive="active"
           style="white-space: nowrap"
           ><fa-icon [icon]="faSearch" class="mr-1"></fa-icon> Search</a
+        >
+      </li> -->
+      <li *appHasRole="['Administrator']" class="nav-item">
+        <a
+          class="nav-link search-link"
+          routerLink="/admin"
+          routerLinkActive="active"
+        >
+          Admin</a
         >
       </li>
     </ng-container>
@@ -68,13 +77,19 @@
       </div>
     </div> -->
 
-    <div class="dropdown" *ngIf="(accountService.currentUser$ | async) as user" dropdown>
-      <a class="dropdown-toggle text-light ml-2" dropdownToggle>Welcome {{user.knownAs || user.userName | titlecase}}</a>
-      <div class="dropdown-menu mt-3" *dropdownMenu>
-          <a routerLink='/member/edit' class="dropdown-item">Edit Profile</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" (click)="logout()" >Logout</a>
-      </div>
+  <div
+    class="dropdown"
+    *ngIf="accountService.currentUser$ | async as user"
+    dropdown
+  >
+    <a class="dropdown-toggle text-light ml-2" dropdownToggle
+      >Welcome {{ user.knownAs || user.userName | titlecase }}</a
+    >
+    <div class="dropdown-menu mt-3" *dropdownMenu>
+      <a routerLink="/member/edit" class="dropdown-item">Edit Profile</a>
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" (click)="logout()">Logout</a>
+    </div>
   </div>
 
   <div
@@ -127,8 +142,7 @@
     </div>
   </div> -->
   <ng-template #registerTemplate>
-    <div class="modal-header">
-      <h4 class="modal-title pull-left">Tennis Mingle</h4>
+    <div class="modal-header register-login-modal-header">
       <button
         type="button"
         class="close pull-right"
@@ -139,13 +153,14 @@
       </button>
     </div>
     <div class="modal-body">
-      <app-register [modalRefFromNavComponent]="modalRef"
-                    [dropdownCities]="cities"></app-register>
+      <app-register
+        [modalRefFromNavComponent]="modalRef"
+        [dropdownCities]="cities"
+      ></app-register>
     </div>
   </ng-template>
   <ng-template #loginTemplate>
-    <div class="modal-header">
-      <h4 class="modal-title pull-left">Tennis Mingle</h4>
+    <div class="modal-header register-login-modal-header">
       <button
         type="button"
         class="close pull-right"
