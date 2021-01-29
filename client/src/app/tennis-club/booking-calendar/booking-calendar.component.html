@@ -1,4 +1,4 @@
-<h1 class="p-4 text-center">Reserve a tennis court</h1>
+<h1 class="p-4 text-center">Book a tennis court</h1>
 <mwl-demo-utils-calendar-header
   [(view)]="view"
   [(viewDate)]="viewDate"
@@ -31,6 +31,7 @@
       [viewDate]="viewDate"
       [events]="events"
       (hourSegmentClicked)="startBooking($event)"
+      (beforeViewRender)="beforeWeekViewRender($event)"
     >
     </mwl-calendar-week-view>
     <mwl-calendar-day-view

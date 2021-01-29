@@ -24,6 +24,8 @@ export class AccountService {
         if (user) {
           console.log(user);
           this.setCurrentUser(user);
+        } else {
+          console.log('nu e userrrrr');
         }
         console.log(user);
       })

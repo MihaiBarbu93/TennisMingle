@@ -25,17 +25,11 @@
     </span> -->
     <div *ngIf="f.username.touched && f.username.invalid" class="text-danger">
       <div class="pt-2" *ngIf="f.username.errors.minlength">
-        <i class="fa fa-times-circle"></i
-        ><small class="validation-error-message"
-          >The username must contain at least 8 characters</small
-        >
+        <p class="error">The username must contain at least 6 characters</p>
       </div>
-      <div class="pt-2" *ngIf="f.username.errors.cannotContainSpace">
-        <i class="fa fa-times-circle"></i>
-        <small class="validation-error-message"
-          >The username cannot contain spaces</small
-        >
-      </div>
+      <!-- <div class="pt-2" *ngIf="f.username.errors.cannotContainSpace">
+        <p class="error">The username cannot contain spaces</p>
+      </div> -->
     </div>
   </div>
   <div class="form-group">
@@ -51,10 +45,7 @@
       *ngIf="f.password.touched && f.password.invalid"
       class="text-danger pt-2"
     >
-      <i class="fa fa-times-circle"></i>
-      <small class="validation-error-message"
-        >The password must contain at least 8 characters</small
-      >
+      <p class="error">The password must contain at least 8 characters</p>
     </div>
   </div>
   <div class="form-group">

@@ -8,11 +8,12 @@ select.ng-invalid.ng-touched {
   border: 1px solid red;
 }
 
-.validation-error-message {
-  margin-left: 0.5em;
-}
-
 .form-control,
 .form-selects {
   margin-top: 1.5em !important;
+}
+
+.error {
+  color: red;
+  padding: 5px;
 }

@@ -8,3 +8,10 @@
 .booking-cancel-button {
   width: 10em;
 }
+
+:host {
+  --blue-primary: #1e90ff;
+  --blue-secondary: #d1e8ff;
+}
+
+

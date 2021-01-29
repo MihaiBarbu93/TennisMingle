@@ -70,8 +70,8 @@ export class RegisterComponent implements OnInit {
     this.registerForm = new FormGroup({
       username: new FormControl(this.model.username, [
         Validators.required,
-        Validators.minLength(8),
-        UsernameValidator.cannotContainSpace,
+        Validators.minLength(6),
+        // UsernameValidator.cannotContainSpace,
       ]),
       password: new FormControl(this.model.password, [
         Validators.required,

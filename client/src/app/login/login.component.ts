@@ -1,9 +1,12 @@
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { DataService } from 'src/app/_services/data-service.service';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { AccountService } from '../_services/account.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Validators } from '@angular/forms';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +21,8 @@ export class LoginComponent implements OnInit {
   constructor(
     public accountService: AccountService,
     private router: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private data: DataService
   ) {}
 
   ngOnInit(): void {
@@ -27,6 +31,19 @@ export class LoginComponent implements OnInit {
       password: new FormControl('', Validators.required),
     });
   }
+
+  ngAfterViewInit() {
+    let logginErrorMessage = document.getElementById('loginErrorMessage');
+    this.data.http401.asObservable().subscribe((values) => {
+      logginErrorMessage.style.display = 'block';
+    });
+
+    logginErrorMessage.style.display = 'none';
+    this.modalRefFromNavComponent.onHide.pipe(take(1)).subscribe(() => {
+      logginErrorMessage.style.display = 'none';
+    });
+  }
+
   get username() {
     return this.loginForm.get('username');
   }

@@ -68,6 +68,21 @@ function getTimezoneOffsetString(date: Date): string {
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './booking-calendar.component.html',
   styleUrls: ['./booking-calendar.component.css'],
+  styles: [
+    `
+      .cal-month-view .bg-pink,
+      .cal-week-view .cal-day-columns .bg-pink,
+      .cal-day-view .bg-pink {
+        background-color: hotpink !important;
+      }
+      ,
+      .cal-day-segment-disabled,
+      .cal-day-segment-disabled:hover {
+        background-color: grey !important;
+        cursor: not-allowed;
+      }
+    `,
+  ],
 })
 export class BookingCalendarComponent implements OnInit {
   @Input() tennisClubFromDetail: any;
@@ -86,6 +101,7 @@ export class BookingCalendarComponent implements OnInit {
   cityId: number;
   modalReference: any;
   baseUrl = 'https://localhost:5001/api/';
+  currentTimeAndDate: Date;
 
   constructor(
     private modal: NgbModal,
@@ -101,19 +117,24 @@ export class BookingCalendarComponent implements OnInit {
     this.fetchEvents();
   }
 
+  beforeWeekViewRender(renderEvent: CalendarWeekViewBeforeRenderEvent) {
+    let currentDate = new Date();
+    renderEvent.hourColumns.forEach((hourColumn) => {
+      hourColumn.hours.forEach((hour) => {
+        hour.segments.forEach((segment) => {
+          if (
+            (segment.date.getDay() == currentDate.getDay() &&
+              segment.date.getHours() < currentDate.getHours() + 1) ||
+            segment.date.getDay() < currentDate.getDay()
+          ) {
+            segment.cssClass = 'cal-day-segment-disabled';
+          }
+        });
+      });
+    });
+  }
+
   fetchEvents(): void {
-    const getStart: any = {
-      month: startOfMonth,
-      week: startOfWeek,
-      day: startOfDay,
-    }[this.view];
-
-    const getEnd: any = {
-      month: endOfMonth,
-      week: endOfWeek,
-      day: endOfDay,
-    }[this.view];
-
     this.events$ = this.http
       .get<any>(this.baseUrl + this.tennisClubId + '/booking')
       .pipe(
@@ -121,7 +142,7 @@ export class BookingCalendarComponent implements OnInit {
           return results.map((booking: BookingFromDb) => {
             console.log(booking);
             return {
-              title: 'unavailable',
+              title: 'booked',
               start: new Date(booking.dateStart),
               end: new Date(booking.dateEnd),
             };
@@ -151,7 +172,6 @@ export class BookingCalendarComponent implements OnInit {
   }
 
   startBooking(event) {
-    console.log(typeof event.date.getHours());
     if (event.date.getHours() > 7 && event.date.getHours() < 23) {
       this.viewDate = event.date;
       console.log(this.viewDate);
