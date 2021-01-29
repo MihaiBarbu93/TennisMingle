@@ -8,6 +8,7 @@ import { AccountService } from './account.service';
 import { map, take } from 'rxjs/operators';
 import { City } from '../_models/city';
 import { CompileShallowModuleMetadata } from '@angular/compiler';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root',
@@ -20,7 +21,8 @@ export class BookingService {
 
   constructor(
     private http: HttpClient,
-    private accountService: AccountService
+    private accountService: AccountService,
+    private toastr: ToastrService
   ) {
     this.accountService.currentUser$
       .pipe(take(1))
@@ -29,14 +31,15 @@ export class BookingService {
 
   book(model: any, tennisClub: TennisClub) {
     this.booking = this.convertModelToBooking(model, tennisClub);
-    this.CheckAvailability(model, tennisClub)
+    this.CheckAvailability(model, tennisClub).pipe(take(1)).subscribe(item=> this.tennisCourtId =item);
     if (this.tennisCourtId>0){
       this.booking.tennisCourtId = this.tennisCourtId;
       console.log("Booking complete");
       return this.http.post<any>(
         this.baseUrl + tennisClub.id + '/booking',
         this.booking
-      ).subscribe(data => console.log('data', data),
+      ).subscribe(data =>{ console.log('data', data),
+      this.toastr.success("You've successfully booked a tennis court")},
       err => console.log('error', err),
       () => console.log('Complete!'));
     }else{
@@ -72,8 +75,9 @@ export class BookingService {
   }
 
   CheckAvailability(model: any, tennisClub: TennisClub){
-    return this.http.post<number>(
+    var tennisCourtId =  this.http.post<number>(
       this.baseUrl  + tennisClub.id + '/booking/check-availability', this.booking
-    ).pipe(take(1)).subscribe(item => this.tennisCourtId=item);
+    );
+    return tennisCourtId;
   }
 }

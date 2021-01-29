@@ -6,6 +6,7 @@ import { AccountService } from '../_services/account.service';
 import { User } from '../_models/user';
 import * as moment from 'moment';
 import { DatePipe } from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-booking',
@@ -27,7 +28,8 @@ export class BookingComponent implements OnInit {
   constructor(
     private bookingService: BookingService,
     public accountService: AccountService,
-    public datepipe: DatePipe
+    public datepipe: DatePipe,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
