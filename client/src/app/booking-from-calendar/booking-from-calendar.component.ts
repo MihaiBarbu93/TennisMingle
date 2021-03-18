@@ -1,5 +1,5 @@
 import { ModalModule } from 'ngx-bootstrap/modal';
-import { AfterViewChecked, Component, Input, OnInit } from '@angular/core';
+import { AfterViewChecked, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -13,6 +13,9 @@ import { isThisMinute } from 'date-fns';
 import { ToastrService } from 'ngx-toastr';
 import { take } from 'rxjs/operators';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Observable } from 'rxjs';
+import { CalendarEvent } from 'angular-calendar';
+import { BookingFromDb } from '../_models/bookingFromDb';
 
 @Component({
   selector: 'app-booking-from-calendar',
@@ -23,6 +26,7 @@ export class BookingFromCalendarComponent implements OnInit {
   @Input() modalRefFromBookingCalendarComponent: any;
   @Input() tennisClubFromDetail: any;
   @Input() viewDate: any;
+  @Output("fetchEvents()") fetchEvents: EventEmitter<any> = new EventEmitter();
   model: any = {};
   bookingHours: number[] = [1, 2, 3];
   bookingForm: FormGroup;
@@ -30,6 +34,7 @@ export class BookingFromCalendarComponent implements OnInit {
   previousDate: Date;
   timeInitial: { hour: number; minutes: number } = { hour: 5, minutes: 24 };
   tennisClub: TennisClub;
+  events$: Observable<CalendarEvent<{ booking: BookingFromDb }>[]>;
 
   constructor(
     private bookingService: BookingService,
@@ -42,6 +47,7 @@ export class BookingFromCalendarComponent implements OnInit {
     this.createForm();
     this.myDateValue = new Date();
     this.setDateAndTime();
+    this.fetchEvents.emit();
   }
 
   private createForm() {
@@ -104,17 +110,19 @@ export class BookingFromCalendarComponent implements OnInit {
     if (this.bookingForm.valid) {
       let booking = this.bookingService.convertModelToBooking(this.model, this.tennisClubFromDetail);
       this.bookingService.CheckAvailability(booking, this.tennisClubFromDetail).subscribe(item=>{
-        if (item>0){
-          booking.tennisCourtId = item;
-          return this.bookingService
-            .book(this.tennisClubFromDetail, booking).pipe(take(1)).subscribe(data =>{ console.log('data', data),
-            this.toastr.success("You've successfully booked a tennis court")},
-            err => console.log('error', err),
-            () => console.log('Complete!'));
-        }else{
-          this.toastr.error("No courts available");
-        } });
-        this.modal.dismissAll();
+      if (item>0){
+        booking.tennisCourtId = item;
+        return this.bookingService
+          .book(this.tennisClubFromDetail, booking).subscribe(data =>{ console.log('data', data),
+          
+          this.toastr.success("You've successfully booked a tennis court")},
+          err => console.log('error', err),
+          () => console.log('Complete!'));
+          
+      }else{
+        this.toastr.error("No courts available");
+      } });
+      this.modal.dismissAll();
     } else {
       this.bookingForm.markAllAsTouched();
     }

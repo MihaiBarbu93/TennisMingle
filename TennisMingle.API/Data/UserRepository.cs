@@ -27,6 +27,7 @@ namespace TennisMingle.API.Data
         {
             return await _context.Users
                 .Where(x => x.UserName == username)
+                .Include(x=> x.Bookings)
                 .ProjectTo<MemberDto>(_mapper.ConfigurationProvider)
                 .SingleOrDefaultAsync();
         }

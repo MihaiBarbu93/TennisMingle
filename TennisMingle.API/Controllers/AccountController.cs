@@ -73,6 +73,7 @@ namespace TennisMingle.API.Controllers
         {
             var user = await _userManager.Users
                 .Include(p=>p.Photo)
+                .Include(p=>p.Bookings)
                 .SingleOrDefaultAsync(x => x.UserName == loginDto.Username);
 
             if (user == null) return Unauthorized("Invalid username");

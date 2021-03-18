@@ -89,13 +89,12 @@ export class BookingCalendarComponent implements OnInit {
   @Input() tennisClubFromDetail: any;
   @Input() allBookings: Booking[];
   @ViewChild('modalContent', { static: true }) modalContent: TemplateRef<any>;
-
+  
   view: CalendarView = CalendarView.Week;
-
   viewDate: Date = new Date();
 
   events$: Observable<CalendarEvent<{ booking: BookingFromDb }>[]>;
-
+  @Input() weekStartsOn: number;
   activeDayIsOpen: boolean = false;
 
   tennisClubId: number;
@@ -116,26 +115,28 @@ export class BookingCalendarComponent implements OnInit {
     this.cityId = +this.route.snapshot.params.cityId;
     this.tennisClubId = +this.route.snapshot.params.id;
     this.fetchEvents();
+  
   }
 
   beforeWeekViewRender(renderEvent: CalendarWeekViewBeforeRenderEvent) {
-    let currentDate = new Date();
-    renderEvent.hourColumns.forEach((hourColumn) => {
-      hourColumn.hours.forEach((hour) => {
-        hour.segments.forEach((segment) => {
-          if (
-            (segment.date.getDay() == currentDate.getDay() &&
-              segment.date.getHours() < currentDate.getHours() + 1) ||
-            segment.date.getDay() < currentDate.getDay()
-          ) {
-            segment.cssClass = 'cal-day-segment-disabled';
-          }
-        });
-      });
-    });
+    // let currentDate = new Date();
+    // renderEvent.hourColumns.forEach((hourColumn) => {
+    //   hourColumn.hours.forEach((hour) => {
+    //     hour.segments.forEach((segment) => {
+    //       if (
+    //         (segment.date.getDay() == currentDate.getDay() &&
+    //           segment.date.getHours() < currentDate.getHours() + 1) ||
+    //         segment.date.getDay() < currentDate.getDay()
+    //       ) {
+    //         segment.cssClass = 'cal-day-segment-disabled';
+    //       }
+    //     });
+    //   });
+    // });
   }
 
   fetchEvents(): void {
+    this.weekStartsOn = 4;
     this.events$ = this.http
       .get<any>(this.baseUrl + this.tennisClubId + '/booking')
       .pipe(

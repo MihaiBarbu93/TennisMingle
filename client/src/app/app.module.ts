@@ -47,6 +47,9 @@ import { DatePipe } from '@angular/common';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { BookingFromCalendarComponent } from './booking-from-calendar/booking-from-calendar.component';
 import { LoadingInterceptor } from './_interceptors/loading.interceptor';
+import { MemberProfileComponent } from './members/member-profile/member-profile.component';
+import {MatTableModule } from "@angular/material/table";
+
 
 @NgModule({
   declarations: [
@@ -69,6 +72,7 @@ import { LoadingInterceptor } from './_interceptors/loading.interceptor';
     BookingComponent,
     BookingCalendarComponent,
     BookingFromCalendarComponent,
+    MemberProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -78,6 +82,7 @@ import { LoadingInterceptor } from './_interceptors/loading.interceptor';
     BsDatepickerModule.forRoot(),
     FormsModule,
     SharedModule,
+    MatTableModule,
     NgxSpinnerModule,
     FontAwesomeModule,
     BsDropdownModule.forRoot(),
