@@ -20,6 +20,7 @@
       *ngSwitchCase="'month'"
       [viewDate]="viewDate"
       [events]="events"
+      [tennisClubId]="tennisClubId"
       [activeDayIsOpen]="activeDayIsOpen"
       (dayClicked)="dayClicked($event.day)"
     >
@@ -56,7 +57,9 @@
       [tennisClubFromDetail]="tennisClubFromDetail"
       [viewDate]="viewDate"
       [modalRefFromBookingCalendarComponent]="modalReference"
-      (newBooking)="newBooking($event)"
+      [events$]="events$"
+      [tennisClubId]="tennisClubId"
+      (newBooking)="addBooking($event)"
     ></app-booking-from-calendar>
   </div>
 </ng-template>

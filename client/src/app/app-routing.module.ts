@@ -9,6 +9,7 @@ import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { ServerErrorComponent } from './errors/server-error/server-error.component';
 import { AdminGuard } from './_guards/admin.guard';
 import { MemberProfileComponent } from './members/member-profile/member-profile.component';
+import { BookingCalendarComponent } from './tennis-club/booking-calendar/booking-calendar.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -19,6 +20,9 @@ const routes: Routes = [
   },
   {path: 'user/:userId', component: MemberProfileComponent},
   {path: 'user/:username', component: MemberProfileComponent},
+
+
+  {path: 'load-calendar-component', component: BookingCalendarComponent},
 
   {
     path: 'cities/:cityId/tennis-clubs/:id',

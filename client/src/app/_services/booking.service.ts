@@ -9,6 +9,9 @@ import { map, take } from 'rxjs/operators';
 import { City } from '../_models/city';
 import { CompileShallowModuleMetadata } from '@angular/compiler';
 import { ToastrService } from 'ngx-toastr';
+import { Observable } from 'rxjs';
+import { CalendarEvent } from 'angular-calendar';
+import { BookingFromDb } from '../_models/bookingFromDb';
 
 @Injectable({
   providedIn: 'root',
@@ -29,11 +32,31 @@ export class BookingService {
       .subscribe((user) => (this.user = user));
   }
 
-  async book(tennisClub: TennisClub, booking: Booking) {
+  book(tennisClub: TennisClub, booking: Booking) {
     return this.http.post<any>(
       this.baseUrl + tennisClub.id + '/booking',
       booking)
    
+  }
+
+  fetchEvents(tennisClubId ) {
+    console.log("fetchuuuuuuuuuuuuuuuuuuuuuuuuu")
+    let events = this.http
+      .get<any>(this.baseUrl + tennisClubId + '/booking')
+      .pipe(
+        map((results: BookingFromDb[]) => {
+          return results.map((booking: BookingFromDb) => {
+            console.log(booking);
+            return {
+              title: 'booked',
+              start: new Date(booking.dateStart),
+              end: new Date(booking.dateEnd),
+            };
+          });
+        })
+      );
+      
+     return events;  
   }
 
   getBookingsForAClub(tennisClubId: number) {

@@ -13,9 +13,10 @@ import { isThisMinute } from 'date-fns';
 import { ToastrService } from 'ngx-toastr';
 import { take } from 'rxjs/operators';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { CalendarEvent } from 'angular-calendar';
 import { BookingFromDb } from '../_models/bookingFromDb';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-booking-from-calendar',
@@ -26,7 +27,10 @@ export class BookingFromCalendarComponent implements OnInit {
   @Input() modalRefFromBookingCalendarComponent: any;
   @Input() tennisClubFromDetail: any;
   @Input() viewDate: any;
-  @Output() newBooking: EventEmitter<string> = new EventEmitter<string>() ;
+  
+  @Output() childEvents: Observable<CalendarEvent<{ booking: BookingFromDb }>[]>;
+  @Output() newBooking = new EventEmitter<any>();
+  @Input() tennisClubId: any;
   model: any = {};
   bookingHours: number[] = [1, 2, 3];
   bookingForm: FormGroup;
@@ -34,7 +38,7 @@ export class BookingFromCalendarComponent implements OnInit {
   previousDate: Date;
   timeInitial: { hour: number; minutes: number } = { hour: 5, minutes: 24 };
   tennisClub: TennisClub;
-  events$: Observable<CalendarEvent<{ booking: BookingFromDb }>[]>;
+
   
 
   constructor(
@@ -42,13 +46,18 @@ export class BookingFromCalendarComponent implements OnInit {
     public accountService: AccountService,
     private formBuilder: FormBuilder,
     private toastr: ToastrService,
-    private modal: NgbModal
+    private modal: NgbModal,
+    private router: Router
   ) {}
   ngOnInit(): void {
     this.createForm();
     this.myDateValue = new Date();
     this.setDateAndTime();
 
+  }
+
+  addNewBooking(childEvents: Observable<CalendarEvent<{ booking: BookingFromDb }>[]>) {
+    this.newBooking.emit(childEvents);
   }
 
   private createForm() {
@@ -107,22 +116,29 @@ export class BookingFromCalendarComponent implements OnInit {
     this.previousDate = new Date(newDate);
   }
 
-  async bookCourt() {
   
-    this.newBooking.emit("Emitateeeee");
+
+  async bookCourt() {
     if (this.bookingForm.valid) {
       let booking = this.bookingService.convertModelToBooking(this.model, this.tennisClubFromDetail);
       this.bookingService.CheckAvailability(booking, this.tennisClubFromDetail).subscribe(async item=>{
       if (item>0){
         booking.tennisCourtId = item;
         return this.bookingService
-          .book(this.tennisClubFromDetail, booking).then(x=>{ console.log("x:", x); this.newBooking.emit("Emitateeeee")});
+          .book(this.tennisClubFromDetail, booking).subscribe(x=>{ console.log("x:", x); 
+          this.router.navigateByUrl('load-calendar-component', { skipLocationChange: true }).then(() => {
+            this.router.navigate(['cities/'+this.tennisClubFromDetail.cityId+'/tennis-clubs/'+this.tennisClubId]);
+        });
           
+          
+          
+          this.addNewBooking(this.bookingService.fetchEvents(this.tennisClubId))});  
       }else{
         this.toastr.error("No courts available");
       } });
      //(this.tennisClubFromDetail, booking).toPromise().then(x=>this.fetchEvents);
       this.modal.dismissAll();
+      
       // this.fetchEvents.toPromise().then(x=>x)
     } else {
       this.bookingForm.markAllAsTouched();

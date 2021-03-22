@@ -25,7 +25,7 @@ import {
   endOfWeek,
   format,
 } from 'date-fns';
-import { Observable, of, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import {
   CalendarDayViewBeforeRenderEvent,
@@ -66,7 +66,6 @@ function getTimezoneOffsetString(date: Date): string {
 
 @Component({
   selector: 'app-booking-calendar',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './booking-calendar.component.html',
   styleUrls: ['./booking-calendar.component.css'],
   styles: [
@@ -103,6 +102,8 @@ export class BookingCalendarComponent implements OnInit {
   baseUrl = 'https://localhost:5001/api/';
   currentTimeAndDate: Date;
 
+
+
   constructor(
     private modal: NgbModal,
     private bookingService: BookingService,
@@ -118,11 +119,6 @@ export class BookingCalendarComponent implements OnInit {
   
   }
 
-  newBooking(event:string){
-    console.log(event)
-    this.fetchEvents();
-    
-  }
 
 
   beforeWeekViewRender(renderEvent: CalendarWeekViewBeforeRenderEvent) {
@@ -142,23 +138,14 @@ export class BookingCalendarComponent implements OnInit {
     // });
   }
 
-  fetchEvents(): void {
-    console.log("fetchuuuuuuuuuuuuuuuuuuuuuuuuu")
-    this.weekStartsOn = 4;
-    this.events$ = this.http
-      .get<any>(this.baseUrl + this.tennisClubId + '/booking')
-      .pipe(
-        map((results: BookingFromDb[]) => {
-          return results.map((booking: BookingFromDb) => {
-            console.log(booking);
-            return {
-              title: 'booked',
-              start: new Date(booking.dateStart),
-              end: new Date(booking.dateEnd),
-            };
-          });
-        })
-      );
+  addBooking(childEvents: Observable<CalendarEvent<{ booking: BookingFromDb }>[]>) {
+    this.events$ =  childEvents;
+    this.ngOnInit();
+  }
+
+
+  fetchEvents() {
+    this.events$ = this.bookingService.fetchEvents(this.tennisClubId)  
   }
 
   dayClicked({
