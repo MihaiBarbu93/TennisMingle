@@ -29,22 +29,11 @@ export class BookingService {
       .subscribe((user) => (this.user = user));
   }
 
-  book(model: any, tennisClub: TennisClub) {
-    this.booking = this.convertModelToBooking(model, tennisClub);
-    this.CheckAvailability(model, tennisClub).pipe(take(1)).subscribe(item=> this.tennisCourtId =item);
-    if (this.tennisCourtId>0){
-      this.booking.tennisCourtId = this.tennisCourtId;
-      console.log("Booking complete");
-      return this.http.post<any>(
-        this.baseUrl + tennisClub.id + '/booking',
-        this.booking
-      ).subscribe(data =>{ console.log('data', data),
-      this.toastr.success("You've successfully booked a tennis court")},
-      err => console.log('error', err),
-      () => console.log('Complete!'));
-    }else{
-      console.log("No courts available");
-    }
+  book(tennisClub: TennisClub, booking: Booking) {
+    return this.http.post<any>(
+      this.baseUrl + tennisClub.id + '/booking',
+      booking)
+   
   }
 
   getBookingsForAClub(tennisClubId: number) {
@@ -57,7 +46,6 @@ export class BookingService {
     booking.lastName = model.lastName;
     booking.email = model.email;
     booking.userName = this.user.userName;
-    console.log(this.user.userName);
     booking.phoneNumber = model.phoneNumber;
     booking.dateStart = model.dateStart;
     booking.dateStart.setHours(
@@ -74,10 +62,11 @@ export class BookingService {
   
   }
 
-  CheckAvailability(model: any, tennisClub: TennisClub){
+  CheckAvailability(booking: Booking, tennisClub: TennisClub){
     var tennisCourtId =  this.http.post<number>(
-      this.baseUrl  + tennisClub.id + '/booking/check-availability', this.booking
+      this.baseUrl  + tennisClub.id + '/booking/check-availability', booking
     );
+    console.log("check avalb", tennisCourtId);
     return tennisCourtId;
   }
 }

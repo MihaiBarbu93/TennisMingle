@@ -45,6 +45,7 @@ import { TennisClub } from 'src/app/_models/tennisClub';
 import { HttpParams, HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { datepickerAnimation } from 'ngx-bootstrap/datepicker/datepicker-animations';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 interface BookingFromDb {
   id: number;
@@ -99,7 +100,7 @@ export class BookingCalendarComponent implements OnInit {
 
   tennisClubId: number;
   cityId: number;
-  modalReference: any;
+  @Input() modalReference: any;
   baseUrl = 'https://localhost:5001/api/';
   currentTimeAndDate: Date;
 
