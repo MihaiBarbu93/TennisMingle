@@ -96,7 +96,7 @@ export class BookingCalendarComponent implements OnInit {
   events$: Observable<CalendarEvent<{ booking: BookingFromDb }>[]>;
   @Input() weekStartsOn: number;
   activeDayIsOpen: boolean = false;
-
+  bookEmiter: boolean = false;
   tennisClubId: number;
   cityId: number;
   @Input() modalReference: any;
@@ -118,6 +118,13 @@ export class BookingCalendarComponent implements OnInit {
   
   }
 
+  newBooking(event:string){
+    console.log(event)
+    this.fetchEvents();
+    
+  }
+
+
   beforeWeekViewRender(renderEvent: CalendarWeekViewBeforeRenderEvent) {
     // let currentDate = new Date();
     // renderEvent.hourColumns.forEach((hourColumn) => {
@@ -136,6 +143,7 @@ export class BookingCalendarComponent implements OnInit {
   }
 
   fetchEvents(): void {
+    console.log("fetchuuuuuuuuuuuuuuuuuuuuuuuuu")
     this.weekStartsOn = 4;
     this.events$ = this.http
       .get<any>(this.baseUrl + this.tennisClubId + '/booking')

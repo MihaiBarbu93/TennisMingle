@@ -29,7 +29,7 @@ export class BookingService {
       .subscribe((user) => (this.user = user));
   }
 
-  book(tennisClub: TennisClub, booking: Booking) {
+  async book(tennisClub: TennisClub, booking: Booking) {
     return this.http.post<any>(
       this.baseUrl + tennisClub.id + '/booking',
       booking)

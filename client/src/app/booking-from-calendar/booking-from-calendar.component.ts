@@ -26,7 +26,7 @@ export class BookingFromCalendarComponent implements OnInit {
   @Input() modalRefFromBookingCalendarComponent: any;
   @Input() tennisClubFromDetail: any;
   @Input() viewDate: any;
-  @Output("fetchEvents()") fetchEvents: EventEmitter<any> = new EventEmitter();
+  @Output() newBooking: EventEmitter<string> = new EventEmitter<string>() ;
   model: any = {};
   bookingHours: number[] = [1, 2, 3];
   bookingForm: FormGroup;
@@ -35,6 +35,7 @@ export class BookingFromCalendarComponent implements OnInit {
   timeInitial: { hour: number; minutes: number } = { hour: 5, minutes: 24 };
   tennisClub: TennisClub;
   events$: Observable<CalendarEvent<{ booking: BookingFromDb }>[]>;
+  
 
   constructor(
     private bookingService: BookingService,
@@ -47,7 +48,7 @@ export class BookingFromCalendarComponent implements OnInit {
     this.createForm();
     this.myDateValue = new Date();
     this.setDateAndTime();
-    this.fetchEvents.emit();
+
   }
 
   private createForm() {
@@ -106,23 +107,23 @@ export class BookingFromCalendarComponent implements OnInit {
     this.previousDate = new Date(newDate);
   }
 
-  bookCourt() {
+  async bookCourt() {
+  
+    this.newBooking.emit("Emitateeeee");
     if (this.bookingForm.valid) {
       let booking = this.bookingService.convertModelToBooking(this.model, this.tennisClubFromDetail);
-      this.bookingService.CheckAvailability(booking, this.tennisClubFromDetail).subscribe(item=>{
+      this.bookingService.CheckAvailability(booking, this.tennisClubFromDetail).subscribe(async item=>{
       if (item>0){
         booking.tennisCourtId = item;
         return this.bookingService
-          .book(this.tennisClubFromDetail, booking).subscribe(data =>{ console.log('data', data),
-          
-          this.toastr.success("You've successfully booked a tennis court")},
-          err => console.log('error', err),
-          () => console.log('Complete!'));
+          .book(this.tennisClubFromDetail, booking).then(x=>{ console.log("x:", x); this.newBooking.emit("Emitateeeee")});
           
       }else{
         this.toastr.error("No courts available");
       } });
+     //(this.tennisClubFromDetail, booking).toPromise().then(x=>this.fetchEvents);
       this.modal.dismissAll();
+      // this.fetchEvents.toPromise().then(x=>x)
     } else {
       this.bookingForm.markAllAsTouched();
     }

@@ -75,14 +75,14 @@ export class BookingComponent implements OnInit {
     this.previousDate = new Date(newDate);
   }
 
-  async bookCourt() {
+  bookCourt() {
     if (this.bookingForm.valid) {
       let booking = this.bookingService.convertModelToBooking(this.model, this.tennisClubFromDetail);
-      this.bookingService.CheckAvailability(booking, this.tennisClubFromDetail).subscribe(item=>{
+      this.bookingService.CheckAvailability(booking, this.tennisClubFromDetail).subscribe(async item=>{
         if (item>0){
           booking.tennisCourtId = item;
-          return this.bookingService
-            .book(this.tennisClubFromDetail, booking).pipe(take(1)).subscribe(data =>{ console.log('data', data),
+          return (await this.bookingService
+            .book(this.tennisClubFromDetail, booking)).pipe(take(1)).subscribe(data =>{ console.log('data', data),
             this.toastr.success("You've successfully booked a tennis court")},
             err => console.log('error', err),
             () => console.log('Complete!'));
