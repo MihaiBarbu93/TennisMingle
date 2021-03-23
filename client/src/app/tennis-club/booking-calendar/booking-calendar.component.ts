@@ -9,6 +9,8 @@ import {
   EventEmitter,
   Input,
   ChangeDetectorRef,
+  OnChanges,
+  SimpleChanges,
 } from '@angular/core';
 import {
   startOfDay,
@@ -103,6 +105,8 @@ export class BookingCalendarComponent implements OnInit {
   @Input() modalReference: any;
   baseUrl = 'https://localhost:5001/api/';
   currentTimeAndDate: Date;
+  subscription: any;
+  refresh: Subject<any> = new Subject();
 
   constructor(
     private modal: NgbModal,
@@ -112,10 +116,19 @@ export class BookingCalendarComponent implements OnInit {
     private route: ActivatedRoute,
     private http: HttpClient
   ) {}
+
   ngOnInit(): void {
+    this.subscription = this.bookingService.on('call-parent').subscribe(() => {
+      this.parentFunction();
+      this.fetchEvents();
+    });
     this.cityId = +this.route.snapshot.params.cityId;
     this.tennisClubId = +this.route.snapshot.params.id;
     this.fetchEvents();
+  }
+
+  parentFunction() {
+    this.refresh.next();
   }
 
   beforeWeekViewRender(renderEvent: CalendarWeekViewBeforeRenderEvent) {
@@ -136,10 +149,13 @@ export class BookingCalendarComponent implements OnInit {
   }
 
   fetchEvents(): void {
+    console.log('ma chemi?');
+
     this.events$ = this.http
       .get<any>(this.baseUrl + this.tennisClubId + '/booking')
       .pipe(
         map((results: BookingFromDb[]) => {
+          console.log(results);
           return results.map((booking: BookingFromDb) => {
             console.log(booking);
             return {

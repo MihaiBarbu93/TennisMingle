@@ -102,19 +102,36 @@ export class BookingFromCalendarComponent implements OnInit {
 
   bookCourt() {
     if (this.bookingForm.valid) {
-      let booking = this.bookingService.convertModelToBooking(this.model, this.tennisClubFromDetail);
-      this.bookingService.CheckAvailability(booking, this.tennisClubFromDetail).subscribe(item=>{
-        if (item>0){
-          booking.tennisCourtId = item;
-          return this.bookingService
-            .book(this.tennisClubFromDetail, booking).pipe(take(1)).subscribe(data =>{ console.log('data', data),
-            this.toastr.success("You've successfully booked a tennis court")},
-            err => console.log('error', err),
-            () => console.log('Complete!'));
-        }else{
-          this.toastr.error("No courts available");
-        } });
-        this.modal.dismissAll();
+      let booking = this.bookingService.convertModelToBooking(
+        this.model,
+        this.tennisClubFromDetail
+      );
+      this.bookingService
+        .CheckAvailability(booking, this.tennisClubFromDetail)
+        .subscribe((item) => {
+          if (item > 0) {
+            booking.tennisCourtId = item;
+            return this.bookingService
+              .book(this.tennisClubFromDetail, booking)
+              .pipe(take(1))
+              .subscribe(
+                (data) => {
+                  console.log('data', data),
+                    this.toastr.success(
+                      "You've successfully booked a tennis court"
+                    );
+                },
+                (err) => console.log('error', err),
+                () => {
+                  console.log('Complete!');
+                  this.bookingService.publish('call-parent');
+                }
+              );
+          } else {
+            this.toastr.error('No courts available');
+          }
+        });
+      this.modal.dismissAll();
     } else {
       this.bookingForm.markAllAsTouched();
     }

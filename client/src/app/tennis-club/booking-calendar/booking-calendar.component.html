@@ -28,6 +28,7 @@
       *ngSwitchCase="'week'"
       [dayStartHour]="8"
       [dayEndHour]="22"
+      [refresh]="refresh"
       [viewDate]="viewDate"
       [events]="events"
       (hourSegmentClicked)="startBooking($event)"

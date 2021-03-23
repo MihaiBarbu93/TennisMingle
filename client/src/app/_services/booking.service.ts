@@ -9,6 +9,7 @@ import { map, take } from 'rxjs/operators';
 import { City } from '../_models/city';
 import { CompileShallowModuleMetadata } from '@angular/compiler';
 import { ToastrService } from 'ngx-toastr';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +18,8 @@ export class BookingService {
   booking: Booking;
   baseUrl = 'https://localhost:5001/api/';
   user: User;
-  tennisCourtId : number;
+  tennisCourtId: number;
+  private subjects: Subject<string>[] = [];
 
   constructor(
     private http: HttpClient,
@@ -29,11 +31,27 @@ export class BookingService {
       .subscribe((user) => (this.user = user));
   }
 
+  publish(eventName: string) {
+    // ensure a subject for the event name exists
+    this.subjects[eventName] = this.subjects[eventName] || new Subject();
+
+    // publish event
+    this.subjects[eventName].next();
+  }
+
+  on(eventName: string): Observable<string> {
+    // ensure a subject for the event name exists
+    this.subjects[eventName] = this.subjects[eventName] || new Subject();
+
+    // return observable
+    return this.subjects[eventName].asObservable();
+  }
+
   book(tennisClub: TennisClub, booking: Booking) {
     return this.http.post<any>(
       this.baseUrl + tennisClub.id + '/booking',
-      booking)
-   
+      booking
+    );
   }
 
   getBookingsForAClub(tennisClubId: number) {
@@ -59,14 +77,14 @@ export class BookingService {
     );
     // booking.tennisCourtId = tennisClub.tennisCourts.find(tc=>tc).id;
     return booking;
-  
   }
 
-  CheckAvailability(booking: Booking, tennisClub: TennisClub){
-    var tennisCourtId =  this.http.post<number>(
-      this.baseUrl  + tennisClub.id + '/booking/check-availability', booking
+  CheckAvailability(booking: Booking, tennisClub: TennisClub) {
+    var tennisCourtId = this.http.post<number>(
+      this.baseUrl + tennisClub.id + '/booking/check-availability',
+      booking
     );
-    console.log("check avalb", tennisCourtId);
+    console.log('check avalb', tennisCourtId);
     return tennisCourtId;
   }
 }
