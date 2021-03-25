@@ -7,6 +7,7 @@ import { User } from '../_models/user';
 import * as moment from 'moment';
 import { DatePipe } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-booking',
@@ -74,10 +75,21 @@ export class BookingComponent implements OnInit {
     this.previousDate = new Date(newDate);
   }
 
-  bookCourt() {
+  async bookCourt() {
     if (this.bookingForm.valid) {
-      return this.bookingService
-        .book(this.model, this.tennisClubFromDetail)
+      let booking = this.bookingService.convertModelToBooking(this.model, this.tennisClubFromDetail);
+      this.bookingService.CheckAvailability(booking, this.tennisClubFromDetail).subscribe(item=>{
+        if (item>0){
+          booking.tennisCourtId = item;
+          return this.bookingService
+            .book(this.tennisClubFromDetail, booking).pipe(take(1)).subscribe(data =>{ console.log('data', data),
+            this.toastr.success("You've successfully booked a tennis court")},
+            err => console.log('error', err),
+            () => console.log('Complete!'));
+        }else{
+          this.toastr.error("No courts available");
+        } });
+      
     } else {
       this.bookingForm.markAllAsTouched();
     }

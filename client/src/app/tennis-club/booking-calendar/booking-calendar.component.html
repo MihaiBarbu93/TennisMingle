@@ -28,6 +28,7 @@
       *ngSwitchCase="'week'"
       [dayStartHour]="8"
       [dayEndHour]="22"
+      [refresh]="refresh"
       [viewDate]="viewDate"
       [events]="events"
       (hourSegmentClicked)="startBooking($event)"
@@ -54,6 +55,7 @@
     <app-booking-from-calendar
       [tennisClubFromDetail]="tennisClubFromDetail"
       [viewDate]="viewDate"
+      [modalRefFromBookingCalendarComponent]="modalReference"
     ></app-booking-from-calendar>
   </div>
 </ng-template>
