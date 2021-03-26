@@ -22,6 +22,7 @@
       [events]="events"
       [activeDayIsOpen]="activeDayIsOpen"
       (dayClicked)="dayClicked($event.day)"
+
     >
     </mwl-calendar-month-view>
     <mwl-calendar-week-view
@@ -31,6 +32,7 @@
       [refresh]="refresh"
       [viewDate]="viewDate"
       [events]="events"
+      [weekStartsOn]="5"
       (hourSegmentClicked)="startBooking($event)"
       (beforeViewRender)="beforeWeekViewRender($event)"
     >
@@ -39,6 +41,7 @@
       *ngSwitchCase="'day'"
       [viewDate]="viewDate"
       [events]="events"
+      
     >
     </mwl-calendar-day-view>
   </div>

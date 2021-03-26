@@ -138,8 +138,9 @@ export class BookingCalendarComponent implements OnInit {
         hour.segments.forEach((segment) => {
           if (
             (segment.date.getDay() == currentDate.getDay() &&
-              segment.date.getHours() < currentDate.getHours() + 1) ||
-            segment.date.getDay() < currentDate.getDay()
+              segment.date.getHours() < currentDate.getHours() + 1) 
+              //||
+            //segment.date.getDay() < currentDate.getDay()
           ) {
             segment.cssClass = 'cal-day-segment-disabled';
           }
