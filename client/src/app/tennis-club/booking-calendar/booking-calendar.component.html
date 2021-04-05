@@ -23,14 +23,17 @@
       [tennisClubId]="tennisClubId"
       [activeDayIsOpen]="activeDayIsOpen"
       (dayClicked)="dayClicked($event.day)"
+
     >
     </mwl-calendar-month-view>
     <mwl-calendar-week-view
       *ngSwitchCase="'week'"
       [dayStartHour]="8"
       [dayEndHour]="22"
+      [refresh]="refresh"
       [viewDate]="viewDate"
       [events]="events"
+      [weekStartsOn]="5"
       (hourSegmentClicked)="startBooking($event)"
       (beforeViewRender)="beforeWeekViewRender($event)"
       [weekStartsOn]="weekStartsOn"
@@ -40,6 +43,7 @@
       *ngSwitchCase="'day'"
       [viewDate]="viewDate"
       [events]="events"
+      
     >
     </mwl-calendar-day-view>
   </div>

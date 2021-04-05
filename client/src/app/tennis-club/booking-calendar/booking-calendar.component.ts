@@ -9,6 +9,8 @@ import {
   EventEmitter,
   Input,
   ChangeDetectorRef,
+  OnChanges,
+  SimpleChanges,
 } from '@angular/core';
 import {
   startOfDay,
@@ -25,7 +27,7 @@ import {
   endOfWeek,
   format,
 } from 'date-fns';
-import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import {
   CalendarDayViewBeforeRenderEvent,
@@ -66,6 +68,7 @@ function getTimezoneOffsetString(date: Date): string {
 
 @Component({
   selector: 'app-booking-calendar',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './booking-calendar.component.html',
   styleUrls: ['./booking-calendar.component.css'],
   styles: [
@@ -88,21 +91,22 @@ export class BookingCalendarComponent implements OnInit {
   @Input() tennisClubFromDetail: any;
   @Input() allBookings: Booking[];
   @ViewChild('modalContent', { static: true }) modalContent: TemplateRef<any>;
-  
+
   view: CalendarView = CalendarView.Week;
+
   viewDate: Date = new Date();
 
   events$: Observable<CalendarEvent<{ booking: BookingFromDb }>[]>;
-  @Input() weekStartsOn: number;
+
   activeDayIsOpen: boolean = false;
-  bookEmiter: boolean = false;
+
   tennisClubId: number;
   cityId: number;
   @Input() modalReference: any;
   baseUrl = 'https://localhost:5001/api/';
   currentTimeAndDate: Date;
-
-
+  subscription: any;
+  refresh: Subject<any> = new Subject();
 
   constructor(
     private modal: NgbModal,
@@ -112,40 +116,57 @@ export class BookingCalendarComponent implements OnInit {
     private route: ActivatedRoute,
     private http: HttpClient
   ) {}
+
   ngOnInit(): void {
+    this.subscription = this.bookingService.on('call-parent').subscribe(() => {
+      this.parentFunction();
+      this.fetchEvents();
+    });
     this.cityId = +this.route.snapshot.params.cityId;
     this.tennisClubId = +this.route.snapshot.params.id;
     this.fetchEvents();
-  
   }
 
-
+  parentFunction() {
+    this.refresh.next();
+  }
 
   beforeWeekViewRender(renderEvent: CalendarWeekViewBeforeRenderEvent) {
-    // let currentDate = new Date();
-    // renderEvent.hourColumns.forEach((hourColumn) => {
-    //   hourColumn.hours.forEach((hour) => {
-    //     hour.segments.forEach((segment) => {
-    //       if (
-    //         (segment.date.getDay() == currentDate.getDay() &&
-    //           segment.date.getHours() < currentDate.getHours() + 1) ||
-    //         segment.date.getDay() < currentDate.getDay()
-    //       ) {
-    //         segment.cssClass = 'cal-day-segment-disabled';
-    //       }
-    //     });
-    //   });
-    // });
+    let currentDate = new Date();
+    renderEvent.hourColumns.forEach((hourColumn) => {
+      hourColumn.hours.forEach((hour) => {
+        hour.segments.forEach((segment) => {
+          if (
+            (segment.date.getDay() == currentDate.getDay() &&
+              segment.date.getHours() < currentDate.getHours() + 1) 
+              //||
+            //segment.date.getDay() < currentDate.getDay()
+          ) {
+            segment.cssClass = 'cal-day-segment-disabled';
+          }
+        });
+      });
+    });
   }
 
-  addBooking(childEvents: Observable<CalendarEvent<{ booking: BookingFromDb }>[]>) {
-    this.events$ =  childEvents;
-    this.ngOnInit();
-  }
+  fetchEvents(): void {
+    console.log('ma chemi?');
 
-
-  fetchEvents() {
-    this.events$ = this.bookingService.fetchEvents(this.tennisClubId)  
+    this.events$ = this.http
+      .get<any>(this.baseUrl + this.tennisClubId + '/booking')
+      .pipe(
+        map((results: BookingFromDb[]) => {
+          console.log(results);
+          return results.map((booking: BookingFromDb) => {
+            console.log(booking);
+            return {
+              title: 'booked',
+              start: new Date(booking.dateStart),
+              end: new Date(booking.dateEnd),
+            };
+          });
+        })
+      );
   }
 
   dayClicked({
