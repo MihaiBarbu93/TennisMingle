@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, JsonpClientBackend } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { User } from '../_models/user';
-import { BehaviorSubject, ReplaySubject } from 'rxjs';
+import { ReplaySubject } from 'rxjs';
 import { UserForRegister } from '../_models/userForRegister';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AccountService {
-  baseUrl = 'https://localhost:5001/api/';
+  baseUrl = environment.apiUrl;
   private currentUserSource: ReplaySubject<User> = new ReplaySubject<User>(1);
   private newUserSource = new ReplaySubject<UserForRegister>(1);
   currentUser$ = this.currentUserSource.asObservable();
@@ -17,17 +18,12 @@ export class AccountService {
   constructor(private http: HttpClient) {}
 
   login(model: any) {
-    console.log(model);
     return this.http.post<User>(this.baseUrl + 'account/login', model).pipe(
       map((response: User) => {
         const user = response;
         if (user) {
-          console.log(user);
           this.setCurrentUser(user);
-        } else {
-          console.log('nu e userrrrr');
         }
-        console.log(user);
       })
     );
   }
@@ -51,7 +47,6 @@ export class AccountService {
     Array.isArray(roles) ? (user.roles = roles) : user.roles.push(roles);
     localStorage.setItem('user', JSON.stringify(user));
     this.currentUserSource.next(user);
-    console.log(user);
   }
 
   logout() {

@@ -10,6 +10,7 @@ import { ServerErrorComponent } from './errors/server-error/server-error.compone
 import { AdminGuard } from './_guards/admin.guard';
 import { MemberProfileComponent } from './members/member-profile/member-profile.component';
 import { BookingCalendarComponent } from './tennis-club/booking-calendar/booking-calendar.component';
+import { AuthGuard } from './_guards/auth.guard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -18,8 +19,15 @@ const routes: Routes = [
     path: 'cities/:cityId/tennis-clubs-withcourts',
     component: TennisClubListComponent,
   },
-  {path: 'user/:userId', component: MemberProfileComponent},
-  {path: 'user/:username', component: MemberProfileComponent},
+  {
+    path: '',
+    runGuardsAndResolvers: 'always',
+    canActivate: [AuthGuard],
+    children: [
+      {path: 'user/edit', component: MemberProfileComponent}
+    ]
+  },
+  
 
 
   {path: 'load-calendar-component', component: BookingCalendarComponent},

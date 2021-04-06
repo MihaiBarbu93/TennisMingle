@@ -49,6 +49,7 @@ import { BookingFromCalendarComponent } from './booking-from-calendar/booking-fr
 import { LoadingInterceptor } from './_interceptors/loading.interceptor';
 import { MemberProfileComponent } from './members/member-profile/member-profile.component';
 import {MatTableModule } from "@angular/material/table";
+import { JwtInterceptor } from './_interceptors/jwt.interceptor';
 
 
 @NgModule({
@@ -110,6 +111,7 @@ import {MatTableModule } from "@angular/material/table";
     DataService,
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
   entryComponents: [RolesModalComponent],
