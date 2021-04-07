@@ -76,7 +76,6 @@ export class TennisClubDetailComponent implements OnInit {
 
   ngOnChanges() {
     this.loadTennisClub(this.cityId, this.tennisClubId);
-    console.log(this.allBookings);
     this.getHoursForBooking(this.allBookings);
   }
 
@@ -90,7 +89,6 @@ export class TennisClubDetailComponent implements OnInit {
         this.getFacilityTypes(tennisClub.facilities);
         this.lat = this.tennisClub.geoLat;
         this.lng = this.tennisClub.geoLong;
-        console.log('maaasa');
         this.loadAllBookings(28);
       });
   }

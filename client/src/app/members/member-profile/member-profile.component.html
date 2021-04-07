@@ -1,42 +1,62 @@
-<div class="row" *ngIf="user">
-    <div class="col-4">
-        <div class="card">
-            <div class="card-body">
-                <div>
-                    <strong>Username:</strong>
-                    <p>{{user.userName}}</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row" *ngIf="user?.bookings">
-<table mat-table [dataSource]="user?.bookings" class="mat-elevation-z8" >
 
-      <!--- Note that these columns can be defined in any order.
-            The actual rendered columns are set as a property on the row definition" -->
+<div class="row user-profile-container" *ngIf="member">
+  <div class="col-4">
+      <h1>Your profile</h1>
+  </div>
+  <div class="col-8">
     
-      <!-- Position Column -->
-      <ng-container matColumnDef="position">
-        <th mat-header-cell *matHeaderCellDef> No. </th>
-        <td mat-cell *matCellDef="let booking"> {{booking.dateStart}} </td>
-      </ng-container>
+  </div>
+  <div class="col-3 profile-info">
+      <div class="card">
+          <img src="{{member.photoUrl || './assets/Images/default_user.png'}}" alt="{{member.username}}" 
+              class="card-img-top mx-auto img-thumbnail">
+          <div class="card-body">
+              <div>
+                  <strong>City:</strong>
+                  <p>{{member.city.name}}</p>
+              </div>
+              <div>
+                  <strong>Age:</strong>
+                  <p>{{member.age}}</p>
+              </div>
+              <div>
+                  <strong>User roles:</strong>
+                
+                    <p>
+                      {{member.roles.join(", ")}}
+                    </p>
+                    
+                  
+              </div>
+          </div>
+          <div class="card-footer">
+              <button  form="editForm" type="submit" class="btn btn-success btn-block">Save Changes</button>
+          </div>
+      </div>
+  </div>
+
+  <div class="col-8">
     
-      <!-- Name Column -->
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef> Name </th>
-        <td mat-cell *matCellDef="let booking"> {{booking.dateEnd}} </td>
-      </ng-container>
-    
-      <!-- Weight Column -->
-      <ng-container matColumnDef="weight">
-        <th mat-header-cell *matHeaderCellDef> Weight </th>
-        <td mat-cell *matCellDef="let booking"> {{booking.tennisCourtId}} </td>
-      </ng-container>
-    
-      <!-- Symbol Column -->
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
-</div>
+    <table class="table">
+      <tr>
+        <th style="width: 30%">Date Start</th>
+        <th style="width: 40%">Date End</th>
+        <th style="width: 30%">Tennis Club</th>
+        <th style="width: 30%"></th>
+      </tr>
+      <tr *ngFor="let booking of member.bookings; let i = index">
+        <td>{{ booking.dateStart | date:'MMM d, y, h:mm a'}}</td>
+        <td>{{ booking.dateEnd | date:'MMM d, y, h:mm a'}}</td>
+        <td>{{ booking.tennisCourt.tennisClub.name}}</td>  
+        <td >
+          <button [disabled]="bookings[i]  < newDateNr " class="btn btn-success">
+            Remove booking
+          </button>
+        </td>
+      </tr>
+    </table>
   
+    
+  </div>
+</div>
+

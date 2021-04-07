@@ -60,11 +60,8 @@ export class HomeComponent implements OnInit {
     this.findCourtForm.patchValue({
       selectCity: event.target.value,
     });
-    console.log(this.cities);
-    console.log(this.cities.findIndex((city) => event.target.value));
     this.citySelected =
       this.cities.findIndex((city) => city.name == event.target.value) + 1;
-    console.log(this.citySelected);
   }
 
   loadCities() {

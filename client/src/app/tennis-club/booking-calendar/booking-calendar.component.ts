@@ -150,15 +150,11 @@ export class BookingCalendarComponent implements OnInit {
   }
 
   fetchEvents(): void {
-    console.log('ma chemi?');
-
     this.events$ = this.http
       .get<any>(this.baseUrl + this.tennisClubId + '/booking')
       .pipe(
         map((results: BookingFromDb[]) => {
-          console.log(results);
           return results.map((booking: BookingFromDb) => {
-            console.log(booking);
             return {
               title: 'booked',
               start: new Date(booking.dateStart),
@@ -192,7 +188,6 @@ export class BookingCalendarComponent implements OnInit {
   startBooking(event) {
     if (event.date.getHours() > 7 && event.date.getHours() < 23) {
       this.viewDate = event.date;
-      console.log(this.viewDate);
       this.modal.open(this.modalContent, { size: 'lg' });
     }
   }

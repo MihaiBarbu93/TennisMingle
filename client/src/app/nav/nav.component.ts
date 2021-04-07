@@ -53,7 +53,6 @@ export class NavComponent implements OnInit {
   }
 
   openModal(template: TemplateRef<any>) {
-    console.log('open modal');
     this.modalRef = this.modalService.show(template, this.config);
   }
 

@@ -1,4 +1,5 @@
 import { Surface } from './surface';
+import { TennisClub } from './tennisClub';
 
 export interface TennisCourt {
   id: number;
@@ -7,4 +8,5 @@ export interface TennisCourt {
   surfaceId: number;
   isAvailable: boolean;
   tennisClubId: number;
+  tennisClub: TennisClub;
 }

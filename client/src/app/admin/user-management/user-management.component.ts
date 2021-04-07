@@ -3,6 +3,7 @@ import { AdminService } from './../../_services/admin.service';
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/_models/user';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-user-management',
@@ -15,7 +16,8 @@ export class UserManagementComponent implements OnInit {
 
   constructor(
     private adminService: AdminService,
-    private modalService: BsModalService
+    private modalService: BsModalService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -24,7 +26,6 @@ export class UserManagementComponent implements OnInit {
 
   getUsersWithRoles() {
     this.adminService.getUsersWithRoles().subscribe((users) => {
-      console.log(users);
       this.users = users;
     });
   }

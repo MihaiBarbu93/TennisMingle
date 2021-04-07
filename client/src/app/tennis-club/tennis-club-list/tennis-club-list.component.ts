@@ -109,7 +109,6 @@ export class TennisClubListComponent implements OnInit {
         );
       }
     });
-    console.log(this.selectedSurfacesValues);
     this.loadTennisClubs(this.cityId);
   }
 

@@ -83,7 +83,6 @@ export class BookingFromCalendarComponent implements OnInit {
     return this.bookingForm.get('LastName');
   }
   get phoneNumber() {
-    console.log('ftumppooss');
     return this.bookingForm.get('PhoneNumber');
   }
   get dateStart() {

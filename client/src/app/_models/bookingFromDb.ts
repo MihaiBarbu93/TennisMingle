@@ -1,6 +1,9 @@
+import { TennisCourt } from "./tennisCourt";
+
 export interface BookingFromDb {
   id: number;
   title: string;
-  dateStart: string;
-  dateEnd: string;
+  dateStart: Date;
+  dateEnd: Date;
+  tennisCourt: TennisCourt;
 }

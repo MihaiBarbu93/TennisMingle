@@ -20,7 +20,7 @@ namespace TennisMingle.API.Entities
         public int? TennisClubId { get; set; }
         public TennisClub? TennisClub { get; set; }
 
-        public ICollection<AppUserRole> UserRoles { get; set; }
+        public ICollection<AppUserRole>? UserRoles { get; set; }
 
     }
 }
